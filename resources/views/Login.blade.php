@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
   
-  <link rel="stylesheet" href="../assets/css/Login.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/Login.css') }}">
   
   <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpanitaspe1252back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10"></script>
   <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
@@ -26,8 +26,8 @@
   <main class="main-container">
     <!-- Background Images -->
     <div class="background-images">
-      <img src="../assets/images/img_pink_and_yellow_600x502.png" alt="Decorative paw prints" class="bg-image-left">
-      <img src="../assets/images/img_pink_and_yellow_524x464.png" alt="Decorative paw prints" class="bg-image-right">
+      <img src="{{ asset('assets/images/img_pink_and_yellow_600x502.png') }}" alt="Decorative paw prints" class="bg-image-left">
+      <img src="{{ asset('assets/images/img_pink_and_yellow_524x464.png') }}" alt="Decorative paw prints" class="bg-image-right">
     </div>
     
     <div class="content-wrapper">
@@ -35,7 +35,7 @@
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-            <img src="../assets/images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+            <img src="{{ asset('assets/images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
             <span class="brand-text">
               <span class="logo-text">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
@@ -85,10 +85,10 @@
             </form>
           </div>
           
-          <p class="register-link">
+          <div class="register-link">
             ¿Aún no tienes cuenta? 
-            <span class="register-highlight">Registrate</span>
-          </p>
+            <a href="Registro.blade.php" class="register-highlight" >Registrate</a>
+          </div>
         </aside>
       </section>
       
@@ -97,15 +97,15 @@
         <div class="footer-content">
           <div class="footer-left">
             <div class="footer-logo-section">
-              <img src="../assets/images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
+              <img src="{{ asset('assets/images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
               <div class="footer-brand">PanitasPet</div>
             </div>
             
             <div class="social-icons">
-              <img src="../assets/images/img_buttons_icon.svg" alt="Facebook" class="social-icon">
-              <img src="../assets/images/img_icon_lime_900_01_20x20.svg" alt="Instagram" class="social-icon">
-              <img src="../assets/images/img_icon.svg" alt="Twitter" class="social-icon">
-              <img src="../assets/images/img_icon_lime_900_01.svg" alt="LinkedIn" class="social-icon">
+              <img src="{{ asset('assets/images/img_buttons_icon.svg') }}" alt="Facebook" class="social-icon">
+              <img src="{{ asset('assets/images/img_icon_lime_900_01_20x20.svg') }}" alt="Instagram" class="social-icon">
+              <img src="{{ asset('assets/images/img_icon.svg') }}" alt="Twitter" class="social-icon">
+              <img src="{{ asset('assets/images/img_icon_lime_900_01.svg') }}" alt="LinkedIn" class="social-icon">
             </div>
           </div>
           
@@ -114,15 +114,15 @@
               <h3 class="contact-title">Contacto</h3>
               <div class="contact-info">
                 <div class="contact-item">
-                  <img src="../assets/images/img_call_end.svg" alt="Phone" class="contact-icon">
+                  <img src="{{ asset('assets/images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
                   <span class="contact-text">+584141234567</span>
                 </div>
                 <div class="contact-item">
-                  <img src="../assets/images/img_call_end.svg" alt="Phone" class="contact-icon">
+                  <img src="{{ asset('assets/images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
                   <span class="contact-text">+584241234567</span>
                 </div>
                 <div class="contact-item email-item">
-                  <img src="../assets/images/img_mail.svg" alt="Email" class="email-icon">
+                  <img src="{{ asset('assets/images/img_mail.svg') }}" alt="Email" class="email-icon">
                   <span class="contact-text">panitapet@gmail.com</span>
                 </div>
               </div>
