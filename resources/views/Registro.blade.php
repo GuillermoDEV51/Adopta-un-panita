@@ -16,26 +16,29 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="../assets/css/Registro.css">
-  
+  <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
+</head>
+<body>
+  <div class="main-container3">
+
   <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpetadopti4327back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10"></script>
   <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
   </head>
 <body>
-  <div class="main-container">
+  <div class="main-container3">
     <!-- Background Images -->
     <div class="background-images">
-      <img src="../assets/images/img_pink_and_yellow2.png" alt="Decorative pet background" class="bg-image-1">
-      <img src="../assets/images/img_pink_and_yellow_284x432.png" alt="Decorative pet background" class="bg-image-2">
-      <img src="../assets/images/img_orange_and_brown.png" alt="Decorative pet background" class="bg-image-3">
+      <img src="{{ asset('assets/images/img_pink_and_yellow2.png') }}" alt="Decorative pet background" class="bg-image-1">
+      <img src="{{ asset('assets/images/img_pink_and_yellow_284x432.png.) }}" alt="Decorative pet background" class="bg-image-2">
+      <img src="{{ asset('assets/images/img_orange_and_brown.png') }}" alt="Decorative pet background" class="bg-image-3">
     </div>
     
-    <div class="content-wrapper">
+    <div class="content-wrapper3">
       <!-- Header - DEL PRIMER CÓDIGO -->
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-            <img src="../assets/images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+            <img src="{{ asset('assets/images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
             <span class="brand-text">
               <span class="logo-text">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
@@ -54,24 +57,23 @@
       </header>
       
       <!-- Registration Form -->
-      <main class="registration-container">
-        <div class="form-content">
-          <div class="form-header">
-            <h1 class="form-title">Registrate ahora en simples pasos</h1>
-            <p class="form-subtitle">Completa todas las casillas</p>
+      <main class="registration-container2">
+        <div class="form-content2">
+          <div class="form-header2">
+            <h1 class="form-title2">Registrate ahora en simples pasos</h1>
+            <p class="form-subtitle2">Completa todas las casillas</p>
           </div>
-          
           <form class="form-fields">
             <div class="form-row">
-              <div class="form-group">
+              <div class="form-group2">
                 <input type="text" class="form-input" placeholder="Nombre" required>
               </div>
-              <div class="form-group">
+              <div class="form-group2">
                 <input type="text" class="form-input" placeholder="Apellido" required>
               </div>
             </div>
             
-            <div class="form-group">
+            <div class="form-group2">
               <label class="form-label">Fecha de nacimiento</label>
               <div class="date-row">
                 <input type="text" class="form-input" placeholder="Día" required>
@@ -80,23 +82,23 @@
               </div>
             </div>
             
-            <div class="form-group">
+            <div class="form-group2">
               <input type="tel" class="form-input" placeholder="Número de teléfono" required>
             </div>
             
-            <div class="form-group">
+            <div class="form-group2">
               <input type="text" class="form-input" placeholder="Ubicación" required>
             </div>
             
-            <div class="form-group">
+            <div class="form-group2">
               <input type="text" class="form-input" placeholder="Cédula" required>
             </div>
             
-            <div class="form-group">
+            <div class="form-group2">
               <input type="password" class="form-input" placeholder="Contraseña" required>
             </div>
             
-            <div class="form-group">
+            <div class="form-group2">
               <input type="password" class="form-input" placeholder="Confirmar contraseña" required>
             </div>
             
@@ -110,15 +112,11 @@
         <div class="footer-content">
           <div class="footer-left">
             <div class="footer-logo-section">
-              <img src="../assets/images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
-              <div class="footer-brand">PanitasPet</div>
+              <img src="{{ asset('assets/images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
+            <span class="brand-text">
+              <span class="footer-brand">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
             </div>
-            
-            <div class="social-icons">
-              <img src="../assets/images/img_buttons_icon.svg" alt="Facebook" class="social-icon">
-              <img src="../assets/images/img_icon_lime_900_01_20x20.svg" alt="Instagram" class="social-icon">
-              <img src="../assets/images/img_icon.svg" alt="Twitter" class="social-icon">
-              <img src="../assets/images/img_icon_lime_900_01.svg" alt="LinkedIn" class="social-icon">
             </div>
           </div>
           
@@ -127,15 +125,15 @@
               <h3 class="contact-title">Contacto</h3>
               <div class="contact-info">
                 <div class="contact-item">
-                  <img src="../assets/images/img_call_end.svg" alt="Phone" class="contact-icon">
+                  <img src="{{ asset('assets/images/img_call_end.svg) }}" alt="Phone" class="contact-icon">
                   <span class="contact-text">+584141234567</span>
                 </div>
                 <div class="contact-item">
-                  <img src="../assets/images/img_call_end.svg" alt="Phone" class="contact-icon">
+                  <img src="{{ asset('assets/images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
                   <span class="contact-text">+584241234567</span>
                 </div>
                 <div class="contact-item email-item">
-                  <img src="../assets/images/img_mail.svg" alt="Email" class="email-icon">
+                  <img src="{{ asset('assets/images/img_mail.svg') }}" alt="Email" class="email-icon">
                   <span class="contact-text">panitapet@gmail.com</span>
                 </div>
               </div>

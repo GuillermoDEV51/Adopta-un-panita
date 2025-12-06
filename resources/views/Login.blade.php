@@ -16,8 +16,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-  
-  <link rel="stylesheet" href="{{ asset('assets/css/Login.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
   
   <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpanitaspe1252back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10"></script>
   <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
@@ -26,10 +25,11 @@
   <main class="main-container">
     <!-- Background Images -->
     <div class="background-images">
-      <img src="{{ asset('assets/images/img_pink_and_yellow_600x502.png') }}" alt="Decorative paw prints" class="bg-image-left">
-      <img src="{{ asset('assets/images/img_pink_and_yellow_524x464.png') }}" alt="Decorative paw prints" class="bg-image-right">
+      <img src="{{ asset('assets/images/img_pink_and_yellow_600x502.png') }}" alt="Decorative paw prints"
+        class="bg-image-left">
+      <img src="{{ asset('assets/images/img_pink_and_yellow_524x464.png') }}" alt="Decorative paw prints"
+        class="bg-image-right">
     </div>
-    
     <div class="content-wrapper">
       <!-- Header -->
       <header class="header">
@@ -74,7 +74,7 @@
               </div>
             </div>
             
-            <form class="login-form">
+            <form class="login-form" method="">
               <input type="text" class="form-input" placeholder="Usuario..." required>
               <input type="password" class="form-input password-input" placeholder="Contraseña..." required>
               
@@ -87,7 +87,7 @@
           
           <div class="register-link">
             ¿Aún no tienes cuenta? 
-            <a href="Registro.blade.php" class="register-highlight" >Registrate</a>
+            <a href="Registro.blade.php" class="register-highlight">Registrate</a>
           </div>
         </aside>
       </section>
@@ -98,14 +98,10 @@
           <div class="footer-left">
             <div class="footer-logo-section">
               <img src="{{ asset('assets/images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
-              <div class="footer-brand">PanitasPet</div>
+            <span class="brand-text">
+              <span class="footer-brand">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
             </div>
-            
-            <div class="social-icons">
-              <img src="{{ asset('assets/images/img_buttons_icon.svg') }}" alt="Facebook" class="social-icon">
-              <img src="{{ asset('assets/images/img_icon_lime_900_01_20x20.svg') }}" alt="Instagram" class="social-icon">
-              <img src="{{ asset('assets/images/img_icon.svg') }}" alt="Twitter" class="social-icon">
-              <img src="{{ asset('assets/images/img_icon_lime_900_01.svg') }}" alt="LinkedIn" class="social-icon">
             </div>
           </div>
           
