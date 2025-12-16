@@ -24,17 +24,19 @@
   <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpetadopti4327back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10"></script>
   <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
   </head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <body>
   <div class="main-container3">
     <!-- Background Images -->
     <div class="background-images">
       <img src="{{ asset('assets/images/img_pink_and_yellow2.png') }}" alt="Decorative pet background" class="bg-image-1">
-      <img src="{{ asset('assets/images/img_pink_and_yellow_284x432.png.') }}" alt="Decorative pet background" class="bg-image-2">
+      <img src="{{ asset('assets/images/img_pink_and_yellow_284x432.png') }}" alt="Decorative pet background" class="bg-image-2">
       <img src="{{ asset('assets/images/img_orange_and_brown.png') }}" alt="Decorative pet background" class="bg-image-3">
     </div>
     
     <div class="content-wrapper3">
-      <!-- Header - DEL PRIMER CÓDIGO -->
+      
+     <!-- Header -->
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
@@ -50,12 +52,16 @@
               <a href="#" class="nav-item" role="menuitem">Mascotas</a>
               <a href="#" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <button class="hamburger">☰</button>
             <button class="login-btn">Iniciar Sección</button>
+            <div class="menu-lines" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </nav>
         </div>
       </header>
-      
+
       <!-- Registration Form -->
       <main class="registration-container2">
         <div class="form-content2">
@@ -116,36 +122,80 @@
             <span class="brand-text">
               <span class="footer-brand">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
+            </span>
             </div>
+
+            <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para combatir el abandono y la sobrepoblación.</p>
+
+            <div class="footer-badges">
+              <div class="badge"><i class="fas fa-paw"></i> 500+ Adopciones</div>
+              <div class="badge"><i class="fas fa-heart"></i> 30+ Refugios</div>
+            </div>
+
+            <div class="social-icons">
+              <a href="#" class="social-btn" aria-label="Icono 1">
+                <img src="{{ asset('assets/images/icono1.png') }}" alt="icono1" class="circle-icon">
+              </a>
+              <a href="#" class="social-btn" aria-label="Icono 2">
+                <img src="{{ asset('assets/images/icono2.png') }}" alt="icono2" class="circle-icon">
+              </a>
+              <a href="#" class="social-btn" aria-label="Icono 3">
+                <img src="{{ asset('assets/images/icono3.png') }}" alt="icono3" class="circle-icon">
+              </a>
+              <a href="#" class="social-btn" aria-label="Icono 4">
+                <img src="{{ asset('assets/images/icono4.png') }}" alt="icono4" class="circle-icon">
+              </a>
             </div>
           </div>
-          
-          <div class="footer-right">
-            <div class="contact-section">
-              <h3 class="contact-title">Contacto</h3>
-              <div class="contact-info">
-                <div class="contact-item">
-                  <img src="{{ asset('assets/images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
-                  <span class="contact-text">+584141234567</span>
+
+          <div class="footer-links">
+            <h4 class="footer-column-title">Enlaces rápidos</h4>
+            <ul class="footer-list">
+              <span href="#">Mascotas en adopción</span>
+              <span href="#">Refugios</span>
+              <span href="#">Donaciones</span>
+              <span href="#">Misión y visión</span>
+              <span href="#">Acerca de</span>
+            </ul>
+          </div>
+
+          <div class="footer-services">
+            <h4 class="footer-column-title">Servicios</h4>
+            <ul class="footer-list">
+              <span href="#">Publicar mascota</span>
+              <span href="#">Solicitar ayuda</span>
+              <span href="#">Donar</span>
+              <span href="#">Voluntarios</span>
+              <span href="#">Registrarse</span>
+            </ul>
+          </div>
+
+          <div class="footer-contact">
+            <h4 class="footer-column-title">Contacto</h4>
+            <div class="contact-info">
+              <div class="contact-item">
+                <img src="{{ asset('assets/images/img_mail.svg') }}" alt="Email" class="contact-icon">
+                <div>
+                  <div style="font-weight:700;color:#af7700">Email</div>
+                  <div class="contact-text">panitapet@gmail.com</div>
                 </div>
-                <div class="contact-item">
-                  <img src="{{ asset('assets/images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
-                  <span class="contact-text">+584241234567</span>
-                </div>
-                <div class="contact-item email-item">
-                  <img src="{{ asset('assets/images/img_mail.svg') }}" alt="Email" class="email-icon">
-                  <span class="contact-text">panitapet@gmail.com</span>
+              </div>
+
+              <div class="contact-item">
+                <img src="{{ asset('assets/images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
+                <div>
+                  <div style="font-weight:700;color:#af7700">Teléfono</div>
+                  <div class="contact-text">+58 414 1234567</div>
                 </div>
               </div>
             </div>
-            
-            <div class="copyright">
-              © 2025 PanitaPet. Todos los derechos reservados.
-            </div>
           </div>
+        
+        <div class="footer-bottom">
+          <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
         </div>
       </footer>
     </div>
-  </div>
+  </main>
 </body>
 </html>
