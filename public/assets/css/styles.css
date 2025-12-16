@@ -175,6 +175,7 @@ margin-top: 0px;
   gap: 48px;
   justify-content: center;
   align-items: center;
+  margin-right: 24px; /* separar menú de los botones a la derecha */
 }
 
 .nav-item {
@@ -205,6 +206,8 @@ margin-top: 0px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
   cursor: pointer;
   transition: background-color 0.3s ease;
+  white-space: nowrap;
+  margin-left: 8px; /* pequeño espacio hacia la izquierda */
 }
 
 .login-btn:hover {
@@ -218,6 +221,25 @@ margin-top: 0px;
   font-size: 24px;
   color: #9b6b01;
   cursor: pointer;
+}
+
+/* Icono estético de tres rayas al lado de Iniciar Sección */
+.menu-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-left: 20px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none; /* sin funcionalidad */
+}
+
+.menu-lines span {
+  display: block;
+  width: 22px;
+  height: 3px;
+  background-color: #9b6b01;
+  border-radius: 2px;
 }
 
     /* Main Content - Login */
@@ -725,43 +747,47 @@ margin-top: 0px;
     }
 
     /* Footer */
+
     .footer {
       width: 100%;
-      background-color: #ebdcbb;
-      padding: 40px;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      background-color: #ead7b1; /* tono beige similar al ejemplo */
+      padding: 48px 0 24px 0;
+      box-shadow: none;
       display: flex;
       justify-content: center;
-      align-items: center;
+      align-items: flex-start;
       margin-top: auto;
     }
     
     .footer-content {
-      width: 90%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
+      width: 92%;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr; /* logo+desc | enlaces | servicios | contacto */
+      gap: 48px;
+      align-items: start;
+      align-content: start;
     }
     
     .footer-left {
       display: flex;
       flex-direction: column;
-      gap: 82px;
+      gap: 12px; /* reducir separación para acercar descripción al título/logo */
       align-items: flex-start;
     }
     
     .footer-logo-section {
       display: flex;
-      gap: 6px;
-      align-items: flex-start;
-      margin-right: 10px;
+      gap: 12px;
+      align-items: center; /* alinear logo y texto verticalmente */
+      margin-right: 12px;
     }
     
     .footer-logo {
-      width: 50px;
-      height: 50px;
+      width: 64px;
+      height: 64px;
       align-self: center;
+      border-radius: 50%;
+      padding: 6px;
     }
     
     .footer-brand {
@@ -772,31 +798,116 @@ margin-top: 0px;
       color: #af7700;
     }
     
+    .description {
+      font-size: 15px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+      line-height: 28px;
+      color: #9b6b01;
+      margin-top: 6px; /* pequeño ajuste vertical */
+      max-width: 620px; /* ancho similar al ejemplo */
+    }
+
+    /* Badges below description */
+    .footer-badges {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      background-color: #eca100;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 28px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+      font-weight: 600;
+      font-size: 15px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .social-btn {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #eca100;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .social-btn img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      display: block;
+    }
+
     .social-icons {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
     }
-    
 
     .social-icon:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
+    }
+
+    /* listas de columna (enlaces/servicios) */
+    .footer-column-title {
+      font-family: 'Poppins', sans-serif;
+      color: #9b6b01;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .footer-list {
+      color: #9b6b01;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      font-weight: 600;
+      gap: 20px;
+    }
+
+    .footer-list li { margin-left: 10px; }
+
+    .footer-list a {
+      color: #9b6b01; /* púrpura parecido al ejemplo */
+      font-weight: 600;
     }
     
     .footer-right {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      width: 50%;
+      width: 40%; /* reducir para dar más espacio a la descripción */
       flex-wrap: wrap;
+      gap: 12px;
     }
     
     .contact-section {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 12px;
       align-items: flex-start;
-      width: 34%;
+      width: 100%;
     }
     
     .contact-title {
@@ -811,13 +922,13 @@ margin-top: 0px;
     .contact-info {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 10px;
       width: 100%;
     }
     
     .contact-item {
       display: flex;
-      gap: 2px;
+      gap: 12px;
       align-items: center;
     }
     
@@ -827,12 +938,71 @@ margin-top: 0px;
     }
     
     .contact-text {
-      font-size: 16px;
+      font-size: 15px;
       font-family: 'Inter', sans-serif;
       font-weight: 700;
       line-height: 20px;
-      color: #af7700;
+      color: #9b6b01; /* verde */
     }
+
+    .contact-item div > div:first-child { font-weight:700; color:#9b6b01; }
+
+    .contact-btn {
+      display: inline-block;
+      margin-top: 12px;
+      background-color: #9b6b01;
+      color: #fff;
+      padding: 12px 28px;
+      border-radius: 28px;
+      text-decoration: none;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(139,181,62,0.18);
+      font-size: 16px;
+    }
+
+    /* footer bottom links */
+    .footer-bottom a { color: #5b2aa8; text-decoration: underline; font-weight:600 }
+
+    /* Responsive: stack columns */
+    @media (max-width: 980px) {
+      .footer-content { grid-template-columns: 1fr; gap:20px }
+      .footer-bottom { width:92%; flex-direction:column; gap:12px; align-items:flex-start }
+    }
+
+    /* Footer bottom base layout: copyright + legal links on same line */
+    .footer-bottom {
+      width: 265%;
+      margin: 18px auto 0;
+      border-top: 2px solid #9b6a012a;
+      padding-top: 18px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr; /* match footer columns */
+      gap: 48px;
+      align-items: center;
+    }
+
+    .footer-bottom .copyright {
+      grid-column: 1 / 2;
+      justify-self: start;
+      white-space: nowrap;
+      color: #9b6b01;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .footer-bottom .footer-legal {
+      grid-column: 2 / 5; /* sit to the right, spanning remaining columns */
+      display: flex;
+      gap: 28px;
+      justify-self: start; /* start at column 2 */
+      align-items: center;
+      margin: 0;
+    }
+
+    /* Ensure the link columns align to the top of the grid */
+    .footer-links,
+    .footer-services,
+    .footer-contact { align-self: start; }
     
     .email-item {
       margin-left: 4px;
@@ -853,6 +1023,8 @@ margin-top: 0px;
       margin-top: 6px;
     }
     
+/* Responsive Design */
+
     /* Responsive media queries */
     @media (min-width: 640px) {
       .logo.text {
@@ -1103,6 +1275,7 @@ margin-top: 0px;
         text-align: center;
       }
     }
+
 @media (min-width: 768px) {
   .hamburger {
     display: none;
@@ -1136,8 +1309,8 @@ margin-top: 0px;
   }
   
   .form-title {
-    font-size: 32px;
-    line-height: 38px;
+    font-size: 20px;
+    line-height: 20px;
   }
   
   .form-subtitle {
@@ -1150,7 +1323,7 @@ margin-top: 0px;
   }
   
   .logo-text {
-    font-size: 48px;
+    font-size: 30px;
   }
   
   .nav-item {

@@ -29,7 +29,7 @@
     <!-- Background Images -->
     <div class="background-images">
       <img src="{{ asset('assets/images/img_pink_and_yellow2.png') }}" alt="Decorative pet background" class="bg-image-1">
-      <img src="{{ asset('assets/images/img_pink_and_yellow_284x432.png.) }}" alt="Decorative pet background" class="bg-image-2">
+      <img src="{{ asset('assets/images/img_pink_and_yellow_284x432.png.') }}" alt="Decorative pet background" class="bg-image-2">
       <img src="{{ asset('assets/images/img_orange_and_brown.png') }}" alt="Decorative pet background" class="bg-image-3">
     </div>
     
@@ -125,7 +125,7 @@
               <h3 class="contact-title">Contacto</h3>
               <div class="contact-info">
                 <div class="contact-item">
-                  <img src="{{ asset('assets/images/img_call_end.svg) }}" alt="Phone" class="contact-icon">
+                  <img src="{{ asset('assets/images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
                   <span class="contact-text">+584141234567</span>
                 </div>
                 <div class="contact-item">
