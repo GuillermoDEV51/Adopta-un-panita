@@ -22,7 +22,6 @@
 <body>
   <div class="main-container">
     
-</head>
 <body>
   <div class="main-container2">
     <!-- Background Images -->
