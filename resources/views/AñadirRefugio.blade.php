@@ -15,6 +15,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+
+  <!-- Estilos CSS -->
   <link rel="stylesheet" href="{{ asset('assets/css/stylessadmin.css') }}">
   
   <!-- Iconos (Font Awesome para los iconos del menú) -->
