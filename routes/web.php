@@ -37,3 +37,5 @@ Route::get('/admin/refugios',[RefugiosAdminController::class,'index'])->name('Re
 Route::get('/admin/solicitudes',[SolicitudesAdminController::class,'index'])->name('SolicitudesAdmin');
 Route::get('/admin/usuarios',[UsuariosAdminController::class,'index'])->name('UsuariosAdmin');
 Route::get('/admin/voluntarios', [VoluntariosAdminController::class, 'index'])->name('VoluntariosAdmin');
+
+// Other Routes
