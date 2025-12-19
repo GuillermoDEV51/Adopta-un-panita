@@ -960,6 +960,441 @@ margin-top: 0px;
       font-size: 16px;
     }
 
+/* Layout containers */
+.main-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+}
+
+.content-container {
+	width: 100%;
+	padding: 20px 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.main-title {
+	font-size: 34px;
+	color: #af7700;
+	text-align: center;
+	margin: 8px 0 14px 0;
+}
+
+.divider-line {
+	/* base helper, variants below */
+	display: block;
+	position: relative;
+	margin: 18px 0;
+}
+
+/* Horizontal decorative line with paw images at both ends */
+.divider-line.horizontal {
+	height: 6px;
+	background: #9C6B02;
+	border-radius: 4px;
+	top: 0px;
+	left: -15px;
+	/* extender hacia la derecha manteniendo la posición izquierda */
+	width: calc(100% + 35px);
+	max-width: none;
+}
+
+.divider-line.hori {
+	height: 4px;
+	background: #9C6B02;
+	border-radius: 4px;
+	top: 0px;
+	left: -15px;
+	/* extender hacia la derecha manteniendo la posición izquierda */
+	width: calc(60% + 2px);
+	max-width: none;
+}
+
+.divider-line.horizontal1 {
+	height: 6px;
+	background: #9C6B02;
+	border-radius: 4px;
+	top: -19px;
+	left: -15px;
+	/* variante ligeramente más larga */
+	width: calc(100% + 35px);
+	max-width: none;
+}
+
+.divider-line.horizontal2 {
+	height: 6px;
+	background: #9C6B02;
+	border-radius: 4px;
+	top: 40px;
+	left: -15px;
+	/* variante ligeramente más larga */
+	width: calc(100% + 35px);
+	max-width: none;
+}
+
+/* Vertical decorative line used beside boxes */
+.divider-line.vertical {
+	width: 6px;
+	background: #9C6B02;
+	border-radius: 4px;
+	position: absolute;
+	top: 35px;
+	height: calc(100% - 90px);
+	left: 1200px;
+	z-index: 3;
+}
+
+.divider-line.vertical1 {
+	width: 6px;
+	background: #9C6B02;
+	border-radius: 4px;
+	position: absolute;
+	top: -58px;
+	height: calc(100% - 13px);
+	left: 0px;
+	z-index: 3;
+}
+
+.divider-line.vertical2 {
+	width: 6px;
+	background: #9C6B02;
+	border-radius: 4px;
+	position: absolute;
+	top: -75px;
+	height: calc(100% - -63px);
+	left: 1200px;
+	z-index: 3;
+}
+
+.divider-linea.vertical {
+	width: 4px;
+	background: #9C6B02;
+	border-radius: 4px;
+	position: absolute;
+	top: 5px;
+	height: calc(100% - 13px);
+	left: 600px;
+	z-index: 3;
+}
+
+/* small tweak if we want the vertical to appear on the right side */
+.divider-line.vertical.right { left: auto; right: -28px; }
+
+/* make sure boxes allow absolute positioned decorative lines */
+.bank-box, .dollar-box, .any-box, .final-plate {
+	position: relative;
+}
+
+/* Decorative images around the hero text */
+.decorative-section {
+	width: 100%;
+	max-width: 1000px;
+	position: relative;
+	padding: 0 20px;
+}
+
+.decorative-image-left {
+	position: absolute;
+	left: -200px;
+	top: 0;
+	width: 150px;
+}
+
+.decorative-image-right {
+	position: absolute;
+	right: -150px;
+	top: 20px;
+	width: 160px;
+}
+
+.text-content1 {
+	margin: 0 auto;
+	max-width: 760px;
+	text-align: center;
+}
+
+.description-text {
+  color: #9b6b01;
+	font-weight: 700;
+	font-size: 25px;
+	margin-bottom: 12px;
+}
+
+.quote-text1 {
+	font-weight: 700;
+	color: #eca100;
+	font-size: 25px;
+}
+
+/* Categories: label on the left, content box on the right (label vertically centered) */
+
+.categories-section {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.category-complete {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+}
+
+.category-title-box {
+  background: #ffd477;
+  color: #af7700;
+  font-family: 'Pacifico', cursive;
+  font-size: 32px;
+  padding: 12px 40px;
+  border-radius: 16px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  min-width: 180px;
+  position: relative;
+  z-index: 2;
+  /* Posiciona la caja pequeña ligeramente a la izquierda */
+  margin-left: -50px;
+  margin-bottom: -150px; /* Superpone ligeramente la caja grande */
+}
+
+.category-content-box {
+  background: #fffbea;
+  color: #9b6b01;
+  font-size: 24px;
+  font-weight: 700;
+  padding: 30px 100px;
+  border-radius: 16px;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100%;
+  /* Margen para alinear con la caja pequeña */
+  margin-left: 90px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+
+/* Ajustes para el título principal */
+.main-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 42px;
+  color: #af7700;
+  text-align: center;
+  margin: 20px 0;
+  line-height: 1.3;
+  letter-spacing: 2px;
+}
+
+
+/* Bank / Economic block */
+.bank-box {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* Más espacio entre las columnas */
+  background: #fffbea;
+  border-radius: 16px;
+  padding: 30px 40px; /* Más padding interno */
+  box-shadow: 0 6px 10px rgba(0,0,0,0.06);
+  border: 1px solid rgba(155,107,1,0.12);
+  max-width: 1100px; /* Ancho máximo ajustado */
+  margin: 20px auto;
+  position: relative;
+  min-height: 180px; /* Altura suficiente para el contenido */
+}
+
+.bank-label {
+	/* caja amarilla con texto centrado (ajusta tamaños si quieres) */
+	background: #ffd477;
+	padding: 12px 16px;
+	border-radius: 14px;
+	color: #af7700;
+	font-weight: 700;
+	font-size: 16px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 6px;
+	max-width: 320px;
+}
+
+.bank-left {
+  flex: 1;
+  min-width: 300px; /* Ancho mínimo para el texto */
+}
+
+.bank-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centrado horizontal */
+  text-align: center;
+  gap: 15px; /* Espacio entre los números */
+  min-width: 250px;
+}
+
+.box-title {
+  font-family: 'Pacifico', cursive;
+  font-size: 35px; /* Tamaño de fuente más grande */
+  color: #af7700;
+  text-align: center;
+  line-height: 1.3;
+  padding: 10px;
+}
+
+.bank-number {
+  font-size: 28px; /* Tamaño de fuente más grande */
+  font-weight: 700;
+  color: #af7700;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+
+.bank-number.small {
+  font-size: 22px; /* Un poco más pequeño para el CI */
+}
+
+/* Ajustes para el título de la sección */
+.section-header4 {
+  font-family: 'Pacifico', cursive;
+  font-size: 40px; /* Un poco más grande para compensar el salto */
+  color: #af7700;
+  letter-spacing: 2px;
+  margin: 0;
+  text-align: center;
+  line-height: 1.2; /* Espaciado entre líneas */
+  white-space: pre-line; /* Respeta los saltos de línea */
+}
+
+.section-header4 p {
+  font-family: 'Inter', sans-serif;
+  color: #eca100;
+  font-weight: 800;
+  margin-top: 5px;
+  font-size: 30px;
+  text-align: center;
+}
+
+/* Donation boxes */
+.dollar-box {
+	background: #ffffff;
+	border-radius: 12px;
+	padding: 16px;
+	max-width: 1200px;
+	margin-top: 0px;
+	position: relative;
+}
+
+.dollar-row {
+	display: flex;
+	gap: 16px;
+	align-items: flex-start;
+}
+
+.dollar-image {
+	width: 400px;
+	border-radius: 8px;
+	top: 90px
+}
+
+.dollar-title {
+	font-size: 48px;
+	color: #eca100;
+	margin: 0;
+	text-align: center;
+}
+
+/* Aplicar la fuente Pacifico a los títulos previamente marcados con la clase pacifico-font */
+.main-title,
+.category-title,
+.section-header h2
+{
+	font-family: 'Pacifico', cursive;
+}
+
+.dollar-text {
+	font-weight: 700;
+	color: #af7700;
+	font-size: 32px;
+	text-align: center;
+}
+
+/* Column that contains title + paragraph; title centered within this column */
+.dollar-content {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.title-row {
+	display: flex;
+	align-items: center;
+	justify-content: center; /* center title relative to text column */
+	gap: 8px;
+}
+
+.any-decor {
+	width: 400px;
+	border-radius: 8px;
+}
+
+/* Final plate */
+.final-plate {
+	border: 4px solid #e6b64a;
+	border-radius: 8px;
+	padding: 18px;
+	background: #fff;
+	position: relative;
+	max-width: 860px;
+	margin: 18px auto;
+	box-shadow: 0 6px 12px rgba(0,0,0,0.06);
+}
+
+.paw-inicial {
+	width: 80px;
+	position: absolute;
+	top: -30px;
+	left: 1160px;
+}
+
+
+.paw-final {
+	width: 80px;
+	position: absolute;
+	top: 185px;
+	left: -85px;
+}
+
+.final-title {
+	text-align: center;
+	color: #eca100;
+	margin: 6px 0 0 0;
+}
+
+.three-dogs {
+    position: relative;
+    text-align: right;
+    margin-bottom: -90px;
+    margin-right: 0px;
+}
+
+
     /* footer bottom links */
     .footer-bottom a { color: #5b2aa8; text-decoration: underline; font-weight:600 }
 
