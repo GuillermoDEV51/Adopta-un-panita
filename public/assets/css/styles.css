@@ -44,6 +44,13 @@ align-self: center;
 margin-top: -10px;
 }
     
+.bg-image-left5 {
+width: 34%;
+height: auto;
+align-self: center;
+margin-top: 1400px;
+}
+
 .bg-image-right {
 width: 32%;
 height: auto;
@@ -214,14 +221,7 @@ margin-top: 0px;
   background-color: #af7700;
 }
 
-.hamburger {
-  display: block;
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #9b6b01;
-  cursor: pointer;
-}
+
 
 /* Icono estético de tres rayas al lado de Iniciar Sección */
 .menu-lines {
@@ -1013,6 +1013,17 @@ margin-top: 0px;
 	max-width: none;
 }
 
+.divider-line.hori1 {
+	height: 4px;
+	background: #9C6B02;
+	border-radius: 4px;
+	top: -36px;
+	left: -15px;
+	/* extender hacia la derecha manteniendo la posición izquierda */
+	width: calc(80% + 2px);
+	max-width: none;
+}
+
 .divider-line.horizontal1 {
 	height: 6px;
 	background: #9C6B02;
@@ -1032,6 +1043,17 @@ margin-top: 0px;
 	left: -15px;
 	/* variante ligeramente más larga */
 	width: calc(100% + 35px);
+	max-width: none;
+}
+
+.divider-line.horizontal3 {
+	height: 6px;
+	background: #9C6B02;
+	border-radius: 4px;
+	top: 40px;
+	left: -15px;
+	/* variante ligeramente más larga */
+	width: calc(70% + 35px);
 	max-width: none;
 }
 
@@ -1121,6 +1143,22 @@ margin-top: 0px;
 	font-weight: 700;
 	font-size: 25px;
 	margin-bottom: 12px;
+}
+
+.description-text1 {
+  color: #9b6b01;
+	font-weight: 700;
+	font-size: 25px;
+	margin-top: -50px;
+}
+
+.description-text2 {
+  color: #9b6b01;
+	font-weight: 700;
+	font-size: 25px;
+	margin-top: -50px;
+  margin-bottom: 30px;
+	text-align: center;
 }
 
 .quote-text1 {
@@ -1312,9 +1350,24 @@ margin-top: 0px;
 	top: 90px
 }
 
+.dollar-image1 {
+	width: 400px;
+	border-radius: 8px;
+	margin-top: -50px;
+}
+
 .dollar-title {
 	font-size: 48px;
 	color: #eca100;
+	margin: 0;
+	text-align: center;
+}
+
+.dollar-title-pacifico {
+  font-weight: 400;
+  font-family: 'Pacifico', cursive;
+	font-size: 48px;
+	color: #9b6b01;
 	margin: 0;
 	text-align: center;
 }
@@ -1351,6 +1404,11 @@ margin-top: 0px;
 
 .any-decor {
 	width: 400px;
+	border-radius: 8px;
+}
+
+.any-decor1 {
+	width: 900px;
 	border-radius: 8px;
 }
 
@@ -1394,6 +1452,156 @@ margin-top: 0px;
     margin-right: 0px;
 }
 
+
+/* Registro de Refugios */
+.main-content5 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.registration-container5 {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 50px;
+  padding: 80px;
+  box-shadow: 0px 4px 15px rgba(155, 107, 1, 0.1);
+  border: 1px solid rgba(155, 107, 1, 0.2);
+  margin-top: 30px;
+  margin-right: 400px;
+  margin-bottom: 30px;
+}
+
+.form-header5 {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.form-title5 {
+  font-size: 40px;
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  color: #af7700;
+  margin-bottom: 10px;
+}
+
+.form-subtitle5 {
+  font-size: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  color: #af7700;
+  margin-bottom: 10px;
+}
+
+.content-title5 {
+  font-size: 22px;
+  font-family: 'Pacificio', cursive;
+  font-weight: 700;
+  color: #9b6b01;
+  margin-bottom: 20px;
+}
+
+/* Formulario de Registro de Refugios */
+.form-fields5 {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-row5 {
+  display: flex;
+  gap: 25px;
+  width: 100%;
+}
+
+.form-group5 {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.form-label5 {
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #828282;
+  margin-bottom: 8px;
+  align-self: flex-start;
+  margin-top: 20px;
+}
+
+.form-input5 {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  line-height: 20px;
+  color: #333;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.form-input5:focus {
+  outline: none;
+  border-color: #9b6b01;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(155, 107, 1, 0.1);
+}
+
+.form-input5::placeholder {
+  color: #aaa;
+}
+
+textarea.form5-input {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-select5 {
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px 20px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  color: #333;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.form-select5:focus {
+  outline: none;
+  border-color: #9b6b01;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(155, 107, 1, 0.1);
+}
+
+    .submit-btn2 {
+      width: 20%;
+      background-color: #9b6b01;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      line-height: 17px;
+      padding: 14px 10px;
+      border: none;
+      border-radius: 26px;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 30px;
+      margin-left: 40%;
+    }
+    
+    .submit-btn:hover {
+      background-color: #af7700;
+    }
 
     /* footer bottom links */
     .footer-bottom a { color: #5b2aa8; text-decoration: underline; font-weight:600 }
