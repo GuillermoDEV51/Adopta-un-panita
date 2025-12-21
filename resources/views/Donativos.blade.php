@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <title>Donativos - PanitasPet | Adopción y Refugios de Mascotas</title>
   <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
   <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
   
@@ -113,7 +113,7 @@
               <a href="#" class="nav-item" role="menuitem">Mascotas</a>
               <a href="#" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <button class="login-btn">Iniciar Sección</button>
+            <button class="login-btn">Iniciar Sesión</button>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>

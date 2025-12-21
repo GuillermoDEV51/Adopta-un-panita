@@ -49,7 +49,7 @@
               <a href="#" class="nav-item" role="menuitem">Mascotas</a>
               <a href="#" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <button class="login-btn">Iniciar Sección</button>
+            <button class="login-btn">Iniciar Sesión</button>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
