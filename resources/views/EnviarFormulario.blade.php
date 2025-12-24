@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../paginas/styles.css">
+  <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
   
   <!-- Iconos (Font Awesome para los iconos del menú) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -142,6 +142,8 @@
                 <button type="submit" class="submit-btn2">Enviar formulario</button>
             </section>
             </main>
+
+      <img src="../assets/images/img_three_curious_d.png" alt="three dogs" class="three-dogs animate-on-scroll">
 
       <!-- Footer -->
       <footer class="footer">
