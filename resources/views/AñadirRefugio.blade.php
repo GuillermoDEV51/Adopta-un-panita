@@ -92,10 +92,6 @@
                 <i class="fas fa-users"></i>
                 Usuarios
               </div>
-              <div class="menu-item">
-                <i class="fas fa-hands-helping"></i>
-                Voluntarios
-              </div>
             </div>
           </div>
           
