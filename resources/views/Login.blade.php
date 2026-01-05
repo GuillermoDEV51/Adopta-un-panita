@@ -78,7 +78,7 @@
               </div>
             </div>
             
-            <form class="login-form">
+            <form class="login-form" action="{{ route('login.authenticate') }}" method="POST">
               <input type="text" class="form-input" placeholder="Usuario..." required>
               <input type="password" class="form-input password-input" placeholder="Contraseña..." required>
               
