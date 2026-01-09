@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donativos - PanitasPet | Adopción y Refugios de Mascotas</title>
-  <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
-  <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
-  
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
-  <meta property="og:description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
-  
-  <!-- Fonts: Poppins para UI, Pacifico para los títulos/script -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
-  <style>
+@extends('layouts.guest')
+@section('main')
+
+        <style>
     /* Estilos para las animaciones */
     .animate-on-scroll {
       opacity: 0;
@@ -89,40 +72,7 @@
       transform: scale(1.02);
     }
   </style>
-</head>
-<body>
-  <div class="background-images">
-    <img src="../assets/images/img_pink_and_yellow_284x432.png" alt="Decorative pet background" class="bg-image-2">
-  </div>
-  
-  <div class="main-container">
-    <div class="content-wrapper">
-      <!-- Header -->
-      <header class="header">
-        <div class="header-content">
-          <h1 class="logo">
-            <img src="../assets/images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-            <span class="brand-text">
-              <span class="logo-text">PanitasPet</span>
-              <span class="logo-subtitle">Adopción y refugios</span>
-            </span>
-          </h1>
-          <nav class="nav-section">
-            <div class="nav-menu">
-              <a href="#" class="nav-item" role="menuitem">Inicio</a>
-              <a href="#" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="#" class="nav-item" role="menuitem">Refugios</a>
-            </div>
-            <button class="login-btn">Iniciar Sesión</button>
-            <div class="menu-lines" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </nav>
-        </div>
-      </header>
-      
+
       <main class="content-container">
         <section class="title-section animate-on-scroll animate-up">
           <h1 class="main-title">D O N A T I V O S<br>N O &nbsp;&nbsp;M O N E T A R I O S</h1>
@@ -131,12 +81,12 @@
         <div class="divider-line hori animate-on-scroll"></div>
 
         <section class="decorative-section">
-          <img src="../assets/images/img_pink_and_yellow_228x174.png" class="decorative-image-left animate-on-scroll animate-left" alt="left">
+          <img src="{{ asset('images/img_pink_and_yellow_228x174.png') }}" class="decorative-image-left animate-on-scroll animate-left" alt="left">
           <div class="text-content1 animate-on-scroll">
             <p class="description-text">Las donaciones no monetarias cubren necesidades básicas de los refugios. Puedes traer tus donativos directamente a los refugios cercanos o escribirnos para coordinar la entrega. No es necesario que sean cosas nuevas, también puedes donar las cosas que ya no uses y se encuentren en buen estado.</p>
             <p class="quote-text1">No todo es dinero, una camita vieja también es un acto de amor.</p>
           </div>
-          <img src="../assets/images/img_8916d38417374fb.png" class="decorative-image-right animate-on-scroll animate-right" alt="right">
+          <img src="{{ asset('images/img_8916d38417374fb.png') }}" class="decorative-image-right animate-on-scroll animate-right" alt="right">
         </section>
 
         <section class="categories-section">
@@ -210,14 +160,14 @@
         <section>
           <div class="dollar-box animate-on-scroll animate-left">
             <div class="dollar-row">
-              <img src="../assets/images/img_ad5c900afefebd6.png" alt="dog" class="dollar-image">
+              <img src="{{ asset('images/img_ad5c900afefebd6.png') }}" alt="dog" class="dollar-image">
               <div class="dollar-content">
                 <div class="title-row">
                   <h3 class="dollar-title">¡DONA UN 1$ PARA ELLOS!</h3>
                 </div>
                 <p class="dollar-text">Sabemos que no siempre se puede dar mucho ¿Y si te dijéramos que con solo 1$ puedes ayudar a cambiarle la vida a un panita rescatado? Escribe en concepto del pago móvil "Reto 1$" y compártenos tu nombre por redes sociales.</p>
               </div>
-              <img src="../assets/images/img_4efefd0abf3c698.png" class="paw-inicial" alt="paw">
+              <img src="{{ asset('images/img_8916d38417374fb_232x232.png') }}" class="paw-inicial" alt="paw">
               <div class="divider-line vertical"></div>
             </div>
             <div class="divider-line horizontal"></div>
@@ -235,7 +185,7 @@
                 </div>
                 <p class="dollar-text">En PanitasPets creemos que toda ayuda, por pequeña que parezca, hace una gran diferencia. Tu donativo, del monto que tú elijas, se transforma en alimento, medicinas, vacunas, baños, camitas y limpieza.</p>
               </div>
-              <img src="../assets/images/img_074b671d31be397.png" alt="decor" class="any-decor">
+              <img src="{{ asset('images/img_074b671d31be397.png') }}" alt="decor" class="any-decor">
             </div>
             <div class="divider-line horizontal1"></div>
           </div>
@@ -254,7 +204,7 @@
             </div>
             <div class="divider-line horizontal2"></div>
             <div class="paw-final-container">
-              <img src="../assets/images/img_4efefd0abf3c698.png" class="paw-final" alt="paw">
+              <img src="{{ asset('images/img_8916d38417374fb_232x232.png') }}" class="paw-final" alt="paw">
             </div>
             <div class="three-dogs-container">
             </div>
@@ -262,94 +212,10 @@
         </section>
       </main>
 
-      <img src="../assets/images/img_three_curious_d.png" alt="three dogs" class="three-dogs animate-on-scroll">
+      <img src="{{ asset('images/img_three_curious_d.png') }}" alt="three dogs" class="three-dogs animate-on-scroll">
 
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="footer-content">
-          <div class="footer-left">
-            <div class="footer-logo-section">
-              <img src="../assets/images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
-            <span class="brand-text">
-              <span class="footer-brand">PanitasPet</span>
-              <span class="logo-subtitle">Adopción y refugios</span>
-            </span>
-            </div>
+@endsection
 
-            <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para combatir el abandono y la sobrepoblación.</p>
-
-            <div class="footer-badges">
-              <div class="badge"><i class="fas fa-paw"></i> 500+ Adopciones</div>
-              <div class="badge"><i class="fas fa-heart"></i> 30+ Refugios</div>
-            </div>
-
-            <div class="social-icons">
-              <a href="#" class="social-btn" aria-label="Icono 1">
-                <img src="../assets/images/icono1.png" alt="icono1" class="circle-icon">
-              </a>
-              <a href="#" class="social-btn" aria-label="Icono 2">
-                <img src="../assets/images/icono2.png" alt="icono2" class="circle-icon">
-              </a>
-              <a href="#" class="social-btn" aria-label="Icono 3">
-                <img src="../assets/images/icono3.png" alt="icono3" class="circle-icon">
-              </a>
-              <a href="#" class="social-btn" aria-label="Icono 4">
-                <img src="../assets/images/icono4.png" alt="icono4" class="circle-icon">
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-links">
-            <h4 class="footer-column-title">Enlaces rápidos</h4>
-            <ul class="footer-list">
-              <span href="#">Mascotas en adopción</span>
-              <span href="#">Refugios</span>
-              <span href="#">Donaciones</span>
-              <span href="#">Misión y visión</span>
-              <span href="#">Acerca de</span>
-            </ul>
-          </div>
-
-          <div class="footer-services">
-            <h4 class="footer-column-title">Servicios</h4>
-            <ul class="footer-list">
-              <span href="#">Publicar mascota</span>
-              <span href="#">Solicitar ayuda</span>
-              <span href="#">Donar</span>
-              <span href="#">Voluntarios</span>
-              <span href="#">Registrarse</span>
-            </ul>
-          </div>
-
-          <div class="footer-contact">
-            <h4 class="footer-column-title">Contacto</h4>
-            <div class="contact-info">
-              <div class="contact-item">
-                <img src="../assets/images/img_mail.svg" alt="Email" class="contact-icon">
-                <div>
-                  <div style="font-weight:700;color:#af7700">Email</div>
-                  <div class="contact-text">panitapet@gmail.com</div>
-                </div>
-              </div>
-
-              <div class="contact-item">
-                <img src="../assets/images/img_call_end.svg" alt="Phone" class="contact-icon">
-                <div>
-                  <div style="font-weight:700;color:#af7700">Teléfono</div>
-                  <div class="contact-text">+58 414 1234567</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-        <div class="footer-bottom">
-          <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
-        </div>
-      </footer>
-    </div>
-  </main>
-</body>
-</html>
   <script>
     // Animaciones al hacer scroll
     document.addEventListener('DOMContentLoaded', function() {
