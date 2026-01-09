@@ -18,7 +18,7 @@
           <h1 class="form-title2">Registrate ahora en simples pasos</h1>
           <p class="form-subtitle2">Completa todas las casillas</p>
         </div>
-        <form class="form-fields">
+        <form class="form-fields" method="POST" action="{{ route('register') }}">
           <div class="form-row">
             <div class="form-group2">
               <input type="text" class="form-input" placeholder="Nombre" required>

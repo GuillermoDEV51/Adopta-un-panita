@@ -14,9 +14,7 @@ use App\Http\Controllers\VoluntariosAdminController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('login');
-});
+
 
 
 // Login Route
@@ -42,7 +40,7 @@ Route::get('/admin/voluntarios', [VoluntariosAdminController::class, 'index'])->
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
 Route::get('/', function () {
-    return view('Login');
+    return view('auth.Login');
 });
 
 Route::get('/AñadirRefugio', function () {
@@ -69,7 +67,7 @@ Route::get('/GatosAdmin', function () {
 });
 
 Route::get('/Login', function () {
-    return view('Login');
+    return view('auth.Login');
 });
 
 Route::get('/PerrosAdmin', function () {
@@ -81,7 +79,7 @@ Route::get('/RefugiosAdmin', function () {
 });
 
 Route::get('/Registro', function () {
-    return view('Registro'); 
+    return view('auth.Registro'); 
 });
 
 Route::get('/SolicitudesAdmin', function () {
