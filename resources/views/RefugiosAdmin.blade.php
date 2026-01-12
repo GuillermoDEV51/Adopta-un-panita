@@ -61,15 +61,15 @@
             <div class="menu-list">
               <div class="menu-item">
                 <i class="fas fa-tachometer-alt"></i>
-                Dashboard
+                <a href="{{ route('Dashboard') }}" style="color:inherit; text-decoration:none;">Dashboard</a>
               </div>
               <div class="menu-item">
                 <i class="fas fa-clipboard-list"></i>
-                Solicitudes
+                <a href="{{ route('SolicitudesAdmin') }}" style="color:inherit; text-decoration:none;">Solicitudes</a>
               </div>
               <div class="menu-item">
                 <i class="fas fa-plus-circle"></i>
-                Añadir refugios
+                <a href="{{ route('AñadirRefugio') }}" style="color:inherit; text-decoration:none;">Añadir refugios</a>
               </div>
             </div>
           </div>
@@ -79,11 +79,11 @@
             <div class="menu-list">
               <div class="menu-item active">
                 <i class="fas fa-home"></i>
-                Refugios
+                <a href="{{ route('RefugiosAdmin') }}" style="color:inherit; text-decoration:none;">Refugios</a>
               </div>
               <div class="menu-item">
                 <i class="fas fa-users"></i>
-                Usuarios
+                <a href="{{ route('UsuariosAdmin') }}" style="color:inherit; text-decoration:none;">Usuarios</a>
               </div>
             </div>
           </div>
@@ -93,15 +93,15 @@
             <div class="menu-list">
               <div class="menu-item">
                 <i class="fas fa-dog"></i>
-                Perros
+                <a href="{{ route('PerrosAdmin') }}" style="color:inherit; text-decoration:none;">Perros</a>
               </div>
               <div class="menu-item">
                 <i class="fas fa-cat"></i>
-                Gatos
+                <a href="{{ route('GatosAdmin') }}" style="color:inherit; text-decoration:none;">Gatos</a>
               </div>
               <div class="menu-item">
                 <i class="fas fa-sign-out-alt"></i>
-                Cerrar sesión
+                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
               </div>
             </div>
           </div>

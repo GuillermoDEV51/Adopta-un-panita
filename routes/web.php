@@ -10,7 +10,6 @@ use App\Http\Controllers\PerrosAdminController;
 use App\Http\Controllers\RefugiosAdminController;
 use App\Http\Controllers\SolicitudesAdminController;
 use App\Http\Controllers\UsuariosAdminController;
-use App\Http\Controllers\VoluntariosAdminController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -36,7 +35,6 @@ Route::get('/admin/perros',[PerrosAdminController::class,'index'])->name('Perros
 Route::get('/admin/refugios',[RefugiosAdminController::class,'index'])->name('RefugiosAdmin');
 Route::get('/admin/solicitudes',[SolicitudesAdminController::class,'index'])->name('SolicitudesAdmin');
 Route::get('/admin/usuarios',[UsuariosAdminController::class,'index'])->name('UsuariosAdmin');
-Route::get('/admin/voluntarios', [VoluntariosAdminController::class, 'index'])->name('VoluntariosAdmin');
 
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
