@@ -19,5 +19,6 @@ class RegistroController extends Controller
       $usuario = Usuarios::create([
         $request->validate()
       ]);
+      return redirect()->route('login')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
    }
 }

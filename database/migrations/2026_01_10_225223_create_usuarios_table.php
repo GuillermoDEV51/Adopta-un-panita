@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('telefono')->nullable();
 
             $table->unsignedBigInteger('id_rol')->nullable()->default(2);
+            $table->foreign('id_rol')->references('id')->on('roles')->onDelete('set null');
 
             $table->timestamps();
         });
