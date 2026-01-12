@@ -19,6 +19,7 @@
           <p class="form-subtitle2">Completa todas las casillas</p>
         </div>
         <form class="form-fields" method="POST" action="{{ route('register') }}">
+          @csrf
           <div class="form-row">
             <div class="form-group2">
               <input type="text" class="form-input" placeholder="Nombre" required>

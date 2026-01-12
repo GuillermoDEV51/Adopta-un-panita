@@ -25,7 +25,8 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login.aut
 
 // Register Route
 
-Route::get('/register', [RegistroController::class, 'index'])->name('register');
+Route::get('/register', [RegistroController::class, 'show'])->name('register');
+Route::post('/register', [RegistroController::class, 'store'])->name('register.store');
 
 // admin Route
 Route::get('/admin/añadir-refugio', [AñadirRefugioController::class, 'index'])->name('AñadirRefugio');

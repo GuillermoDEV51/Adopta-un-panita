@@ -11,7 +11,7 @@ class RegistroRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,11 +22,14 @@ class RegistroRequest extends FormRequest
     public function rules(): array
     {
         return [
-           
+            'ci'=> 'required|integer|unique:usuarios,ci',
             'nombre'=> 'required|string|max:255',
             'apellido'=> 'required|string|max:255',
             'password'=> 'required|string|min:8|confirmed',
             'password_confirmation'=> 'required|string|min:8|same:password',
+            'fecha_nacimiento'=> 'nullable|date',
+            'ubicacion'=> 'nullable|string|max:255',
+            
         ];
     }
 }
