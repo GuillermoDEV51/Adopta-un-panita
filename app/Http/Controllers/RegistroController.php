@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RegistroRequest;
+use App\Models\Usuarios;
 use Illuminate\Http\Request;
 
 class RegistroController extends Controller
 {
-   public function index(){
+   public function show(){
 
-    return view('Registro');
+    return view('auth.Registro');
     
-   } 
+   }
+
+   public function store(RegistroRequest $request){
+
+      $usuario = Usuarios::create([
+        $request->validate()
+      ]);
+   }
 }

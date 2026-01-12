@@ -14,19 +14,19 @@ use App\Http\Controllers\VoluntariosAdminController;
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('login');
-});
+
 
 
 // Login Route
-Route::get('/login', [LoginController::class, 'index']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
 
 
 
 // Register Route
 
-Route::get('/register', [RegistroController::class, 'index'])->name('register');
+Route::get('/register', [RegistroController::class, 'show'])->name('register');
+Route::post('/register', [RegistroController::class, 'store'])->name('register.store');
 
 // admin Route
 Route::get('/admin/añadir-refugio', [AñadirRefugioController::class, 'index'])->name('AñadirRefugio');
@@ -41,7 +41,7 @@ Route::get('/admin/voluntarios', [VoluntariosAdminController::class, 'index'])->
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
 Route::get('/', function () {
-    return view('Login');
+    return view('auth.Login');
 });
 
 Route::get('/AñadirRefugio', function () {
@@ -68,7 +68,7 @@ Route::get('/GatosAdmin', function () {
 });
 
 Route::get('/Login', function () {
-    return view('Login');
+    return view('auth.Login');
 });
 
 Route::get('/PerrosAdmin', function () {
@@ -80,7 +80,7 @@ Route::get('/RefugiosAdmin', function () {
 });
 
 Route::get('/Registro', function () {
-    return view('Registro'); 
+    return view('auth.Registro'); 
 });
 
 Route::get('/SolicitudesAdmin', function () {

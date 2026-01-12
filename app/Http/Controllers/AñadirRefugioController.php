@@ -10,4 +10,7 @@ class AñadirRefugioController extends Controller
     {
         return view('AñadirRefugio');
     }
+
+
+
 }
