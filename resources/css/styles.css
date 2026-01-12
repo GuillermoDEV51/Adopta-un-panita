@@ -13,6 +13,7 @@ body {
   color: #6b4f10;
 }
 
+
 /* Layout components */
 .main-container {
   width: 100%;
@@ -23,6 +24,17 @@ body {
   background-color: #ffffff;
   position: relative;
 }
+
+.main-container1 {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #fffaf0;
+  position: relative;
+}
+
 
 .background-images {
   position: absolute;
@@ -49,6 +61,13 @@ width: 34%;
 height: auto;
 align-self: center;
 margin-top: 1550px;
+}
+
+.bg-image-left6 {
+width: 34%;
+height: auto;
+align-self: center;
+margin-top: 2700px;
 }
 
 .bg-image-right {
@@ -241,6 +260,388 @@ margin-top: 0px;
   background-color: #9b6b01;
   border-radius: 2px;
 }
+
+/* Mascotas y filtros */
+
+.color-container4 {
+  display: flex;
+  width: 100%;
+  min-height: calc(100vh - 140px);
+  padding: 30px;
+  gap: 30px;
+  background-color: #fffaf0;
+}
+
+.paginas-section4 {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  padding: 0 0px 0px 0px;
+  margin-bottom: 20px;
+}
+
+.paginas-title4 {
+  font-size: 50px;
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  line-height: 38px;
+  color: #af7700;
+  display: inline-block;
+  margin: 0 0 8px 0; /* reducir separación superior para elevar título */
+  padding: 0;
+}
+
+.titulo-wrapper4 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Contenedor principal de filtros compactos */
+.filtros-compactos {
+  background: #ffffff;
+  border-radius: 25px;
+  border: 1px solid #e9ecef;
+  padding: 1.25rem;
+  margin: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Fila superior de filtros */
+.filtros-superiores {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.filtro-principal-compacto {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.filtro-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #495057;
+}
+
+.filtro-titulo i {
+  color: #ff9800;
+  font-size: 1rem;
+}
+
+.opciones-compactas {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.opcion-compacta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.opcion-compacta:hover {
+  background: #fff8e1;
+  border-color: #ffd54f;
+  color: #ff9800;
+  transform: translateY(-1px);
+}
+
+.opcion-compacta.seleccionado {
+  background: #ff9800;
+  border-color: #ff9800;
+  color: white;
+  box-shadow: 0 2px 6px rgba(255, 152, 0, 0.2);
+}
+
+.opcion-compacta i {
+  font-size: 0.9rem;
+}
+
+/* Botón limpiar compacto */
+.acciones-filtros {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-procesar-compacto {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: #eba100;
+  border: 1px solid #eba100;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-limpiar-compacto {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #6c757d;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-limpiar-compacto:hover {
+  background: #fff5f5;
+  border-color: #ffcdd2;
+  color: #f44336;
+}
+
+.btn-limpiar-compacto i {
+  font-size: 0.9rem;
+}
+
+/* Filtros secundarios compactos */
+.filtros-secundarios-compactos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  margin-top: 0;
+}
+
+.filtros-secundarios-compactos.mostrar {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+.filtro-grupo-compacto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filtro-label-compacto {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #6c757d;
+}
+
+.filtro-label-compacto i {
+  color: #ff9800;
+  font-size: 0.9rem;
+}
+
+.select-compacto {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.9rem;
+  color: #495057;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1em;
+  padding-right: 2.5rem;
+}
+
+.select-compacto:hover {
+  border-color: #ffd54f;
+}
+
+.select-compacto:focus {
+  outline: none;
+  border-color: #ff9800;
+  box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.1);
+}
+
+.filtros-secundarios-compactos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  margin-top: 0;
+}
+
+.filtros-secundarios-compactos.mostrar {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+
+/* Responsive para 5 filtros */
+@media (max-width: 1200px) {
+  .filtros-secundarios-compactos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .filtros-secundarios-compactos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .filtros-secundarios-compactos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .busqueda-acciones {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .busqueda-input {
+    max-width: 100%;
+  }
+  
+  .btn-agregar {
+    align-self: flex-start;
+  }
+  
+  .filtros-superiores {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  
+  .filtro-principal-compacto {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .opciones-compactas {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .filtros-secundarios-compactos {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .filtros-compactos {
+    padding: 1rem;
+  }
+  
+  .opciones-compactas {
+    grid-template-columns: 1fr;
+  }
+  
+  .select-compacto {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.6rem;
+    padding-right: 2.2rem;
+  }
+}
+
+/* Estilos para las tarjetas de mascotas (placeholder) */
+.mascotas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 1rem 0;
+}
+
+.terms-container {
+  margin: 30px 0; /* Centrado automático */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  width: 700px; /* Ancho fijo */
+  max-width: 100%; /* Para que sea responsive en móviles */
+}
+    
+    .terms-text {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    
+    .terms-checkbox {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      cursor: pointer;
+    }
+    
+    .terms-checkbox input[type="checkbox"] {
+      margin-top: 3px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    
+    .terms-label {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      font-size: 14px;
+      user-select: none;
+    }
+    
+    .submit-btn2:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    
+    .submit-btn2:disabled:hover {
+      background-color: #cccccc;
+      transform: none;
+    }
 
     /* Main Content - Login */
 
@@ -1024,6 +1425,17 @@ margin-top: 0px;
 	max-width: none;
 }
 
+.divider-line.hori2 {
+	height: 4px;
+	background: #9C6B02;
+	border-radius: 4px;
+	top: 0px;
+	left: 370px;
+	/* extender hacia la derecha manteniendo la posición izquierda */
+	width: calc(50% + 2px);
+	max-width: none;
+}
+
 .divider-line.horizontal1 {
 	height: 6px;
 	background: #9C6B02;
@@ -1138,6 +1550,12 @@ margin-top: 0px;
 	text-align: center;
 }
 
+.text-content4 {
+	margin: 0 auto;
+	max-width: 1200px;
+	text-align: center;
+}
+
 .description-text {
   color: #9b6b01;
 	font-weight: 700;
@@ -1157,6 +1575,15 @@ margin-top: 0px;
 	font-weight: 700;
 	font-size: 25px;
 	margin-top: -50px;
+  margin-bottom: 30px;
+	text-align: center;
+}
+
+.description-text4 {
+  color: #9b6b01;
+	font-weight: 700;
+	font-size: 25px;
+	margin-top: 50px;
   margin-bottom: 30px;
 	text-align: center;
 }
@@ -1453,7 +1880,7 @@ margin-top: 0px;
 }
 
 
-/* Formulario */
+/* Registro de Refugios */
 .main-content5 {
   flex: 1;
   display: flex;

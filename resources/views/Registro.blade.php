@@ -16,7 +16,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite(['resources/css/styles.css'])
+@vite ('resources/css/styles.css')
+  
+  <!-- Iconos (Font Awesome para los iconos del menú) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <div class="main-container3">
@@ -29,30 +32,32 @@
   <div class="main-container3">
     <!-- Background Images -->
     <div class="background-images">
-      <img src="images/img_pink_and_yellow2.png" alt="Decorative pet background" class="bg-image-1">
+      <img src=".images/img_pink_and_yellow2.png" alt="Decorative pet background" class="bg-image-1">
       <img src="images/img_pink_and_yellow_284x432.png" alt="Decorative pet background" class="bg-image-2">
       <img src="images/img_orange_and_brown.png" alt="Decorative pet background" class="bg-image-3">
     </div>
     
     <div class="content-wrapper3">
       
-     <!-- Header -->
+      
+<!-- Header -->
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-            <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-            <span class="brand-text">
-              <span class="logo-text">PanitasPet</span>
-              <span class="logo-subtitle">Adopción y refugios</span>
-            </span>
+              <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+              <span class="brand-text">
+                <span class="logo-text">PanitasPet</span>
+                <span class="logo-subtitle">Adopción y refugios</span>
+              </span>
+            </a>
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="#" class="nav-item" role="menuitem">Inicio</a>
-              <a href="#" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="#" class="nav-item" role="menuitem">Refugios</a>
+              <a href="{{ url('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+              <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <button class="login-btn">Iniciar Sección</button>
+            <a href="{{ route('login') }}" class="login-btn">Iniciar Sección</a>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
@@ -69,7 +74,7 @@
             <h1 class="form-title2">Registrate ahora en simples pasos</h1>
             <p class="form-subtitle2">Completa todas las casillas</p>
           </div>
-          <form class="form-fields">
+        <form class="form-fields" method="POST" action="{{ route('register') }}">
             <div class="form-row">
               <div class="form-group2">
                 <input type="text" class="form-input" placeholder="Nombre" required>
@@ -268,7 +273,7 @@
         </div>
       </main>
       
-      <!-- Footer -->
+<!-- Footer -->
       <footer class="footer">
         <div class="footer-content">
           <div class="footer-left">
@@ -283,8 +288,8 @@
             <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para combatir el abandono y la sobrepoblación.</p>
 
             <div class="footer-badges">
-              <div class="badge"><i class="fas fa-paw"></i> 500+ Adopciones</div>
-              <div class="badge"><i class="fas fa-heart"></i> 30+ Refugios</div>
+              <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
+              <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
             </div>
 
             <div class="social-icons">
@@ -306,22 +311,21 @@
           <div class="footer-links">
             <h4 class="footer-column-title">Enlaces rápidos</h4>
             <ul class="footer-list">
-              <span href="#">Mascotas en adopción</span>
-              <span href="#">Refugios</span>
-              <span href="#">Donaciones</span>
-              <span href="#">Misión y visión</span>
-              <span href="#">Acerca de</span>
+              <a href="MascotasDisponibles">Mascotas en adopción</a>
+              <a href="RefugiosDisponibles">Refugios</a>
+              <a href="Donativos">Donaciones</a>
+              <a href="Mision">Misión y visión</a>
+              <a href="AcercaDe">Acerca de</a>
             </ul>
           </div>
 
           <div class="footer-services">
             <h4 class="footer-column-title">Servicios</h4>
             <ul class="footer-list">
-              <span href="#">Publicar mascota</span>
-              <span href="#">Solicitar ayuda</span>
-              <span href="#">Donar</span>
-              <span href="#">Voluntarios</span>
-              <span href="#">Registrarse</span>
+              <a href="PublicarMascota">Publicar mascota</a>
+              <a href="SolicitarAyuda">Solicitar ayuda</a>
+              <a href="Voluntariado">Voluntariado</a>
+              <a href="Registro">Registrarse</a>
             </ul>
           </div>
 
@@ -354,4 +358,3 @@
   </main>
 </body>
 </html>
-

@@ -25,23 +25,25 @@
 <body>
   <div class="main-container">
     <div class="content-wrapper">
-      <!-- Header -->
+      
+<!-- Header -->
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-            <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-            <span class="brand-text">
-              <span class="logo-text">PanitasPet</span>
-              <span class="logo-subtitle">Adopción y refugios</span>
-            </span>
+              <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+              <span class="brand-text">
+                <span class="logo-text">PanitasPet</span>
+                <span class="logo-subtitle">Adopción y refugios</span>
+              </span>
+            </a>
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="#" class="nav-item" role="menuitem">Inicio</a>
-              <a href="#" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="#" class="nav-item" role="menuitem">Refugios</a>
+              <a href="{{ url('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+              <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <button class="login-btn">Iniciar Sección</button>
+            <a href="{{ route('login') }}" class="login-btn">Iniciar Sección</a>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
@@ -76,8 +78,8 @@
             <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para combatir el abandono y la sobrepoblación.</p>
 
             <div class="footer-badges">
-              <div class="badge"><i class="fas fa-paw"></i> 500+ Adopciones</div>
-              <div class="badge"><i class="fas fa-heart"></i> 30+ Refugios</div>
+              <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
+              <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
             </div>
 
             <div class="social-icons">
@@ -99,22 +101,21 @@
           <div class="footer-links">
             <h4 class="footer-column-title">Enlaces rápidos</h4>
             <ul class="footer-list">
-              <span href="#">Mascotas en adopción</span>
-              <span href="#">Refugios</span>
-              <span href="#">Donaciones</span>
-              <span href="#">Misión y visión</span>
-              <span href="#">Acerca de</span>
+              <a href="MascotasDisponibles">Mascotas en adopción</a>
+              <a href="RefugiosDisponibles">Refugios</a>
+              <a href="Donativos">Donaciones</a>
+              <a href="Mision">Misión y visión</a>
+              <a href="AcercaDe">Acerca de</a>
             </ul>
           </div>
 
           <div class="footer-services">
             <h4 class="footer-column-title">Servicios</h4>
             <ul class="footer-list">
-              <span href="#">Publicar mascota</span>
-              <span href="#">Solicitar ayuda</span>
-              <span href="#">Donar</span>
-              <span href="#">Voluntarios</span>
-              <span href="#">Registrarse</span>
+              <a href="PublicarMascota">Publicar mascota</a>
+              <a href="SolicitarAyuda">Solicitar ayuda</a>
+              <a href="Voluntariado">Voluntariado</a>
+              <a href="Registro">Registrarse</a>
             </ul>
           </div>
 
