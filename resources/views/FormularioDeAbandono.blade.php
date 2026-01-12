@@ -15,9 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
-
-@vite (entrypoints: 'resources/css/styles.css')
-  
+@vite (['resources/css/styles.css'])  
   <!-- Iconos (Font Awesome para los iconos del menú) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
@@ -26,8 +24,8 @@
   <div class="main-container">
 
     <div class="background-images">
-      <img src="{{ asset('images/img_pink_and_yellow2.png') }}" alt="Decorative paw prints" class="bg-image-left6">
-      <img src="{{ asset('images/img_pink_and_yellow_524x464.png') }}" alt="Decorative paw prints" class="bg-image-right">
+      <img src="images/img_pink_and_yellow2.png" alt="Decorative paw prints" class="bg-image-left6">
+      <img src="images/img_pink_and_yellow_524x464.png" alt="Decorative paw prints" class="bg-image-right">
     </div>
 
     <div class="content-wrapper">
@@ -36,7 +34,7 @@
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-            <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
+            <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
             <span class="brand-text">
               <span class="logo-text">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
@@ -240,7 +238,7 @@
         <div class="footer-content">
           <div class="footer-left">
             <div class="footer-logo-section">
-              <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
+              <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
             <span class="brand-text">
               <span class="footer-brand">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
@@ -256,16 +254,16 @@
 
             <div class="social-icons">
               <a href="#" class="social-btn" aria-label="Icono 1">
-                <img src="{{ asset('images/icono1.png') }}" alt="icono1" class="circle-icon">
+                <img src="images/icono1.png" alt="icono1" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 2">
-                <img src="{{ asset('images/icono2.png') }}" alt="icono2" class="circle-icon">
+                <img src="images/icono2.png" alt="icono2" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 3">
-                <img src="{{ asset('images/icono3.png') }}" alt="icono3" class="circle-icon">
+                <img src="images/icono3.png" alt="icono3" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 4">
-                <img src="{{ asset('images/icono4.png') }}" alt="icono4" class="circle-icon">
+                <img src="images/icono4.png" alt="icono4" class="circle-icon">
               </a>
             </div>
           </div>
@@ -296,7 +294,7 @@
             <h4 class="footer-column-title">Contacto</h4>
             <div class="contact-info">
               <div class="contact-item">
-                <img src="{{ asset('images/img_mail.svg') }}" alt="Email" class="contact-icon">
+                <img src="images/img_mail.svg" alt="Email" class="contact-icon">
                 <div>
                   <div style="font-weight:700;color:#af7700">Email</div>
                   <div class="contact-text">panitapet@gmail.com</div>
@@ -304,7 +302,7 @@
               </div>
 
               <div class="contact-item">
-                <img src="{{ asset('images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
+                <img src="images/img_call_end.svg" alt="Phone" class="contact-icon">
                 <div>
                   <div style="font-weight:700;color:#af7700">Teléfono</div>
                   <div class="contact-text">+58 414 1234567</div>

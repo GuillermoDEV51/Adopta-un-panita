@@ -2,35 +2,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario - PanitasPet | Adopción y Refugios de Mascotas</title>
-  <meta name="description" content="Registra nuevos refugios en PanitasPet. Plataforma confiable para gestionar refugios de animales y conectar con adoptantes.">
-  <meta name="keywords" content="registro refugios, refugios animales, añadir refugio, PanitasPet, gestión refugios">
+  <title>Inicio de Sección - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <meta name="description" content="Únete a PanitasPet y adopta una mascota que necesita un hogar. Conectamos refugios con familias amorosas para salvar vidas de perros y gatos en Venezuela.">
+  <meta name="keywords" content="adopción mascotas, refugio animales, perros adopción, gatos adopción, PanitasPet, Venezuela, salvar vidas">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Registro de Refugios - PanitasPet | Adopción y Refugios de Mascotas">
-  <meta property="og:description" content="Registra nuevos refugios en PanitasPet para gestionar animales y conectar con adoptantes.">
-  
+  <meta property="og:title" content="PanitasPet - Adopta una Mascota y Salva una Vida">
+  <meta property="og:description" content="Únete a PanitasPet y adopta una mascota que necesita un hogar. Conectamos refugios con familias amorosas.">
+ 
   <!-- Fonts: Poppins para UI, Pacifico para los títulos/script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  
 @vite ('resources/css/styles.css')
   
-  <!-- Iconos (Font Awesome para los iconos del menú) -->
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpanitaspe1252back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
 <body>
-  <div class="main-container">
-
+  <main class="main-container">
+    <!-- Background Images -->
     <div class="background-images">
-      <img src="images/img_pink_and_yellow2.png" alt="Decorative paw prints" class="bg-image-left5">
+      <img src="images/img_pink_and_yellow_600x502.png" alt="Decorative paw prints" class="bg-image-left">
       <img src="images/img_pink_and_yellow_524x464.png" alt="Decorative paw prints" class="bg-image-right">
     </div>
-
+    
     <div class="content-wrapper">
-
-     <!-- Header -->
+      <!-- Header -->
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
@@ -46,7 +47,7 @@
               <a href="#" class="nav-item" role="menuitem">Mascotas</a>
               <a href="#" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <button class="login-btn">Iniciar Sesión</button>
+            <button class="login-btn">Iniciar Sección</button>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
@@ -55,96 +56,46 @@
           </nav>
         </div>
       </header>
-    
-
-    <section>
-        <div class="main-content5">
-          <h1 class="dollar-title-pacifico">Formulario de adopción</h1>
-          <div class="registration-container5">
-            <div class="form-heade5">
-              <p class="description-text2">Los datos del formulario deberán ser<br>completados por la persona que será el<br>titular responsable del pana</p>
+      
+      <!-- Main Content -->
+      <section class="main-content">
+        <!-- Hero Section -->
+        <div class="hero-section">
+          <h2 class="hero-title">Bienvenido a<br> Panitaspet</h2>
+          <div class="cta-container">
+            <div class="cta-background"></div>
+            <p class="cta-text">Adopta un pana y salva una vida</p>
+          </div>
+        </div>
+        
+        <!-- Login Section -->
+        <aside class="login-section">
+          <div class="login-card">
+            <div class="login-header">
+              <div class="login-titles">
+                <h3 class="login-title">¡Únete a nosotros!</h3>
+                <p class="login-subtitle">Coloca tus datos aqui</p>
+              </div>
             </div>
-
-              <div class="form-group5">
-                <label class="form-label5">¿Por qué quieres adoptar?</label>
-                <input type="text" class="form-input5" placeholder="Escriba su respuesta..." required>
-              </div>            
             
-<div class="form-group5">
-    <label class="form-label5">Tipo de vivienda</label>
-    <select class="form-input5" required>
-        <option value="" disabled selected>Seleccione su respuesta...</option>
-        <option value="casa">Casa</option>
-        <option value="departamento">Apartamento</option>
-        <option value="duplex">Cerro</option>
-        <option value="otro">Otro</option>
-    </select>
-</div>
+            <form class="login-form">
+              <input type="text" class="form-input" placeholder="Usuario..." required>
+              <input type="password" class="form-input password-input" placeholder="Contraseña..." required>
               
-              <div class="form-group5">
-                <label class="form-label5">En el caso de tener que dejar la vivienda. ¿Qué pasaría con el pana?</label>
-                <input type="text" class="form-input5" placeholder="Escriba su respuesta..." required>
+              <div class="form-actions">
+                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                <button type="submit" class="submit-btn">Iniciar</button>
               </div>
-
-              <div class="form-group5">
-                <label class="form-label5">Si alguien de su familia desarrolla alguna alergia a la mascota. ¿Qué harías?</label>
-                <input type="text" class="form-input5" placeholder="Escriba su respuesta..." required>
-              </div>
-
-              <div class="form-group5">
-                <label class="form-label5">¿A qué zonas de la casa tendrá acceso el pana?</label>
-                <input type="text" class="form-input5" placeholder="Escriba su respuesta..." required>
-              </div>
-
-              <div class="form-group5">
-                <label class="form-label5">Tener una mascota es una responsabilidad muy grande que conlleva gastos, tiempo, etc.<br>¿Está realmente seguro que se encuentra preparado para ello?</label>
-    <select class="form-input5" required>
-        <option value="" disabled selected>Seleccione su respuesta...</option>
-        <option value="activo">Si</option>
-        <option value="normal">No</option>
-    </select>
-</div>
-
-              <div class="form-group5">
-                <label class="form-label5">¿Has tenido mascotas? ¿Qué ha pasado con ellos?</label>
-                <input type="text" class="form-input5" placeholder="Escriba su respuesta..." required>
-              </div>
-
-              <div class="form-group5">
-                <label class="form-label5">Si saliera de vacaciones y no le permitieran llevar a la mascota al hotel. ¿Qué haría?</label>
-                <input type="text" class="form-input5" placeholder="Escriba su respuesta..." required>
-              </div>
-
-              <div class="form-group5">
-                <label class="form-label5">En caso de que la mascota empezase a portarse mal en casa. ¿Qué harías?</label>
-                <input type="text" class="form-input5" placeholder="Escriba su respuesta..." required>
-              </div>
-
-              <div class="form-group5">
-                <label class="form-label5">¿Cuánto tiempo cree usted que dejaría a solas a la mascota?</label>
-                <input type="text" class="form-input5" placeholder="Escriba su respuesta..." required>
-              </div>
-
-<div class="form-group5">
-    <label class="form-label5">¿Qué tan activo eres en tu día a día?</label>
-    <select class="form-input5" required>
-        <option value="" disabled selected>Seleccione su respuesta...</option>
-        <option value="activo">Activo</option>
-        <option value="normal">Normal</option>
-        <option value="inactivo">Inactivo</option>
-    </select>
-</div>
-
-              <div class="form-group5">
-                <label class="form-label5">¿Vives solo o acompañado? En caso de vivir con alguien ¿está esa persona de acuerdo en adoptar? </label>
-                <input type="text" class="form-input5" placeholder="Escriba su respuesta..." required>
-              </div>
-                <button type="submit" class="submit-btn2">Enviar formulario</button>
-            </section>
-            </main>
-
-      <img src="images/img_three_curious_d.png" alt="three dogs" class="three-dogs animate-on-scroll">            
-
+            </form>
+          </div>
+          
+          <p class="register-link">
+            ¿Aún no tienes cuenta? 
+            <span class="register-highlight">Registrate</span>
+          </p>
+        </aside>
+      </section>
+      
       <!-- Footer -->
       <footer class="footer">
         <div class="footer-content">
