@@ -17,4 +17,9 @@ class Usuarios extends Model
         'ubicacion',
         'id_rol',
     ];
+
+    public function usuarios()
+    {
+        return $this->belongsTo(Roles::class, 'id_rol');
+    }
 }
