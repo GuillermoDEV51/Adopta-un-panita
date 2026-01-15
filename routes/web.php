@@ -100,3 +100,11 @@ Route::get('/RefugiosDisponibles', function () {
 Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');
 });
+
+Route::get('/Inicio', function () {
+    return view('Inicio');
+});
+
+Route::get('/Misionyvision', function () {
+    return view('/Misionyvision');
+});

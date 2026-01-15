@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite (['resources/css/styles.css'])
+@vite (['resources/css/inicio.css'])
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -54,7 +54,7 @@
             <p>En nuestra página web podrás adoptar, dar en adopción y si eres un refugio también podrás asociarte con nosotros.</p>
         </div>
         <div class="hero-image">
-            <img src="../assets/images/adoptado.jpg" alt="Mujer abrazando a un perro adoptado">
+            <img src="images/adoptado.jpg" alt="Mujer abrazando a un perro adoptado">
         </div>
       </section>
 
@@ -246,7 +246,7 @@
         <div class="footer-content">
           <div class="footer-left">
             <div class="footer-logo-section">
-              <img src="../assets/images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
+              <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
             <span class="brand-text">
               <span class="footer-brand">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
@@ -323,6 +323,9 @@
       </footer>
     </div>
   </div>
+</body>
+</html>
+
 <script>
 
 // CONTADORES ANIMADOS PARA LA SECCIÓN DE IMPACTO
@@ -625,6 +628,3 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 </script>
-
-</body>
-</html>
