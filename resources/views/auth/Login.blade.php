@@ -88,6 +88,17 @@
                 <button type="submit" class="submit-btn">Iniciar</button>
               </div>
             </form>
+
+            @if ($errors->any())
+            <div class="error-messages">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+              
+            @endif
           </div>
           
           <p class="register-link">
