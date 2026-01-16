@@ -32,7 +32,7 @@
   <div class="main-container3">
     <!-- Background Images -->
     <div class="background-images">
-      <img src=".images/img_pink_and_yellow2.png" alt="Decorative pet background" class="bg-image-1">
+      <img src="images/img_pink_and_yellow2.png" alt="Decorative pet background" class="bg-image-1">
       <img src="images/img_pink_and_yellow_284x432.png" alt="Decorative pet background" class="bg-image-2">
       <img src="images/img_orange_and_brown.png" alt="Decorative pet background" class="bg-image-3">
     </div>
