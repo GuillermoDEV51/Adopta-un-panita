@@ -426,9 +426,6 @@
       });
     });
   </script>
+  @vite(['resources/js/menu.js'])
 </body>
 </html>
-
-@push('scripts')
-    @vite(['resources/js/menu.js'])
-@endpush

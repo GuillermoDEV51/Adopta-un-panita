@@ -43,10 +43,6 @@
               <a href="#" class="nav-item" role="menuitem">Refugios</a>
             </div>
             <button class="login-btn">Iniciar Sesión</button>
-            <div class="menu-lines" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
             </div>
           </nav>
         </div>

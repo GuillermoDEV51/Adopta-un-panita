@@ -43,10 +43,6 @@
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
             <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
-            <div class="menu-lines" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
             </div>
           </nav>
         </div>
@@ -84,10 +80,6 @@
               <div class="menu-item active">
                 <i class="fas fa-users"></i>
                 <a href="{{ route('UsuariosAdmin') }}" style="color:inherit; text-decoration:none;">Usuarios</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-hands-helping"></i>
-                Voluntarios
               </div>
             </div>
           </div>

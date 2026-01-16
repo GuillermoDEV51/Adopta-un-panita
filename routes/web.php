@@ -105,8 +105,8 @@ Route::get('/Inicio', function () {
     return view('Inicio');
 });
 
-Route::get('/Misionyvision', function () {
-    return view('/Misionyvision');
+Route::get('/Mision', function () {
+    return view('/Mision');
 });
 
 Route::get('/InicioRefugio', function () {

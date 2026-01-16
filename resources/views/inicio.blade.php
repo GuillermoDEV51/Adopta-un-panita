@@ -323,6 +323,7 @@
       </footer>
     </div>
   </div>
+  @vite(['resources/js/menu.js'])
 </body>
 </html>
 
@@ -629,6 +630,3 @@ style.textContent = `
 document.head.appendChild(style);
 </script>
 
-@push('scripts')
-    @vite(['resources/js/menu.js'])
-@endpush

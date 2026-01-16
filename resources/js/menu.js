@@ -1,85 +1,86 @@
-// resources/js/menu.js
 document.addEventListener('DOMContentLoaded', function() {
     const menuLines = document.querySelector('.menu-lines');
-    
-    // Si no existe el botón hamburguesa, salir
-    if (!menuLines) {
-        console.log('⚠️ No hay menú hamburguesa en esta página');
-        return;
-    }
-    
-    // Si ya existe el mega-menu, no crear otro
-    if (document.querySelector('.mega-menu')) {
-        console.log('✅ Menú ya existe');
-        return;
-    }
     
     // Crear overlay
     const overlay = document.createElement('div');
     overlay.className = 'mega-menu-overlay';
     
-    // Crear menú
+    // Crear menú compacto estilo Zobasis
     const megaMenu = document.createElement('div');
     megaMenu.className = 'mega-menu';
     megaMenu.innerHTML = `
         <button class="mega-menu-close">&times;</button>
         <div class="mega-menu-container">
+            <!-- Logo y título -->
             <div class="mega-menu-header">
-                <img src="/images/logopanitapet.png" alt="PanitasPet" class="mega-logo-img">
+                <img src="images/logopanitapet.png" alt="PanitasPet" class="mega-logo-img">
                 <div class="mega-menu-brand">
                     <h3 class="mega-menu-brand-title">PanitasPet</h3>
                     <p class="mega-menu-brand-subtitle">Adopción y refugios</p>
                 </div>
             </div>
             
+            <!-- Primera sección -->
             <div class="mega-menu-section">
                 <h4 class="mega-menu-section-title">Mascotas</h4>
                 <div class="mega-menu-items">
-                    <a href="/MascotasDisponibles" class="mega-menu-item">
+                    <a href="#" class="mega-menu-item">
                         <i class="fas fa-search"></i>
                         <span>Ver mascotas</span>
                     </a>
-                    <a href="/PublicarMascota" class="mega-menu-item">
+                    <a href="#" class="mega-menu-item">
                         <i class="fas fa-plus-circle"></i>
                         <span>Publicar un Panita</span>
                     </a>
+                    <a href="#" class="mega-menu-item">
+                        <i class="fas fa-list-alt"></i>
+                        <span>Publicaciones</span>
+                    </a>
                 </div>
             </div>
             
             <div class="mega-menu-divider"></div>
             
+            <!-- Segunda sección -->
             <div class="mega-menu-section">
                 <h4 class="mega-menu-section-title">Información</h4>
                 <div class="mega-menu-items">
-                    <a href="/FAQ" class="mega-menu-item">
+                    <a href="#" class="mega-menu-item">
                         <i class="fas fa-question-circle"></i>
                         <span>Preguntas Frecuentes</span>
                     </a>
-                    <a href="/Donativos" class="mega-menu-item">
+                    <a href="#" class="mega-menu-item">
                         <i class="fas fa-hand-holding-heart"></i>
                         <span>Donaciones</span>
+                    </a>
+                    <a href="#" class="mega-menu-item">
+                        <i class="fas fa-hands-helping"></i>
+                        <span>Voluntariado</span>
+                    </a>
+                    <a href="#" class="mega-menu-item">
+                        <i class="fas fa-home"></i>
+                        <span>Refugios Disponibles</span>
                     </a>
                 </div>
             </div>
             
             <div class="mega-menu-divider"></div>
             
-            <a href="/login" class="mega-menu-login">
+            <!-- Botón de login -->
+            <button class="mega-menu-login">
                 <i class="fas fa-sign-in-alt"></i>
                 <span>Iniciar sesión</span>
-            </a>
+            </button>
         </div>
     `;
     
-    // Añadir al DOM
     document.body.appendChild(overlay);
     document.body.appendChild(megaMenu);
     
-    // Variables de estado
     let isMenuOpen = false;
     const closeBtn = megaMenu.querySelector('.mega-menu-close');
     
-    // Funciones
+    // Abrir menú
     function openMegaMenu() {
         megaMenu.classList.add('active');
         overlay.style.display = 'block';
@@ -88,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = 'hidden';
     }
     
+    // Cerrar menú
     function closeMegaMenu() {
         megaMenu.classList.remove('active');
         overlay.style.display = 'none';
@@ -96,19 +98,48 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.style.overflow = '';
     }
     
+    // Toggle menú
     function toggleMegaMenu() {
-        isMenuOpen ? closeMegaMenu() : openMegaMenu();
+        if (isMenuOpen) {
+            closeMegaMenu();
+        } else {
+            openMegaMenu();
+        }
     }
     
-    // Event Listeners
-    menuLines.addEventListener('click', toggleMegaMenu);
+    // Configurar botón hamburguesa
+    menuLines.style.cursor = 'pointer';
+    menuLines.setAttribute('role', 'button');
+    menuLines.setAttribute('tabindex', '0');
+    
+    // Eventos
+    menuLines.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleMegaMenu();
+    });
+    
+    menuLines.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleMegaMenu();
+        }
+    });
+    
     overlay.addEventListener('click', closeMegaMenu);
     closeBtn.addEventListener('click', closeMegaMenu);
     
-    // Cerrar con Escape
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && isMenuOpen) closeMegaMenu();
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && isMenuOpen) {
+            closeMegaMenu();
+        }
     });
     
-    console.log('✅ Menú configurado');
+    // Cerrar al hacer clic en enlaces
+    megaMenu.addEventListener('click', function(e) {
+        if (e.target.closest('a') || e.target.classList.contains('mega-menu-login')) {
+            closeMegaMenu();
+        }
+    });
+    
+    console.log('✅ Menú hamburguesa configurado - Estilo Zobasis compacto');
 });
