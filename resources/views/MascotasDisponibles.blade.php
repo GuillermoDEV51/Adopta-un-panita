@@ -272,7 +272,7 @@
         "Boxer",
         "Dachshund",
         "Rottweiler",
-        "Yorkshire Terrier",
+        "Husky",
         "Bulldog Inglés",
         "Criollo/Mestizo",
         "Otro"
