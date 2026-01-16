@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <title>Inicio Refugio - PanitasPet | Adopción y Refugios de Mascotas</title>
   <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
   <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
   
@@ -118,8 +118,8 @@
             <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para combatir el abandono y la sobrepoblación.</p>
 
             <div class="footer-badges">
-              <div class="badge"><i class="fas fa-paw"></i> 500+ Adopciones</div>
-              <div class="badge"><i class="fas fa-heart"></i> 30+ Refugios</div>
+              <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
+              <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
             </div>
 
             <div class="social-icons">
