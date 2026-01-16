@@ -108,3 +108,24 @@ Route::get('/Inicio', function () {
 Route::get('/Misionyvision', function () {
     return view('/Misionyvision');
 });
+
+Route::get('/InicioRefugio', function () {
+    return view('/InicioRefugio');
+});
+
+Route::get('/GatosRefugio', function () {
+    return view('/GatosRefugio');
+});
+
+Route::get('/AñadirMascotaRefugio', function () {
+    return view('/AñadirMascotaRefugio');
+});
+
+Route::get('/PerrosRefugio', function () {
+    return view('/PerrosRefugio');
+});
+
+Route::get('/SolicitudesRefugio', function () {
+    return view('/SolicitudesRefugio');
+});
+
