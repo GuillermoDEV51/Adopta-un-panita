@@ -171,9 +171,10 @@
                 </label>
                 <select id="edad" class="select-compacto">
                   <option value="">Edad</option>
-                  <option value="joven">1-6 años</option>
-                  <option value="adulto">7-12 años</option>
-                  <option value="viejo">13-20 años</option>
+                  <option value="cachorro">0-1 años</option>
+                  <option value="joven">1-3 años</option>
+                  <option value="adulto">3-6 años</option>
+                  <option value="viejo">6+ años</option>
                 </select>
               </div>
 
