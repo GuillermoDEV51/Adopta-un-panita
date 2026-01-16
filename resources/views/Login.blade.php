@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio de Sección - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <title>Inicio de Sesión - PanitasPet | Adopción y Refugios de Mascotas</title>
   <meta name="description" content="Únete a PanitasPet y adopta una mascota que necesita un hogar. Conectamos refugios con familias amorosas para salvar vidas de perros y gatos en Venezuela.">
   <meta name="keywords" content="adopción mascotas, refugio animales, perros adopción, gatos adopción, PanitasPet, Venezuela, salvar vidas">
   

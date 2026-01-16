@@ -29,7 +29,7 @@
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-            <img src="../assets/images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+            <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
             <span class="brand-text">
               <span class="logo-text">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
@@ -205,7 +205,7 @@
         <div class="footer-content">
           <div class="footer-left">
             <div class="footer-logo-section">
-              <img src="../assets/images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
+              <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
             <span class="brand-text">
               <span class="footer-brand">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
@@ -221,16 +221,16 @@
 
             <div class="social-icons">
               <a href="#" class="social-btn" aria-label="Icono 1">
-                <img src="../assets/images/icono1.png" alt="icono1" class="circle-icon">
+                <img src="images/icono1.png" alt="icono1" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 2">
-                <img src="../assets/images/icono2.png" alt="icono2" class="circle-icon">
+                <img src="images/icono2.png" alt="icono2" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 3">
-                <img src="../assets/images/icono3.png" alt="icono3" class="circle-icon">
+                <img src="images/icono3.png" alt="icono3" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 4">
-                <img src="../assets/images/icono4.png" alt="icono4" class="circle-icon">
+                <img src="images/icono4.png" alt="icono4" class="circle-icon">
               </a>
             </div>
           </div>
@@ -260,7 +260,7 @@
             <h4 class="footer-column-title">Contacto</h4>
             <div class="contact-info">
               <div class="contact-item">
-                <img src="../assets/images/img_mail.svg" alt="Email" class="contact-icon">
+                <img src="images/img_mail.svg" alt="Email" class="contact-icon">
                 <div>
                   <div style="font-weight:700;color:#af7700">Email</div>
                   <div class="contact-text">panitapet@gmail.com</div>
