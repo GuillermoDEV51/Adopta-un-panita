@@ -129,3 +129,7 @@ Route::get('/SolicitudesRefugio', function () {
     return view('/SolicitudesRefugio');
 });
 
+Route::get('/Publicaciones', function () {
+    return view('/Publicaciones');
+});
+
