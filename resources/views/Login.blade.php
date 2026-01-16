@@ -50,10 +50,26 @@
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
             <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
-            <div class="menu-lines" aria-hidden="true">
+            <div class="menu-lines" id="menu-toggle" aria-hidden="true">
               <span></span>
               <span></span>
               <span></span>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu">
+              <div class="menu-section">
+                <a href="{{ url('MascotasDisponibles') }}" class="menu-item">Ver mascotas</a>
+                <a href="{{ url('FormularioDeAbandono') }}" class="menu-item">Publica un Panita</a>
+                <a href="{{ url('Dashboard') }}" class="menu-item">Publicaciones</a>
+              </div>
+              <div class="menu-section">
+                <a href="#" class="menu-item">Preguntas Frecuentes</a>
+                <a href="{{ url('Donativos') }}" class="menu-item">Donaciones</a>
+                <a href="#" class="menu-item">Voluntariado</a>
+                <a href="{{ url('RefugiosDisponibles') }}" class="menu-item">Refugios Asociados</a>
+              </div>
+              <div class="menu-section">
+                <a href="#" class="menu-item">Cerrar sesión</a>
+              </div>
             </div>
           </nav>
         </div>
@@ -181,5 +197,11 @@
       </footer>
     </div>
   </main>
+  <script>
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      const menu = document.getElementById('dropdown-menu');
+      menu.classList.toggle('active');
+    });
+  </script>
 </body>
 </html>
