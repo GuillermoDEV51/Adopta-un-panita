@@ -290,7 +290,8 @@
     // Datos de razas por tipo de mascota
     const razasPorTipo = {
       perro: [
-        "Labrador Retriever",
+      "Schnauzer",  
+      "Labrador Retriever",
         "Pastor Alemán",
         "Golden Retriever",
         "Bulldog Francés",
