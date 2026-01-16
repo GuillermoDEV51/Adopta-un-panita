@@ -335,7 +335,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const counterData = [
     { element: '.stat-card:nth-child(1) .stat-number', final: 300, suffix: '+' },
     { element: '.stat-card:nth-child(2) .stat-number', final: 10, suffix: '+' },
-    { element: '.stat-card:nth-child(3) .stat-number', final: 500, suffix: '' },
+    { element: '.stat-card:nth-child(3) .stat-number', final: 500, suffix: '+' },
     { element: '.stat-card:nth-child(4) .stat-number', final: 440, suffix: '+' }
   ];
   
