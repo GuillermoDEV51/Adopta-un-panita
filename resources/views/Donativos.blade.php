@@ -428,3 +428,7 @@
   </script>
 </body>
 </html>
+
+@push('scripts')
+    @vite(['resources/js/menu.js'])
+@endpush

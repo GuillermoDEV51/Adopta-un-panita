@@ -628,3 +628,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 </script>
+
+@push('scripts')
+    @vite(['resources/js/menu.js'])
+@endpush

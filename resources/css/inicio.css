@@ -145,23 +145,294 @@ body {
 
 
 
-/* Icono estético de tres rayas al lado de Iniciar Sección */
+/* ===========================================
+   MENÚ 
+   =========================================== */
+
 .menu-lines {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  margin-left: 20px;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none; /* sin funcionalidad */
+    display: flex !important;
+    flex-direction: column;
+    gap: 4px;
+    cursor: pointer;
+    margin-left: 13px;
+    background: rgba(155, 107, 1, 0.1);
+    border-radius: 4px;
+    transition: all 0.3s;
+    position: relative;
+    z-index: 1001;
 }
 
 .menu-lines span {
-  display: block;
-  width: 22px;
-  height: 3px;
-  background-color: #9b6b01;
-  border-radius: 2px;
+    display: block;
+    width: 20px;
+    height: 3px;
+    background-color: #9b6b01;
+    border-radius: 1px;
+    transition: all 0.3s ease;
+}
+
+.menu-lines:hover {
+    background: rgba(155, 107, 1, 0.2);
+}
+
+.menu-lines:hover span {
+    background-color: #af7700;
+}
+
+.menu-lines.active span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+}
+
+.menu-lines.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-lines.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* Menú compacto estilo Zobasis (se despliega desde la derecha) */
+.mega-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px; /* Más compacto que 800px */
+    max-width: 85vw;
+    height: 100vh;
+    background: #fffaf0;
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    overflow-y: auto;
+    border-left: 3px solid #ffd477;
+}
+
+.mega-menu.active {
+    transform: translateX(0);
+}
+
+/* Overlay sutil */
+.mega-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    display: none;
+    cursor: pointer;
+}
+
+.mega-menu.active ~ .mega-menu-overlay {
+    display: block;
+}
+
+/* Contenedor compacto */
+.mega-menu-container {
+    padding: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header compacto estilo Zobasis */
+.mega-menu-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #ffd477;
+}
+
+.mega-logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.mega-menu-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.mega-menu-brand-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: #9b6b01;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.mega-menu-brand-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #9b6b01;
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* Secciones compactas */
+.mega-menu-section {
+    margin-bottom: 2px;
+}
+
+.mega-menu-section-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #af7700;
+    margin: 0 0 12px 0;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 212, 119, 0.4);
+}
+
+.mega-menu-items {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* Items del menú más compactos */
+.mega-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    background: white;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #9b6b01;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border: 1px solid rgba(155, 107, 1, 0.1);
+}
+
+.mega-menu-item i {
+    color: #af7700;
+    font-size: 15px;
+    width: 18px;
+    text-align: center;
+}
+
+.mega-menu-item:hover {
+    background: #fff8e1;
+    transform: translateX(5px);
+    border-color: #ffd477;
+    color: #af7700;
+}
+
+/* Divisores más sutiles */
+.mega-menu-divider {
+    height: 1px;
+    background: rgba(255, 212, 119, 0.4);
+    margin: 15px 0;
+    width: 100%;
+}
+
+/* Botón de login compacto */
+.mega-menu-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #9b6b01, #af7700);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: -50px;
+}
+
+.mega-menu-login i {
+    font-size: 15px;
+}
+
+.mega-menu-login:hover {
+    background: linear-gradient(135deg, #af7700, #c88c00);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(175, 119, 0, 0.2);
+}
+
+/* Botón cerrar */
+.mega-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 30px;
+    color: #9b6b01;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    z-index: 1002;
+}
+
+.mega-menu-close:hover {
+    background: white;
+    color: #af7700;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .mega-menu {
+        width: 320px;
+    }
+    
+    .mega-menu-container {
+        padding: 20px;
+    }
+    
+    .mega-menu-header {
+        padding-bottom: 15px;
+        margin-bottom: 8px;
+    }
+    
+    .mega-logo-img {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .mega-menu-brand-title {
+        font-size: 20px;
+    }
+    
+    .mega-menu-brand-subtitle {
+        font-size: 12px;
+    }
+    
+    .mega-menu-item {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
+
+/* Asegurar visibilidad en PC */
+@media (min-width: 768px) {
+    .menu-lines {
+        display: flex !important;
+    }
 }
 
 /* Inicio /*
