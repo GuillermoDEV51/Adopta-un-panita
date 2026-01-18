@@ -23,6 +23,7 @@
 <body>
   <div class="main-container">
     <div class="content-wrapper">
+
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
@@ -38,7 +39,28 @@
               <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
+
+
+            <!-- Authentication Links -->
+        @if (Route:: has('login'))
+          <div class="nav-auth">
+
+                @auth
+                <a href="{{ url('/dashboard') }}" class="login-btn">Dashboard</a>
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                  @csrf
+                  <button type="submit" class="register-btn">Cerrar sesión</button>
+                </form>
+        @else
+                  <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
+                  @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="register-btn">Registrarse</a>
+                  @endif
+                @endauth
+          </div> 
+        @endif
+
+
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>

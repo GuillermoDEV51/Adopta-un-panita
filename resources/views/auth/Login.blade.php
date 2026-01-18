@@ -48,6 +48,7 @@
               <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
+              
             <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
@@ -80,6 +81,7 @@
             </div>
             
             <form class="login-form" action="{{ route('login.authenticate') }}" method="POST">
+              @csrf
               <input type="text" class="form-input" placeholder="Usuario..." required>
               <input type="password" class="form-input password-input" placeholder="Contraseña..." required>
               
@@ -103,7 +105,7 @@
           
           <p class="register-link">
             ¿Aún no tienes cuenta? 
-            <span class="register-highlight">Registrate</span>
+            <a href="{{ route('register') }}" class="register-highlight">Registrate</a>
           </p>
         </aside>
       </section>

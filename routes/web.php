@@ -4,29 +4,23 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/Inicio', function () {
-    return view('Inicio');
-});
+Route::get('/', function () {
+    return view('inicio');
+})->name('Inicio');
 
 
 
 
- require_once __DIR__ . '/../Admin/admin_route.php';
- require_once __DIR__ . '/../auth.php';
+require_once __DIR__ . '/Admin/admin_route.php';
+require_once __DIR__ . '/auth.php';
 
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
-Route::get('/login', function () {
-    return view('auth.Login');
-});
 
-Route::get('/AñadirRefugio', function () {
-    return view('AñadirRefugio');
-});
 
-Route::get('/Dashboard', function () {
-    return view('Dashboard');
-});
+
+
+
 
 Route::get('/Donativos', function () {
     return view('Donativos');
@@ -79,9 +73,7 @@ Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');
 });
 
-Route::get('/Inicio', function () {
-    return view('Inicio');
-});
+;
 
 Route::get('/Misionyvision', function () {
     return view('/Misionyvision');
@@ -90,4 +82,3 @@ Route::get('/Misionyvision', function () {
 Route::get('/Publicaciones', function () {
     return view('/Publicaciones');
 });
-
