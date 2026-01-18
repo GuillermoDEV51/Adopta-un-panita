@@ -1,7 +1,7 @@
 <?php
+namespace App\Http\Controllers\auth;
 
-namespace App\Http\Controllers;
-
+use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistroRequest;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
@@ -19,6 +19,6 @@ class RegistroController extends Controller
       $usuario = Usuarios::create([
         $request->validate()
       ]);
-      return redirect()->route('login')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
+      return redirect('/')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
    }
 }

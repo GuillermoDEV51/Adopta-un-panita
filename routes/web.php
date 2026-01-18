@@ -1,44 +1,22 @@
 <?php
 
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\RegistroController;
-
-use App\Http\Controllers\AñadirRefugioController;
-use App\Http\Controllers\GatosAdminController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\PerrosAdminController;
-use App\Http\Controllers\RefugiosAdminController;
-use App\Http\Controllers\SolicitudesAdminController;
-use App\Http\Controllers\UsuariosAdminController;
 
 use Illuminate\Support\Facades\Route;
 
 
+Route::get('/Inicio', function () {
+    return view('Inicio');
+});
 
 
-// Login Route
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
 
 
-
-// Register Route
-
-Route::get('/register', [RegistroController::class, 'show'])->name('register');
-Route::post('/register', [RegistroController::class, 'store'])->name('register.store');
-
-// admin Route
-Route::get('/admin/añadir-refugio', [AñadirRefugioController::class, 'index'])->name('AñadirRefugio');
-Route::get('/admin/gatos', [GatosAdminController::class, 'index'])->name('GatosAdmin');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('Dashboard');
-Route::get('/admin/perros',[PerrosAdminController::class,'index'])->name('PerrosAdmin');
-Route::get('/admin/refugios',[RefugiosAdminController::class,'index'])->name('RefugiosAdmin');
-Route::get('/admin/solicitudes',[SolicitudesAdminController::class,'index'])->name('SolicitudesAdmin');
-Route::get('/admin/usuarios',[UsuariosAdminController::class,'index'])->name('UsuariosAdmin');
+ require_once __DIR__ . '/../Admin/admin_route.php';
+ require_once __DIR__ . '/../auth.php';
 
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.Login');
 });
 
@@ -106,5 +84,5 @@ Route::get('/Inicio', function () {
 });
 
 Route::get('/Misionyvision', function () {
-    return view('/Misionyvision');
+    return view('Misionyvision');
 });
