@@ -2,30 +2,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro de Refugios - PanitasPet | Adopción y Refugios de Mascotas</title>
-  <meta name="description" content="Registra nuevos refugios en PanitasPet. Plataforma confiable para gestionar refugios de animales y conectar con adoptantes.">
-  <meta name="keywords" content="registro refugios, refugios animales, añadir refugio, PanitasPet, gestión refugios">
+  <title>Añadir Mascota - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <meta name="description" content="Añade nuevas mascotas en PanitasPet. Plataforma confiable para gestionar mascotas y conectar con adoptantes.">
+  <meta name="keywords" content="añadir mascota, mascotas, PanitasPet, gestión mascotas">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Registro de Refugios - PanitasPet | Adopción y Refugios de Mascotas">
-  <meta property="og:description" content="Registra nuevos refugios en PanitasPet para gestionar animales y conectar con adoptantes.">
+  <meta property="og:title" content="Añadir Mascota - PanitasPet | Adopción y Refugios de Mascotas">
+  <meta property="og:description" content="Añade nuevas mascotas en PanitasPet para gestionar animales y conectar con adoptantes.">
   
   <!-- Fonts: Poppins para UI, Pacifico para los títulos/script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
-@vite (['resources/css/stylessadmin.css'])
+
+@vite (['resources/css/refugio.css'])
   
   <!-- Iconos (Font Awesome para los iconos del menú) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    /* Forzar que el footer se quede al fondo de la página */
-    html, body { height: 100%; }
-    .main-container { min-height: 100vh; display: flex; flex-direction: column; }
-    .content-wrapper { display: flex; flex-direction: column; flex: 1 0 auto; }
-    footer.footer { margin-top: auto; position: relative; }
-  </style>
+
 </head>
 <body>
   <div class="main-container">
@@ -35,26 +30,25 @@
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-              <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-              <span class="brand-text">
-                <span class="logo-text">PanitasPet</span>
-                <span class="logo-subtitle">Adopción y refugios</span>
-              </span>
-            </a>
+            <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+            <span class="brand-text">
+              <span class="logo-text">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
+            </span>
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="{{ url('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
-              <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+              <a href="#" class="nav-item" role="menuitem">Inicio</a>
+              <a href="#" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="#" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
+            <button class="login-btn">Iniciar Sesión</button>
             </div>
           </nav>
         </div>
       </header>
       
-      <!-- Dashboard Main Content -->
+     <!-- Dashboard Main Content -->
       <main class="dashboard-container">
         <!-- Sidebar Menu -->
         <aside class="sidebar">
@@ -63,29 +57,15 @@
             <div class="menu-list">
               <div class="menu-item">
                 <i class="fas fa-tachometer-alt"></i>
-                <a href="{{ route('Dashboard') }}" style="color:inherit; text-decoration:none;">Dashboards</a>
+                Inicio
               </div>
               <div class="menu-item">
                 <i class="fas fa-clipboard-list"></i>
-                <a href="{{ route('SolicitudesAdmin') }}" style="color:inherit; text-decoration:none;">Solicitudes</a>
+                Solicitudes
               </div>
               <div class="menu-item active">
                 <i class="fas fa-plus-circle"></i>
-                <a href="{{ route('AñadirRefugio') }}" style="color:inherit; text-decoration:none;">Añadir refugios</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="menu-section">
-            <h2 class="menu-title">Páginas</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-home"></i>
-                <a href="{{ route('RefugiosAdmin') }}" style="color:inherit; text-decoration:none;">Refugios</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-users"></i>
-                <a href="{{ route('UsuariosAdmin') }}" style="color:inherit; text-decoration:none;">Usuarios</a>
+                Añadir Mascotas
               </div>
             </div>
           </div>
@@ -95,83 +75,154 @@
             <div class="menu-list">
               <div class="menu-item">
                 <i class="fas fa-dog"></i>
-                <a href="{{ route('PerrosAdmin') }}" style="color:inherit; text-decoration:none;">Perros</a>
+                Perros
               </div>
               <div class="menu-item">
                 <i class="fas fa-cat"></i>
-                <a href="{{ route('GatosAdmin') }}" style="color:inherit; text-decoration:none;">Gatos</a>
+                Gatos
               </div>
               <div class="menu-item">
                 <i class="fas fa-sign-out-alt"></i>
-                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
+                Cerrar sesión
               </div>
             </div>
           </div>
         </aside>
-
         <!-- Main Content Area - Formulario de Registro de Refugios -->
          
         <div class="main-content1">
           <div class="registration-container">
             <div class="form-header">
-              <h1 class="content-title">Registro de Nuevo Refugio</h1>
-              <p class="form-subtitle">Completa todos los campos para registrar un nuevo refugio en PanitasPet</p>
+              <h1 class="content-title">Añadir Nueva Mascota</h1>
+              <p class="form-subtitle">Completa todos los campos para añadir una nueva mascota al refugio</p>
             </div>
 
             <div class="photo-section">
               <div class="photo-placeholder">
                 <div class="photo-icon">+</div>
-                <div class="add-photo-text">Añadir foto de portada del refugio</div>
+                <div class="add-photo-text">Añadir foto de la mascota</div>
               </div>
             </div>
             
-            <form class="form-fields" id="refugeRegistrationForm">
+            <form class="form-fields" id="petRegistrationForm">
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label">Nombre del Refugio *</label>
-                  <input type="text" class="form-input" placeholder="Ej: Refugio Amor Animal" required>
+                  <label class="form-label">Nombre *</label>
+                  <input type="text" class="form-input" placeholder="Nombre del panita" required>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Responsable *</label>
-                  <input type="text" class="form-input" placeholder="Nombre del responsable" required>
+                  <label class="form-label">Especie *</label>
+                  <select class="form-select" required>
+                    <option value="" disabled selected>Especie de la mascota</option>
+                    <option value="perro">Perro</option>
+                    <option value="gato">Gato</option>
+                  </select>
                 </div>
               </div>
               
               <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label">Teléfono de Contacto *</label>
-                  <input type="tel" class="form-input" placeholder="Ej: +584141234567" required>
+                  <label class="form-label">Edad *</label>
+                  <input type="number" class="form-input" min="0" max="30" placeholder="Años" required>
                 </div>
                 <div class="form-group">
-                  <label class="form-label">Cédula de identidad *</label>
-                  <input type="text" class="form-input" placeholder="Ej: V-30.000.000" required>
+                  <label class="form-label">LB *</label>
+                  <input type="number" class="form-input" min="0" max="100" placeholder="LB" required>
                 </div>
               </div>
               
-              <div class="form-group">
-                <label class="form-label">Ubicación *</label>
-                <input type="text" class="form-input" placeholder="Calle, número, ciudad, estado etc" required>
-              </div>
-              
-              <div class="form-group">
-                <label class="form-label">Redes sociales (si hay) *</label>
-                <input type="text" class="form-input" placeholder="Ej: @refugio_amor_animal" required>
-              </div>
+              <div class="form-row">
                 <div class="form-group">
-                  <label class="form-label">Fecha de Fundación</label>
-                  <div class="date-row" style="display:flex;gap:12px;align-items:center;">
-                    <input type="number" name="foundation_day" class="form-input" placeholder="DD" min="1" max="31" style="width:84px;">
-                    <input type="number" name="foundation_month" class="form-input" placeholder="MM" min="1" max="12" style="width:84px;">
-                    <input type="number" name="foundation_year" class="form-input" placeholder="YYYY" min="1800" max="2100" style="width:120px;">
-                  </div>
+                  <label class="form-label">Tamaño *</label>
+                  <select class="form-select" required>
+                    <option value="" disabled selected>Tamaño de la mascota</option>
+                    <option value="pequeno">Pequeño</option>
+                    <option value="mediano">Mediano</option>
+                    <option value="grande">Grande</option>
+                  </select>
                 </div>
+                <div class="form-group">
+                  <label class="form-label">Sexo *</label>
+                  <select class="form-select" required>
+                    <option value="" disabled selected>Sexo de la mascota</option>
+                    <option value="macho">Macho</option>
+                    <option value="hembra">Hembra</option>
+                  </select>
+                </div>
+              </div>
               
               <div class="form-group">
-                <label class="form-label">Descripción del Refugio</label>
-                <textarea class="form-input" placeholder="Describe brevemente la misión, servicios y características del refugio..."></textarea>
+                <label class="form-label">Descripción *</label>
+                <textarea class="form-input" rows="5" placeholder="Descripción de la mascota" required></textarea>
                 <div class="form-hint">Máximo 500 caracteres</div>
-                <button type="submit" class="register-btn">Añadir refugio</button>
               </div>
+              
+              <div class="form-group">
+                <label class="form-label">Historial médico</label>
+                <input type="file" class="form-input" name="historialFiles" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Raza</label>
+                <input type="text" class="form-input" placeholder="Raza de la mascota">
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">¿Se lleva bien con otros animales? *</label>
+                  <select class="form-select" required>
+                    <option value="" disabled selected>Si/No</option>
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">¿Se lleva bien con personas? *</label>
+                  <select class="form-select" required>
+                    <option value="" disabled selected>Si/No</option>
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label class="form-label">Ubicación del responsable *</label>
+                <select class="form-select" required>
+                  <option value="" disabled selected>Coloque la ubicación del responsable</option>
+                  <option value="Caracas">Caracas</option>
+                  <option value="Miranda">Miranda</option>
+                  <option value="La Guaira">La Guaira</option>
+                  <option value="Zulia">Zulia</option>
+                  <option value="Lara">Lara</option>
+                  <option value="Carabobo">Carabobo</option>
+                  <option value="Sucre">Sucre</option>
+                  <option value="Anzoátegui">Anzoátegui</option>
+                  <option value="Nueva Esparta">Nueva Esparta</option>
+                </select>
+              </div>
+              
+              <div class="form-row">
+                <div class="form-group">
+                  <label class="form-label">¿Está vacunado el panita? *</label>
+                  <select class="form-select" required>
+                    <option value="" disabled selected>Si/No</option>
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">¿Está esterilizado el panita? *</label>
+                  <select class="form-select" required>
+                    <option value="" disabled selected>Si/No</option>
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              </div>
+              
+              <button type="submit" class="register-btn">Añadir mascota</button>
+            </form>
             </main>
 
       <!-- Footer -->

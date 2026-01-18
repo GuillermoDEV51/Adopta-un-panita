@@ -84,5 +84,10 @@ Route::get('/Inicio', function () {
 });
 
 Route::get('/Misionyvision', function () {
-    return view('Misionyvision');
+    return view('/Misionyvision');
 });
+
+Route::get('/Publicaciones', function () {
+    return view('/Publicaciones');
+});
+

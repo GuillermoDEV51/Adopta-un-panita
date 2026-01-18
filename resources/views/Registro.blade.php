@@ -32,7 +32,7 @@
   <div class="main-container3">
     <!-- Background Images -->
     <div class="background-images">
-      <img src=".images/img_pink_and_yellow2.png" alt="Decorative pet background" class="bg-image-1">
+      <img src="images/img_pink_and_yellow2.png" alt="Decorative pet background" class="bg-image-1">
       <img src="images/img_pink_and_yellow_284x432.png" alt="Decorative pet background" class="bg-image-2">
       <img src="images/img_orange_and_brown.png" alt="Decorative pet background" class="bg-image-3">
     </div>
@@ -57,11 +57,7 @@
               <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sección</a>
-            <div class="menu-lines" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
+            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
             </div>
           </nav>
         </div>

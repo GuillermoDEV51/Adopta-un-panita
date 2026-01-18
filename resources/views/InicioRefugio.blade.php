@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <title>Inicio Refugio - PanitasPet | Adopción y Refugios de Mascotas</title>
   <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
   <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
   
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite (['resources/css/stylessadmin.css'])
+@vite (['resources/css/refugio.css'])
   
   <!-- Iconos (Font Awesome para los iconos del menú) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -25,29 +25,28 @@
 <body>
   <div class="main-container">
     <div class="content-wrapper">
-     <!-- Header -->
+      <!-- Header -->
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-              <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-              <span class="brand-text">
-                <span class="logo-text">PanitasPet</span>
-                <span class="logo-subtitle">Adopción y refugios</span>
-              </span>
-            </a>
+            <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+            <span class="brand-text">
+              <span class="logo-text">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
+            </span>
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="{{ url('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
-              <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+              <a href="#" class="nav-item" role="menuitem">Inicio</a>
+              <a href="#" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="#" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
+            <button class="login-btn">Iniciar Sesión</button>
             </div>
           </nav>
         </div>
       </header>
-      </header>
+      
       
       <!-- Dashboard Main Content -->
       <main class="dashboard-container">
@@ -56,31 +55,17 @@
           <div class="menu-section">
             <h2 class="menu-title">Menú</h2>
             <div class="menu-list">
-              <div class="menu-item">
+              <div class="menu-item active">
                 <i class="fas fa-tachometer-alt"></i>
-                <a href="{{ route('Dashboard') }}" style="color:inherit; text-decoration:none;">Dashboard</a>
+                Inicio
               </div>
               <div class="menu-item">
                 <i class="fas fa-clipboard-list"></i>
-                <a href="{{ route('SolicitudesAdmin') }}" style="color:inherit; text-decoration:none;">Solicitudes</a>
+                Solicitudes
               </div>
               <div class="menu-item">
                 <i class="fas fa-plus-circle"></i>
-                <a href="{{ route('AñadirRefugio') }}" style="color:inherit; text-decoration:none;">Añadir refugios</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="menu-section">
-            <h2 class="menu-title">Páginas</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-home"></i>
-                <a href="{{ route('RefugiosAdmin') }}" style="color:inherit; text-decoration:none;">Refugios</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-users"></i>
-                <a href="{{ route('UsuariosAdmin') }}" style="color:inherit; text-decoration:none;">Usuarios</a>
+                Añadir Mascotas
               </div>
             </div>
           </div>
@@ -90,27 +75,29 @@
             <div class="menu-list">
               <div class="menu-item">
                 <i class="fas fa-dog"></i>
-                <a href="{{ route('PerrosAdmin') }}" style="color:inherit; text-decoration:none;">Perros</a>
+                Perros
               </div>
-              <div class="menu-item active">
+              <div class="menu-item">
                 <i class="fas fa-cat"></i>
-                <a href="{{ route('GatosAdmin') }}" style="color:inherit; text-decoration:none;">Gatos</a>
+                Gatos
               </div>
               <div class="menu-item">
                 <i class="fas fa-sign-out-alt"></i>
-                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
+                Cerrar sesión
               </div>
             </div>
           </div>
         </aside>
-      
-            <div class="paginas-section">
-              <div class="titulo-wrapper">
-                <h1 class="paginas-title">Gatos Registrados</h1>
-                <div class="titulo-line" aria-hidden="true"></div>
-              </div>
+          
+        <!-- Main Content Area - Formulario de Registro de Refugios -->
+         
+        <div class="main-content1">
+          <div class="registration-container">
+            <div class="form-header">
             </div>
-      </main>
+                <button type="submit" class="register-btn1">Editar</button>
+              </div>
+            </main>
       
       <!-- Footer -->
       <footer class="footer">
@@ -133,10 +120,10 @@
 
             <div class="social-icons">
               <a href="#" class="social-btn" aria-label="Icono 1">
-                <img src="images/icono1.png" alt="icono1" class="circle-icon">
+                <img src="images/icono1.png'" alt="icono1" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 2">
-                <img src="images/icono2.png" alt="icono2" class="circle-icon">
+                <img src="images/icono2.png'" alt="icono2" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 3">
                 <img src="images/icono3.png" alt="icono3" class="circle-icon">

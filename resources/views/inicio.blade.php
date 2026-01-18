@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
 @vite (['resources/css/inicio.css'])
-  
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 </head>
@@ -38,7 +38,7 @@
               <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sección</a>
+            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
@@ -323,6 +323,7 @@
       </footer>
     </div>
   </div>
+  @vite(['resources/js/menu.js'])
 </body>
 </html>
 
@@ -335,7 +336,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const counterData = [
     { element: '.stat-card:nth-child(1) .stat-number', final: 300, suffix: '+' },
     { element: '.stat-card:nth-child(2) .stat-number', final: 10, suffix: '+' },
-    { element: '.stat-card:nth-child(3) .stat-number', final: 500, suffix: '' },
+    { element: '.stat-card:nth-child(3) .stat-number', final: 500, suffix: '+' },
     { element: '.stat-card:nth-child(4) .stat-number', final: 440, suffix: '+' }
   ];
   
@@ -628,3 +629,4 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 </script>
+

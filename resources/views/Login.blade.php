@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio de Sección - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <title>Inicio de Sesión - PanitasPet | Adopción y Refugios de Mascotas</title>
   <meta name="description" content="Únete a PanitasPet y adopta una mascota que necesita un hogar. Conectamos refugios con familias amorosas para salvar vidas de perros y gatos en Venezuela.">
   <meta name="keywords" content="adopción mascotas, refugio animales, perros adopción, gatos adopción, PanitasPet, Venezuela, salvar vidas">
   
@@ -49,7 +49,7 @@
               <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sección</a>
+            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
@@ -176,7 +176,7 @@
           </div>
         
         <div class="footer-bottom">
-          <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
+          <div class="copyright">© 2025 PanitasPet. Todos los derechos reservados.</div>
         </div>
       </footer>
     </div>

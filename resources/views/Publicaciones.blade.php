@@ -3,26 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Misión y visión - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <title>Publicaciones - PanitasPet | Adopción y Refugios de Mascotas</title>
   <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
   <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
   
+  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
   <meta property="og:description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
   
+  <!-- Fonts: Poppins para UI, Pacifico para los títulos/script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite (['resources/css/styles.css'])
+@vite (['resources/css/stylessadmin.css'])
   
+  <!-- Iconos (Font Awesome para los iconos del menú) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
 </head>
 <body>
   <div class="main-container">
     <div class="content-wrapper">
+      
+<!-- Header -->
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
@@ -39,7 +43,7 @@
               <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sección</a>
+            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
@@ -48,38 +52,18 @@
           </nav>
         </div>
       </header>
-
-      <!-- Sección Misión y Visión (Vertical) -->
-      <section class="mission-vision-section">
-        <div class="mission-vision-container">
-          <!-- Tarjeta de Misión -->
-          <div class="mission-card">
-            <div class="mission-header">
-              <h2 class="mission-title">Misión</h2>
+      
+      <!-- Dashboard Main Content -->
+      <main class="dashboard-container">
+            <div class="paginas-section">
+              <div class="titulo-wrapper">
+                <h1 class="paginas-title">Tus Mascotas Publicadas</h1>
+                <div class="titulo-line" aria-hidden="true"></div>
+              </div>
             </div>
-            <div class="mission-content">
-              <blockquote class="mission-text">
-                "Brindar una plataforma tecnológica integral que conecte a mascotas en situación de vulnerabilidad con hogares responsables, facilitando la gestión de refugios verificados y ofreciendo a los propietarios particulares una alternativa ética de adopción directa para prevenir el abandono."
-              </blockquote>
-            </div>
-          </div>
-          
-          <!-- Tarjeta de Visión -->
-          <div class="vision-card">
-            <div class="vision-header">
-              <h2 class="vision-title">Visión</h2>
-            </div>
-            <div class="vision-content">
-              <blockquote class="vision-text">
-                "Convertirnos en la red de adopción y bienestar animal más confiable y eficiente a nivel nacional, transformando la cultura de tenencia responsable mediante la innovación digital, la transparencia en las donaciones y la erradicación del abandono en calle a través de la conexión comunitaria."
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    <!-- Footer -->
-
+      </main>
+      
+      <!-- Footer -->
       <footer class="footer">
         <div class="footer-content">
           <div class="footer-left">
@@ -154,12 +138,14 @@
                 </div>
               </div>
             </div>
-         </div>
+          </div>
+        
         <div class="footer-bottom">
           <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
         </div>
       </footer>
     </div>
-  </div>
+  </main>
+  @vite(['resources/js/menu.js'])
 </body>
 </html>

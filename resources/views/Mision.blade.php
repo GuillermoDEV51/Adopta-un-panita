@@ -3,29 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <title>Misión y visión - PanitasPet | Adopción y Refugios de Mascotas</title>
   <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
   <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
   
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
   <meta property="og:description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
   
-  <!-- Fonts: Poppins para UI, Pacifico para los títulos/script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite (['resources/css/stylessadmin.css'])
+@vite (['resources/css/styles.css'])
   
-  <!-- Iconos (Font Awesome para los iconos del menú) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
   <div class="main-container">
     <div class="content-wrapper">
-     <!-- Header -->
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
@@ -43,76 +40,46 @@
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
             <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
+            <div class="menu-lines" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
           </nav>
         </div>
       </header>
-      </header>
-      
-      <!-- Dashboard Main Content -->
-      <main class="dashboard-container">
-        <!-- Sidebar Menu -->
-        <aside class="sidebar">
-          <div class="menu-section">
-            <h2 class="menu-title">Menú</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-tachometer-alt"></i>
-                <a href="{{ route('Dashboard') }}" style="color:inherit; text-decoration:none;">Dashboard</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-clipboard-list"></i>
-                <a href="{{ route('SolicitudesAdmin') }}" style="color:inherit; text-decoration:none;">Solicitudes</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-plus-circle"></i>
-                <a href="{{ route('AñadirRefugio') }}" style="color:inherit; text-decoration:none;">Añadir refugios</a>
-              </div>
+
+      <!-- Sección Misión y Visión (Vertical) -->
+      <section class="mission-vision-section">
+        <div class="mission-vision-container">
+          <!-- Tarjeta de Misión -->
+          <div class="mission-card">
+            <div class="mission-header">
+              <h2 class="mission-title">Misión</h2>
+            </div>
+            <div class="mission-content">
+              <blockquote class="mission-text">
+                "Brindar una plataforma tecnológica integral que conecte a mascotas en situación de vulnerabilidad con hogares responsables, facilitando la gestión de refugios verificados y ofreciendo a los propietarios particulares una alternativa ética de adopción directa para prevenir el abandono."
+              </blockquote>
             </div>
           </div>
           
-          <div class="menu-section">
-            <h2 class="menu-title">Páginas</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-home"></i>
-                <a href="{{ route('RefugiosAdmin') }}" style="color:inherit; text-decoration:none;">Refugios</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-users"></i>
-                <a href="{{ route('UsuariosAdmin') }}" style="color:inherit; text-decoration:none;">Usuarios</a>
-              </div>
+          <!-- Tarjeta de Visión -->
+          <div class="vision-card">
+            <div class="vision-header">
+              <h2 class="vision-title">Visión</h2>
+            </div>
+            <div class="vision-content">
+              <blockquote class="vision-text">
+                "Convertirnos en la red de adopción y bienestar animal más confiable y eficiente a nivel nacional, transformando la cultura de tenencia responsable mediante la innovación digital, la transparencia en las donaciones y la erradicación del abandono en calle a través de la conexión comunitaria."
+              </blockquote>
             </div>
           </div>
-          
-          <div class="menu-section">
-            <h2 class="menu-title">Mascotas</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-dog"></i>
-                <a href="{{ route('PerrosAdmin') }}" style="color:inherit; text-decoration:none;">Perros</a>
-              </div>
-              <div class="menu-item active">
-                <i class="fas fa-cat"></i>
-                <a href="{{ route('GatosAdmin') }}" style="color:inherit; text-decoration:none;">Gatos</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-sign-out-alt"></i>
-                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
-              </div>
-            </div>
-          </div>
-        </aside>
-      
-            <div class="paginas-section">
-              <div class="titulo-wrapper">
-                <h1 class="paginas-title">Gatos Registrados</h1>
-                <div class="titulo-line" aria-hidden="true"></div>
-              </div>
-            </div>
-      </main>
-      
-      <!-- Footer -->
+        </div>
+      </section>
+
+    <!-- Footer -->
+
       <footer class="footer">
         <div class="footer-content">
           <div class="footer-left">
@@ -187,13 +154,13 @@
                 </div>
               </div>
             </div>
-          </div>
-        
+         </div>
         <div class="footer-bottom">
           <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
         </div>
       </footer>
     </div>
-  </main>
+  </div>
+  @vite(['resources/js/menu.js'])
 </body>
 </html>

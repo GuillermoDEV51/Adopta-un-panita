@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mascotas - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <title>Gatos Refugio - PanitasPet | Adopción y Refugios de Mascotas</title>
   <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
   <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
   
@@ -17,49 +17,83 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite (['resources/css/styles.css'])
+@vite (['resources/css/refugio.css'])
   
   <!-- Iconos (Font Awesome para los iconos del menú) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <div class="main-container1">
+  <div class="main-container">
     <div class="content-wrapper">
-      
-<!-- Header -->
+      <!-- Header -->
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-              <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-              <span class="brand-text">
-                <span class="logo-text">PanitasPet</span>
-                <span class="logo-subtitle">Adopción y refugios</span>
-              </span>
-            </a>
+            <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+            <span class="brand-text">
+              <span class="logo-text">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
+            </span>
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="{{ url('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
-              <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+              <a href="#" class="nav-item" role="menuitem">Inicio</a>
+              <a href="#" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="#" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
-            <div class="menu-lines" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
+            <button class="login-btn">Iniciar Sesión</button>
             </div>
           </nav>
         </div>
       </header>
       
       <!-- Dashboard Main Content -->
-        <div class="paginas-section4">
-          <div class="titulo-wrapper4">
-            <h1 class="paginas-title4">Mascotas disponibles</h1>
+      <main class="dashboard-container">
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+          <div class="menu-section">
+            <h2 class="menu-title">Menú</h2>
+            <div class="menu-list">
+              <div class="menu-item">
+                <i class="fas fa-tachometer-alt"></i>
+                Inicio
+              </div>
+              <div class="menu-item">
+                <i class="fas fa-clipboard-list"></i>
+                Solicitudes
+              </div>
+              <div class="menu-item">
+                <i class="fas fa-plus-circle"></i>
+                Añadir Mascotas
+              </div>
+            </div>
           </div>
+          
+          <div class="menu-section">
+            <h2 class="menu-title">Mascotas</h2>
+            <div class="menu-list">
+              <div class="menu-item">
+                <i class="fas fa-dog"></i>
+                Perros
+              </div>
+              <div class="menu-item active">
+                <i class="fas fa-cat"></i>
+                Gatos
+              </div>
+              <div class="menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                Cerrar sesión
+              </div>
+            </div>
+          </div>
+        </aside>
+      
+            <div class="paginas-section">
+              <div class="titulo-wrapper">
+                <h1 class="paginas-title">Gatos Registrados</h1>
+                <div class="titulo-line" aria-hidden="true"></div>
+              </div>
 
-          <!-- Sistema de Filtros Compacto -->
           <div class="filtros-compactos">
             <!-- Primera fila: Filtro principal y acciones -->
             <div class="filtros-superiores">
@@ -69,10 +103,6 @@
                   <span>¿Deseas un perro o un gato?</span>
                 </div>
                 <div class="opciones-compactas">
-                  <button class="opcion-compacta" data-tipo="perro" data-seleccionado="false">
-                    <i class="fas fa-dog"></i>
-                    <span>Perro</span>
-                  </button>
                   <button class="opcion-compacta" data-tipo="gato" data-seleccionado="false">
                     <i class="fas fa-cat"></i>
                     <span>Gato</span>
@@ -164,15 +194,9 @@
               </div>
             </div>
           </div>
-          <!-- Fin Sistema de Filtros Compacto -->
-          
-          <!--tarjetas de mascotas -->
-          <div class="mascotas-grid">
-          </div>
-        </div>
       </main>
       
-<!-- Footer -->
+      <!-- Footer -->
       <footer class="footer">
         <div class="footer-content">
           <div class="footer-left">
@@ -240,7 +264,7 @@
               </div>
 
               <div class="contact-item">
-                <img src="images/img_call_end.svg" alt="Phone" class="contact-icon">
+                <img src="../assets/images/img_call_end.svg" alt="Phone" class="contact-icon">
                 <div>
                   <div style="font-weight:700;color:#af7700">Teléfono</div>
                   <div class="contact-text">+58 414 1234567</div>
@@ -255,7 +279,6 @@
       </footer>
     </div>
   </main>
-  @vite(['resources/js/menu.js'])
 </body>
 </html>
 
@@ -273,7 +296,7 @@
         "Boxer",
         "Dachshund",
         "Rottweiler",
-        "Husky",
+        "Yorkshire Terrier",
         "Bulldog Inglés",
         "Criollo/Mestizo",
         "Otro"

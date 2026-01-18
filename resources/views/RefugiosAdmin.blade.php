@@ -42,11 +42,7 @@
               <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Cerrar Sesion</a>
-            <div class="menu-lines" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
+            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
             </div>
           </nav>
         </div>
