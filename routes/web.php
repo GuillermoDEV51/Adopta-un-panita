@@ -1,23 +1,19 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Rutas públicas
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/', function () {
+    return redirect('/Inicio');
+});
 
 Route::get('/Inicio', function () {
     return view('Inicio');
-});
-
-
-
-
- require_once __DIR__ . '/../Admin/admin_route.php';
- require_once __DIR__ . '/../auth.php';
-
-// RUTAS Q ALARCON PUSO PA VE ESA MIELDA
-
-Route::get('/login', function () {
-    return view('auth.Login');
 });
 
 Route::get('/AñadirRefugio', function () {
@@ -35,6 +31,7 @@ Route::get('/Donativos', function () {
 Route::get('/EnviarFormulario', function () {
     return view('EnviarFormulario');
 });
+
 Route::get('/FormularioEnviado', function () {
     return view('FormularioEnviado');
 });
@@ -43,20 +40,12 @@ Route::get('/GatosAdmin', function () {
     return view('GatosAdmin');
 });
 
-Route::get('/Login', function () {
-    return view('auth.Login');
-});
-
 Route::get('/PerrosAdmin', function () {
     return view('PerrosAdmin');
 });
 
 Route::get('/RefugiosAdmin', function () {
     return view('RefugiosAdmin');
-});
-
-Route::get('/Registro', function () {
-    return view('auth.Registro'); 
 });
 
 Route::get('/SolicitudesAdmin', function () {
@@ -79,15 +68,26 @@ Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');
 });
 
-Route::get('/Inicio', function () {
-    return view('Inicio');
-});
-
 Route::get('/Misionyvision', function () {
-    return view('/Misionyvision');
+    return view('Misionyvision');
 });
 
 Route::get('/Publicaciones', function () {
-    return view('/Publicaciones');
+    return view('Publicaciones');
 });
 
+/*
+|--------------------------------------------------------------------------
+| Autenticación (Laravel)
+|--------------------------------------------------------------------------
+*/
+
+require_once __DIR__ . '/auth.php';
+
+/*
+|--------------------------------------------------------------------------
+| Rutas Admin externas
+|--------------------------------------------------------------------------
+*/
+
+require_once __DIR__ . '/Admin/admin_route.php';
