@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegistroRequest;
 use App\Models\Usuarios;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegistroController extends Controller
 {
@@ -14,11 +15,11 @@ class RegistroController extends Controller
     
    }
 
-   public function store(RegistroRequest $request){
-
-      $usuario = Usuarios::create([
-        $request->validate()
-      ]);
-      return redirect('/')->with('success', 'Registro exitoso. Por favor, inicia sesión.');
+   public function store(RegistroRequest $request)
+   {
+       $data = $request->validated();
+       $data['password'] = Hash::make($data['password']);
+      Usuarios::create($data);
+      return redirect('/')->with('success','Registro exitoso. Por favor,  inicia sesión.');
    }
 }

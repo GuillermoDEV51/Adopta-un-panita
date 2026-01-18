@@ -19,8 +19,7 @@ Route::get('/', function () {
 
 
 
-require_once __DIR__ . '/Admin/admin_route.php';
-require_once __DIR__ . '/auth.php';
+
 
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
