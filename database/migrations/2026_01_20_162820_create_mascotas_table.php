@@ -15,13 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
 
-            $table->unsignedBigInteger('id_especie')->nullable();
-            $table->foreign('id_especie')->references('id')->on('especies')->onDelete('set null');
+            $table->foreignId('id_especie')
+                ->nullable()
+                ->constrained('especies')
+                ->nullOnDelete();
 
-            $table->unsignedBigInteger('id_refugio')->nullable();
-            $table->foreign('id_refugio')->references('id')->on('refugio')->onDelete('set null');
-            
-            
+            $table->foreignId('id_refugio')
+                ->nullable()
+                ->constrained('refugios') 
+                ->nullOnDelete();
+
             $table->integer('edad')->nullable();
             $table->enum('genero', ['Macho', 'Hembra'])->nullable();
             $table->enum('estado', ['disponible', 'pendiente', 'adoptado'])->default('disponible');
@@ -31,6 +34,7 @@ return new class extends Migration
 
             $table->timestamps();
         });
+      
     }
 
     /**

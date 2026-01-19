@@ -43,6 +43,10 @@
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
             <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
+            <form class="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
+              @csrf
+              <button type="submit" class="logout-btn">Cerrar Sesión</button>
+            </form>
             </div>
           </nav>
         </div>

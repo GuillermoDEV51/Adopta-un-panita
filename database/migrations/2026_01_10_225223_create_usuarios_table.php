@@ -21,8 +21,10 @@ return new class extends Migration
             $table->string('ubicacion')->nullable();
             $table->string('telefono')->nullable();
 
-            $table->unsignedBigInteger('id_rol')->nullable()->default(2);
-            $table->foreign('id_rol')->references('id')->on('roles')->onDelete('set null');
+           $table->foreignId('id_rol')
+            ->constrained('roles')
+            ->default(2)
+            ->cascadeOnDelete();
 
             $table->timestamps();
         });

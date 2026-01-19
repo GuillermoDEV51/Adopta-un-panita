@@ -82,9 +82,11 @@
             
             <form class="login-form" action="{{ route('login.authenticate') }}" method="POST">
               @csrf
-              <input type="text" class="form-input" placeholder="Usuario..." required>
-              <input type="password" class="form-input password-input" placeholder="Contraseña..." required>
               
+              <input type="text" name="nombre" class="form-input" placeholder="Usuario..." value="{{ old('nombre') }}" required autocomplete="username"> 
+
+              <input type="password" name="password" class="form-input password-input" placeholder="Contraseña..." required autocomplete="current-password">
+
               <div class="form-actions">
                 <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
                 <button type="submit" class="submit-btn">Iniciar</button>

@@ -4,9 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use App\Models\Usuarios;
 
-class UsuariosSedeer extends Seeder
+class UsuariosSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +18,7 @@ class UsuariosSedeer extends Seeder
             'ci' => 12345678,
             'nombre' => 'Admin',
             'apellido' => 'Admin',
-            'password' => bcrypt('admin123'),
+            'password' => Hash::make('admin123'),
             'id_rol' => 1,
 
         ]);
