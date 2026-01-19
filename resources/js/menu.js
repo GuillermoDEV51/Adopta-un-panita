@@ -29,10 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span>Ver mascotas</span>
                     </a>
                     <a href="#" class="mega-menu-item">
-                        <i class="fas fa-plus-circle"></i>
-                        <span>Publicar un Panita</span>
-                    </a>
-                    <a href="#" class="mega-menu-item">
                         <i class="fas fa-list-alt"></i>
                         <span>Publicaciones</span>
                     </a>
