@@ -265,22 +265,19 @@
             <ul class="footer-list">
               <a href="MascotasDisponibles">Mascotas en adopción</a>
               <a href="RefugiosDisponibles">Refugios</a>
-              <a href="Donativos">Donaciones</a>
-              <a href="Mision">Misión y visión</a>
-              <a href="AcercaDe">Acerca de</a>
+              <a href="Mision">Misión y visión</a>    
             </ul>
           </div>
 
           <div class="footer-services">
             <h4 class="footer-column-title">Servicios</h4>
             <ul class="footer-list">
-              <a href="PublicarMascota">Publicar mascota</a>
-              <a href="SolicitarAyuda">Solicitar ayuda</a>
+              <a href="Donativos">Donaciones</a>           
               <a href="Voluntariado">Voluntariado</a>
               <a href="Registro">Registrarse</a>
             </ul>
           </div>
-
+          
           <div class="footer-contact">
             <h4 class="footer-column-title">Contacto</h4>
             <div class="contact-info">
