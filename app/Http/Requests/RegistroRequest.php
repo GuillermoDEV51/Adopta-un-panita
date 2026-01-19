@@ -22,10 +22,11 @@ class RegistroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ci'=> 'required|integer|unique:usuarios,ci|digits_between:6,12|bail',
+            'ci'=> 'required|integer|unique:usuarios,ci|digits_between:6,8|bail',
             'nombre'=> 'required|string|max:255|regex:/^[\pL\s-]+$/u',
             'apellido'=> 'required|string|max:255|regex:/^[\pL\s-]+$/u',
             'password'=> 'required|string|min:8|confirmed',
+            'telefono' => 'required|digits_between:7,11',
             
             'fecha_nacimiento'=> 'nullable|date|before:today',
             'ubicacion'=> 'nullable|string|max:255',

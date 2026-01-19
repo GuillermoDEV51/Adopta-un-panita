@@ -74,6 +74,7 @@
             <p class="form-subtitle2">Completa todas las casillas</p>
           </div>
         <form class="form-fields" method="POST"  action="{{ route('register') }}">
+          @csrf
             <div class="form-row">
               <div class="form-group2">
                 <input type="text" class="form-input" name="nombre" placeholder="Nombre" required>
@@ -221,10 +222,11 @@
                   </select>
                 </div>
               </div>
+              <input type="hidden" name="fecha_nacimiento" id="fecha_nacimiento">
             </div>
             
             <div class="form-group2">
-              <input type="tel" class="form-input" 
+              <input type="tel" name="telefono" class="form-input" 
                      placeholder="Número de teléfono" 
                      pattern="[0-9]*" 
                      inputmode="numeric"
@@ -234,7 +236,7 @@
             </div>
 
             <div class="form-group2">
-                <select class="form-input" required>
+                <select class="form-input" name="ubicacion" required>
                   <option value="">Ubicación</option>
                   <option value="Caracas">Caracas</option>
                   <option value="Miranda">Miranda</option>
@@ -250,7 +252,7 @@
             
             <div class="form-group2">
               <input type="text" class="form-input" 
-                     name="cedula" 
+                     name="ci" 
                      placeholder="Cédula" 
                      pattern="[0-9]*"
                      inputmode="numeric"
@@ -260,15 +262,28 @@
             </div>
             
             <div class="form-group2">
-              <input type="password" class="form-input" placeholder="Contraseña" required>
+              <input type="password" name="password" class="form-input" placeholder="Contraseña" required>
             </div>
             
             <div class="form-group2">
-              <input type="password" class="form-input" placeholder="Confirmar contraseña" required>
+              <input type="password" name="password_confirmation" class="form-input" placeholder="Confirmar contraseña" required>
             </div>
             
             <button type="submit" class="register-btn">Registrarse</button>
           </form>
+          <script>
+            document.querySelector('.form-fields').addEventListener('submit', function(e){
+              var dia = document.getElementById('dia').value;
+              var mes = document.getElementById('mes').value;
+              var anio = document.getElementById('anio').value;
+              if(dia && mes && anio){
+                var dd = dia.padStart(2,'0');
+                var mm = mes.padStart(2,'0');
+                var fecha = anio + '-' + mm + '-' + dd;
+                document.getElementById('fecha_nacimiento').value = fecha;
+              }
+            });
+          </script>
         </div>
       </main>
       

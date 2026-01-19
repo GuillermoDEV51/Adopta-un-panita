@@ -19,7 +19,11 @@ class RegistroController extends Controller
    {
        $data = $request->validated();
        $data['password'] = Hash::make($data['password']);
-      Usuarios::create($data);
-      return redirect('/')->with('success','Registro exitoso. Por favor,  inicia sesión.');
+        // Asignar rol predeterminado si no se proporciona
+        if (!isset($data['id_rol'])) {
+           $data['id_rol'] = 2;
+        }
+        Usuarios::create($data);
+      return redirect('/')->with('success','Registro exitoso. Por favor,  inicia sesión.')->with($data);
    }
 }
