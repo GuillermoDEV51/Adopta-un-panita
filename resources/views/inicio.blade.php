@@ -103,6 +103,7 @@
           
           <div class="pets-footer">
             <a href="#" class="view-all-btn">Ver más panitas</a>
+            <a href="#" class="public-all-btn">Publicar un panita</a>
           </div>
         </div>
       </section>

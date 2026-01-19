@@ -647,10 +647,12 @@ body {
   font-weight: 600;
 }
 
-/* Botón "Ver más panitas" */
 .pets-footer {
   text-align: center;
   margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 40px;
 }
 
 .view-all-btn {
@@ -669,6 +671,26 @@ body {
 
 .view-all-btn:hover {
   background-color: #af7700;
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(175, 119, 0, 0.3);
+}
+
+.public-all-btn {
+  display: inline-block;
+  background-color: #eba000;
+  color: white;
+  padding: 18px 48px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(175, 119, 0, 0.2);
+}
+
+.public-all-btn:hover {
+  background-color: #fcbf3b;
   transform: scale(1.05);
   box-shadow: 0 8px 25px rgba(175, 119, 0, 0.3);
 }
