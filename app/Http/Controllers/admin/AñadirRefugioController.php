@@ -10,7 +10,7 @@ class AñadirRefugioController extends Controller
 {
     public function index()
     {
-        return view('AñadirRefugio');
+        return view('admin.AñadirRefugio');
     }
 
 

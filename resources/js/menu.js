@@ -64,8 +64,15 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <!-- Botón de login -->
             <button class="mega-menu-login">
+                <a href="login" class="mega-menu-item">
                 <i class="fas fa-sign-in-alt"></i>
                 <span>Iniciar sesión</span>
+            </button>
+
+            <button class="mega-menu-login">
+                <a href="register" class="mega-menu-item">
+                <i class="fas fa-sign-in-alt"></i>
+                <span>Registrarse</span>
             </button>
         </div>
     `;

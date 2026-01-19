@@ -23,7 +23,7 @@ Route::get('/', function () {
 
 
 Route::get('/AñadirRefugio', function () {
-    return view('AñadirRefugio');
+    return view('admin.AñadirRefugio');
 });
 
 
@@ -43,23 +43,23 @@ Route::get('/FormularioEnviado', function () {
 });
 
 Route::get('/GatosAdmin', function () {
-    return view('GatosAdmin');
+    return view('admin.GatosAdmin');
 });
 
 Route::get('/PerrosAdmin', function () {
-    return view('PerrosAdmin');
+    return view('admin.PerrosAdmin');
 });
 
 Route::get('/RefugiosAdmin', function () {
-    return view('RefugiosAdmin');
+    return view('admin.RefugiosAdmin');
 });
 
 Route::get('/SolicitudesAdmin', function () {
-    return view('SolicitudesAdmin');
+    return view('admin.SolicitudesAdmin');
 });
 
 Route::get('/UsuariosAdmin', function () {
-    return view('UsuariosAdmin');
+    return view('admin.UsuariosAdmin');
 });
 
 Route::get('/MascotasDisponibles', function () {

@@ -13,11 +13,10 @@ use App\Http\Controllers\admin\UsuariosAdminController;
 // admin Route
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/añadir-refugio', [AñadirRefugioController::class, 'index'])->name('AñadirRefugio');
-Route::get('/admin/gatos', [GatosAdminController::class, 'index'])->name('GatosAdmin');
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('Dashboard');
-Route::get('/admin/perros',[PerrosAdminController::class,'index'])->name('PerrosAdmin');
-Route::get('/admin/refugios',[RefugiosAdminController::class,'index'])->name('RefugiosAdmin');
-Route::get('/admin/solicitudes',[SolicitudesAdminController::class,'index'])->name('SolicitudesAdmin');
-Route::get('/admin/usuarios',[UsuariosAdminController::class,'index'])->name('UsuariosAdmin');
-
+    Route::get('/admin/gatos', [GatosAdminController::class, 'index'])->name('GatosAdmin');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('Dashboard');
+    Route::get('/admin/perros', [PerrosAdminController::class, 'index'])->name('PerrosAdmin');
+    Route::get('/admin/refugios', [RefugiosAdminController::class, 'index'])->name('RefugiosAdmin');
+    Route::get('/admin/solicitudes', [SolicitudesAdminController::class, 'index'])->name('SolicitudesAdmin');
+    Route::get('/admin/usuarios', [UsuariosAdminController::class, 'index'])->name('UsuariosAdmin');
 });
