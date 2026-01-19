@@ -15,13 +15,13 @@
 
                 <form id="formFinal">
                     <div class="form-group">
-                        <label>Historial médico</label>
+                        <label style="color:#af7700">Historial médico</label>
                         <input type="file" name="historial[]" multiple>
                     </div>
 
                     <div class="form-row">
     <div class="form-group">
-        <label>Raza</label>
+        <label style="color:#af7700">Raza</label>
         <select id="raza" required>
             <option value="">Seleccione</option>
         </select>
@@ -30,7 +30,7 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Convive con animales</label>
+                            <label style="color:#af7700">Convive con animales</label>
                             <select id="convive_animales" required>
                                 <option value="">Seleccione</option>
                                 <option value="si">Sí</option>
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Convive con personas</label>
+                            <label style="color:#af7700">Convive con personas</label>
                             <select id="convive_personas" required>
                                 <option value="">Seleccione</option>
                                 <option value="si">Sí</option>
@@ -50,7 +50,7 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Ubicación</label>
+                            <label style="color:#af7700">Ubicación</label>
                             <select id="ubicacion" required>
                                 <option value="">Seleccione</option>
                                     <option value="Caracas">Caracas</option>
@@ -68,7 +68,7 @@
 
                     <div class="form-row">
                         <div class="form-group">
-                            <label>Vacunado</label>
+                            <label style="color:#af7700">Vacunado</label>
                             <select id="vacunado" required>
                                 <option value="">Seleccione</option>
                                 <option value="si">Sí</option>
@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Esterilizado</label>
+                            <label style="color:#af7700">Esterilizado</label>
                             <select id="esterilizado" required>
                                 <option value="">Seleccione</option>
                                 <option value="si">Sí</option>

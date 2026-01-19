@@ -20,10 +20,10 @@
 
     <!-- Foto mascota (izquierda) -->
     <div class="photo-column">
-        <label>Foto de la mascota</label>
+        <label style="color:#af7700">Foto de la mascota</label>
         <input type="file" id="fotoMascota" accept="image/*" hidden>
         <label for="fotoMascota" class="photo-box">
-            <span>📷 Añadir foto</span>
+            <span style="color:#af7700">📷 Añadir foto</span>
             <img id="previewFoto" alt="" />
         </label>
     </div>
@@ -34,12 +34,12 @@
         <!-- Fila 1: Nombre + Especie -->
         <div class="form-row">
             <div class="form-group">
-                <label>Nombre</label>
+                <label style="color:#af7700">Nombre</label>
                 <input type="text" id="nombre" required>
             </div>
 
             <div class="form-group">
-                <label>Especie</label>
+                <label style="color:#af7700">Especie</label>
                 <select id="especie" required>
                     <option value="">Seleccione</option>
                     <option value="perro">Perro</option>
@@ -51,12 +51,12 @@
         <!-- Fila 2: Edad + Peso -->
         <div class="form-row">
             <div class="form-group">
-                <label>Edad</label>
+                <label style="color:#af7700">Edad</label>
                 <input type="number" id="edad" min="0" required>
             </div>
 
             <div class="form-group">
-                <label>Peso (LB)</label>
+                <label style="color:#af7700">Peso (LB)</label>
                 <input type="number" id="peso" required>
             </div>
         </div>
@@ -64,7 +64,7 @@
         <!-- Fila 3: Tamaño + Sexo -->
         <div class="form-row">
             <div class="form-group">
-                <label>Tamaño</label>
+                <label style="color:#af7700">Tamaño</label>
                 <select id="tamano">
                     <option value="">Seleccione</option>
                     <option>Pequeño</option>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="form-group">
-                <label>Sexo</label>
+                <label style="color:#af7700">Sexo</label>
                 <select id="sexo">
                     <option value="">Seleccione</option>
                     <option>Macho</option>
@@ -89,7 +89,7 @@
 
 <!-- Descripción full-width debajo de todo el grid -->
 <div class="description-full-width">
-    <label>Descripción</label>
+    <label style="color:#af7700">Descripción</label>
     <textarea id="descripcion" rows="6" maxlength="500" required></textarea>
 </div>
 
@@ -97,7 +97,7 @@
 
                         <!-- Botón siguiente -->
                         <div style="text-align:center;margin-top:24px;">
-                            <button type="button" class="submit-bt" id="goToStep2">Siguiente</button>
+                            <button type="button" class="submit-bt1" id="goToStep2">Siguiente</button>
                         </div>
 
                     </form>

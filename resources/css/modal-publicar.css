@@ -244,6 +244,22 @@ input:focus, select:focus, textarea:focus {
 }
 
 /* Botones */
+.submit-btn1, .submit-bt1 {
+    background-color: #C8A75F;
+    color: white;
+    box-shadow: 0 6px 18px rgba(175, 119, 0, 0.18);
+    padding: 12px 36px;
+    border-radius: 28px;
+    font-size: 16px;
+    min-width: 140px;
+}
+
+.submit-btn1:hover, .submit-bt1:hover {
+    background-color: #9a6400;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(154, 100, 0, 0.2);
+}
+
 .submit-btn, .submit-bt {
     background-color: #C8A75F;
     color: white;
