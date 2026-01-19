@@ -1,5 +1,5 @@
 /* =========================
-   MODAL PUBLICAR MASCOTA
+   MODAL PUBLICAR MASCOTA - VERSION CORREGIDA
    ========================= */
 
 /* Contenedor exclusivo para los modales */
@@ -9,7 +9,6 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    /* No tocamos el body global */
 }
 
 /* Overlay del modal */
@@ -49,11 +48,12 @@
 
 /* Layout interno: dos columnas */
 .modal-content {
-    display: flex;
-    min-height: 480px;
-    align-items: stretch;
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
 }
 
+/* Columna izquierda */
 .modal-left {
     flex: 1 1 60%;
     padding: 48px 44px;
@@ -62,12 +62,12 @@
     max-height: calc(90vh - 40px);
 }
 
-/* Scrollbar ligero */
 .modal-left::-webkit-scrollbar { width: 10px; }
 .modal-left::-webkit-scrollbar-track { background: transparent; }
 .modal-left::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.08); border-radius: 10px; }
 .modal-left { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.08) transparent; }
 
+/* Columna derecha */
 .modal-right {
     flex: 0 0 400px;
     min-height: 100%;
@@ -80,19 +80,13 @@
 .right-image-img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* "cover" rellena el contenedor, puede recortar bordes */
-    object-position: center; /* centra la imagen */
+    object-fit: cover;
+    object-position: center;
 }
-
 
 /* Encabezado modal */
 .modal-header {
     text-align: center;
-}
-
-.modal-header h2 {
-    font-size: 28px;
-    margin-bottom: 8px;
 }
 
 .form-title3 {
@@ -111,7 +105,7 @@
     margin-bottom: 20px;
 }
 
-/* Cerrar modal */
+/* Botón cerrar modal */
 .close-modal-btn {
     position: absolute;
     top: 20px;
@@ -135,16 +129,101 @@
 }
 
 /* Formulario */
-.modal-form {
-    padding: 0;
+.form-grid {
+    display: flex;
+    gap: 30px;
+    align-items: stretch; /* hace que las columnas tengan la misma altura */
 }
 
+/* Foto mascota */
+.photo-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex: 0 0 260px;
+}
+
+.photo-box {
+    width: 200px;
+    aspect-ratio: 1 / 1;
+    border: 2px dashed #c8a75f;
+    border-radius: 14px;
+    background: #f4ecd6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    font-weight: 600;
+    margin: 0 auto;
+}
+
+.photo-box span {
+    color: #af7700;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.photo-box img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.photo-box.has-image span {
+    display: none;
+}
+
+/* Campos de formulario (columna derecha) */
+.fields-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Cada fila de campos */
 .form-row {
     display: flex;
     gap: 30px;
-    margin-bottom: 10px;
 }
 
+/* Descripción ocupa todo el espacio restante */
+.description-row {
+    flex: 1;              /* ocupa todo el espacio disponible */
+    display: flex;
+}
+
+.description-full {
+    flex: 1;              /* se estira horizontalmente */
+    display: flex;
+    flex-direction: column;
+}
+/* Descripción debajo de la foto */
+.description-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* ocupa todo el espacio disponible de la columna */
+    justify-content: flex-end; /* hace que se estire hasta el final */
+}
+
+.description-full textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
+}
+
+/* Inputs, selects y textarea */
 .form-group { flex: 1; }
 .form-group.full-width { flex: 0 0 100%; }
 
@@ -164,41 +243,20 @@ input:focus, select:focus, textarea:focus {
     background-color: white;
 }
 
-/* Botones modal */
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-    margin-top: 30px;
-    padding-top: 25px;
-    border-top: 1px solid #eee;
-}
-
-.cancel-btn, .submit-btn, .submit-bt {
-    padding: 14px 28px;
-    border: none;
-    border-radius: 8px;
-    font-size: 17px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.cancel-btn {
-    background-color: #e0e0e0;
-    color: #333;
-}
-
-.cancel-btn:hover { background-color: #d5d5d5; }
-
+/* Botones */
 .submit-btn, .submit-bt {
     background-color: #C8A75F;
     color: white;
     box-shadow: 0 6px 18px rgba(175, 119, 0, 0.18);
     border-radius: 28px;
+    padding: 14px 28px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
 }
 
 .submit-btn:hover, .submit-bt:hover {
@@ -206,49 +264,22 @@ input:focus, select:focus, textarea:focus {
     transform: translateY(-2px);
     box-shadow: 0 8px 22px rgba(154, 100, 0, 0.2);
 }
-
-
-.photo-upload {
-    margin-bottom: 25px;
-}
-
-.photo-box {
-    width: 220px;
-    aspect-ratio: 1 / 1;
-    border: 2px dashed #c8a75f;
-    border-radius: 16px;
+.description-full-width {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    background-color: #fdfbf5;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.3s, background-color 0.3s;
-    margin: 0 auto;
+    flex-direction: column;
+    width: 100%; /* ocupa todo el ancho desde la izquierda hasta la columna derecha */
+    margin-top: 20px;
 }
 
-
-.photo-box span {
-    color: #af7700;
-    font-weight: 600;
-    font-size: 18px;
-}
-
-.photo-box:hover {
-    background-color: #fff7e0;
-    border-color: #9a6400;
-}
-
-.photo-box img {
-    position: absolute;
+.description-full-width textarea {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
+    min-height: 120px;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 16px;
+    resize: none;
 }
-
-
 /* Responsive */
 @media (max-width: 768px) {
     .modal-container { max-height: 95vh; border-radius: 12px; }
