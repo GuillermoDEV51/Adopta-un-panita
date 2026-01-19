@@ -20,6 +20,15 @@
                     </div>
 
                     <div class="form-row">
+    <div class="form-group">
+        <label>Raza</label>
+        <select id="raza" required>
+            <option value="">Seleccione</option>
+        </select>
+    </div>
+</div>
+
+                    <div class="form-row">
                         <div class="form-group">
                             <label>Convive con animales</label>
                             <select id="convive_animales" required>
@@ -92,3 +101,64 @@
     </div>
 </div>
 </div>
+
+    <!-- Script para cargar razas dinámicamente -->
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const razaSelect = document.getElementById('raza');
+
+    const razas = {
+        perro: [
+            'Mestizo',
+            'Pastor Alemán',
+            'Pitbull',
+            'Golden Retriever',
+            'Labrador',
+            'Chihuahua',
+            'Poodle',
+            'Bulldog'
+        ],
+        gato: [
+            'Mestizo',
+            'Persa',
+            'Siamés',
+            'Bengalí',
+            'Maine Coon',
+            'Angora'
+        ]
+    };
+
+    function cargarRazas(especie) {
+        razaSelect.innerHTML = '<option value="">Seleccione</option>';
+
+        if (!razas[especie]) return;
+
+        razas[especie].forEach(raza => {
+            const option = document.createElement('option');
+            option.value = raza;
+            option.textContent = raza;
+            razaSelect.appendChild(option);
+        });
+    }
+
+    // Leer especie desde el paso 1
+    const especieInput = document.getElementById('especie');
+
+    if (especieInput) {
+        especieInput.addEventListener('change', () => {
+            cargarRazas(especieInput.value);
+        });
+    }
+
+    // Cargar automáticamente al abrir el modal 2
+    const modalStep2 = document.getElementById('modalStep2');
+    modalStep2.addEventListener('transitionend', () => {
+        if (especieInput?.value) {
+            cargarRazas(especieInput.value);
+        }
+    });
+
+});
+</script>

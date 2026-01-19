@@ -15,6 +15,20 @@
                 </header>
 
                 <form id="formStep1">
+                    
+                      <div class="form-row">
+        <div class="form-group full-width" style="text-align:center;">
+            <label>Foto de la mascota</label>
+
+            <div class="photo-upload">
+                <input type="file" id="fotoMascota" accept="image/*" hidden>
+                <label for="fotoMascota" class="photo-box">
+                    <span>📷 Subir foto</span>
+                    <img id="previewFoto" alt="" />
+                </label>
+            </div>
+        </div>
+    </div>
                     <div class="form-row">
                         <div class="form-group">
                             <label>Nombre</label>

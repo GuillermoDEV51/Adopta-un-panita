@@ -50,3 +50,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+const fotoInput = document.getElementById('fotoMascota');
+const previewFoto = document.getElementById('previewFoto');
+
+if (fotoInput) {
+    fotoInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            previewFoto.src = reader.result;
+            previewFoto.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    });
+}
