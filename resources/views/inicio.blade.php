@@ -15,7 +15,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite (['resources/css/inicio.css'])
+@vite([
+  'resources/css/inicio.css',
+  'resources/js/menu.js',
+  'resources/js/publicar-panita.js',
+  'resources/css/modal-publicar.css'
+])
+
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -103,7 +109,8 @@
           
           <div class="pets-footer">
             <a href="#" class="view-all-btn">Ver más panitas</a>
-            <a href="#" class="public-all-btn">Publicar un panita</a>
+            <a href="#" id="openPublicarModal" class="public-all-btn">Publicar mascota</a>
+
           </div>
         </div>
       </section>
@@ -298,24 +305,27 @@
               </a>
             </div>
           </div>
-          
+
           <div class="footer-links">
             <h4 class="footer-column-title">Enlaces rápidos</h4>
             <ul class="footer-list">
               <a href="MascotasDisponibles">Mascotas en adopción</a>
               <a href="RefugiosDisponibles">Refugios</a>
-              <a href="Mision">Misión y visión</a>    
+              <a href="Donativos">Donaciones</a>
+              <a href="Mision">Misión y visión</a>
+              <a href="AcercaDe">Acerca de</a>
             </ul>
           </div>
 
           <div class="footer-services">
             <h4 class="footer-column-title">Servicios</h4>
             <ul class="footer-list">
-              <a href="Donativos">Donaciones</a>           
+              <a href="SolicitarAyuda">Solicitar ayuda</a>
               <a href="Voluntariado">Voluntariado</a>
               <a href="Registro">Registrarse</a>
             </ul>
           </div>
+
 
           <div class="footer-contact">
             <h4 class="footer-column-title">Contacto</h4>
@@ -343,7 +353,10 @@
       </footer>
     </div>
   </div>
-  @vite(['resources/js/menu.js'])
+
+@include('modals.publicar-step1')
+@include('modals.publicar-step2')
+
 </body>
 </html>
 
