@@ -44,9 +44,15 @@
                             <label>Ubicación</label>
                             <select id="ubicacion" required>
                                 <option value="">Seleccione</option>
-                                <option>Caracas</option>
-                                <option>Miranda</option>
-                                <option>Zulia</option>
+                                    <option value="Caracas">Caracas</option>
+                                    <option value="Miranda">Miranda</option>
+                                    <option value="La Guaira">La Guaira</option>
+                                    <option value="Zulia">Zulia</option>
+                                    <option value="Lara">Lara</option>
+                                    <option value="Carabobo">Carabobo</option>
+                                    <option value="Sucre">Sucre</option>
+                                    <option value="Anzoátegui">Anzoátegui</option>
+                                    <option value="Nueva Esparta">Nueva Esparta</option>
                             </select>
                         </div>
                     </div>
