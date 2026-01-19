@@ -19,15 +19,15 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request)
     {
-        
 
-                    $credentials = $request->only('nombre', 'password');
-                        if (Auth::attempt($credentials)) {
 
-                                $request->session()->regenerate();
+        $credentials = $request->only('nombre', 'password');
+        if (Auth::attempt($credentials)) {
 
-                                return redirect()->intended(route('Dashboard'));
-                        }
+            $request->session()->regenerate();
+
+            return redirect()->intended(route('Dashboard'));
+        }
         return back()->withErrors(['login' => 'Las credenciales no coinciden con nuestros registros.']);
 
     }
