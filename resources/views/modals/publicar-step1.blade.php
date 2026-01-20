@@ -16,12 +16,12 @@
 
                     <form id="formStep1">
 
-<div class="form-grid">
+<form class="form-grid" action="" method="post">
 
     <!-- Foto mascota (izquierda) -->
     <div class="photo-column">
         <label style="color:#af7700">Foto de la mascota</label>
-        <input type="file" id="fotoMascota" accept="image/*" hidden>
+        <input type="file" id="fotoMascota" accept="image/*" name="foto">
         <label for="fotoMascota" class="photo-box">
             <span style="color:#af7700">📷 Añadir foto</span>
             <img id="previewFoto" alt="" />
@@ -35,7 +35,7 @@
         <div class="form-row">
             <div class="form-group">
                 <label style="color:#af7700">Nombre</label>
-                <input type="text" id="nombre" required>
+                <input type="text" id="nombre" name="nombre" required>
             </div>
 
             <div class="form-group">
@@ -85,7 +85,7 @@
 
     </div> <!-- fin fields-column -->
 
-</div> <!-- fin form-grid -->
+</form> <!-- fin form-grid -->
 
 <!-- Descripción full-width debajo de todo el grid -->
 <div class="description-full-width">

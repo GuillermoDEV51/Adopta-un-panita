@@ -41,9 +41,9 @@
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="{{ url('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
-              <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+              <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+              <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
 
 
@@ -53,7 +53,17 @@
           <div class="nav-auth">
 
                 @auth
-                <a href="{{ url('/dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
+                <!-- Mostrar información del usuario autenticado -->
+                <span>
+                  @if(auth()->user()->id_rol == 1)
+                      <span>eres admin</span>
+                      @else
+                      <span>eres mrd</span>
+                  @endif
+                </span>
+
+
+                <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                   @csrf
                   <button type="submit" class="register-btn">Cerrar sesión</button>
@@ -111,8 +121,12 @@
           </div>
           
           <div class="pets-footer">
-            <a href="#" class="view-all-btn">Ver más panitas</a>
-            <a href="#" id="openPublicarModal" class="public-all-btn">Publicar mascota</a>
+            <a href="{{ route('MascotasDisponibles') }}" class="view-all-btn">Ver más panitas</a>
+
+            @if (auth()->user() && auth()->user()->id_rol == 1)
+              <a href="#" id="openPublicarModal" class="public-all-btn">Publicar mascota</a>
+            @endif
+            
 
           </div>
         </div>

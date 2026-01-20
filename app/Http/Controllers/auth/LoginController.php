@@ -26,7 +26,7 @@ class LoginController extends Controller
 
             $request->session()->regenerate();
 
-            return redirect()->intended(route('inicio'));
+            return redirect()->intended(route('Inicio'));
         }
         return back()->withErrors(['login' => 'Las credenciales no coinciden con nuestros registros.']);
 

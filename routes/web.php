@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('inicio');
-})->name('inicio');
+})->name('Inicio');
 
 
 
@@ -22,53 +22,15 @@ Route::get('/', function () {
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
 
-Route::get('/AñadirRefugio', function () {
-    return view('admin.AñadirRefugio');
-});
 
-
-
-
-
-Route::get('/Donativos', function () {
-    return view('Donativos');
-});
-
-Route::get('/EnviarFormulario', function () {
-    return view('EnviarFormulario');
-});
-
-Route::get('/FormularioEnviado', function () {
-    return view('FormularioEnviado');
-});
-
-Route::get('/GatosAdmin', function () {
-    return view('admin.GatosAdmin');
-});
-
-Route::get('/PerrosAdmin', function () {
-    return view('admin.PerrosAdmin');
-});
-
-Route::get('/RefugiosAdmin', function () {
-    return view('admin.RefugiosAdmin');
-});
-
-Route::get('/SolicitudesAdmin', function () {
-    return view('admin.SolicitudesAdmin');
-});
-
-Route::get('/UsuariosAdmin', function () {
-    return view('admin.UsuariosAdmin');
-});
 
 Route::get('/MascotasDisponibles', function () {
     return view('MascotasDisponibles'); 
-});
+})->name('MascotasDisponibles');
 
 Route::get('/RefugiosDisponibles', function () {
     return view('RefugiosDisponibles');
-});
+})->name('RefugiosDisponibles');
 
 Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');
