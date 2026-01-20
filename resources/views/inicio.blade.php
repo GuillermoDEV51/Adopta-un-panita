@@ -52,7 +52,7 @@
           <div class="nav-auth">
 
                 @auth
-                <a href="{{ url('/dashboard') }}" class="login-btn">Hola, {{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
+                <a href="{{ url('/dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                   @csrf
                   <button type="submit" class="register-btn">Cerrar sesión</button>
