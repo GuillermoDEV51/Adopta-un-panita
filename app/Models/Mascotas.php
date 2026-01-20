@@ -25,4 +25,8 @@ class Mascotas extends Model
     {
         return parent::hasMany($related, $foreignKey, $localKey);
     }
+     public function usuario()
+    {
+        return $this->belongsTo(Usuarios::class, 'id_usuario');
+    }
 }

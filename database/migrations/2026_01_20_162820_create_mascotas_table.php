@@ -24,6 +24,12 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('refugios') 
                 ->nullOnDelete();
+                
+             $table->foreignId('id_usuario')
+                ->nullable()
+                ->constrained('usuarios')
+                ->nullOnDelete();
+
 
             $table->integer('edad')->nullable();
             $table->enum('genero', ['Macho', 'Hembra'])->nullable();

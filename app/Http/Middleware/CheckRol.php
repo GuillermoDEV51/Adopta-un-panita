@@ -13,11 +13,18 @@ class CheckRol
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next,  $rol): Response
+    public function handle(Request $request, Closure $next, ...$roles): Response
     {
         $usuario = $request->user();
-        if (!$usuario || $usuario->rol->name !== $rol) {
-            return response()->json(['message' => 'Acceso no autorizado.'], 403);
+
+        if (!$usuario || !$usuario->role) {
+            abort(403, 'Acceso no autorizado.');
+        }
+
+        $roleName = $usuario->role->name ?? null;
+
+        if (!in_array($roleName, $roles)) {
+            abort(403, 'Acceso no autorizado.');
         }
 
         return $next($request);

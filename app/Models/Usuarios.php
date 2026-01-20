@@ -35,4 +35,8 @@ class Usuarios extends Authenticatable
     {
         return $this->belongsTo(Roles::class, 'id_rol');
     }
+     public function mascotas()
+    {
+        return $this->hasMany(Mascotas::class, 'id_usuario');
+    }   
 }

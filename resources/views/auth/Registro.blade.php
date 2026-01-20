@@ -52,7 +52,7 @@
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="{{ url('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+              <a href="{{ url('/') }}" class="nav-item" role="menuitem">Inicio</a>
               <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>

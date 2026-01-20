@@ -43,6 +43,7 @@
 
             <!-- Authentication Links -->
         @if (Route:: has('login'))
+
           <div class="nav-auth">
 
                 @auth
@@ -51,11 +52,13 @@
                   @csrf
                   <button type="submit" class="register-btn">Cerrar sesión</button>
                 </form>
-        @else
+
+                 @else
+
+                  
                   <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
-                  @if (Route::has('register'))
-                    <a href="{{ route('register') }}" class="register-btn">Registrarse</a>
-                  @endif
+                  <a href="{{ route('register') }}" class="register-btn">Registrarse</a>
+                  
                 @endauth
           </div> 
         @endif

@@ -49,7 +49,7 @@
               <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
               
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
+            <a href="{{ route('register') }}" class="login-btn">Registrarse</a>
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
