@@ -14,7 +14,7 @@ use App\Http\Middleware\CheckRol;
 
 
 // admin Route
-Route::middleware(['auth','checkrol:Admin'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/admin/añadir-refugio', [AñadirRefugioController::class, 'index'])->name('AñadirRefugio');
     Route::get('/admin/gatos', [GatosAdminController::class, 'index'])->name('GatosAdmin');
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('Dashboard');
