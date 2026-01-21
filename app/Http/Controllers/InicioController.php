@@ -6,9 +6,15 @@ use Illuminate\Http\Request;
 use App\Models\Mascotas;
 use App\Http\Requests\MascotasRequest;
 
-class AddPets extends Controller
+class InicioController extends Controller
 {
-    
+    public function show(){
+
+        $mascotas = Mascotas::all();
+
+        return view('inicio');
+    }
+
     public function add(MascotasRequest $request) {
         
         $data = $request->validated();

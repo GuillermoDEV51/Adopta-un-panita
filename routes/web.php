@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MascotasDisponiblesController;
+use App\Http\Controllers\InicioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,9 +12,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('inicio');
-})->name('Inicio');
+Route::get('/', [InicioController::class, 'show'])->name('Inicio');
+Route::post('/', [InicioController::class, 'add'])->name('Inicio');
 
 
 
@@ -22,11 +23,9 @@ Route::get('/', function () {
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
 
+Route::get('/MascotasDisponibles', [MascotasDisponiblesController::class, 'show'])->name('MascotasDisponibles');
 
 
-Route::get('/MascotasDisponibles', function () {
-    return view('MascotasDisponibles'); 
-})->name('MascotasDisponibles');
 
 Route::get('/RefugiosDisponibles', function () {
     return view('RefugiosDisponibles');

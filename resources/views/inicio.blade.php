@@ -123,8 +123,10 @@
           <div class="pets-footer">
             <a href="{{ route('MascotasDisponibles') }}" class="view-all-btn">Ver más panitas</a>
 
-            @if (auth()->user() && auth()->user()->id_rol == 1)
+            @if (auth()->user())
+            
               <a href="#" id="openPublicarModal" class="public-all-btn">Publicar mascota</a>
+          
             @endif
             
 
@@ -369,9 +371,11 @@
     </div>
   </div>
 
+  <form id="form-publicar" action="{{ route('Inicio') }}" method="POST" style="display: none;">
+    @csrf
 @include('modals.publicar-step1')
 @include('modals.publicar-step2')
-
+  </form>
 </body>
 </html>
 
