@@ -13,7 +13,7 @@ use App\Http\Controllers\InicioController;
 
 
 Route::get('/', [InicioController::class, 'show'])->name('Inicio');
-Route::post('/', [InicioController::class, 'add'])->name('Inicio');
+Route::post('/', [InicioController::class, 'add'])->name('Inicio.add');
 
 
 

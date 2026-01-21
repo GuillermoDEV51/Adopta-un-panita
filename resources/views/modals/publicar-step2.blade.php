@@ -13,16 +13,16 @@
                     <p class="form-subtitle3">Paso 2 de 2</p>
                 </header>
 
-                <form id="formFinal">
+                <div id="formFinal">
                     <div class="form-group">
                         <label style="color:#af7700">Historial médico</label>
-                        <input type="file" name="historial[]" multiple>
+                        <input type="file" name="documentacion" multiple>
                     </div>
 
                     <div class="form-row">
     <div class="form-group">
         <label style="color:#af7700">Raza</label>
-        <select id="raza" required>
+        <select id="raza" name="raza" required>
             <option value="">Seleccione</option>
         </select>
     </div>
@@ -51,7 +51,7 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label style="color:#af7700">Ubicación</label>
-                            <select id="ubicacion" required>
+                            <select id="ubicacion" name="ubicacion" required>
                                 <option value="">Seleccione</option>
                                     <option value="Caracas">Caracas</option>
                                     <option value="Miranda">Miranda</option>
@@ -69,19 +69,19 @@
                     <div class="form-row">
                         <div class="form-group">
                             <label style="color:#af7700">Vacunado</label>
-                            <select id="vacunado" required>
+                            <select id="vacunado" name="vacunado" required>
                                 <option value="">Seleccione</option>
-                                <option value="si">Sí</option>
-                                <option value="no">No</option>
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label style="color:#af7700">Esterilizado</label>
-                            <select id="esterilizado" required>
+                            <select id="esterilizado" name="esterilizado" required>
                                 <option value="">Seleccione</option>
-                                <option value="si">Sí</option>
-                                <option value="no">No</option>
+                                <option value="true">Sí</option>
+                                <option value="false">No</option>
                             </select>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                         <button type="button" class="submit-btn" id="backToStep1">Regresar</button>
                         <button type="submit" class="submit-bt">Publicar</button>
                     </div>
-                </form>
+                </div> <!-- fin formFinal -->
             </div>
 
             <div class="modal-right">

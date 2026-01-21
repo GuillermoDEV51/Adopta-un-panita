@@ -18,6 +18,9 @@ class Mascotas extends Model
         'tamano',
         'descripcion',
         'documentacion',
+        'foto',
+        'raza',
+        'peso',
     ];
 
 

@@ -24,12 +24,16 @@ class MascotasRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:255',
             'edad' => 'required|integer|min:0',
-            'tipo' => 'required|string|max:100',
+            'id_especie' => 'required|integer|exists:especies,id',
             'raza' => 'nullable|string|max:100',
-            'sexo' => 'required|in:Macho,Hembra',
+            'genero' => 'required|in:Macho,Hembra',
             'peso' => 'nullable|numeric|min:0',
             'descripcion' => 'nullable|string',
             'foto' => 'nullable|image|max:2048', // Máximo 2MB
+            'vacunado' => 'required|boolean',
+            'esterilizado' => 'required|boolean',
+           
+        
 
         ];
     }

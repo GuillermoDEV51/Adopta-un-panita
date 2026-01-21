@@ -15,7 +15,7 @@ class InicioController extends Controller
         return view('inicio');
     }
 
-    public function add(MascotasRequest $request) {
+    public function publicar(MascotasRequest $request) {
         
         $data = $request->validated();
 

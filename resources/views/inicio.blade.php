@@ -371,11 +371,11 @@
     </div>
   </div>
 
-  <form id="form-publicar" action="{{ route('Inicio') }}" method="POST" style="display: none;">
+  <form id="form-publicar" action="{{ route('Inicio.add') }}" method="POST" enctype="multipart/form-data">
     @csrf
-@include('modals.publicar-step1')
-@include('modals.publicar-step2')
-  </form>
+    @include('modals.publicar-step1')
+    @include('modals.publicar-step2')
+</form>
 </body>
 </html>
 
