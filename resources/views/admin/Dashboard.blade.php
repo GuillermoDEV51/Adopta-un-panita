@@ -38,15 +38,40 @@
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="{{ url('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
-              <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+              <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+              <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
-            <form class="logout-form" action="{{ route('logout') }}" method="POST" style="display: inline;">
-              @csrf
-              <button type="submit" class="logout-btn">Cerrar Sesión</button>
-            </form>
+           @if (Route:: has('login'))
+
+          <div class="nav-auth">
+
+                @auth
+                <!-- Mostrar información del usuario autenticado -->
+                <span>
+                  @if(auth()->user()->id_rol == 1)
+                      <span>eres admin</span>
+                      @else
+                      <span>eres normal</span>
+                  @endif
+                </span>
+
+
+                <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                  @csrf
+                  <button type="submit" class="register-btn">Cerrar sesión</button>
+                </form>
+
+                 @else
+
+                  
+                  <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
+                  <a href="{{ route('register') }}" class="register-btn">Registrarse</a>
+                  
+                @endauth
+          </div> 
+        @endif
             </div>
           </nav>
         </div>

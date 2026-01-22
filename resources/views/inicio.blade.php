@@ -58,7 +58,7 @@
                   @if(auth()->user()->id_rol == 1)
                       <span>eres admin</span>
                       @else
-                      <span>eres mrd</span>
+                      <span>eres normal</span>
                   @endif
                 </span>
 

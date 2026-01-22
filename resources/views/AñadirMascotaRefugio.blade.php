@@ -38,9 +38,9 @@
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="#" class="nav-item" role="menuitem">Inicio</a>
-              <a href="#" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="#" class="nav-item" role="menuitem">Refugios</a>
+              <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+              <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
             <button class="login-btn">Iniciar Sesión</button>
             </div>

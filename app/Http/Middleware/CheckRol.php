@@ -17,15 +17,13 @@ class CheckRol
     {
         $usuario = $request->user();
 
-        if (!$usuario || !$usuario->role) {
-            abort(403, 'Acceso no autorizado.');
-        }
+        if (!$usuario || !$usuario->role_id) {
+        abort(403, 'Acceso no autorizado.');
+    }
 
-        $roleName = $usuario->role->name ?? null;
-
-        if (!in_array($roleName, $roles)) {
-            abort(403, 'Acceso no autorizado.');
-        }
+    if (!in_array($usuario->role_id, $roles)) {
+        abort(403, 'Acceso no autorizado.');
+    }
 
         return $next($request);
     }
