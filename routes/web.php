@@ -36,12 +36,19 @@ Route::get('/RefugiosDisponibles', function () {
     return view('RefugiosDisponibles');
 })->name('RefugiosDisponibles');
 
+
+
 Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');
 });
 
+Route::get('/Donativos', function () {
+    return view('Donativos');
+});
 
-
+Route::get('/PreguntasFrecuentes', function () {
+    return view('PreguntasFrecuentes');
+});
 
 
 Route::get('/Misionyvision', function () {

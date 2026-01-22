@@ -109,6 +109,30 @@
                 <div class="titulo-line" aria-hidden="true"></div>
               </div>
             </div>
+
+            <div class="">
+              <table class="">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Rol</th>
+                    <th>Fecha de Registro</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @foreach($usuarios as $usuario)
+                  <tr>
+                    <td>{{ $usuario->id }}</td>
+                    <td>{{ $usuario->nombre }}</td>
+                    <td>{{ $usuario->role->name ?? 'Sin rol' }}</td>
+                    
+                    <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+
       </main>
       
       <!-- Footer -->

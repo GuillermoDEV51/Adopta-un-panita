@@ -175,7 +175,11 @@
                 <div class="mascota-info">
                   <h3 class="mascota-nombre">{{ $mascota->nombre }}</h3>
                   <p class="mascota-detalle"><strong>Edad:</strong> {{ $mascota->edad }} años</p>
-                  <p class="mascota-detalle"><strong>Tipo:</strong> {{ ucfirst($mascota->tipo) }}</p>
+                  <p class="mascota-detalle"><strong>Tipo:</strong>  @if($mascota->especie && $mascota->especie->nombre)
+                        {{ $mascota->especie->nombre }}
+                    @else
+                        Sin especie
+                    @endif</p>
                   <p class="mascota-detalle"><strong>Raza:</strong> {{ $mascota->raza ?? 'Desconocida' }}</p>
                   <p class="mascota-detalle"><strong>Sexo:</strong> {{ $mascota->sexo }}</p>
                   <p class="mascota-detalle"><strong>Estado:</strong> {{ $mascota->estado ?? 'Desconocido' }} kg</p>

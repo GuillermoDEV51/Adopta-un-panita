@@ -9,7 +9,7 @@ class MascotasDisponiblesController extends Controller
 {
     public function show()
     {
-        $mascotas = Mascotas::all();
+        $mascotas = Mascotas::with('especie')->get();
         
         return view('MascotasDisponibles', compact('mascotas'));
     }

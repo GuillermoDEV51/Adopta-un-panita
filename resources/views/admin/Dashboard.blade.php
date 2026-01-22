@@ -127,7 +127,7 @@
               </div>
               <div class="menu-item">
                 <i class="fas fa-sign-out-alt"></i>
-                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
+                <a href="{{ route('logout') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
               </div>
             </div>
           </div>

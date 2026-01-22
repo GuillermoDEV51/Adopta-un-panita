@@ -42,8 +42,16 @@
               <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
+            
             </div>
+            
+
+
+                <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                  @csrf
+                  <button type="submit" class="register-btn">Cerrar sesión</button>
+                </form>
           </nav>
         </div>
       </header>

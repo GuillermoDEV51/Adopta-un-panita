@@ -32,13 +32,10 @@ class Mascotas extends Model
 
      public function especie()
     {
-        return $this->belongsTo(Especie::class, 'id_especies');
+         return $this->belongsTo(Especie::class, 'id_especies', 'id');
     }
 
-    public function hasMany($related, $foreignKey = null, $localKey = null)
-    {
-        return parent::hasMany($related, $foreignKey, $localKey);
-    }
+    
      public function usuario()
     {
         return $this->belongsTo(Usuarios::class, 'id_usuario');
