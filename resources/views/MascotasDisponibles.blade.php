@@ -171,7 +171,7 @@
 
             @foreach ($mascotas as $mascota)
               <div class="mascota-card">
-                <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}" alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
+                <img src="{{ asset('storage/' . $mascota->foto) }}" alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
                 <div class="mascota-info">
                   <h3 class="mascota-nombre">{{ $mascota->nombre }}</h3>
                   <p class="mascota-detalle"><strong>Edad:</strong> {{ $mascota->edad }} años</p>

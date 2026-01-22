@@ -188,13 +188,17 @@
     <div class="container">
         <h1>Publicar Mascota para Adopción</h1>
         
-        <form class="modal-form" id="publicarForm">
+        <form class="modal-form" id="publicarForm" method="POST" action="{{ route('vistavacia.add') }}" enctype="multipart/form-data">
+            @csrf
             <div class="form-row">
                 <div class="form-group" style="flex:0 0 220px;">
                     <div class="photo-box" aria-hidden="true">
                         <div class="photo-upload-area">
+                            <input type="file" id="fotoMascota" name="foto" accept="image/*" >
                             <div class="photo-preview" id="photoPreview">
+                                
                                 <i class="fas fa-camera" style="font-size:34px;color:#af7700"></i>
+                                
                                 <p style="color:#af7700">Añadir foto</p>
                             </div>
                         </div>
@@ -204,28 +208,31 @@
                 <div style="flex:1; display:flex; flex-direction:column; gap:14px;">
                     <div class="form-group">
                         <label for="nombre" style="color:#af7700">Nombre</label>
-                        <input type="text" id="nombre" placeholder="Nombre del panita" required>
+                        <input type="text" id="nombre" name="nombre" placeholder="Nombre del panita" required>
                     </div>
 
                     <div>
                         <div class="form-group">
                             <label for="especie" style="color:#af7700">Especie</label>
-                            <select id="especie" required>
-                                <option value="" disabled selected>Especie de la mascota</option>
-                                <option value="perro">Perro</option>
-                                <option value="gato">Gato</option>
-                            </select>
+                           <select name="id_especies" required>
+    <option value="">Seleccione una especie</option>
+    @foreach($especies as $especie)
+        <option value="{{ $especie->id }}">
+            {{ $especie->nombre }}
+        </option>
+    @endforeach
+</select>
                         </div>
 
                         <div class="form-row" style="margin-top:8px;">
                             <div class="form-group" style="flex:0 0 140px;">
                                 <label for="edad" style="color:#af7700">Edad</label>
-                                <input type="number" id="edad" min="0" max="30" placeholder="Años" required>
+                                <input type="number" name="edad" id="edad" min="0" max="30" placeholder="Años" required>
                             </div>
 
                             <div class="form-group" style="flex:0 0 140px;">
                                 <label for="peso" style="color:#af7700">Peso (LB)</label>
-                                <input type="number" id="peso" min="0" max="100" placeholder="Peso" required>                                          
+                                <input type="number" name="peso" id="peso" min="0" max="100" placeholder="Peso" required>                                          
                             </div>
                         </div>
                     </div>
@@ -235,20 +242,20 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="tamano" style="color:#af7700">Tamaño</label>
-                    <select id="tamano" required>
+                    <select id="tamano" name="tamano" required>
                         <option value="" disabled selected>Tamaño de la mascota</option>
-                        <option value="pequeno">Pequeño</option>
-                        <option value="mediano">Mediano</option>
-                        <option value="grande">Grande</option>
+                        <option value="Pequeño">Pequeño</option>
+                        <option value="Mediano">Mediano</option>
+                        <option value="Grande">Grande</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="sexo" style="color:#af7700">Sexo</label>
-                    <select id="sexo">
+                    <select id="sexo" name="genero" required>
                         <option value="" disabled selected>Sexo de la mascota</option>
-                        <option value="macho">Macho</option>
-                        <option value="hembra">Hembra</option>
+                        <option value="Macho">Macho</option>
+                        <option value="Hembra">Hembra</option>
                     </select>
                 </div>
             </div>
@@ -256,7 +263,7 @@
             <div class="form-row">
                 <div class="form-group full-width">
                     <label for="descripcion" style="color:#af7700">Descripción</label>
-                    <textarea id="descripcion" rows="5" placeholder="Descripción de la mascota" required maxlength="500"></textarea>
+                    <textarea id="descripcion" name="descripcion" rows="5" placeholder="Descripción de la mascota" required maxlength="500"></textarea>
                     <div class="char-counter"><span id="charCount">0</span> / 500</div>
                 </div>
             </div>
@@ -265,7 +272,7 @@
                 <div style="flex:1; display:flex; flex-direction:column; gap:14px;">
                     <div class="form-group">
                         <label for="historial" style="color:#af7700">Historial médico</label>
-                        <input type="file" id="historial" class="file-input-hidden" name="historialFiles" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" />
+                        <input type="file" id="historial" class="file-input-hidden" name="documentacion" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" />
                         <label for="historial" class="file-input-label" title="Añadir archivos">
                             <span class="file-input-text">Seleccionar archivos...</span>
                             <i class="fas fa-paperclip file-icon" aria-hidden="true"></i>
@@ -275,7 +282,7 @@
                     <div>
                         <div class="form-group">
                             <label for="raza" style="color:#af7700">Raza</label>
-                            <select id="raza" required>
+                            <select id="raza" name="raza" required>
                                 <option value="" disabled selected>Raza de la mascota</option>
                                 <option value="criollo">Criollo</option>
                                 <option value="labrador">Labrador</option>
@@ -289,19 +296,19 @@
                         <div class="form-row" style="margin-top:8px;">
                             <div class="form-group" style="flex:0 0 300px;">
                                 <label for="otros_animales" style="color:#af7700">¿Se lleva bien con otros animales?</label>
-                                <select id="otros_animales" required>
-                                    <option value="" disabled selected>Si/No</option>                                                
-                                    <option value="si">Sí</option>
-                                    <option value="no">No</option>
+                                <select id="otros_animales" name="otros_animales" required>
+                                    <option value=""  disabled selected>Si/No</option>                                                
+                                    <option value="0">Sí</option>
+                                    <option value="1">No</option>
                                 </select>
                             </div>
 
                             <div class="form-group" style="flex:0 0 300px;">
                                 <label for="personas" style="color:#af7700">¿Se lleva bien con personas?</label>
-                                <select id="personas" required>
+                                <select id="personas" name="personas" required>
                                     <option value="" disabled selected>Si/No</option>                                                
-                                    <option value="si">Sí</option>
-                                    <option value="no">No</option>
+                                    <option value="0">Sí</option>
+                                    <option value="1">No</option>
                                 </select>                                      
                             </div>
                         </div>
@@ -312,7 +319,7 @@
             <div class="form-row">                                 
                 <div class="form-group" style="flex:0 0 631px;">
                     <label for="ubicacion" style="color:#af7700">Ubicación del responsable</label>
-                    <select id="ubicacion" required>
+                    <select id="ubicacion" name="ubicacion" required>
                         <option value="" disabled selected>Coloque la ubicación del responsable</option>                                                
                         <option value="Caracas">Caracas</option>
                         <option value="Miranda">Miranda</option>
@@ -330,19 +337,19 @@
             <div class="form-row" style="margin-top:8px;">
                 <div class="form-group" style="flex:0 0 300px;">
                     <label for="vacunado" style="color:#af7700">¿Está vacunado el panita?</label>
-                    <select id="vacunado" required>
+                    <select id="vacunado" name="vacunado" required>
                         <option value="" disabled selected>Si/No</option>                                                
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
+                        <option value="1">Sí</option>
+                        <option value="0">No</option>
                     </select>
                 </div>
 
                 <div class="form-group" style="flex:0 0 300px;">
                     <label for="esterilizado" style="color:#af7700">¿Está esterilizado el panita?</label>
-                    <select id="esterilizado" required>
+                    <select id="esterilizado" name="esterilizado" required>
                         <option value="" disabled selected>Si/No</option>                                                
-                        <option value="si">Sí</option>
-                        <option value="no">No</option>
+                        <option value="1">Sí</option>
+                        <option value="0">No</option>
                     </select>    
                 </div>
             </div>
@@ -350,5 +357,15 @@
             <button type="submit" class="submit-btn">Publicar Mascota</button>
         </form>
     </div>
+      @if ($errors->any())
+    <div class="alert alert-error" style="background:#ffe5e5; color:#8b0000; padding:12px; border-radius:8px; margin-bottom:16px;">
+        <strong>❌ Ocurrieron errores al publicar la mascota:</strong>
+        <ul style="margin-top:8px; padding-left:20px;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 </body>
 </html>

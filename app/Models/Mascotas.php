@@ -10,7 +10,7 @@ class Mascotas extends Model
 
     protected $fillable = [
         'nombre',
-        'id_especie',
+        'id_especies',
         'id_refugio',
         'edad',
         'genero',
@@ -21,8 +21,19 @@ class Mascotas extends Model
         'foto',
         'raza',
         'peso',
+        'vacunado',
+        'esterilizado',
     ];
 
+    protected $casts = [
+    'vacunado' => 'boolean',
+    'esterilizado' => 'boolean',
+];
+
+     public function especie()
+    {
+        return $this->belongsTo(Especie::class, 'id_especies');
+    }
 
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {

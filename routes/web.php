@@ -13,8 +13,13 @@ use App\Http\Controllers\InicioController;
 
 
 Route::get('/', [InicioController::class, 'show'])->name('Inicio');
-Route::post('/', [InicioController::class, 'add'])->name('Inicio.add');
+Route::post('/', [InicioController::class, 'publicar'])->name('Inicio.add');
 
+
+
+
+Route::get('/vistavacia', [InicioController::class, 'index'])->name('vistavacia');
+Route::post('/vistavacia', [InicioController::class, 'publicar'])->name('vistavacia.add');
 
 
 
@@ -35,9 +40,7 @@ Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');
 });
 
-Route::get('/vistavacia', function () {
-    return view('vistavacia');
-});
+
 
 
 

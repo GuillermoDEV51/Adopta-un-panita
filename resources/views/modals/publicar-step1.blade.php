@@ -90,7 +90,7 @@
 <!-- Descripción full-width debajo de todo el grid -->
 <div class="description-full-width">
     <label style="color:#af7700">Descripción</label>
-    <textarea id="descripcion" rows="6" maxlength="500" required></textarea>
+    <textarea id="descripcion" rows="6" maxlength="500" name="descripcion" required></textarea>
 </div>
 
 

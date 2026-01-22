@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
 
-            $table->foreignId('id_especie')
+            $table->foreignId('id_especies')
                 ->nullable()
                 ->constrained('especies')
                 ->nullOnDelete();

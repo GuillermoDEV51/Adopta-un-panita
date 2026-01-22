@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Mascotas;
 use App\Http\Requests\MascotasRequest;
 
+
 class InicioController extends Controller
 {
     public function show(){
@@ -26,9 +27,16 @@ class InicioController extends Controller
         }
 
         Mascotas::create($data);
+       
 
-        return redirect()->back()->with('success', 'Mascota añadida exitosamente.');
+        return redirect('vistavacia')->withErrors([]);
 
 
+    }
+
+    
+    public function index(){
+        $especies = \App\Models\Especie::all();
+        return view('vistavacia', compact('especies'));
     }
 }

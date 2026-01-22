@@ -22,7 +22,7 @@
                     <div class="form-row">
     <div class="form-group">
         <label style="color:#af7700">Raza</label>
-        <select id="raza" name="raza" required>
+        <select id="raza" name="raza" >
             <option value="">Seleccione</option>
         </select>
     </div>
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const razaSelect = document.getElementById('raza');
 
     const razas = {
-        perro: [
+        1: [
             'Mestizo',
             'Pastor Alemán',
             'Pitbull',
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'Poodle',
             'Bulldog'
         ],
-        gato: [
+        2: [
             'Mestizo',
             'Persa',
             'Siamés',
