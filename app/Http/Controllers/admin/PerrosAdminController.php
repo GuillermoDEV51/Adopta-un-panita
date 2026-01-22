@@ -10,6 +10,6 @@ class PerrosAdminController extends Controller
 {
     public function index()
     {
-        return view('PerrosAdmin');
+        return view('admin.PerrosAdmin');
     }
 }

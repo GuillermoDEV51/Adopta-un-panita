@@ -10,6 +10,6 @@ class VoluntariosAdminController extends Controller
 {
     public function index()
     {
-        return view('VoluntariosAdmin');
+        return view('admin.VoluntariosAdmin');
     }
 }

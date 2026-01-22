@@ -10,6 +10,6 @@ class RefugiosAdminController extends Controller
 {
     public function index()
     {
-        return view('RefugiosAdmin');
+        return view('admin.RefugiosAdmin');
     }
 }

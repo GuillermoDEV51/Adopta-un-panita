@@ -10,6 +10,6 @@ class GatosAdminController extends Controller
 {
     public function index()
     {
-        return view('GatosAdmin');
+        return view('admin.GatosAdmin');
     }
 }

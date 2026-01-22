@@ -9,6 +9,6 @@ class SolicitudesAdminController extends Controller
 {
     public function index()
     {
-        return view('SolicitudesAdmin');
+        return view('admin.SolicitudesAdmin');
     }
 }

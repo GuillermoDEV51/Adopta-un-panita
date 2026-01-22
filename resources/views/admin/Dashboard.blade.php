@@ -145,7 +145,7 @@
                   </div>
                   <div class="stat-info">
                     <div class="stat-title">Mascotas registradas</div>
-                    <div class="stat-value">0</div>
+                    <div class="stat-value"> {{ $totalMascotas }}</div>
                   </div>
                 </div>
                 
@@ -184,7 +184,7 @@
             <div class="users-section">
               <div class="users-header">
                 <h2 class="content-title">Usuarios activos</h2>
-                <div class="users-count">0</div>
+                <div class="users-count">{{ $totalUsuarios }}</div>
               </div>
               
               <div class="users-list">
