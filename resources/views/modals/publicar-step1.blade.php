@@ -14,14 +14,14 @@
                         <p class="form-subtitle3">Paso 1 de 2</p>
                     </header>
 
-                    <form id="formStep1">
+                  
 
 <div class="form-grid">
 
     <!-- Foto mascota (izquierda) -->
     <div class="photo-column">
         <label style="color:#af7700">Foto de la mascota</label>
-        <input type="file" id="fotoMascota" accept="image/*" hidden>
+        <input type="file" id="fotoMascota" name="foto" accept="image/*" hidden>
         <label for="fotoMascota" class="photo-box">
             <span style="color:#af7700">📷 Añadir foto</span>
             <img id="previewFoto" alt="" />
@@ -35,15 +35,15 @@
         <div class="form-row">
             <div class="form-group">
                 <label style="color:#af7700">Nombre</label>
-                <input type="text" id="nombre" required>
+                <input type="text" id="nombre" name="nombre" required>
             </div>
 
             <div class="form-group">
                 <label style="color:#af7700">Especie</label>
-                <select id="especie" required>
+                <select id="especie" name="id_especie" required>
                     <option value="">Seleccione</option>
-                    <option value="perro">Perro</option>
-                    <option value="gato">Gato</option>
+                    <option value="1">Perro</option>
+                    <option value="2">Gato</option>
                 </select>
             </div>
         </div>
@@ -52,12 +52,12 @@
         <div class="form-row">
             <div class="form-group">
                 <label style="color:#af7700">Edad</label>
-                <input type="number" id="edad" min="0" required>
+                <input type="number" id="edad" min="0" name="edad" required>
             </div>
 
             <div class="form-group">
                 <label style="color:#af7700">Peso (LB)</label>
-                <input type="number" id="peso" required>
+                <input type="number" id="peso" name="peso" required>
             </div>
         </div>
 
@@ -65,20 +65,20 @@
         <div class="form-row">
             <div class="form-group">
                 <label style="color:#af7700">Tamaño</label>
-                <select id="tamano">
+                <select id="tamano" name="tamano">
                     <option value="">Seleccione</option>
-                    <option>Pequeño</option>
-                    <option>Mediano</option>
-                    <option>Grande</option>
+                    <option value="Pequeño">Pequeño</option>
+                    <option value="Mediano">Mediano</option>
+                    <option value="Grande">Grande</option>
                 </select>
             </div>
 
             <div class="form-group">
                 <label style="color:#af7700">Sexo</label>
-                <select id="sexo">
+                <select id="sexo" name ="genero" required>
                     <option value="">Seleccione</option>
-                    <option>Macho</option>
-                    <option>Hembra</option>
+                    <option value="Macho">Macho</option>
+                    <option value="Hembra">Hembra</option>
                 </select>
             </div>
         </div>
@@ -100,7 +100,7 @@
                             <button type="button" class="submit-bt1" id="goToStep2">Siguiente</button>
                         </div>
 
-                    </form>
+                    
                 </div> <!-- fin modal-left -->
 
                 <!-- Columna derecha: imagen -->

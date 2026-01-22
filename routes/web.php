@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MascotasDisponiblesController;
+use App\Http\Controllers\InicioController;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,9 +12,8 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', function () {
-    return view('inicio');
-})->name('inicio');
+Route::get('/', [InicioController::class, 'show'])->name('Inicio');
+Route::post('/', [InicioController::class, 'add'])->name('Inicio.add');
 
 
 
@@ -22,53 +23,13 @@ Route::get('/', function () {
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
 
-Route::get('/AñadirRefugio', function () {
-    return view('admin.AñadirRefugio');
-});
+Route::get('/MascotasDisponibles', [MascotasDisponiblesController::class, 'show'])->name('MascotasDisponibles');
 
 
-
-
-
-Route::get('/Donativos', function () {
-    return view('Donativos');
-});
-
-Route::get('/EnviarFormulario', function () {
-    return view('EnviarFormulario');
-});
-
-Route::get('/FormularioEnviado', function () {
-    return view('FormularioEnviado');
-});
-
-Route::get('/GatosAdmin', function () {
-    return view('admin.GatosAdmin');
-});
-
-Route::get('/PerrosAdmin', function () {
-    return view('admin.PerrosAdmin');
-});
-
-Route::get('/RefugiosAdmin', function () {
-    return view('admin.RefugiosAdmin');
-});
-
-Route::get('/SolicitudesAdmin', function () {
-    return view('admin.SolicitudesAdmin');
-});
-
-Route::get('/UsuariosAdmin', function () {
-    return view('admin.UsuariosAdmin');
-});
-
-Route::get('/MascotasDisponibles', function () {
-    return view('MascotasDisponibles'); 
-});
 
 Route::get('/RefugiosDisponibles', function () {
     return view('RefugiosDisponibles');
-});
+})->name('RefugiosDisponibles');
 
 Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');

@@ -39,9 +39,9 @@
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
-              <a href="{{ url('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
-              <a href="{{ url('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="{{ url('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+              <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+              <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
             <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
             <div class="menu-lines" aria-hidden="true">
@@ -168,6 +168,22 @@
           
           <!--tarjetas de mascotas -->
           <div class="mascotas-grid">
+
+            @foreach ($mascotas as $mascota)
+              <div class="mascota-card">
+                <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}" alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
+                <div class="mascota-info">
+                  <h3 class="mascota-nombre">{{ $mascota->nombre }}</h3>
+                  <p class="mascota-detalle"><strong>Edad:</strong> {{ $mascota->edad }} años</p>
+                  <p class="mascota-detalle"><strong>Tipo:</strong> {{ ucfirst($mascota->tipo) }}</p>
+                  <p class="mascota-detalle"><strong>Raza:</strong> {{ $mascota->raza ?? 'Desconocida' }}</p>
+                  <p class="mascota-detalle"><strong>Sexo:</strong> {{ $mascota->sexo }}</p>
+                  <p class="mascota-detalle"><strong>Estado:</strong> {{ $mascota->estado ?? 'Desconocido' }} kg</p>
+                  <p class="mascota-descripcion">{{ $mascota->descripcion }}</p>
+                </div>
+              </div>
+              
+            @endforeach
           </div>
         </div>
       </main>

@@ -37,6 +37,12 @@ return new class extends Migration
             $table->enum('tamano', ['Pequeño', 'Mediano', 'Grande'])->nullable();
             $table->text('descripcion')->nullable();
             $table->string('documentacion')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('raza')->nullable();
+            $table->decimal('peso', 5, 2)->nullable();
+            $table->boolean('vacunado')->default(false);
+            $table->boolean('esterilizado')->default(false);
+
 
             $table->timestamps();
         });
