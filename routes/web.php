@@ -74,6 +74,10 @@ Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');
 });
 
+Route::get('/vistavacia', function () {
+    return view('vistavacia');
+});
+
 
 
 Route::get('/Misionyvision', function () {
