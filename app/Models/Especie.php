@@ -10,7 +10,6 @@ class Especie extends Model
 {
     protected $table = 'especies';
 
-    protected $primaryKey = 'id_especie';
 
     public $timestamps = false;
 

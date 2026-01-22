@@ -181,9 +181,9 @@
                         Sin especie
                     @endif</p>
                   <p class="mascota-detalle"><strong>Raza:</strong> {{ $mascota->raza ?? 'Desconocida' }}</p>
-                  <p class="mascota-detalle"><strong>Sexo:</strong> {{ $mascota->sexo }}</p>
-                  <p class="mascota-detalle"><strong>Estado:</strong> {{ $mascota->estado ?? 'Desconocido' }} kg</p>
-                  <p class="mascota-descripcion">{{ $mascota->descripcion }}</p>
+                  <p class="mascota-detalle"><strong>Sexo:</strong> {{ $mascota->genero }}</p>
+                  <p class="mascota-detalle"><strong>Estado:</strong> {{ $mascota->estado ?? 'Desconocido' }}</p>
+                  <p class="mascota-descripcion"></p>
                 </div>
               </div>
               
