@@ -13,7 +13,8 @@
                         <p class="form-subtitle3" id="stepIndicator">Paso 1 de 2</p>
                     </header>
 
-                    <form id="publicarForm" enctype="multipart/form-data">
+                    <form id="publicarForm" method="POST" action="{{ route('publicarMascota') }}" enctype="multipart/form-data">
+                        @csrf
                         <!-- Paso 1 -->
                         <div id="step1" class="step-content">
                             <div class="form-grid">
@@ -33,15 +34,18 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label style="color:#af7700">Nombre</label>
-                                            <input type="text" id="nombre" name="nombre" required>
+                                            <input type="text" id="nombre" name="nombre" placeholder="Nombre del panita" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label style="color:#af7700">Especie</label>
-                                            <select id="especie" name="id_especie" required>
-                                                <option value="">Seleccione</option>
-                                                <option value="1">Perro</option>
-                                                <option value="2">Gato</option>
+                                             <select name="id_especies" required>
+                                                 <option value="">Seleccione una especie</option>
+                                                     @foreach($especies as $especie)
+                                                        <option value="{{ $especie->id }}">
+                                                            {{ $especie->nombre }}
+                                                        </option>
+                                                     @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -50,12 +54,12 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label style="color:#af7700">Edad</label>
-                                            <input type="number" id="edad" min="0" name="edad" required>
+                                            <input type="number" id="edad" min="0" max="30" name="edad" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label style="color:#af7700">Peso (LB)</label>
-                                            <input type="number" id="peso" name="peso" required>
+                                            <input type="number" id="peso" name="peso" min="0" max="100" required>
                                         </div>
                                     </div>
 
@@ -86,7 +90,7 @@
                             <!-- Descripción full-width debajo de todo el grid -->
                             <div class="description-full-width">
                                 <label style="color:#af7700">Descripción</label>
-                                <textarea id="descripcion" rows="6" maxlength="500" name="descripcion" required></textarea>
+                                <textarea id="descripcion" rows="6" maxlength="500" name="descripcion" placeholder="describe al panita"  required></textarea>
                             </div>
 
                             <!-- Botón siguiente -->
@@ -99,7 +103,7 @@
                         <div id="step2" class="step-content" style="display: none;">
                             <div class="form-group">
                                 <label style="color:#af7700">Historial médico</label>
-                                <input type="file" name="documentacion" multiple>
+                                <input type="file" name="documentacion" multiple accept=".pdf,.doc,.docx,.jpg,.png">
                             </div>
 
                             <div class="form-row">
@@ -114,20 +118,20 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label style="color:#af7700">Convive con animales</label>
-                                    <select id="convive_animales" name="convive_animales" required>
-                                        <option value="">Seleccione</option>
-                                        <option value="si">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
+                                    <select id="otros_animales" name="otros_animales" required>
+                                    <option value=""  disabled selected>Si/No</option>                                                
+                                    <option value="0">Sí</option>
+                                    <option value="1">No</option>
+                                </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label style="color:#af7700">Convive con personas</label>
-                                    <select id="convive_personas" name="convive_personas" required>
-                                        <option value="">Seleccione</option>
-                                        <option value="si">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
+                                    <select id="personas" name="personas" required>
+                                        <option value="" disabled selected>Si/No</option>                                                
+                                        <option value="0">Sí</option>
+                                        <option value="1">No</option>
+                                     </select> 
                                 </div>
                             </div>
 
@@ -153,19 +157,19 @@
                                 <div class="form-group">
                                     <label style="color:#af7700">Vacunado</label>
                                     <select id="vacunado" name="vacunado" required>
-                                        <option value="">Seleccione</option>
-                                        <option value="true">Sí</option>
-                                        <option value="false">No</option>
-                                    </select>
+                                        <option value="" disabled selected>Si/No</option>                                                
+                                        <option value="1">Sí</option>
+                                        <option value="0">No</option>
+                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label style="color:#af7700">Esterilizado</label>
                                     <select id="esterilizado" name="esterilizado" required>
-                                        <option value="">Seleccione</option>
-                                        <option value="true">Sí</option>
-                                        <option value="false">No</option>
-                                    </select>
+                                        <option value="" disabled selected>Si/No</option>                                                
+                                        <option value="1">Sí</option>
+                                        <option value="0">No</option>
+                                    </select>    
                                 </div>
                             </div>
 
@@ -188,37 +192,105 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    const openBtn = document.getElementById('openPublicarModal');
+    const modal = document.getElementById('modalPublicar');
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
-    const stepIndicator = document.getElementById('stepIndicator');
-    const modalImage = document.getElementById('modalImage');
-    const goToStep2Btn = document.getElementById('goToStep2');
-    const backToStep1Btn = document.getElementById('backToStep1');
-    const especieSelect = document.getElementById('especie');
-    const razaSelect = document.getElementById('raza');
 
+    if (!openBtn || !modal || !step1 || !step2) return;
+
+    // Función para abrir modal
+    openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Pasar de Step1 a Step2
+    document.getElementById('goToStep2')?.addEventListener('click', () => {
+        step1.style.display = 'none';
+        step2.style.display = 'block';
+        document.getElementById('stepIndicator').textContent = 'Paso 2 de 2';
+        document.getElementById('modalImage').src = '{{ asset('images/fotomodal2.png') }}';
+        // Cargar razas si especie seleccionada
+        const especie = document.getElementById('especie').value;
+        if (especie) {
+            cargarRazas(especie);
+        }
+    });
+
+    // Volver de Step2 a Step1
+    document.getElementById('backToStep1')?.addEventListener('click', () => {
+        step2.style.display = 'none';
+        step1.style.display = 'block';
+        document.getElementById('stepIndicator').textContent = 'Paso 1 de 2';
+        document.getElementById('modalImage').src = '{{ asset('images/fotomodal1.png') }}';
+    });
+
+    // Función para cerrar modal
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        // Resetear a paso 1
+        step2.style.display = 'none';
+        step1.style.display = 'block';
+        document.getElementById('stepIndicator').textContent = 'Paso 1 de 2';
+        document.getElementById('modalImage').src = '{{ asset('images/fotomodal1.png') }}';
+    }
+
+    // Cerrar con botón "X"
+    document.getElementById('closeModal')?.addEventListener('click', closeModal);
+
+    // Cerrar al hacer click fuera del modal (overlay)
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Cerrar al presionar Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeModal();
+        }
+    });
+
+    // Función para cargar razas (del script original)
     const razas = {
         1: [
-            'Mestizo',
-            'Pastor Alemán',
-            'Pitbull',
-            'Golden Retriever',
-            'Labrador',
-            'Chihuahua',
-            'Poodle',
-            'Bulldog'
+        "Labrador Retriever",
+        "Pastor Alemán",
+        "Golden Retriever",
+        "Bulldog Francés",
+        "Beagle",
+        "Poodle",
+        "Chihuahua",
+        "Boxer",
+        "Dachshund",
+        "Rottweiler",
+        "Husky",
+        "Bulldog Inglés",
+        "Criollo/Mestizo",
+        "Otro"
         ],
         2: [
-            'Mestizo',
-            'Persa',
-            'Siamés',
-            'Bengalí',
-            'Maine Coon',
-            'Angora'
+        "Siamés",
+        "Persa",
+        "Maine Coon",
+        "Bengalí",
+        "Esfinge",
+        "Ragdoll",
+        "British Shorthair",
+        "Abisinio",
+        "Birmano",
+        "Scottish Fold",
+        "Criollo/Mestizo",
+        "Otro"
         ]
     };
 
     function cargarRazas(especie) {
+        const razaSelect = document.getElementById('raza');
         razaSelect.innerHTML = '<option value="">Seleccione</option>';
         if (!razas[especie]) return;
         razas[especie].forEach(raza => {
@@ -229,40 +301,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    especieSelect.addEventListener('change', () => {
-        cargarRazas(especieSelect.value);
-    });
-
-    goToStep2Btn.addEventListener('click', () => {
-        step1.style.display = 'none';
-        step2.style.display = 'block';
-        stepIndicator.textContent = 'Paso 2 de 2';
-        modalImage.src = '{{ asset('images/fotomodal2.png') }}';
-        if (especieSelect.value) {
-            cargarRazas(especieSelect.value);
-        }
-    });
-
-    backToStep1Btn.addEventListener('click', () => {
-        step2.style.display = 'none';
-        step1.style.display = 'block';
-        stepIndicator.textContent = 'Paso 1 de 2';
-        modalImage.src = '{{ asset('images/fotomodal1.png') }}';
-    });
-
-    // Preview de imagen
-    const fotoInput = document.getElementById('fotoMascota');
-    const previewImg = document.getElementById('previewFoto');
-    fotoInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                previewImg.src = e.target.result;
-                previewImg.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
+    // Evento para cargar razas al cambiar especie
+    document.getElementById('especie')?.addEventListener('change', (e) => {
+        cargarRazas(e.target.value);
     });
 });
+
+// Preview de imagen
+const fotoInput = document.getElementById('fotoMascota');
+const previewFoto = document.getElementById('previewFoto');
+
+if (fotoInput) {
+    fotoInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            previewFoto.src = reader.result;
+            previewFoto.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    });
+}
 </script>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Mascotas;
+use App\Models\Refugios;
 use App\Http\Requests\MascotasRequest;
 
 
@@ -12,9 +13,13 @@ class InicioController extends Controller
     public function show(){
 
         $mascotas = Mascotas::all();
-
-        return view('inicio');
+        $refugios = Refugios::all();
+        return view('inicio', compact( 'refugios'));
     }
+
+
+
+    
 
     public function publicar(MascotasRequest $request) {
         
@@ -29,14 +34,6 @@ class InicioController extends Controller
         Mascotas::create($data);
        
 
-        return redirect('vistavacia')->withErrors([]);
-
-
-    }
-
-
-    public function index(){
-        $especies = \App\Models\Especie::all();
-        return view('vistavacia', compact('especies'));
+        return redirect('inicio')->withErrors([]);
     }
 }

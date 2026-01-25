@@ -188,7 +188,7 @@
     <div class="container">
         <h1>Publicar Mascota para Adopción</h1>
         
-        <form class="modal-form" id="publicarForm" method="POST" action="{{ route('vistavacia.add') }}" enctype="multipart/form-data">
+        <form class="modal-form" id="publicarForm" method="POST"  enctype="multipart/form-data">
             @csrf
             <div class="form-row">
                 <div class="form-group" style="flex:0 0 220px;">
@@ -215,13 +215,13 @@
                         <div class="form-group">
                             <label for="especie" style="color:#af7700">Especie</label>
                            <select name="id_especies" required>
-    <option value="">Seleccione una especie</option>
-    @foreach($especies as $especie)
-        <option value="{{ $especie->id }}">
-            {{ $especie->nombre }}
-        </option>
-    @endforeach
-</select>
+                             <option value="">Seleccione una especie</option>
+                                 @foreach($especies as $especie)
+                                    <option value="{{ $especie->id }}">
+                                        {{ $especie->nombre }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-row" style="margin-top:8px;">

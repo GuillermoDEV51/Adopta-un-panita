@@ -49,9 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-hand-holding-heart"></i>
                         <span>Donaciones</span>
                     </a>
+                    
                     <a href="vistavacia" class="mega-menu-item">
                         <i class="fas fa-hands-helping"></i>
-                        <span>Voluntariado</span>
+                        <span>vistavacia</span>
                     </a>
                     <a href="RefugiosDisponibles" class="mega-menu-item">
                         <i class="fas fa-home"></i>
