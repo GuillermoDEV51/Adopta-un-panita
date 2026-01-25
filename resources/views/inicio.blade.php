@@ -124,7 +124,7 @@
 
             @if (auth()->user())
             
-              <!--<a href="#" id="openPublicarModal" class="public-all-btn">Publicar mascota</a>-->
+              <a href="#" id="openPublicarModal" class="public-all-btn">Publicar mascota</a>
           
             @endif
             
@@ -383,8 +383,7 @@
 
   <form id="form-publicar" action="{{ route('Inicio.add') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    @include('modals.publicar-step1')
-    @include('modals.publicar-step2')
+    @include('modals.publicar-modal')
 </form> 
 </body>
 </html>

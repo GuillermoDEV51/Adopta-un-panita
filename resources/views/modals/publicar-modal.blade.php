@@ -188,15 +188,70 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
+    const openBtn = document.getElementById('openPublicarModal');
+    const modal = document.getElementById('modalPublicar');
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
-    const stepIndicator = document.getElementById('stepIndicator');
-    const modalImage = document.getElementById('modalImage');
-    const goToStep2Btn = document.getElementById('goToStep2');
-    const backToStep1Btn = document.getElementById('backToStep1');
-    const especieSelect = document.getElementById('especie');
-    const razaSelect = document.getElementById('raza');
 
+    if (!openBtn || !modal || !step1 || !step2) return;
+
+    // Función para abrir modal
+    openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Pasar de Step1 a Step2
+    document.getElementById('goToStep2')?.addEventListener('click', () => {
+        step1.style.display = 'none';
+        step2.style.display = 'block';
+        document.getElementById('stepIndicator').textContent = 'Paso 2 de 2';
+        document.getElementById('modalImage').src = '{{ asset('images/fotomodal2.png') }}';
+        // Cargar razas si especie seleccionada
+        const especie = document.getElementById('especie').value;
+        if (especie) {
+            cargarRazas(especie);
+        }
+    });
+
+    // Volver de Step2 a Step1
+    document.getElementById('backToStep1')?.addEventListener('click', () => {
+        step2.style.display = 'none';
+        step1.style.display = 'block';
+        document.getElementById('stepIndicator').textContent = 'Paso 1 de 2';
+        document.getElementById('modalImage').src = '{{ asset('images/fotomodal1.png') }}';
+    });
+
+    // Función para cerrar modal
+    function closeModal() {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        // Resetear a paso 1
+        step2.style.display = 'none';
+        step1.style.display = 'block';
+        document.getElementById('stepIndicator').textContent = 'Paso 1 de 2';
+        document.getElementById('modalImage').src = '{{ asset('images/fotomodal1.png') }}';
+    }
+
+    // Cerrar con botón "X"
+    document.getElementById('closeModal')?.addEventListener('click', closeModal);
+
+    // Cerrar al hacer click fuera del modal (overlay)
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Cerrar al presionar Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeModal();
+        }
+    });
+
+    // Función para cargar razas (del script original)
     const razas = {
         1: [
             'Mestizo',
@@ -219,6 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     function cargarRazas(especie) {
+        const razaSelect = document.getElementById('raza');
         razaSelect.innerHTML = '<option value="">Seleccione</option>';
         if (!razas[especie]) return;
         razas[especie].forEach(raza => {
@@ -229,40 +285,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    especieSelect.addEventListener('change', () => {
-        cargarRazas(especieSelect.value);
-    });
-
-    goToStep2Btn.addEventListener('click', () => {
-        step1.style.display = 'none';
-        step2.style.display = 'block';
-        stepIndicator.textContent = 'Paso 2 de 2';
-        modalImage.src = '{{ asset('images/fotomodal2.png') }}';
-        if (especieSelect.value) {
-            cargarRazas(especieSelect.value);
-        }
-    });
-
-    backToStep1Btn.addEventListener('click', () => {
-        step2.style.display = 'none';
-        step1.style.display = 'block';
-        stepIndicator.textContent = 'Paso 1 de 2';
-        modalImage.src = '{{ asset('images/fotomodal1.png') }}';
-    });
-
-    // Preview de imagen
-    const fotoInput = document.getElementById('fotoMascota');
-    const previewImg = document.getElementById('previewFoto');
-    fotoInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                previewImg.src = e.target.result;
-                previewImg.style.display = 'block';
-            };
-            reader.readAsDataURL(file);
-        }
+    // Evento para cargar razas al cambiar especie
+    document.getElementById('especie')?.addEventListener('change', (e) => {
+        cargarRazas(e.target.value);
     });
 });
+
+// Preview de imagen
+const fotoInput = document.getElementById('fotoMascota');
+const previewFoto = document.getElementById('previewFoto');
+
+if (fotoInput) {
+    fotoInput.addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            previewFoto.src = reader.result;
+            previewFoto.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    });
+}
 </script>
