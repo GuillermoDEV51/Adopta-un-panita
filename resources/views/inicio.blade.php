@@ -99,7 +99,7 @@
       </section>
 
 
-      <!-- Sección de Mascotas Recientes -->
+     
       <!-- Sección de Mascotas Recientes -->
       <section class="pets-section">
         <!-- Fondo con overlay -->
@@ -168,6 +168,9 @@
               </div>
               <div class="stat-number"></div>
               <div class="stat-label">Refugios asociados</div>
+                @foreach ($refugios as $refugio)
+                  <div class="stat-number">{{ $refugio->nombre }}</div>
+                @endforeach
             </div>
             
             <!-- Estadística 3: Usuarios registrados -->
@@ -381,10 +384,10 @@
   </div>
 
 
-  <form id="form-publicar" action="{{ route('Inicio.add') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+  
+    
     @include('modals.publicar-modal')
-</form> 
+
 </body>
 </html>
 

@@ -4,6 +4,9 @@
     <div id="modalPublicar" class="modal-overlay">
         <div class="modal-container">
             <button id="closeModal" class="close-modal-btn">&times;</button>
+            @php
+                 $especies = \App\Models\Especie::all();
+            @endphp
 
             <div class="modal-content">
                 <!-- Columna izquierda: formulario -->
@@ -179,6 +182,16 @@
                             </div>
                         </div> <!-- fin step2 -->
                     </form>
+                    @if ($errors->any())
+                        <div class="alert alert-error" style="background:#ffe5e5; color:#8b0000; padding:12px; border-radius:8px; margin-bottom:16px;">
+                            <strong>❌ Ocurrieron errores al publicar la mascota:</strong>
+                            <ul style="margin-top:8px; padding-left:20px;">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                 @endforeach
+                            </ul>
+                         </div>
+                    @endif
                 </div> <!-- fin modal-left -->
 
                 <!-- Columna derecha: imagen -->

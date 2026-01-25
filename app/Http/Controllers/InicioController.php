@@ -14,6 +14,7 @@ class InicioController extends Controller
 
         $mascotas = Mascotas::all();
         $refugios = Refugios::all();
+        $especies = \App\Models\Especie::all();
         return view('inicio', compact( 'refugios'));
     }
 
