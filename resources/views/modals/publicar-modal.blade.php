@@ -199,22 +199,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const razas = {
         1: [
-            'Mestizo',
-            'Pastor Alemán',
-            'Pitbull',
-            'Golden Retriever',
-            'Labrador',
-            'Chihuahua',
-            'Poodle',
-            'Bulldog'
+        "Labrador Retriever",
+        "Pastor Alemán",
+        "Golden Retriever",
+        "Bulldog Francés",
+        "Beagle",
+        "Poodle",
+        "Chihuahua",
+        "Boxer",
+        "Dachshund",
+        "Rottweiler",
+        "Husky",
+        "Bulldog Inglés",
+        "Criollo/Mestizo",
+        "Otro"
         ],
         2: [
-            'Mestizo',
-            'Persa',
-            'Siamés',
-            'Bengalí',
-            'Maine Coon',
-            'Angora'
+        "Siamés",
+        "Persa",
+        "Maine Coon",
+        "Bengalí",
+        "Esfinge",
+        "Ragdoll",
+        "British Shorthair",
+        "Abisinio",
+        "Birmano",
+        "Scottish Fold",
+        "Criollo/Mestizo",
+        "Otro"
         ]
     };
 
