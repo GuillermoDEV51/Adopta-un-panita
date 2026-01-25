@@ -22,5 +22,9 @@ class UsuariosSeeder extends Seeder
             'id_rol' => 1,
 
         ]);
+
+        Usuarios::created([
+            ''
+        ]);
     }
 }
