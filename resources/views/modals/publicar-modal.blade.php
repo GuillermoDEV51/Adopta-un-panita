@@ -13,7 +13,8 @@
                         <p class="form-subtitle3" id="stepIndicator">Paso 1 de 2</p>
                     </header>
 
-                    <form id="publicarForm" enctype="multipart/form-data">
+                    <form id="publicarForm" method="POST" action="{{ route('publicarMascota') }}" enctype="multipart/form-data">
+                        @csrf
                         <!-- Paso 1 -->
                         <div id="step1" class="step-content">
                             <div class="form-grid">
@@ -33,15 +34,18 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label style="color:#af7700">Nombre</label>
-                                            <input type="text" id="nombre" name="nombre" required>
+                                            <input type="text" id="nombre" name="nombre" placeholder="Nombre del panita" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label style="color:#af7700">Especie</label>
-                                            <select id="especie" name="id_especie" required>
-                                                <option value="">Seleccione</option>
-                                                <option value="1">Perro</option>
-                                                <option value="2">Gato</option>
+                                             <select name="id_especies" required>
+                                                 <option value="">Seleccione una especie</option>
+                                                     @foreach($especies as $especie)
+                                                        <option value="{{ $especie->id }}">
+                                                            {{ $especie->nombre }}
+                                                        </option>
+                                                     @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -50,12 +54,12 @@
                                     <div class="form-row">
                                         <div class="form-group">
                                             <label style="color:#af7700">Edad</label>
-                                            <input type="number" id="edad" min="0" name="edad" required>
+                                            <input type="number" id="edad" min="0" max="30" name="edad" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label style="color:#af7700">Peso (LB)</label>
-                                            <input type="number" id="peso" name="peso" required>
+                                            <input type="number" id="peso" name="peso" min="0" max="100" required>
                                         </div>
                                     </div>
 
@@ -86,7 +90,7 @@
                             <!-- Descripción full-width debajo de todo el grid -->
                             <div class="description-full-width">
                                 <label style="color:#af7700">Descripción</label>
-                                <textarea id="descripcion" rows="6" maxlength="500" name="descripcion" required></textarea>
+                                <textarea id="descripcion" rows="6" maxlength="500" name="descripcion" placeholder="describe al panita"  required></textarea>
                             </div>
 
                             <!-- Botón siguiente -->
@@ -99,7 +103,7 @@
                         <div id="step2" class="step-content" style="display: none;">
                             <div class="form-group">
                                 <label style="color:#af7700">Historial médico</label>
-                                <input type="file" name="documentacion" multiple>
+                                <input type="file" name="documentacion" multiple accept=".pdf,.doc,.docx,.jpg,.png">
                             </div>
 
                             <div class="form-row">
@@ -114,20 +118,20 @@
                             <div class="form-row">
                                 <div class="form-group">
                                     <label style="color:#af7700">Convive con animales</label>
-                                    <select id="convive_animales" name="convive_animales" required>
-                                        <option value="">Seleccione</option>
-                                        <option value="si">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
+                                    <select id="otros_animales" name="otros_animales" required>
+                                    <option value=""  disabled selected>Si/No</option>                                                
+                                    <option value="0">Sí</option>
+                                    <option value="1">No</option>
+                                </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label style="color:#af7700">Convive con personas</label>
-                                    <select id="convive_personas" name="convive_personas" required>
-                                        <option value="">Seleccione</option>
-                                        <option value="si">Sí</option>
-                                        <option value="no">No</option>
-                                    </select>
+                                    <select id="personas" name="personas" required>
+                                        <option value="" disabled selected>Si/No</option>                                                
+                                        <option value="0">Sí</option>
+                                        <option value="1">No</option>
+                                     </select> 
                                 </div>
                             </div>
 
@@ -153,19 +157,19 @@
                                 <div class="form-group">
                                     <label style="color:#af7700">Vacunado</label>
                                     <select id="vacunado" name="vacunado" required>
-                                        <option value="">Seleccione</option>
-                                        <option value="true">Sí</option>
-                                        <option value="false">No</option>
-                                    </select>
+                                        <option value="" disabled selected>Si/No</option>                                                
+                                        <option value="1">Sí</option>
+                                        <option value="0">No</option>
+                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label style="color:#af7700">Esterilizado</label>
                                     <select id="esterilizado" name="esterilizado" required>
-                                        <option value="">Seleccione</option>
-                                        <option value="true">Sí</option>
-                                        <option value="false">No</option>
-                                    </select>
+                                        <option value="" disabled selected>Si/No</option>                                                
+                                        <option value="1">Sí</option>
+                                        <option value="0">No</option>
+                                    </select>    
                                 </div>
                             </div>
 

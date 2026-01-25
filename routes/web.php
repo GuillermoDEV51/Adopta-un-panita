@@ -18,11 +18,8 @@ Route::post('/', [InicioController::class, 'publicar'])->name('Inicio.add');
 
 
 
-Route::get('/vistavacia', [InicioController::class, 'index'])->name('vistavacia');
-Route::post('/vistavacia', [InicioController::class, 'publicar'])->name('vistavacia.add');
-
-
-
+Route::get('/vistavacia', [MascotasDisponiblesController::class, 'index'])->name('vistavacia');
+Route::post('/', [MascotasDisponiblesController::class, 'publicar'])->name('publicarMascota');
 
 
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA

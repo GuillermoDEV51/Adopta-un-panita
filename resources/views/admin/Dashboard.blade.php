@@ -58,10 +58,7 @@
 
 
                 <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
-                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                  @csrf
-                  <button type="submit" class="register-btn">Cerrar sesión</button>
-                </form>
+               
 
                  @else
 
@@ -128,7 +125,11 @@
               <div class="menu-item">
                 <i class="fas fa-sign-out-alt"></i>
                 
-                <a href="{{ route('logout') }}"  style="color:inherit; text-decoration:none;">Cerrar sesión</a>
+                
+                <form method="POST" action="{{ route('logout') }}" style="">
+                  @csrf
+                  <button type="submit" class="color:inherit; text-decoration:none;">Cerrar sesión</button>
+                </form>
               </div>
             </div>
           </div>
