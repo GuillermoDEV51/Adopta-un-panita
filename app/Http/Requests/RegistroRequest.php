@@ -25,7 +25,7 @@ class RegistroRequest extends FormRequest
             'ci'=> 'required|integer|unique:usuarios,ci|digits_between:6,8|bail',
             'nombre'=> 'required|string|max:255|regex:/^[\pL\s-]+$/u',
             'apellido'=> 'required|string|max:255|regex:/^[\pL\s-]+$/u',
-            'password'=> 'required|string|min:8|confirmed',
+            'password'=> 'required|string|min:8|confirmed|max:20',
             'telefono' => 'required|digits_between:7,11',
             
             'fecha_nacimiento'=> 'nullable|date|before:today',
