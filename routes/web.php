@@ -51,8 +51,8 @@ Route::get('/PreguntasFrecuentes', function () {
 });
 
 
-Route::get('/Misionyvision', function () {
-    return view('Misionyvision');
+Route::get('/Mision', function () {
+    return view('Mision');
 });
 
 Route::get('/Publicaciones', function () {
