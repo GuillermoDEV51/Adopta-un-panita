@@ -234,6 +234,7 @@ margin-top: 0px;
   transition: background-color 0.3s ease;
   white-space: nowrap;
   margin-left: 8px; /* pequeño espacio hacia la izquierda */
+     text-decoration: none;
 }
 
 .login-btn:hover {
@@ -445,7 +446,7 @@ margin-top: 0px;
     gap: 10px;
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, #9b6b01, #af7700);
+    background: linear-gradient(135deg, #422d00, #af7700);
     border: none;
     border-radius: 8px;
     color: white;
@@ -1595,7 +1596,7 @@ margin-top: 0px;
 
     .footer-list li { margin-left: 10px; }
 
-    .footer-list a {
+    .footer-list a {    text-decoration: none;
       color: #9b6b01; /* púrpura parecido al ejemplo */
       font-weight: 600;
     }

@@ -1,4 +1,5 @@
 /* Reset and base styles */
+
 * {
   margin: 0;
   padding: 0;
@@ -137,6 +138,7 @@ body {
   transition: background-color 0.3s ease;
   white-space: nowrap;
   margin-left: 8px; /* pequeño espacio hacia la izquierda */
+  text-decoration: none;
 }
 
 .login-btn:hover {
@@ -346,7 +348,7 @@ body {
     gap: 10px;
     width: 100%;
     padding: 12px;
-    background: linear-gradient(135deg, #9b6b01, #af7700);
+    background: linear-gradient(135deg, #422d00, #af7700);
     border: none;
     border-radius: 8px;
     color: white;
@@ -1816,6 +1818,7 @@ body {
       justify-content: center;
       align-items: flex-start;
       margin-top: auto;
+      
     }
     
     .footer-content {
@@ -1825,6 +1828,7 @@ body {
       gap: 48px;
       align-items: start;
       align-content: start;
+         text-decoration: none;
     }
     
     .footer-left {
@@ -1933,6 +1937,7 @@ body {
       font-size: 20px;
       font-weight: 700;
       margin-bottom: 20px;
+
     }
 
     .footer-list {
@@ -1943,11 +1948,13 @@ body {
       flex-direction: column;
       font-weight: 600;
       gap: 20px;
+
     }
 
     .footer-list li { margin-left: 10px; }
+    
 
-    .footer-list a {
+    .footer-list a {    text-decoration: none;
       color: #9b6b01; /* púrpura parecido al ejemplo */
       font-weight: 600;
     }
@@ -2020,6 +2027,7 @@ body {
     }
 
     /* footer bottom links */
+    
     .footer-bottom a { color: #5b2aa8; text-decoration: underline; font-weight:600 }
 
     /* Responsive: stack columns */
@@ -2056,11 +2064,13 @@ body {
       justify-self: start; /* start at column 2 */
       align-items: center;
       margin: 0;
+      
     }
 
     /* Ensure the link columns align to the top of the grid */
     .footer-links,
     .footer-services,
+    
     .footer-contact { align-self: start; }
     
     .email-item {
