@@ -1,17 +1,43 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const menuLines = document.querySelector('.menu-lines');
-    
-    // Crear overlay
+    if (!menuLines) return;
+
+    // CSRF
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
+
+    // Overlay
     const overlay = document.createElement('div');
     overlay.className = 'mega-menu-overlay';
-    
-    // Crear menú compacto estilo Zobasis
+
+    // Mega menu
     const megaMenu = document.createElement('div');
     megaMenu.className = 'mega-menu';
+
+    // 🔐 Sección auth (AQUÍ va la lógica)
+const authSection = window.authUser && window.authUser.isLogged
+    ? `
+        <div class="mega-menu-divider"></div>
+        <form method="POST" action="/logout" class="mega-menu-form">
+            <input type="hidden" name="_token" value="${csrfToken}">
+            <button type="submit" class="mega-menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Cerrar sesión</span>
+            </button>
+        </form>
+      `
+    : `
+        <div class="mega-menu-divider"></div>
+        <a href="/register" class="mega-menu-item">
+            <i class="fas fa-user-plus"></i>
+            <span>Registrarse</span>
+        </a>
+      `;
+
+    // HTML del menú
     megaMenu.innerHTML = `
         <button class="mega-menu-close">&times;</button>
         <div class="mega-menu-container">
-            <!-- Logo y título -->
+
             <div class="mega-menu-header">
                 <img src="images/logopanitapet.png" alt="PanitasPet" class="mega-logo-img">
                 <div class="mega-menu-brand">
@@ -19,8 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="mega-menu-brand-subtitle">Adopción y refugios</p>
                 </div>
             </div>
-            
-            <!-- Primera sección -->
+
             <div class="mega-menu-section">
                 <h4 class="mega-menu-section-title">Mascotas</h4>
                 <div class="mega-menu-items">
@@ -34,10 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     </a>
                 </div>
             </div>
-            
+
             <div class="mega-menu-divider"></div>
-            
-            <!-- Segunda sección -->
+
             <div class="mega-menu-section">
                 <h4 class="mega-menu-section-title">Información</h4>
                 <div class="mega-menu-items">
@@ -49,95 +73,51 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-hand-holding-heart"></i>
                         <span>Donaciones</span>
                     </a>
-                    
-                    <a href="vistavacia" class="mega-menu-item">
-                        <i class="fas fa-hands-helping"></i>
-                        <span>vistavacia</span>
-                    </a>
                     <a href="RefugiosDisponibles" class="mega-menu-item">
                         <i class="fas fa-home"></i>
                         <span>Refugios Disponibles</span>
                     </a>
                 </div>
             </div>
-            
-            <div class="mega-menu-divider"></div>
-            
-<a href="register" class="mega-menu-login mega-menu-item">
-    <i class="fas fa-sign-in-alt"></i>
-    <span>Registrarse</span>
-</a>
 
-            </button>
+            ${authSection}
+
         </div>
     `;
-    
+
     document.body.appendChild(overlay);
     document.body.appendChild(megaMenu);
-    
+
     let isMenuOpen = false;
     const closeBtn = megaMenu.querySelector('.mega-menu-close');
-    
-    // Abrir menú
+
     function openMegaMenu() {
         megaMenu.classList.add('active');
         overlay.style.display = 'block';
         menuLines.classList.add('active');
-        isMenuOpen = true;
         document.body.style.overflow = 'hidden';
+        isMenuOpen = true;
     }
-    
-    // Cerrar menú
+
     function closeMegaMenu() {
         megaMenu.classList.remove('active');
         overlay.style.display = 'none';
         menuLines.classList.remove('active');
-        isMenuOpen = false;
         document.body.style.overflow = '';
+        isMenuOpen = false;
     }
-    
-    // Toggle menú
-    function toggleMegaMenu() {
-        if (isMenuOpen) {
-            closeMegaMenu();
-        } else {
-            openMegaMenu();
-        }
-    }
-    
-    // Configurar botón hamburguesa
-    menuLines.style.cursor = 'pointer';
-    menuLines.setAttribute('role', 'button');
-    menuLines.setAttribute('tabindex', '0');
-    
-    // Eventos
-    menuLines.addEventListener('click', function(e) {
+
+    menuLines.addEventListener('click', (e) => {
         e.stopPropagation();
-        toggleMegaMenu();
+        isMenuOpen ? closeMegaMenu() : openMegaMenu();
     });
-    
-    menuLines.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleMegaMenu();
-        }
-    });
-    
+
     overlay.addEventListener('click', closeMegaMenu);
     closeBtn.addEventListener('click', closeMegaMenu);
-    
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && isMenuOpen) {
-            closeMegaMenu();
-        }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) closeMegaMenu();
     });
-    
-    // Cerrar al hacer clic en enlaces
-    megaMenu.addEventListener('click', function(e) {
-        if (e.target.closest('a') || e.target.classList.contains('mega-menu-login')) {
-            closeMegaMenu();
-        }
-    });
-    
-    console.log('✅ Menú hamburguesa configurado - Estilo Zobasis compacto');
+
+    console.log('✅ Mega menú con auth cargado correctamente');
 });

@@ -414,6 +414,14 @@ margin-top: 0px;
     font-size: 14px;
     transition: all 0.2s ease;
     border: 1px solid rgba(155, 107, 1, 0.1);
+        width: 100%;
+    box-sizing: border-box;
+
+}
+button.mega-menu-item {
+    appearance: none;
+    -webkit-appearance: none;
+    background: white;
 }
 
 .mega-menu-item i {
@@ -422,7 +430,9 @@ margin-top: 0px;
     width: 18px;
     text-align: center;
 }
-
+.mega-menu-form {
+    width: 100%;
+}
 .mega-menu-item:hover {
     background: #fff8e1;
     transform: translateX(5px);
@@ -486,6 +496,7 @@ margin-top: 0px;
     transition: all 0.3s;
     z-index: 1002;
 }
+
 
 .mega-menu-close:hover {
     background: white;

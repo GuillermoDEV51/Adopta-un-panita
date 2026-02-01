@@ -24,6 +24,7 @@
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
@@ -388,6 +389,12 @@
   
     
     @include('modals.publicar-modal')
+<script>
+window.authUser = @json([
+    'isLogged' => auth()->check(),
+    'name' => auth()->user()->nombre ?? null,
+]);
+</script>
 
 </body>
 </html>
