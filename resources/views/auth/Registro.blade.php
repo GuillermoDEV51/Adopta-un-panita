@@ -57,6 +57,38 @@
               <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
             
+  <!-- Authentication Links -->
+        @if (Route:: has('login'))
+
+          <div class="nav-auth">
+
+                @auth
+                <!-- Mostrar información del usuario autenticado -->
+                <span>
+                  @if(auth()->user()->id_rol == 1)
+                      <span>eres admin</span>
+                      @else
+                      <span>eres normal</span>
+                  @endif
+                </span>
+
+
+                <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                  @csrf
+                  <!-- <button type="submit" class="register-btn">Cerrar sesión</button> -->
+                </form>
+
+                 @else
+
+                  
+                  <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
+                  
+                @endauth
+          </div> 
+        @endif
+
+
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
@@ -367,5 +399,6 @@
       </footer>
     </div>
   </main>
+    @vite(['resources/js/menu.js'])
 </body>
 </html>

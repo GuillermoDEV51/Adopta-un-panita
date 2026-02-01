@@ -21,11 +21,13 @@
   'resources/js/publicar-panita.js',
   'resources/css/modal-publicar.css'
 ])
-<meta name="csrf-token" content="{{ csrf_token() }}">
+
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
+
 <body>
   <div class="main-container">
     <div class="content-wrapper">
@@ -66,7 +68,7 @@
                 <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                   @csrf
-                  <button type="submit" class="register-btn">Cerrar sesión</button>
+                  <!-- <button type="submit" class="register-btn">Cerrar sesión</button> -->
                 </form>
 
                  @else
@@ -116,6 +118,9 @@
           
           <div class="pets-grid" id="pets-grid">
             <div class="pets-placeholder">
+
+              
+
             </div>
           </div>
           
@@ -128,16 +133,10 @@
           
             @endif
             
-            @if ($errors->any())
-    <div class="alert alert-error" style="background:#ffe5e5; color:#8b0000; padding:12px; border-radius:8px; margin-bottom:16px;">
-        <strong>❌ Ocurrieron errores al publicar la mascota:</strong>
-        <ul style="margin-top:8px; padding-left:20px;">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+           
         </ul>
     </div>
-@endif
+
 
           </div>
         </div>
@@ -383,16 +382,41 @@
     </div>
   </div>
 
+  @if ($errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const step1 = document.getElementById('modalStep1');
+        const step2 = document.getElementById('modalStep2');
 
-  
+        if (step1) {
+            step1.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+</script>
+
+@endif
+
+  @if (session('error'))
+<div class="alert alert-error" style="background:#ffe5e5; color:#8b0000; padding:12px; border-radius:8px; margin-bottom:16px;">
+    {{ session('error') }}
+</div>
+@endif
+
+@if (session('success'))
+<div class="alert alert-success" style="background:#e5ffe5; color:#008000; padding:12px; border-radius:8px; margin-bottom:16px;">
+    {{ session('success') }}
+</div>
+@endif
     
     @include('modals.publicar-modal')
-  <script>
+<script>
 window.authUser = @json([
     'isLogged' => auth()->check(),
     'name' => auth()->user()->nombre ?? null,
 ]);
 </script>
+
 </body>
 </html>
 

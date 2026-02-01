@@ -192,5 +192,6 @@
       </footer>
     </div>
   </main>
+    @vite(['resources/js/menu.js'])
 </body>
 </html>

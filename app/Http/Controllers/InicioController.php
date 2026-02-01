@@ -17,14 +17,9 @@ class InicioController extends Controller
     {
         $mascotas = Mascotas::all();
         $refugios = Refugios::all();
-<<<<<<< Updated upstream
         $especies = Especie::all(); 
         
         return view('inicio', compact('refugios', 'mascotas', 'especies'));
-=======
-        $especies = \App\Models\Especie::all();
-        return view('inicio', compact( 'refugios', 'mascotas', 'especies'));
->>>>>>> Stashed changes
     }
 
     public function publicar(MascotasRequest $request){
