@@ -115,7 +115,29 @@
           </div>
           
           <div class="pets-grid" id="pets-grid">
-            <div class="pets-placeholder">
+            <div class="pets-placeholder mascotas-grid" >
+              @foreach ($mascotas as $mascota)
+              <div class="mascota-card">
+                <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}" alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
+                <div class="mascota-info">
+                  <h3 class="mascota-nombre">{{ $mascota->nombre }}</h3>
+                  <p class="mascota-detalle"><strong>Edad:</strong> {{ $mascota->edad }} años</p>
+                  <p class="mascota-detalle"><strong>Tipo:</strong>  
+
+                    @if($mascota->especie && $mascota->especie->nombre)
+                        {{ $mascota->especie->nombre }}
+                    @else
+                        Sin especie
+                    @endif
+                  </p>
+                  
+                  <p class="mascota-detalle"><strong>Raza:</strong> {{ $mascota->raza ?? 'Desconocida' }}</p>
+                  <p class="mascota-detalle"><strong>Sexo:</strong> {{ $mascota->genero }}</p>
+                  <p class="mascota-detalle"><strong>Estado:</strong> {{ $mascota->estado ?? 'Desconocido' }}</p>
+                  <p class="mascota-descripcion"></p>
+                </div>
+              </div>             
+            @endforeach
             </div>
           </div>
           
@@ -383,8 +405,32 @@
     </div>
   </div>
 
+  @if ($errors->any())
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const step1 = document.getElementById('modalStep1');
+        const step2 = document.getElementById('modalStep2');
 
-  
+        if (step1) {
+            step1.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    });
+</script>
+
+@endif
+
+  @if (session('error'))
+<div class="alert alert-error" style="background:#ffe5e5; color:#8b0000; padding:12px; border-radius:8px; margin-bottom:16px;">
+    {{ session('error') }}
+</div>
+@endif
+
+@if (session('success'))
+<div class="alert alert-success" style="background:#e5ffe5; color:#008000; padding:12px; border-radius:8px; margin-bottom:16px;">
+    {{ session('success') }}
+</div>
+@endif
     
     @include('modals.publicar-modal')
 
