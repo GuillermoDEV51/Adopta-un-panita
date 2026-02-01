@@ -28,33 +28,16 @@ class MascotasDisponiblesController extends Controller
         return view('MascotasDisponibles', compact('mascotas'));
     }
 
-<<<<<<< Updated upstream
 
      //public function publicar(MascotasRequest $request) {
-=======
-    //publicar una mascota//
-     public function publicar(MascotasRequest $request) {
->>>>>>> Stashed changes
         
        // $data = $request->validated();
 
         // Manejar la carga de la foto si existe
-<<<<<<< Updated upstream
        // if ($request->hasFile('foto')) {
            // $path = $request->file('foto')->store('mascotas', 'public');
            // $data['foto'] = basename($path);
        // }
-=======
-        if ($request->hasFile('foto')) {
-            $path = $request->file('foto')->store('mascotas', 'public');
-            $data['foto'] = basename($path);
-        }
-        
-        if($request->hasFile('documento')){
-            $path = $request->file('documento')->store('doc', 'public');
-            $data['documento'] = basename($path);
-        }
->>>>>>> Stashed changes
 
         //Mascotas::create($data);
        

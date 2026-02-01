@@ -66,7 +66,7 @@
                 <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                   @csrf
-                  <button type="submit" class="register-btn">Cerrar sesión</button>
+
                 </form>
 
                  @else
