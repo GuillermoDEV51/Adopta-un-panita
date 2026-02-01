@@ -116,6 +116,7 @@
           </div>
           
           <div class="pets-grid" id="pets-grid">
+<<<<<<< Updated upstream
             <div class="pets-placeholder mascotas-grid" >
               @foreach ($mascotas as $mascota)
               <div class="mascota-card">
@@ -139,6 +140,12 @@
                 </div>
               </div>             
             @endforeach
+=======
+            <div class="pets-placeholder">
+
+              
+
+>>>>>>> Stashed changes
             </div>
           </div>
           
@@ -151,16 +158,10 @@
           
             @endif
             
-            @if ($errors->any())
-    <div class="alert alert-error" style="background:#ffe5e5; color:#8b0000; padding:12px; border-radius:8px; margin-bottom:16px;">
-        <strong>❌ Ocurrieron errores al publicar la mascota:</strong>
-        <ul style="margin-top:8px; padding-left:20px;">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
+           
         </ul>
     </div>
-@endif
+
 
           </div>
         </div>

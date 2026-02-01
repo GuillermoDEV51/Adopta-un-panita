@@ -23,8 +23,8 @@ class RegistroRequest extends FormRequest
     {
         return [
             'ci'=> 'required|integer|unique:usuarios,ci|digits_between:6,8|bail',
-            'nombre'=> 'required|string|max:255|regex:/^[\pL\s-]+$/u',
-            'apellido'=> 'required|string|max:255|regex:/^[\pL\s-]+$/u',
+            'nombre'=> 'required|string|max:20|regex:/^[\pL\s-]+$/u',
+            'apellido'=> 'required|string|max:20|regex:/^[\pL\s-]+$/u',
             'password'=> 'required|string|min:8|confirmed|max:20',
             'telefono' => 'required|digits_between:7,11',
             

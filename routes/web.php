@@ -22,6 +22,9 @@ Route::get('/vistavacia', [MascotasDisponiblesController::class, 'index'])->name
 Route::post('/', [MascotasDisponiblesController::class, 'publicar'])->name('publicarMascota')->middleware('auth');
 
 
+Route::get('/prueba1', [MascotasDisponiblesController::class, 'prueba1'])->name('prueba1');
+
+
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
 
