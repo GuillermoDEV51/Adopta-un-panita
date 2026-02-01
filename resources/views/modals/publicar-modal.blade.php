@@ -18,6 +18,19 @@
 
                     <form id="publicarForm" method="POST" action="{{ route('publicarMascota') }}" enctype="multipart/form-data">
                         @csrf
+
+                        <!-- ERRORES -->
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul style="margin:0; padding-left:20px;">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+
                         <!-- Paso 1 -->
                         <div id="step1" class="step-content">
                             <div class="form-grid">
@@ -42,7 +55,7 @@
 
                                         <div class="form-group">
                                             <label style="color:#af7700">Especie</label>
-                                             <select name="id_especies" required>
+                                             <select id="especie" name="id_especies" required>
                                                  <option value="">Seleccione una especie</option>
                                                      @foreach($especies as $especie)
                                                         <option value="{{ $especie->id }}">
