@@ -136,6 +136,7 @@ body {
   transition: background-color 0.3s ease;
   white-space: nowrap;
   margin-left: 8px; /* pequeño espacio hacia la izquierda */
+     text-decoration: none;
 }
 
 .login-btn:hover {
@@ -1357,7 +1358,8 @@ textarea.form-input {
 
     .footer-list li { margin-left: 10px; }
 
-    .footer-list a {
+    .footer-list a {   
+       text-decoration: none;
       color: #9b6b01; /* púrpura parecido al ejemplo */
       font-weight: 600;
     }
