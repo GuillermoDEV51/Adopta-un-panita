@@ -3,22 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donativos - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
   <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
   <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
   
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
   <meta property="og:description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
   
-  <!-- Fonts: Poppins para UI, Pacifico para los títulos/script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite (['resources/css/styles.css'])
-  <style>
+@vite(['resources/css/styles.css'])
+<style>
     /* Estilos para las animaciones */
     .animate-on-scroll {
       opacity: 0;
@@ -89,25 +87,24 @@
       transform: scale(1.02);
     }
   </style>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
+
 <body>
-  <div class="background-images">
-    <img src="images/img_pink_and_yellow_284x432.png" alt="Decorative pet background" class="bg-image-2">
-  </div>
-  
   <div class="main-container">
     <div class="content-wrapper">
-      
-<!-- Header -->
+
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-              <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-              <span class="brand-text">
-                <span class="logo-text">PanitasPet</span>
-                <span class="logo-subtitle">Adopción y refugios</span>
-              </span>
-            </a>
+            <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+            <span class="brand-text">
+              <span class="logo-text">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
+            </span>
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
@@ -115,7 +112,40 @@
               <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
+
+
+            <!-- Authentication Links -->
+        @if (Route:: has('login'))
+
+          <div class="nav-auth">
+
+                @auth
+                <!-- Mostrar información del usuario autenticado -->
+                <span>
+                  @if(auth()->user()->id_rol == 1)
+                      <span>eres admin</span>
+                      @else
+                      <span>eres normal</span>
+                  @endif
+                </span>
+
+
+                <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                  @csrf
+                  <!-- <button type="submit" class="register-btn">Cerrar sesión</button> -->
+                </form>
+
+                 @else
+
+                  
+                  <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
+                  
+                @endauth
+          </div> 
+        @endif
+
+
             <div class="menu-lines" aria-hidden="true">
               <span></span>
               <span></span>
@@ -346,6 +376,12 @@
       </footer>
     </div>
   </main>
+  <script>
+window.authUser = @json([
+    'isLogged' => auth()->check(),
+    'name' => auth()->user()->nombre ?? null,
+]);
+</script>
 </body>
 </html>
   <script>
