@@ -59,6 +59,7 @@ Route::get('/Publicaciones', function () {
     return view('Publicaciones');
 });
 
+
 /*
 |--------------------------------------------------------------------------
 | Autenticación (Laravel)
@@ -74,3 +75,7 @@ require_once __DIR__ . '/auth.php';
 */
 
 require_once __DIR__ . '/Admin/admin_route.php';
+
+Route::get('/admin/animales', function () {
+    return view('admin.AnimalesAdmin');
+})->middleware('auth')->name('AdminAnimales');
