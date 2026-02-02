@@ -110,7 +110,7 @@
               </div>
             </div>
           </div>
-          
+
           <div class="menu-section">
             <h2 class="menu-title">Mascotas</h2>
             <div class="menu-list">
@@ -122,13 +122,12 @@
                 <i class="fas fa-cat"></i>
                 <a href="{{ route('GatosAdmin') }}" style="color:inherit; text-decoration:none;">Gatos</a>
               </div>
+
               <div class="menu-item">
                 <i class="fas fa-sign-out-alt"></i>
-                
-                
-                <form method="POST" action="{{ route('logout') }}" style="">
+                <form method="POST" action="{{ route('logout') }}" style="color:inherit;">
                   @csrf
-                  <button type="submit" class="color:inherit; text-decoration:none;">Cerrar sesión</button>
+                     <button type="submit" class="logout-btn">Cerrar sesión</button>
                 </form>
               </div>
             </div>

@@ -1295,6 +1295,19 @@ textarea.form-input {
       width: 44%;
       margin-top: 6px;
     }
+
+    .logout-item form {
+    width: 100%;
+}
+
+.logout-btn {
+    all: unset;
+    cursor: pointer;
+    color: inherit;
+    font-weight: inherit;
+    width: 100%;
+}
+
     
 
 /* Responsive media queries */

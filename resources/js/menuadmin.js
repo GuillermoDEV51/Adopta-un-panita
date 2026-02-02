@@ -40,7 +40,8 @@ const authSection = window.authUser && window.authUser.isLogged
         <div class="mega-menu-container">
 
             <div class="mega-menu-header">
-                <img src="images/logopanitapet.png" alt="PanitasPet" class="mega-logo-img">
+                <img src="${window.ASSETS_URL}images/logopanitapet.png" alt="PanitasPet" class="mega-logo-img">
+
                 <div class="mega-menu-brand">
                     <h3 class="mega-menu-brand-title">PanitasPet</h3>
                     <p class="mega-menu-brand-subtitle">Adopción y refugios</p>
@@ -122,3 +123,9 @@ const authSection = window.authUser && window.authUser.isLogged
 
     console.log('✅ Mega menú con auth cargado correctamente');
 });
+const openBtn = document.getElementById('openAddUser');
+const modal = document.getElementById('addUserModal');
+const closeBtn = document.getElementById('closeAddUser');
+
+openBtn?.addEventListener('click', () => modal.classList.add('active'));
+closeBtn?.addEventListener('click', () => modal.classList.remove('active'));

@@ -7,34 +7,36 @@
   <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
   <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
   
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
   <meta property="og:description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
   
-  <!-- Fonts: Poppins para UI, Pacifico para los títulos/script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite (['resources/css/stylessadmin.css'])
-  
-  <!-- Iconos (Font Awesome para los iconos del menú) -->
+@vite(['resources/css/stylessadmin.css', 'resources/js/menuadmin.js'])
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+    window.ASSETS_URL = "{{ asset('') }}";
+</script>
 </head>
+
 <body>
   <div class="main-container">
     <div class="content-wrapper">
-     <!-- Header -->
+
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-              <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-              <span class="brand-text">
-                <span class="logo-text">PanitasPet</span>
-                <span class="logo-subtitle">Adopción y refugios</span>
-              </span>
-            </a>
+            <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
+
+            <span class="brand-text">
+              <span class="logo-text">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
+            </span>
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
@@ -42,12 +44,48 @@
               <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            <a href="{{ route('login') }}" class="login-btn">Iniciar Sesión</a>
+
+
+            <!-- Authentication Links -->
+        @if (Route:: has('login'))
+
+          <div class="nav-auth">
+
+                @auth
+                <!-- Mostrar información del usuario autenticado -->
+                <span>
+                  @if(auth()->user()->id_rol == 1)
+                      <span>eres admin</span>
+                      @else
+                      <span>eres normal</span>
+                  @endif
+                </span>
+
+
+                <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                  @csrf
+
+                </form>
+
+                 @else
+
+                  
+                  <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
+                  
+                @endauth
+          </div> 
+        @endif
+
+
+            <div class="menu-lines" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
           </nav>
         </div>
       </header>
-      
       <!-- Dashboard Main Content -->
       <main class="dashboard-container">
         <!-- Sidebar Menu -->
@@ -116,7 +154,8 @@
         <div class="footer-content">
           <div class="footer-left">
             <div class="footer-logo-section">
-              <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
+<img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
+
             <span class="brand-text">
               <span class="footer-brand">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
@@ -132,16 +171,16 @@
 
             <div class="social-icons">
               <a href="#" class="social-btn" aria-label="Icono 1">
-                <img src="images/icono1.png" alt="icono1" class="circle-icon">
+<img src="{{ asset('images/icono1.png') }}" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 2">
-                <img src="images/icono2.png" alt="icono2" class="circle-icon">
+                <img src="{{ asset('images/icono2.png') }}" alt="icono2" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 3">
-                <img src="images/icono3.png" alt="icono3" class="circle-icon">
+                <img src="{{ asset('images/icono3.png') }}" alt="icono3" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 4">
-                <img src="images/icono4.png" alt="icono4" class="circle-icon">
+                <img src="{{ asset('images/icono4.png') }}" alt="icono4" class="circle-icon">
               </a>
             </div>
           </div>
@@ -168,7 +207,7 @@
             <h4 class="footer-column-title">Contacto</h4>
             <div class="contact-info">
               <div class="contact-item">
-                <img src="images/img_mail.svg" alt="Email" class="contact-icon">
+                <img src="{{ asset('images/img_mail.svg') }}" class="contact-icon">
                 <div>
                   <div style="font-weight:700;color:#af7700">Email</div>
                   <div class="contact-text">panitapet@gmail.com</div>
@@ -176,7 +215,7 @@
               </div>
 
               <div class="contact-item">
-                <img src="images/img_call_end.svg" alt="Phone" class="contact-icon">
+                <img src="{{ asset('images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
                 <div>
                   <div style="font-weight:700;color:#af7700">Teléfono</div>
                   <div class="contact-text">+58 414 1234567</div>
