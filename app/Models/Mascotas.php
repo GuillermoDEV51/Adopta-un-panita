@@ -24,6 +24,7 @@ class Mascotas extends Model
         'vacunado',
         'esterilizado',
         'telefono', 
+        'ubicacion', 
     ];
 
     protected $casts = [

@@ -693,6 +693,8 @@ if (modal) {
     if (e.target === modal) modal.classList.remove('active');
   });
 }
+document.getElementById('modalUbicacion').textContent = card.dataset.ubicacion;
+
 </script>
 
  <!-- Estilos para el botón de teléfono y tooltip -->
@@ -717,11 +719,12 @@ if (modal) {
 }
 
 /* Tooltip tipo nube */
+/* Tooltip tipo nube */
 .tooltip-numero {
   position: absolute;
-  bottom: 130%; /* Aparece encima del botón */
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;          /* centra verticalmente respecto al botón */
+  left: 100%;        /* empieza justo a la derecha del botón */
+  transform: translateY(-50%) translateX(8px); /* se mueve 8px más a la derecha */
   background: #333;
   color: #fff;
   padding: 6px 12px;
@@ -737,8 +740,9 @@ if (modal) {
 .btn-telefono:hover .tooltip-numero {
   opacity: 1;
   pointer-events: auto;
-  transform: translateX(-50%) translateY(-4px); /* Pequeña animación */
+  transform: translateY(-50%) translateX(8px); /* misma animación */
 }
+
 
 .tooltip-numero.copiable {
   cursor: pointer;
