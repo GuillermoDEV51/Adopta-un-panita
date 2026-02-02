@@ -13,22 +13,27 @@ use App\Http\Controllers\InicioController;
 
 
 Route::get('/', [InicioController::class, 'show'])->name('Inicio');
-//Route::post('/', [InicioController::class, 'publicar'])->name('Inicio.add');
 
 
 
 
-Route::get('/vistavacia', [MascotasDisponiblesController::class, 'index'])->name('vistavacia');
-Route::post('/', [MascotasDisponiblesController::class, 'publicar'])->name('publicarMascota')->middleware('auth');
 
 
-Route::get('/prueba1', [MascotasDisponiblesController::class, 'prueba1'])->name('prueba1');
+//Route::post('/', [MascotasDisponiblesController::class, 'publicar'])->name('publicarMascota')->middleware('auth');
+
+
+
 
 
 // RUTAS Q ALARCON PUSO PA VE ESA MIELDA
 
 
 Route::get('/MascotasDisponibles', [MascotasDisponiblesController::class, 'show'])->name('MascotasDisponibles');
+
+
+Route::get('/vistavacia', [MascotasDisponiblesController::class, 'vistavacia'])->name('vistavacia')->middleware('auth');
+Route::post('/vistavacia', [MascotasDisponiblesController::class, 'publicar2'])->name('publicar2');
+
 
 
 

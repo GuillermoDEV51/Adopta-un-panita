@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Mascotas;
 use App\Http\Requests\MascotasRequest;
+use App\Models\Especie;
+use Illuminate\Support\Facades\Auth;
+
 
 class MascotasDisponiblesController extends Controller
 {
@@ -13,8 +16,9 @@ class MascotasDisponiblesController extends Controller
     public function show()
     {
         $mascotas = Mascotas::with('especie')->get();
+        $especies = Especie::all();
         
-        return view('MascotasDisponibles', compact('mascotas'));
+        return view('MascotasDisponibles', compact('mascotas', 'especies'));
     }
 
 
@@ -29,26 +33,47 @@ class MascotasDisponiblesController extends Controller
     }
 
 
-     //public function publicar(MascotasRequest $request) {
+    public function publicar2(MascotasRequest $request) {
         
-       // $data = $request->validated();
+         if (!Auth::check()) {
+                return back()->withErrors(['error' => 'Debes iniciar sesión para publicar.']);
+            }
 
-        // Manejar la carga de la foto si existe
-       // if ($request->hasFile('foto')) {
-           // $path = $request->file('foto')->store('mascotas', 'public');
-           // $data['foto'] = basename($path);
-       // }
 
-        //Mascotas::create($data);
+            $data = $request->validated();
+
+            $data['id_usuario'] = Auth::user()->id;
+
+            if ($request->hasFile('foto')) {
+                $path = $request->file('foto')->store('mascotas', 'public');
+                 $data['foto'] = basename($path);
+            }
+
+             if ($request->hasFile('documentacion')) {
+        $files = [];
+
+        foreach ($request->file('documentacion') as $file) {
+            $path = $file->store('documentos', 'public');
+            $files[] = basename($path);
+        }
+
+        $data['documentacion'] = json_encode($files);
+    }
+
+     Mascotas::create($data);
+
+
+      // Redirigir con mensaje de éxito
+        return redirect()->route('vistavacia')->with('success', 'Mascota publicada exitosamente!');
+}
        
 
-        //return redirect('inicio')->withErrors([]);
-    //}
+       
 
-    public function index(){
-        $especies = \App\Models\Especie::all();
-        return view('MascotasDisponibles', compact('especies'));
-    }
+
+
+
+    
 
 
 
@@ -63,5 +88,11 @@ class MascotasDisponiblesController extends Controller
         $especies = \App\Models\Especie::all();
         return view('prueba1', compact('especies'));
     }
+
+    public function vistavacia()
+    {
+        $especies = Especie::all();
+        return view('vistavacia', compact('especies'));
+    }   
 
 }
