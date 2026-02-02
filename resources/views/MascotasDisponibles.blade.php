@@ -235,7 +235,18 @@
 
 
             @foreach ($mascotas as $mascota)
-              <div class="mascota-card">
+           <div class="mascota-card"
+     data-nombre="{{ $mascota->nombre }}"
+     data-edad="{{ $mascota->edad }}"
+     data-tipo="{{ $mascota->especie->nombre ?? 'Sin especie' }}"
+     data-raza="{{ $mascota->raza ?? 'Desconocida' }}"
+     data-sexo="{{ $mascota->genero }}"
+     data-ubicacion="{{ $mascota->ubicacion ?? 'No especificada' }}"
+     data-descripcion="{{ $mascota->descripcion ?? '' }}"
+     data-foto="{{ asset('storage/mascotas/' . $mascota->foto) }}"
+     data-telefono="{{ $mascota->telefono ?? '' }}"
+>
+
                 <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}" alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
                 <div class="mascota-info">
                   <h3 class="mascota-nombre">{{ $mascota->nombre }}</h3>
@@ -348,6 +359,39 @@ window.authUser = @json([
     'name' => auth()->user()->nombre ?? null,
 ]);
 </script>
+<!-- MODAL OVERLAY MASCOTA -->
+<div id="mascotaModal" class="modal-overlay">
+  <div class="modal-content">
+    <button class="modal-close">&times;</button>
+
+    <div class="modal-body">
+      <div class="modal-image">
+        <img id="modalFoto" src="" alt="Mascota">
+      </div>
+
+      <div class="modal-info">
+        <h2 id="modalNombre"></h2>
+
+        <p><strong>Edad:</strong> <span id="modalEdad"></span></p>
+        <p><strong>Tipo:</strong> <span id="modalTipo"></span></p>
+        <p><strong>Raza:</strong> <span id="modalRaza"></span></p>
+        <p><strong>Sexo:</strong> <span id="modalSexo"></span></p>
+        <p><strong>Ubicación:</strong> <span id="modalUbicacion"></span></p>
+
+        <p class="modal-desc" id="modalDescripcion"></p>
+<div class="modal-contacto">
+  <a id="modalTelefono" href="#" class="btn-telefono">
+    <i class="fas fa-phone"></i> Llamar
+    <!-- AÑADE EL SPAN DEL TOOLTIP -->
+    <span class="tooltip-numero" id="tooltipNumero"></span>
+  </a>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
 
@@ -591,3 +635,112 @@ selects.forEach(id => {
       console.log('• Botón "Procesar Filtros" - SIN FUNCIONALIDAD (como solicitado)');
     });
   </script>
+
+  
+<script>
+const modal = document.getElementById('mascotaModal');
+const closeBtn = modal.querySelector('.modal-close');
+const btnTelefono = document.getElementById('modalTelefono');
+const tooltipNumero = document.getElementById('tooltipNumero');
+
+document.querySelectorAll('.mascota-card').forEach(card => {
+  card.addEventListener('click', () => {
+    modal.classList.add('active');
+
+    const numero = card.dataset.telefono || 'No disponible';
+
+    document.getElementById('modalNombre').textContent = card.dataset.nombre;
+    document.getElementById('modalEdad').textContent = card.dataset.edad + ' años';
+    document.getElementById('modalTipo').textContent = card.dataset.tipo;
+    document.getElementById('modalRaza').textContent = card.dataset.raza || 'Desconocida';
+    document.getElementById('modalSexo').textContent = card.dataset.sexo;
+    document.getElementById('modalUbicacion').textContent = card.dataset.ubicacion;
+    document.getElementById('modalDescripcion').textContent = card.dataset.descripcion || '';
+    document.getElementById('modalFoto').src = card.dataset.foto;
+
+    // Guardar número en el tooltip
+    if (tooltipNumero) {
+      tooltipNumero.textContent = numero;
+      tooltipNumero.dataset.numero = numero;
+    }
+
+    // Asignar href para llamadas directas
+    if (btnTelefono) btnTelefono.href = `tel:${numero}`;
+  });
+});
+
+// Copiar número al hacer click en el tooltip
+if (tooltipNumero) {
+  tooltipNumero.addEventListener('click', () => {
+    const numero = tooltipNumero.dataset.numero;
+    navigator.clipboard.writeText(numero).then(() => {
+      tooltipNumero.textContent = '¡Copiado!';
+      setTimeout(() => {
+        tooltipNumero.textContent = numero;
+      }, 1500);
+    });
+  });
+}
+
+// Cerrar modal
+if (closeBtn) {
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+}
+if (modal) {
+  modal.addEventListener('click', e => {
+    if (e.target === modal) modal.classList.remove('active');
+  });
+}
+</script>
+
+ <!-- Estilos para el botón de teléfono y tooltip -->
+  
+<style>
+.btn-telefono {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #9b6b01;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-telefono:hover {
+  background: #b07d1a;
+}
+
+/* Tooltip tipo nube */
+.tooltip-numero {
+  position: absolute;
+  bottom: 130%; /* Aparece encima del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.btn-telefono:hover .tooltip-numero {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-4px); /* Pequeña animación */
+}
+
+.tooltip-numero.copiable {
+  cursor: pointer;
+}
+</style>

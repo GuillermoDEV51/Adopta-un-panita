@@ -3075,3 +3075,115 @@ textarea.form5-input {
     max-width: 672px;
   }
 }
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 900px;
+  border-radius: 16px;
+  overflow: hidden;
+  animation: scaleIn 0.25s ease;
+  position: relative;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  font-size: 26px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  display: flex;
+  gap: 30px;
+  padding: 30px;
+}
+
+.modal-image img {
+  width: 320px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.modal-info h2 {
+  color: #af7700;
+  margin-bottom: 10px;
+}
+
+.modal-desc {
+  margin: 15px 0;
+  color: #555;
+}
+
+.modal-contacto {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-telefono {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #9b6b01;
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-telefono:hover {
+  background: #b07d1a;
+}
+
+/* Tooltip tipo nube */
+.tooltip-numero {
+  position: absolute;
+  bottom: 130%; /* Aparece encima del botón */
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  z-index: 10;
+}
+
+.btn-telefono:hover .tooltip-numero {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(-4px); /* Pequeña animación */
+}
+
+.tooltip-numero.copiable {
+  cursor: pointer;
+}
