@@ -111,17 +111,15 @@
             </div>
           </div>
 
-          <div class="menu-section">
-            <h2 class="menu-title">Mascotas</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-dog"></i>
-                <a href="{{ route('PerrosAdmin') }}" style="color:inherit; text-decoration:none;">Perros</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-cat"></i>
-                <a href="{{ route('GatosAdmin') }}" style="color:inherit; text-decoration:none;">Gatos</a>
-              </div>
+<div class="menu-section">
+  <h2 class="menu-title">Mascotas</h2>
+  <div class="menu-list">
+    <div class="menu-item">
+      <i class="fas fa-paw"></i>
+<a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
+    Animales
+</a>
+    </div>
 
               <div class="menu-item">
                 <i class="fas fa-sign-out-alt"></i>
