@@ -49,16 +49,10 @@ class MascotasDisponiblesController extends Controller
                  $data['foto'] = basename($path);
             }
 
-             if ($request->hasFile('documentacion')) {
-        $files = [];
-
-        foreach ($request->file('documentacion') as $file) {
-            $path = $file->store('documentos', 'public');
-            $files[] = basename($path);
-        }
-
-        $data['documentacion'] = json_encode($files);
-    }
+             if ($request->hasfile('documentacion')) {
+            $documents = $request->file('documentacion')->store('documentacion', 'public');
+            $data['documentacion'] = basename($documents);
+             }
 
      Mascotas::create($data);
 

@@ -159,7 +159,7 @@
                     <!-- Historial médico -->
                     <div class="form-group" style="margin-top: 30px;">
                         <label style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Historial médico (múltiples archivos)</label>
-                        <input type="file" name="documentacion[]" multiple 
+                        <input type="file" name="documentacion" multiple 
                                accept=".pdf,.doc,.docx,.jpg,.png,.jpeg"
                                style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px;">
                         <small class="text-muted" style="color: #6c757d; font-size: 14px;">Puede seleccionar múltiples archivos</small>
