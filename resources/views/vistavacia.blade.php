@@ -226,6 +226,31 @@
                             @enderror
                         </div>
                     </div>
+                    
+<div class="form-row" style="display: flex; gap: 20px; margin-top: 20px;">
+    <div class="form-group" style="flex: 1;">
+        <label style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">
+            📞 Teléfono de contacto
+        </label>
+
+        <input 
+            type="tel"
+            id="telefono"
+            name="telefono"
+            value="{{ old('telefono') }}"
+            placeholder="Ej: +58 412 1234567"
+            required
+            pattern="^[0-9+\s()-]{7,20}$"
+            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px;"
+        >
+
+        @error('telefono')
+            <span class="text-danger" style="color: #dc3545; font-size: 14px; margin-top: 4px; display: block;">
+                {{ $message }}
+            </span>
+        @enderror
+    </div>
+</div>
 
                     <div class="form-row" style="display: flex; gap: 20px; margin-top: 20px;">
                         <div class="form-group" style="flex: 1;">
