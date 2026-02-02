@@ -109,6 +109,10 @@
                     <i class="fas fa-cat"></i>
                     <span>Gato</span>
                   </button>
+                  <button class="opcion-compacta" data-tipo="otros" data-seleccionado="false">
+  <i class="fas fa-paw"></i>
+  <span>Otros</span>
+</button>
                 </div>
               </div>
               
@@ -404,98 +408,177 @@ window.authUser = @json([
       });
     }
 
-    // Función para seleccionar un tipo de mascota
-    function seleccionarTipo(tipo) {
-      // Si ya está seleccionado, deseleccionar
-      if (tipoSeleccionado === tipo) {
-        const botonActual = document.querySelector(`[data-tipo="${tipo}"]`);
-        botonActual.setAttribute('data-seleccionado', 'false');
-        botonActual.classList.remove('seleccionado');
-        tipoSeleccionado = null;
-        
-        // Ocultar filtros secundarios
-        filtrosSecundarios.classList.remove('mostrar');
-        filtrosSecundarios.style.maxHeight = '0';
-        filtrosSecundarios.style.opacity = '0';
-        filtrosSecundarios.style.marginTop = '0';
-        return;
-      }
-      
-      // Remover selección anterior
-      opcionesTipo.forEach(btn => {
-        btn.setAttribute('data-seleccionado', 'false');
-        btn.classList.remove('seleccionado');
-      });
-      
-      // Marcar como seleccionado
-      const botonSeleccionado = document.querySelector(`[data-tipo="${tipo}"]`);
-      botonSeleccionado.setAttribute('data-seleccionado', 'true');
-      botonSeleccionado.classList.add('seleccionado');
-      
-      // Actualizar tipo seleccionado
-      tipoSeleccionado = tipo;
-      
-      // Mostrar filtros secundarios
-      filtrosSecundarios.classList.add('mostrar');
-      filtrosSecundarios.style.maxHeight = filtrosSecundarios.scrollHeight + 'px';
-      filtrosSecundarios.style.opacity = '1';
-      filtrosSecundarios.style.marginTop = '1rem';
-      
-      // Actualizar opciones de raza
-      actualizarRazas(tipo);
-    }
+function seleccionarTipo(tipo) {
+  // Si ya está seleccionado, deseleccionar
+  if (tipoSeleccionado === tipo) {
+    const botonActual = document.querySelector(`[data-tipo="${tipo}"]`);
+    botonActual.setAttribute('data-seleccionado', 'false');
+    botonActual.classList.remove('seleccionado');
+    tipoSeleccionado = null;
+    
+    // Ocultar filtros secundarios
+    filtrosSecundarios.classList.remove('mostrar');
+    filtrosSecundarios.style.maxHeight = '0';
+    filtrosSecundarios.style.opacity = '0';
+    filtrosSecundarios.style.marginTop = '0';
 
-    // Función para limpiar todos los filtros
-    function limpiarFiltros() {
-      console.log('Limpiando todos los filtros...');
-      
-      // 1. Remover selección de tipo (perro/gato)
-      opcionesTipo.forEach(btn => {
-        btn.setAttribute('data-seleccionado', 'false');
-        btn.classList.remove('seleccionado');
-      });
-      
-      // 2. Ocultar filtros secundarios
-      filtrosSecundarios.classList.remove('mostrar');
-      filtrosSecundarios.style.maxHeight = '0';
-      filtrosSecundarios.style.opacity = '0';
-      filtrosSecundarios.style.marginTop = '0';
-      
-      // 3. Limpiar selecciones de todos los filtros
-      tipoSeleccionado = null;
-      
-      // Restablecer todos los selects a su valor por defecto
-      document.getElementById('raza').selectedIndex = 0;
-      document.getElementById('ubicacion').selectedIndex = 0;
-      document.getElementById('tamano').selectedIndex = 0;
-      document.getElementById('edad').selectedIndex = 0;
-      document.getElementById('esterilizado').selectedIndex = 0;
-      document.getElementById('sexo').selectedIndex = 0;
-      
-      // 4. Mostrar mensaje de confirmación
-      console.log('✓ Filtros limpiados correctamente');
-      console.log('✓ Mostrando todas las mascotas disponibles');
-      
-      // Aquí podrías añadir código para actualizar la lista de mascotas
-      // Ejemplo: cargarTodasLasMascotas();
-    }
+    procesarFiltros();
+    return;
+  }
+  
+  // Remover selección anterior
+  opcionesTipo.forEach(btn => {
+    btn.setAttribute('data-seleccionado', 'false');
+    btn.classList.remove('seleccionado');
+  });
+  
+  // Marcar como seleccionado
+  const botonSeleccionado = document.querySelector(`[data-tipo="${tipo}"]`);
+  botonSeleccionado.setAttribute('data-seleccionado', 'true');
+  botonSeleccionado.classList.add('seleccionado');
+  
+  tipoSeleccionado = tipo;
 
-    // Función para procesar filtros (sin funcionalidad como solicitaste)
-    function procesarFiltros() {
-      console.log('Botón "Procesar Filtros" clickeado');
-      console.log('(Esta funcionalidad está pendiente de implementación)');
-      
-      // Aquí normalmente procesarías los filtros seleccionados
-      // y actualizarías la lista de mascotas
-    }
+  // Mostrar filtros secundarios
+  filtrosSecundarios.classList.add('mostrar');
+  filtrosSecundarios.style.maxHeight = filtrosSecundarios.scrollHeight + 'px';
+  filtrosSecundarios.style.opacity = '1';
+  filtrosSecundarios.style.marginTop = '1rem';
 
-    // Event Listeners
-    opcionesTipo.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tipo = btn.getAttribute('data-tipo');
-        seleccionarTipo(tipo);
-      });
+  // Actualizar opciones de raza solo para perros o gatos
+  if (tipo === 'perro' || tipo === 'gato') {
+    actualizarRazas(tipo);
+  } else {
+    // Para "Otros", raza queda visible pero vacía
+    selectRaza.innerHTML = '<option value="">Raza</option>';
+  }
+
+  procesarFiltros();
+}
+
+function limpiarFiltros() {
+  console.log('Limpiando todos los filtros...');
+
+  // 1. Remover selección de tipo (perro/gato/otros)
+  opcionesTipo.forEach(btn => {
+    btn.setAttribute('data-seleccionado', 'false');
+    btn.classList.remove('seleccionado');
+  });
+
+  // 2. Ocultar filtros secundarios
+  filtrosSecundarios.classList.remove('mostrar');
+  filtrosSecundarios.style.maxHeight = '0';
+  filtrosSecundarios.style.opacity = '0';
+  filtrosSecundarios.style.marginTop = '0';
+
+  // 3. Limpiar selecciones de todos los filtros
+  tipoSeleccionado = null;
+
+  // Restablecer todos los selects a su valor por defecto
+  document.getElementById('raza').selectedIndex = 0;
+  document.getElementById('ubicacion').selectedIndex = 0;
+  document.getElementById('tamano').selectedIndex = 0;
+  document.getElementById('edad').selectedIndex = 0;
+  document.getElementById('esterilizado').selectedIndex = 0;
+  document.getElementById('sexo').selectedIndex = 0;
+
+  // 4. Procesar filtros para mostrar todas las mascotas
+  procesarFiltros();
+
+  console.log('✓ Filtros limpiados correctamente');
+  console.log('✓ Mostrando todas las mascotas disponibles');
+}
+
+function procesarFiltros() {
+  const tipo = tipoSeleccionado; // perro, gato, otros
+  const raza = selectRaza.value; 
+  const ubicacion = document.getElementById('ubicacion').value.toLowerCase();
+  const tamano = document.getElementById('tamano').value.toLowerCase();
+  const edad = document.getElementById('edad').value.toLowerCase();
+  const esterilizado = document.getElementById('esterilizado').value.toLowerCase();
+  const sexo = document.getElementById('sexo').value.toLowerCase();
+
+  const tarjetas = document.querySelectorAll('.mascota-card');
+
+  const tiposPrincipales = ['perro', 'gato'];
+
+  tarjetas.forEach(card => {
+    const detalles = card.querySelectorAll('.mascota-detalle');
+    let cardTipo = '';
+    let cardRaza = '';
+    let cardSexo = '';
+    let cardEdad = '';
+    let cardTamano = '';
+    let cardEsterilizado = '';
+    let cardUbicacion = '';
+
+    detalles.forEach(detalle => {
+      const label = detalle.querySelector('strong')?.textContent.replace(':','').trim().toLowerCase();
+      const valor = detalle.textContent.replace(detalle.querySelector('strong')?.textContent,'').trim().toLowerCase();
+
+      if(label === 'tipo') cardTipo = valor;
+      if(label === 'raza') cardRaza = valor;
+      if(label === 'sexo') cardSexo = valor;
+      if(label === 'edad') cardEdad = valor;
+      if(label === 'tamaño') cardTamano = valor;
+      if(label === 'estado' || label === 'esterilizado') cardEsterilizado = valor;
+      if(label === 'ubicación') cardUbicacion = valor;
     });
+
+    let mostrar = true;
+
+    // Filtro tipo
+    if(tipo) {
+      if(tipo === 'otros') {
+        // Mostrar solo si NO es perro o gato
+        if(tiposPrincipales.includes(cardTipo)) mostrar = false;
+      } else {
+        // Mostrar solo si coincide exactamente
+        if(cardTipo !== tipo) mostrar = false;
+      }
+    }
+
+    // Filtro raza
+    if(raza && raza !== '' && cardRaza.toLowerCase().replace(/\s+/g,'-') !== raza) mostrar = false;
+
+    // Filtro sexo
+    if(sexo && sexo !== '' && cardSexo !== sexo) mostrar = false;
+
+    // Filtro ubicación
+    if(ubicacion && ubicacion !== '' && cardUbicacion !== ubicacion) mostrar = false;
+
+    // Filtro tamaño
+    if(tamano && tamano !== '' && cardTamano !== tamano) mostrar = false;
+
+    // Filtro edad
+    if(edad && edad !== '' && cardEdad !== edad) mostrar = false;
+
+    // Filtro esterilizado
+    if(esterilizado && esterilizado !== '' && cardEsterilizado !== esterilizado) mostrar = false;
+
+    card.style.display = mostrar ? 'block' : 'none';
+  });
+}
+
+
+
+
+// Event Listeners para los botones de tipo
+opcionesTipo.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tipo = btn.getAttribute('data-tipo');
+    seleccionarTipo(tipo);
+    procesarFiltros(); // Filtra automáticamente al seleccionar tipo
+  });
+});
+
+// Event listeners para los selects de filtros secundarios
+const selects = ['raza','ubicacion','tamano','edad','esterilizado','sexo'];
+selects.forEach(id => {
+  const select = document.getElementById(id);
+  select.addEventListener('change', procesarFiltros);
+});
+
 
     // Asignar eventos a los botones
     btnLimpiar.addEventListener('click', limpiarFiltros);

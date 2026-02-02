@@ -7,10 +7,13 @@
         <div class="publicar-content">
             <!-- Columna izquierda: formulario -->
             <div class="publicar-left">
-                <header class="publicar-header">
-                    <h1 class="form-title3">Publicar un Panita</h1>
-                    <p class="form-subtitle3">Completa la información de la mascota</p>
-                </header>
+<header class="publicar-header">
+    <a href="{{ url()->previous() }}" class="btn-back">← Volver</a>
+
+    <h1 class="form-title3">🐾 Publicar un Panita</h1>
+    <p class="form-subtitle3">Completa la información de la mascota</p>
+</header>
+
 
                 <!-- Mostrar error general de sesión -->
                 @if (session('error'))
@@ -157,19 +160,36 @@
                     </div>
 
                     <!-- Historial médico -->
-                    <div class="form-group" style="margin-top: 30px;">
-                        <label style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Historial médico (múltiples archivos)</label>
-                        <input type="file" name="documentacion" multiple 
-                               accept=".pdf,.doc,.docx,.jpg,.png,.jpeg"
-                               style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px;">
-                        <small class="text-muted" style="color: #6c757d; font-size: 14px;">Puede seleccionar múltiples archivos</small>
-                        @error('documentacion')
-                            <span class="text-danger" style="color: #dc3545; font-size: 14px; margin-top: 4px; display: block;">{{ $message }}</span>
-                        @enderror
-                        @error('documentacion.*')
-                            <span class="text-danger" style="color: #dc3545; font-size: 14px; margin-top: 4px; display: block;">{{ $message }}</span>
-                        @enderror
-                    </div>
+<div class="form-group" style="margin-top: 30px;">
+    <label style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">
+        Historial médico (múltiples archivos)
+    </label>
+
+    <!-- Input real oculto -->
+<input type="file" id="documentacion" name="documentacion[]" multiple>
+
+    <!-- Botón visual -->
+    <label for="documentacion" class="file-btn">
+        Seleccionar archivos
+    </label>
+
+    <span id="fileName" class="file-upload-text">
+        Ningún archivo seleccionado
+    </span>
+
+    @error('documentacion')
+        <span class="text-danger" style="color: #dc3545; font-size: 14px; margin-top: 6px; display: block;">
+            {{ $message }}
+        </span>
+    @enderror
+
+    @error('documentacion.*')
+        <span class="text-danger" style="color: #dc3545; font-size: 14px; margin-top: 6px; display: block;">
+            {{ $message }}
+        </span>
+    @enderror
+</div>
+
 
                     <div class="form-row" style="display: flex; gap: 20px; margin-top: 20px;">
                         <div class="form-group" style="flex: 1;">
@@ -238,7 +258,11 @@
                     <!-- Botón de envío -->
                     <div style="display:flex;justify-content:center;gap:20px;margin-top:40px;padding-bottom: 40px;">
                         <a href="{{ url()->previous() }}" class="submit-btn" style="padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; text-decoration: none; text-align: center;">Cancelar</a>
-                        <button type="submit" class="submit-bt" style="padding: 12px 30px; background: #af7700; color: white; border: none; border-radius: 6px; font-size: 16px; cursor: pointer;">Publicar Mascota</button>
+                       <button type="submit" class="submit-bt" id="submitBtn">
+    <span class="btn-text">Publicar Mascota</span>
+    <span class="btn-loader"></span>
+</button>
+
                     </div>
                 </form>
             </div> <!-- fin publicar-left -->
@@ -255,60 +279,78 @@
 </div> <!-- fin publicar-container -->
 
 <style>
+/* ===============================
+   CONTENEDOR GENERAL
+   =============================== */
+   body {
+    font-family: 'Roboto', Arial, sans-serif;
+}
 .publicar-container {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e9bf37 100%);
+    padding: 30px 20px;
 }
 
+/* ===============================
+   TARJETA PRINCIPAL
+   =============================== */
 .publicar-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 18px 45px rgba(0,0,0,0.12);
     overflow: hidden;
 }
 
+/* ===============================
+   LAYOUT
+   =============================== */
 .publicar-content {
     display: flex;
-    min-height: 800px;
 }
 
 .publicar-left {
     flex: 2;
-    padding: 40px;
-    overflow-y: auto;
-    max-height: 800px;
+    padding: 45px;
 }
 
 .publicar-right {
     flex: 1;
-    background: #f8f9fa;
+    background: linear-gradient(
+        180deg,
+        rgba(175,119,0,0.08),
+        rgba(175,119,0,0.02)
+    );
 }
 
+/* ===============================
+   HEADER
+   =============================== */
 .publicar-header {
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 45px;
 }
 
 .form-title3 {
-    font-size: 32px;
-    color: #af7700;
-    margin-bottom: 10px;
+    font-size: 34px;
     font-weight: 700;
+    color: #af7700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
 }
 
 .form-subtitle3 {
-    font-size: 18px;
+    font-size: 17px;
     color: #666;
-    margin-bottom: 0;
 }
 
+/* ===============================
+   GRID FORMULARIO
+   =============================== */
 .form-grid {
     display: flex;
     gap: 40px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .photo-column {
@@ -319,51 +361,226 @@
     flex: 2;
     display: flex;
     flex-direction: column;
+    gap: 5px;
+}
+
+/* ===============================
+   FOTO
+   =============================== */
+.photo-box {
+    border: 2px dashed #af7700;
+    border-radius: 14px;
+    background: #fafafa;
+    transition: all .25s ease;
 }
 
 .photo-box:hover {
     border-color: #8a5c00;
-    background: #f5f5f5;
+    background: #fdf6e3;
+}
+.photo-box:hover img {
+    transform: scale(1.03);
+    transition: transform 0.25s ease;
 }
 
-input:focus, select:focus, textarea:focus {
-    outline: none;
+/* ===============================
+   INPUTS
+   =============================== */
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 11px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 15px;
+    transition: all .2s ease;
+        border-color: #af7700;
+    box-shadow: 0 0 5px rgba(175, 119, 0, 0.25);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #bbb;
+    font-weight: 400;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
     border-color: #af7700 !important;
-    box-shadow: 0 0 0 2px rgba(175, 119, 0, 0.1);
+    box-shadow: 0 0 0 3px rgba(175, 119, 0, 0.12);
+    outline: none;
 }
 
+/* ===============================
+   BOTÓN VOLVER
+   =============================== */
+.btn-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #af7700;
+    text-decoration: none;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(175, 119, 0, 0.1);
+    transition: all .25s ease;
+}
+
+.btn-back:hover {
+    background: rgba(175, 119, 0, 0.2);
+    transform: translateX(-3px);
+}
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
 @media (max-width: 992px) {
     .publicar-content {
         flex-direction: column;
     }
-    
+
     .publicar-right {
         display: none;
     }
-    
+
     .form-grid {
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
     }
-    
+
     .publicar-left {
-        padding: 20px;
+        padding: 25px;
     }
 }
 
 @media (max-width: 768px) {
     .form-row {
         flex-direction: column;
-        gap: 15px !important;
+        gap: 16px !important;
     }
-    
+
     .form-title3 {
-        font-size: 24px;
+        font-size: 26px;
     }
-    
+
     .publicar-container {
-        padding: 10px;
+        padding: 15px;
     }
+}
+/* ===============================
+   BOTÓN SUBIR ARCHIVOS
+   =============================== */
+.file-upload-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: rgba(175, 119, 0, 0.1);
+    color: #af7700;
+    border: 2px dashed #af7700;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.file-upload-btn:hover {
+    background: rgba(175, 119, 0, 0.2);
+    transform: translateY(-1px);
+}
+
+.file-upload-text {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    color: #666;
+}
+/* ===============================
+   BOTÓN CON LOADING
+   =============================== */
+.submit-bt {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 30px;
+    background: #af7700;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .25s ease;
+}
+
+.submit-bt:hover {
+    background: #8a5c00;
+}
+
+.submit-bt:disabled {
+    background: #c9a24d;
+    cursor: not-allowed;
+}
+
+/* Texto */
+.submit-bt .btn-text {
+    transition: opacity .2s ease;
+}
+
+/* Loader */
+.submit-bt .btn-loader {
+    width: 18px;
+    height: 18px;
+    border: 3px solid rgba(255,255,255,0.4);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+    display: none;
+}
+
+/* Estado cargando */
+.submit-bt.loading .btn-text {
+    opacity: 0.7;
+}
+
+.submit-bt.loading .btn-loader {
+    display: inline-block;
+}
+
+/* Animación */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+.file-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #af7700;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    font-weight: 600;
+    font-size: 15px;
+}
+.file-btn:hover {
+    background: #8a5c00;
+}
+input[type="file"] {
+    display: none;
+}
+.alert {
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
 }
 </style>
 
@@ -454,5 +671,29 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.readAsDataURL(file);
         });
     }
+});
+</script>
+<script>
+document.getElementById('documentacion')?.addEventListener('change', function () {
+    const fileText = document.getElementById('fileName');
+
+    if (!this.files.length) {
+        fileText.textContent = 'Ningún archivo seleccionado';
+        return;
+    }
+
+    if (this.files.length === 1) {
+        fileText.textContent = this.files[0].name;
+    } else {
+        fileText.textContent = `${this.files.length} archivos seleccionados`;
+    }
+});
+</script>
+<script>
+document.getElementById('publicarForm')?.addEventListener('submit', function () {
+    const btn = document.getElementById('submitBtn');
+
+    btn.classList.add('loading');
+    btn.disabled = true;
 });
 </script>
