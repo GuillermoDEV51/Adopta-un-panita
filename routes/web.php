@@ -30,6 +30,8 @@ Route::get('/', [InicioController::class, 'show'])->name('Inicio');
 
 Route::get('/MascotasDisponibles', [MascotasDisponiblesController::class, 'show'])->name('MascotasDisponibles');
 
+Route::post('/', [InicioController::class, 'publicar'])->name('publicarMascota');
+
 
 Route::get('/vistavacia', [MascotasDisponiblesController::class, 'vistavacia'])->name('vistavacia')->middleware('auth');
 Route::post('/vistavacia', [MascotasDisponiblesController::class, 'publicar2'])->name('publicar2');
@@ -64,7 +66,6 @@ Route::get('/Publicaciones', function () {
     return view('Publicaciones');
 });
 
-
 /*
 |--------------------------------------------------------------------------
 | Autenticación (Laravel)
@@ -80,7 +81,3 @@ require_once __DIR__ . '/auth.php';
 */
 
 require_once __DIR__ . '/Admin/admin_route.php';
-
-Route::get('/admin/animales', function () {
-    return view('admin.AnimalesAdmin');
-})->middleware('auth')->name('AdminAnimales');
