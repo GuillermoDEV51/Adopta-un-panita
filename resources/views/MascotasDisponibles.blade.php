@@ -112,17 +112,44 @@
                 </div>
               </div>
               
-              <div class="acciones-filtros">
-                <!-- Botón Procesar Filtros (sin funcionalidad) -->
-                <button class="btn-procesar-compacto" id="procesarFiltros">
-                  <span>Procesar Filtros</span>
-                </button>                
-                <!-- Botón Limpiar Filtros (funcional) -->
-                <button class="btn-limpiar-compacto" id="limpiarFiltros">
-                  <i class="fas fa-times"></i>
-                  <span>Limpiar Filtros</span>
-                </button>
-              </div>
+<div class="acciones-filtros" style="display:flex; gap:10px; align-items:center;">
+  <!-- Botón Procesar Filtros -->
+  <button class="btn-procesar-compacto" id="procesarFiltros">
+    <span>Procesar Filtros</span>
+  </button>
+
+  <!-- Botón Agregar Mascota -->
+  <a href="{{ auth()->check() ? route('vistavacia') : route('login') }}" class="btn-agregar-compacto">
+    <i class="fas fa-plus-circle"></i>
+    <span>Agregar Mascota</span>
+  </a>
+
+  <!-- Botón Limpiar Filtros -->
+  <button class="btn-limpiar-compacto" id="limpiarFiltros">
+    <i class="fas fa-times"></i>
+    <span>Limpiar Filtros</span>
+  </button>
+</div>
+
+<style>
+  .btn-agregar-compacto {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #9b6b01;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.btn-agregar-compacto:hover {
+    background: #b07d1a;
+}
+ </style>
+
             </div>
             
             <!-- Segunda fila: Filtros secundarios (se muestran al seleccionar tipo) -->
