@@ -8,7 +8,8 @@
             <!-- Columna izquierda: formulario -->
             <div class="publicar-left">
 <header class="publicar-header">
-    <a href="{{ url()->previous() }}" class="btn-back">← Volver</a>
+<a href="{{ route('MascotasDisponibles') }}" class="btn-back">← Volver</a>
+
 
     <h1 class="form-title3">🐾 Publicar un Panita</h1>
     <p class="form-subtitle3">Completa la información de la mascota</p>
@@ -226,7 +227,7 @@
                             @enderror
                         </div>
                     </div>
-                    
+
 <div class="form-row" style="display: flex; gap: 20px; margin-top: 20px;">
     <div class="form-group" style="flex: 1;">
         <label style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">
@@ -282,7 +283,7 @@
 
                     <!-- Botón de envío -->
                     <div style="display:flex;justify-content:center;gap:20px;margin-top:40px;padding-bottom: 40px;">
-                        <a href="{{ url()->previous() }}" class="submit-btn" style="padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; text-decoration: none; text-align: center;">Cancelar</a>
+                        <a href="{{ route('MascotasDisponibles') }}" class="submit-btn" style="padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; text-decoration: none; text-align: center;">Cancelar</a>
                        <button type="submit" class="submit-bt" id="submitBtn">
     <span class="btn-text">Publicar Mascota</span>
     <span class="btn-loader"></span>

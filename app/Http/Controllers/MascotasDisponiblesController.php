@@ -33,33 +33,32 @@ class MascotasDisponiblesController extends Controller
     }
 
 
-    public function publicar2(MascotasRequest $request) {
+public function publicar2(MascotasRequest $request) {
         
-         if (!Auth::check()) {
-                return back()->withErrors(['error' => 'Debes iniciar sesión para publicar.']);
-            }
+    if (!Auth::check()) {
+        return back()->withErrors(['error' => 'Debes iniciar sesión para publicar.']);
+    }
 
+    $data = $request->validated();
+    $data['id_usuario'] = Auth::user()->id;
 
-            $data = $request->validated();
+    if ($request->hasFile('foto')) {
+        $path = $request->file('foto')->store('mascotas', 'public');
+        $data['foto'] = basename($path);
+    }
 
-            $data['id_usuario'] = Auth::user()->id;
+    if ($request->hasfile('documentacion')) {
+        $documents = $request->file('documentacion')->store('documentacion', 'public');
+        $data['documentacion'] = basename($documents);
+    }
 
-            if ($request->hasFile('foto')) {
-                $path = $request->file('foto')->store('mascotas', 'public');
-                 $data['foto'] = basename($path);
-            }
+    Mascotas::create($data);
 
-             if ($request->hasfile('documentacion')) {
-            $documents = $request->file('documentacion')->store('documentacion', 'public');
-            $data['documentacion'] = basename($documents);
-             }
-
-     Mascotas::create($data);
-
-
-      // Redirigir con mensaje de éxito
-        return redirect()->route('vistavacia')->with('success', 'Mascota publicada exitosamente!');
+    // 🔹 Redirigir a la lista de mascotas disponibles
+    return redirect()->route('MascotasDisponibles')
+                     ->with('success', 'Mascota publicada exitosamente!');
 }
+
        
 
        
