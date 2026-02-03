@@ -13,6 +13,8 @@ use App\Models\Roles;
 
 class UsuariosAdminController extends Controller
 {
+
+    //cargar vistas de
     public function index()
     {
         $usuarios = Usuarios::all();
@@ -25,7 +27,14 @@ class UsuariosAdminController extends Controller
         return view('admin.AddUser', compact('roles'))->with('success', 'Usuario registrado correctamente.');
     }
 
-    
+    public function edit($id)
+    {
+        $usuario = Usuarios::findOrFail($id);
+        $roles = Roles::all();
+        return view('admin.EditarUsuario', compact('usuario', 'roles'));
+    }
+
+    //Funciones para CRUD de usuarios
     public function store(RegistroRequest $request)
    {
        

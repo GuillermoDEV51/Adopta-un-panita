@@ -28,16 +28,23 @@ Route::middleware(['auth', ])->group(function () {
     // Rutas para la gestión de animales
     Route::get('/admin/animales', [AnimalesController::class, 'show'])->name('AdminAnimales');
     Route::get('/admin/animales/editar/{id}', [AnimalesController::class, 'editar'])->name('EditarAnimal');
+
+
     Route::post('/admin/animales/editar/{id}', [AnimalesController::class, 'update'])->name('ActualizarAnimal');
+    
+
     Route::delete('/admin/animales/eliminar/{id}', [AnimalesController::class, 'eliminar'])->name('EliminarAnimal');
+
+
+
 
 
     // Rutas para la gestión de usuarios
 
-      Route::get('/admin/usuarios', [UsuariosAdminController::class, 'index'])->name('UsuariosAdmin');
+    Route::get('/admin/usuarios', [UsuariosAdminController::class, 'index'])->name('UsuariosAdmin');
 
-    Route::get('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'show'])->name('EditarUsuario');
-    Route::post('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'update'])->name('ActualizarUsuario');
+    Route::get('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'edit'])->name('EditarUsuario');
+    Route::put('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'update'])->name('ActualizarUsuario');
     
 
     Route::get('/admin/usuarios/registrar', [UsuariosAdminController::class, 'show'])->name('GuardarUsuario');

@@ -17,12 +17,13 @@ class AnimalesController extends Controller
         return view('admin.AnimalesAdmin' , compact('mascotas', 'especies'));
     }
 
-   
-
-    public function eliminar($id)
+    public function index()
     {
-        // Lógica para eliminar un animal
-    }   
+        $mascotas = Mascotas::all();
+        $especies = Especie::all();
+        return view('admin.AddPets', compact('mascotas', 'especies'));
+    }
+
 
     public function editar($id)
     {
@@ -31,6 +32,20 @@ class AnimalesController extends Controller
         return view('admin.EditarAnimal', compact('mascota', 'especies'));
     }
 
+
+
+
+
+    public function eliminar($id)
+    {
+        // Lógica para eliminar un animal
+    }   
+
+    
+ public function create()
+    {
+        //
+    }  
 
     public function update(MascotasRequest $request, $id)
     {

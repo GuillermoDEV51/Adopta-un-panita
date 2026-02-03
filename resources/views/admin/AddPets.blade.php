@@ -151,30 +151,7 @@
                   </div>
 
                   
-                  <div class="line-segment">
-                    @foreach ($mascotas as $mascota)
-                      <div class="mascota-card">
-                        <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}" alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
-                          <div class="mascota-info">
-                            <h3 class="mascota-nombre">{{ $mascota->nombre }}</h3>
-                            <p class="mascota-detalle"><strong>Edad:</strong> {{ $mascota->edad }} años</p>
-                            <p class="mascota-detalle"><strong>Tipo:</strong>  
-
-                              @if($mascota->especie && $mascota->especie->nombre)
-                                {{ $mascota->especie->nombre }}
-                              @else
-                                Sin especie
-                              @endif
-                            </p>
                   
-                            <p class="mascota-detalle"><strong>Raza:</strong> {{ $mascota->raza ?? 'Desconocida' }}</p>
-                            <p class="mascota-detalle"><strong>Sexo:</strong> {{ $mascota->genero }}</p>
-                            <p class="mascota-detalle"><strong>Estado:</strong> {{ $mascota->estado ?? 'Desconocido' }}</p>
-                            <p class="mascota-descripcion"></p>
-                          </div>
-                      </div>                                     
-                      @endforeach
-                  </div>  
                 </div>    
               </div>
             </div>
