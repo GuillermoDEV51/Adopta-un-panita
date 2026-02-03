@@ -23,6 +23,8 @@ class Mascotas extends Model
         'peso',
         'vacunado',
         'esterilizado',
+        'telefono', 
+        'ubicacion', 
     ];
 
     protected $casts = [

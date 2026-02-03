@@ -6,19 +6,11 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class MascotasRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
@@ -28,15 +20,34 @@ class MascotasRequest extends FormRequest
             'raza' => 'nullable|string|max:100',
             'genero' => 'required|in:Macho,Hembra',
             'peso' => 'nullable|numeric|min:0',
-            'descripcion' => 'nullable|string',
-            'foto' => 'nullable|image|max:2048', // Máximo 2MB
+            'descripcion' => 'nullable|string|max:500',
+
+            'telefono' => [
+                'required',
+                'string',
+                'min:7',
+                'max:20',
+                'regex:/^[0-9+\s()-]+$/'
+            ],
+
+            'foto' => 'nullable|image|max:2048',
             'vacunado' => 'required|boolean',
             'esterilizado' => 'required|boolean',
+
             'documentacion' => 'nullable|file|max:2048',
+
             'ubicacion' => 'required|string|max:100',
-            "tamano" => 'required|in:Pequeño,Mediano,Grande',
+            'tamano' => 'required|in:Pequeño,Mediano,Grande',
+        ];
+    }
 
-
+    public function messages(): array
+    {
+        return [
+            'telefono.required' => 'El número telefónico es obligatorio.',
+            'telefono.regex' => 'El teléfono solo puede contener números y símbolos válidos.',
+            'telefono.min' => 'El teléfono es demasiado corto.',
+            'telefono.max' => 'El teléfono es demasiado largo.',
         ];
     }
 }
