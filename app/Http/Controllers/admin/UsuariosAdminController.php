@@ -19,17 +19,17 @@ class UsuariosAdminController extends Controller
         return view('admin.UsuariosAdmin', compact('usuarios'));
     }
 
-
-
-    public function show($id){
-
-        $usuario = Usuarios::findOrFail($id);
+    public function show()
+    {
         $roles = Roles::all();
-        return view('admin.RegistroUsuarios', compact('usuario', 'roles'));
-        
-       }
+        return view('admin.AddUser', compact('roles'))->with('success', 'Usuario registrado correctamente.');
+    }
+
+    
     public function store(RegistroRequest $request)
    {
+       
+
        $data = $request->validated();
        $data['password'] = Hash::make($data['password']);
         // Asignar rol predeterminado si no se proporciona
@@ -38,8 +38,35 @@ class UsuariosAdminController extends Controller
         }
             $user = Usuarios::create($data);
 
-            Auth::login($user);
+          
 
-            return redirect('Dashboard')->with('success','Registro exitoso. Has iniciado sesión.');
+         return redirect('UsuariosAdmin')->with('success','Registro exitoso. Has iniciado sesión.');
+   }
+
+   public function update(RegistroRequest $request, $id)
+   {
+       $usuario = Usuarios::findOrFail($id);
+       $data = $request->validated();
+
+       // Verificar si se proporcionó una nueva contraseña
+       if (!empty($data['password'])) {
+           $data['password'] = Hash::make($data['password']);
+       } else {
+           // Si no se proporcionó, eliminar la clave 'password' para no actualizarla
+           unset($data['password']);
+       }
+
+       $usuario->update($data);
+
+       return redirect()->route('UsuariosAdmin')->with('success', 'Usuario actualizado correctamente.');
+   }
+
+
+   public function eliminar($id)
+   {
+       $usuario = Usuarios::findOrFail($id);
+       $usuario->delete();
+
+       return redirect()->route('UsuariosAdmin')->with('success', 'Usuario eliminado correctamente.');
    }
 }

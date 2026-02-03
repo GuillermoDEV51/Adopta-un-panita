@@ -1,54 +1,42 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registro - PanitasPet | Adopción y Refugios de Mascotas</title>
-  <meta name="description" content="Regístrate en PanitasPet para adoptar mascotas y conectar con refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
-  <meta name="keywords" content="adopción mascotas, refugios animales, registro usuarios, PanitasPet, adoptar perros, adoptar gatos">
+  <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
+  <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
   
-  <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Registro - PanitasPet | Adopción y Refugios de Mascotas">
-  <meta property="og:description" content="Regístrate en PanitasPet para adoptar mascotas y conectar con refugios. Plataforma confiable para encontrar tu compañero perfecto.">
+  <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
+  <meta property="og:description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
   
-  <!-- Fonts: Poppins para UI, Pacifico para los títulos/script -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite ('resources/css/styles.css')
-  
-  <!-- Iconos (Font Awesome para los iconos del menú) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
-  <div class="main-container3">
+@vite(['resources/css/stylessadmin.css', 'resources/js/menuadmin.js'])
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpetadopti4327back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10"></script>
-  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
-  </head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script>
+    window.ASSETS_URL = "{{ asset('') }}";
+</script>
+</head>
+
 <body>
-  <div class="main-container3">
-    <!-- Background Images -->
-    <div class="background-images">
-      <img src="images/img_pink_and_yellow2.png" alt="Decorative pet background" class="bg-image-1">
-      <img src="images/img_pink_and_yellow_284x432.png" alt="Decorative pet background" class="bg-image-2">
-      <img src="images/img_orange_and_brown.png" alt="Decorative pet background" class="bg-image-3">
-    </div>
-    
-    <div class="content-wrapper3">
-      
-<!-- Header -->
+  <div class="main-container">
+    <div class="content-wrapper">
+
       <header class="header">
         <div class="header-content">
           <h1 class="logo">
-              <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-              <span class="brand-text">
-                <span class="logo-text">PanitasPet</span>
-                <span class="logo-subtitle">Adopción y refugios</span>
-              </span>
-            </a>
+            <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
+
+            <span class="brand-text">
+              <span class="logo-text">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
+            </span>
           </h1>
            <nav class="nav-section">
             <div class="nav-menu">
@@ -56,8 +44,9 @@
               <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
               <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
             </div>
-            
-  <!-- Authentication Links -->
+
+
+            <!-- Authentication Links -->
         @if (Route:: has('login'))
 
           <div class="nav-auth">
@@ -76,7 +65,7 @@
                 <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                   @csrf
-                  <!-- <button type="submit" class="register-btn">Cerrar sesión</button> -->
+
                 </form>
 
                  @else
@@ -97,26 +86,124 @@
           </nav>
         </div>
       </header>
-
-      <!-- Registration Form -->
-      <main class="registration-container2">
-        <div class="form-content2">
-          <div class="form-header2">
-            <h1 class="form-title2">Registrate ahora en simples pasos</h1>
-            <p class="form-subtitle2">Completa todas las casillas</p>
-          </div>
-        <form class="form-fields" method="POST"  action="{{ route('register') }}">
-          @csrf
-            <div class="form-row">
-              <div class="form-group2">
-                <input type="text" class="form-input" name="nombre" placeholder="Nombre" required>
+      
+      <!-- Dashboard Main Content -->
+      <main class="dashboard-container">
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+          <div class="menu-section">
+            <h2 class="menu-title">Menú</h2>
+            <div class="menu-list">
+              <div class="menu-item">
+                <i class="fas fa-tachometer-alt"></i>
+                <a href="{{ route('Dashboard') }}" style="color:inherit; text-decoration:none;">Dashboard</a>
               </div>
-              <div class="form-group2">
-                <input type="text" class="form-input" name="apellido" placeholder="Apellido" required>
+              <div class="menu-item">
+                <i class="fas fa-clipboard-list"></i>
+                <a href="{{ route('SolicitudesAdmin') }}" style="color:inherit; text-decoration:none;">Solicitudes</a>
+              </div>
+              <div class="menu-item">
+                <i class="fas fa-plus-circle"></i>
+                <a href="{{ route('AñadirRefugio') }}" style="color:inherit; text-decoration:none;">Añadir refugios</a>
               </div>
             </div>
-            
-            <div class="form-group2">
+          </div>
+          
+          <div class="menu-section">
+            <h2 class="menu-title">Páginas</h2>
+            <div class="menu-list">
+              <div class="menu-item">
+                <i class="fas fa-home"></i>
+                <a href="{{ route('RefugiosAdmin') }}" style="color:inherit; text-decoration:none;">Refugios</a>
+              </div>
+              <div class="menu-item active">
+                <i class="fas fa-users"></i>
+                <a href="{{ route('UsuariosAdmin') }}" style="color:inherit; text-decoration:none;">Usuarios</a>
+              </div>
+            </div>
+          </div>
+          
+<div class="menu-section">
+  <h2 class="menu-title">Mascotas</h2>
+  <div class="menu-list">
+    <div class="menu-item">
+      <i class="fas fa-paw"></i>
+<a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
+    Animales
+</a>
+    </div>
+    
+              <div class="menu-item">
+                <i class="fas fa-sign-out-alt"></i>
+                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
+              </div>
+            </div>
+          </div>
+        </aside>
+      
+            <div class="paginas-section">
+              <div class="titulo-wrapper">
+                <h1 class="paginas-title">Registrar Usuario</h1>
+                <div class="titulo-line" aria-hidden="true"></div>
+              </div>
+            </div>
+                <a href="{{ route('UsuariosAdmin') }}" class="btn btn-secondary">Volver a Usuarios</a>
+            <div class="">
+                
+
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+                <form action="{{ route('GuardarUsuario') }}" method="POST" class="">
+                    @csrf
+                    <div class="">
+                        <label for="ci">CI:</label>
+                        <input type="text" id="ci" name="ci" maxlength="8"  required>
+                    </div>
+                    <div class="">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+                    <div class="">
+                        <label for="apellido">Apellido:</label>
+                        <input type="text" id="apellido" name="apellido" required>
+                    </div>
+                    <div class="">
+                        <label for="password">Contraseña:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <div class="form-group2">
+                        <input type="password" name="password_confirmation" class="form-input" placeholder="Confirmar contraseña" required>
+                    </div>
+                    <div class="form-group2">
+                    <input type="tel" name="telefono" class="form-input" 
+                     placeholder="Número de teléfono" 
+                     pattern="[0-9]*" 
+                     inputmode="numeric"
+                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                     maxlength="11"
+                     required>
+            </div>
+                   <!-- <div class="">  
+                        <label for="role">Rol:</label>
+                        <select name="role" id="role" required>
+                            <option value="">Seleccionar rol</option>
+                            @foreach ($roles as $rol)
+                                <option value="{{ $rol->id }}" {{ old('role') == $rol->id ? 'selected' : '' }}>
+                                    {{ $rol->name }}
+                                </option>                              
+                            @endforeach
+                        </select>  
+                    </div> -->
+                    <div class="form-group2">
               <label class="form-label">Fecha de nacimiento</label>
               <div class="date-row">
                 <div class="form-group2">
@@ -256,17 +343,6 @@
               </div>
               <input type="hidden" name="fecha_nacimiento" id="fecha_nacimiento">
             </div>
-            
-              <div class="form-group2">
-                <input type="tel" name="telefono" class="form-input" 
-                      placeholder="Número de teléfono" 
-                      pattern="[0-9]*" 
-                      inputmode="numeric"
-                      oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                      maxlength="11"
-                      required>
-              </div>
-
             <div class="form-group2">
                 <select class="form-input" name="ubicacion" required>
                   <option value="">Ubicación</option>
@@ -281,50 +357,34 @@
                   <option value="Nueva Esparta">Nueva Esparta</option>                
                 </select>
               </div>
-            
-            <div class="form-group2">
-              <input type="text" class="form-input" 
-                     name="ci" 
-                     placeholder="Cédula" 
-                     pattern="[0-9]*"
-                     inputmode="numeric"
-                     oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                     maxlength="8"
-                     required>
+                    <div class="">
+                        <button type="submit">Registrar Usuario</button>
+                    </div>
+
+
+                     <!-- Mostrar errores generales si existen -->
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif    
+                </form>
             </div>
-            
-            <div class="form-group2">
-              <input type="password" name="password" class="form-input" placeholder="Contraseña" required>
-            </div>
-            
-            <div class="form-group2">
-              <input type="password" name="password_confirmation" class="form-input" placeholder="Confirmar contraseña" required>
-            </div>
-            
-            <button type="submit" class="register-btn">Registrarse</button>
-          </form>
-          <script>
-            document.querySelector('.form-fields').addEventListener('submit', function(e){
-              var dia = document.getElementById('dia').value;
-              var mes = document.getElementById('mes').value;
-              var anio = document.getElementById('anio').value;
-              if(dia && mes && anio){
-                var dd = dia.padStart(2,'0');
-                var mm = mes.padStart(2,'0');
-                var fecha = anio + '-' + mm + '-' + dd;
-                document.getElementById('fecha_nacimiento').value = fecha;
-              }
-            });
-          </script>
-        </div>
+           
+
       </main>
       
-      <!-- Footer -->
+            <!-- Footer -->
       <footer class="footer">
         <div class="footer-content">
           <div class="footer-left">
             <div class="footer-logo-section">
-              <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
+<img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
+
             <span class="brand-text">
               <span class="footer-brand">PanitasPet</span>
               <span class="logo-subtitle">Adopción y refugios</span>
@@ -340,20 +400,20 @@
 
             <div class="social-icons">
               <a href="#" class="social-btn" aria-label="Icono 1">
-                <img src="images/icono1.png" alt="icono1" class="circle-icon">
+                <img src="{{ asset('images/icono1.png') }}" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 2">
-                <img src="images/icono2.png" alt="icono2" class="circle-icon">
+                <img src="{{ asset('images/icono2.png') }}" alt="icono2" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 3">
-                <img src="images/icono3.png" alt="icono3" class="circle-icon">
+                <img src="{{ asset('images/icono3.png') }}" alt="icono3" class="circle-icon">
               </a>
               <a href="#" class="social-btn" aria-label="Icono 4">
-                <img src="images/icono4.png" alt="icono4" class="circle-icon">
+                <img src="{{ asset('images/icono4.png') }}" alt="icono4" class="circle-icon">
               </a>
             </div>
           </div>
-          
+
           <div class="footer-links">
             <h4 class="footer-column-title">Enlaces rápidos</h4>
             <ul class="footer-list">
@@ -376,7 +436,7 @@
             <h4 class="footer-column-title">Contacto</h4>
             <div class="contact-info">
               <div class="contact-item">
-                <img src="images/img_mail.svg" alt="Email" class="contact-icon">
+                <img src="{{ asset('images/img_mail.svg') }}" class="contact-icon">
                 <div>
                   <div style="font-weight:700;color:#af7700">Email</div>
                   <div class="contact-text">panitapet@gmail.com</div>
@@ -384,7 +444,7 @@
               </div>
 
               <div class="contact-item">
-                <img src="images/img_call_end.svg" alt="Phone" class="contact-icon">
+                <img src="{{ asset('images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
                 <div>
                   <div style="font-weight:700;color:#af7700">Teléfono</div>
                   <div class="contact-text">+58 414 1234567</div>
@@ -399,6 +459,6 @@
       </footer>
     </div>
   </main>
-    @vite(['resources/js/menu.js'])
+  
 </body>
 </html>

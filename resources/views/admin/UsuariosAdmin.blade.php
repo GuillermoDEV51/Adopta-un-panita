@@ -146,6 +146,9 @@
                 <h1 class="paginas-title">Usuarios Registrados</h1>
                 <div class="titulo-line" aria-hidden="true"></div>
               </div>
+              <div class="boton-agregar-wrapper">
+                <a href="{{ route('GuardarUsuario') }}" class="boton-agregar">Agregar Usuario</a>
+              </div>
             </div>
 
             <div class="">

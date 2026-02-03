@@ -24,11 +24,19 @@ Route::middleware(['auth', ])->group(function () {
 
     // Rutas para la gestión de animales
     Route::get('/admin/animales', [AnimalesController::class, 'show'])->name('AdminAnimales');
+    Route::get('/admin/animales/editar/{id}', [AnimalesController::class, 'editar'])->name('EditarAnimal');
+    Route::post('/admin/animales/editar/{id}', [AnimalesController::class, 'update'])->name('ActualizarAnimal');
+    Route::delete('/admin/animales/eliminar/{id}', [AnimalesController::class, 'eliminar'])->name('EliminarAnimal');
 
-    Route::resource('admin/animales', AnimalesController::class)->only([
-        
-    ]);
 
+    // Rutas para la gestión de usuarios
+    Route::get('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'show'])->name('EditarUsuario');
+    Route::post('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'update'])->name('ActualizarUsuario');
+    
+
+    Route::get('/admin/usuarios/registrar', [UsuariosAdminController::class, 'show'])->name('GuardarUsuario');
+    Route::post('/admin/usuarios/registrar', [UsuariosAdminController::class, 'store'])->name('RegistrarUsuario');
+    Route::delete('/admin/usuarios/eliminar/{id}', [UsuariosAdminController::class, 'eliminar'])->name('EliminarUsuario');
 
 
 

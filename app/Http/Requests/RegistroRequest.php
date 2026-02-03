@@ -33,4 +33,11 @@ class RegistroRequest extends FormRequest
             
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'ci'
+        ];  
+    }
 }
