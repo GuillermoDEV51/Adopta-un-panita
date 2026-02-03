@@ -22,8 +22,17 @@ Route::middleware(['auth', ])->group(function () {
 
 
 
-
+    // Rutas para la gestión de animales
     Route::get('/admin/animales', [AnimalesController::class, 'show'])->name('AdminAnimales');
+
+    Route::resource('admin/animales', AnimalesController::class)->only([
+        
+    ]);
+
+
+
+
+    
 });
 
 
