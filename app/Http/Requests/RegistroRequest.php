@@ -27,7 +27,7 @@ class RegistroRequest extends FormRequest
             'apellido'=> 'required|string|max:20|regex:/^[\pL\s-]+$/u',
             'password'=> 'required|string|min:8|confirmed|max:20',
             'telefono' => 'required|digits_between:7,11',
-            
+            'id_rol'=> 'nullable|exists:roles,id',
             'fecha_nacimiento'=> 'nullable|date|before:today',
             'ubicacion'=> 'nullable|string|max:255',
             

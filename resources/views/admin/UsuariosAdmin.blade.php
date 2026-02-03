@@ -159,6 +159,7 @@
                     <th>Nombre</th>
                     <th>Rol</th>
                     <th>Fecha de Registro</th>
+                    <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -169,6 +170,14 @@
                     <td>{{ $usuario->role->name ?? 'Sin rol' }}</td>
                     
                     <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
+                    <td>
+                      <a href="{{ route('EditarUsuario', $usuario->id) }}" class="editar-btn">Editar</a>
+                      <form action="{{ route('EliminarUsuario', $usuario->id) }}" method="POST" style="display:inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="eliminar-btn" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
+                      </form>
+                    </td>
                   </tr>
                   @endforeach
                 </tbody>

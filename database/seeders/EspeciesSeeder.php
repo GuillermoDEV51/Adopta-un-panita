@@ -18,6 +18,7 @@ class EspeciesSeeder extends Seeder
         Especie::create(['nombre' => 'Conejo']);
         Especie::create(['nombre' => 'Ave']);
         Especie::create(['nombre' => 'Reptil']);
+        Especie::create(['nombre' => 'otros']);
 
         
     }

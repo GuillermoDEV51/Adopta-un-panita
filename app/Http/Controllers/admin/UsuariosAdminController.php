@@ -32,16 +32,22 @@ class UsuariosAdminController extends Controller
 
        $data = $request->validated();
        $data['password'] = Hash::make($data['password']);
-        // Asignar rol predeterminado si no se proporciona
-        if (!isset($data['id_rol'])) {
-           $data['id_rol'] = 2;
+
+
+          // CORRECCIÓN: Asegurar que id_rol esté presente
+        if (!isset($data['id_rol']) || empty($data['id_rol'])) {
+            // Opcional: asignar un rol por defecto
+            $data['id_rol'] = 2; // Rol por defecto (ej: usuario normal)
         }
             $user = Usuarios::create($data);
 
           
 
-         return redirect('UsuariosAdmin')->with('success','Registro exitoso. Has iniciado sesión.');
+         return redirect()->route('UsuariosAdmin')->with('success','Registro exitoso. Usuario agregado.');
    }
+
+
+
 
    public function update(RegistroRequest $request, $id)
    {

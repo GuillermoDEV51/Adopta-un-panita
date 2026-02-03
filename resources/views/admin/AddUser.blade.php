@@ -147,7 +147,12 @@
                 <div class="titulo-line" aria-hidden="true"></div>
               </div>
             </div>
+
+
+
                 <a href="{{ route('UsuariosAdmin') }}" class="btn btn-secondary">Volver a Usuarios</a>
+
+
             <div class="">
                 
 
@@ -192,17 +197,20 @@
                      maxlength="11"
                      required>
             </div>
-                   <!-- <div class="">  
-                        <label for="role">Rol:</label>
-                        <select name="role" id="role" required>
-                            <option value="">Seleccionar rol</option>
-                            @foreach ($roles as $rol)
-                                <option value="{{ $rol->id }}" {{ old('role') == $rol->id ? 'selected' : '' }}>
-                                    {{ $rol->name }}
-                                </option>                              
-                            @endforeach
-                        </select>  
-                    </div> -->
+                    <div class="form-group2">
+                            <label for="id_rol">Rol:</label>
+                                <select name="id_rol" id="id_rol" class="form-input" required>
+                                    <option value="">Seleccionar rol</option>
+                                        @foreach ($roles as $rol)
+                                            <option value="{{ $rol->id }}" {{ old('id_rol') == $rol->id ? 'selected' : '' }}>
+                                                {{ $rol->nombre ?? $rol->name ?? 'Rol ' . $rol->id }}
+                                            </option>
+                                     @endforeach
+                                </select>
+                                    @error('id_rol')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                    </div> 
                     <div class="form-group2">
               <label class="form-label">Fecha de nacimiento</label>
               <div class="date-row">

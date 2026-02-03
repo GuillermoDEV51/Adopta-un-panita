@@ -18,7 +18,10 @@ Route::middleware(['auth', ])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('Dashboard');
     Route::get('/admin/refugios', [RefugiosAdminController::class, 'index'])->name('RefugiosAdmin');
     Route::get('/admin/solicitudes', [SolicitudesAdminController::class, 'index'])->name('SolicitudesAdmin');
-    Route::get('/admin/usuarios', [UsuariosAdminController::class, 'index'])->name('UsuariosAdmin');
+
+
+
+  
 
 
 
@@ -30,6 +33,9 @@ Route::middleware(['auth', ])->group(function () {
 
 
     // Rutas para la gestión de usuarios
+
+      Route::get('/admin/usuarios', [UsuariosAdminController::class, 'index'])->name('UsuariosAdmin');
+
     Route::get('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'show'])->name('EditarUsuario');
     Route::post('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'update'])->name('ActualizarUsuario');
     

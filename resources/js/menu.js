@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const authSection = window.authUser && window.authUser.isLogged
     ? `
         <div class="mega-menu-divider"></div>
-        <form method="POST" action="/logout" class="mega-menu-form">
+        <form method="POST" action="logout" class="mega-menu-form">
             <input type="hidden" name="_token" value="${csrfToken}">
             <button type="submit" class="mega-menu-item">
                 <i class="fas fa-sign-out-alt"></i>
@@ -28,7 +28,7 @@ const authSection = window.authUser && window.authUser.isLogged
       `
     : `
         <div class="mega-menu-divider"></div>
-        <a href="/register" class="mega-menu-item">
+        <a href="register" class="mega-menu-item">
             <i class="fas fa-user-plus"></i>
             <span>Registrarse</span>
         </a>
