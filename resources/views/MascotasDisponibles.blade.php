@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
   
-@vite(['resources/css/styles.css'])
+@vite(['resources/css/styles.css', 'resources/css/cards.css'])
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -697,90 +697,4 @@ document.getElementById('modalUbicacion').textContent = card.dataset.ubicacion;
 
 </script>
 
- <!-- Estilos para el botón de teléfono y tooltip -->
-  
-<style>
-.btn-telefono {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 16px;
-  background: #9b6b01;
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.btn-telefono:hover {
-  background: #b07d1a;
-}
-
-/* Tooltip tipo nube */
-
-.tooltip-numero {
-  position: absolute;
-  top: 50%;          /* centra verticalmente respecto al botón */
-  left: 100%;        /* empieza justo a la derecha del botón */
-  transform: translateY(-50%) translateX(8px); /* se mueve 8px más a la derecha */
-  background: #333;
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-size: 14px;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s, transform 0.2s;
-  z-index: 10;
-}
-
-.btn-telefono:hover .tooltip-numero {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(-50%) translateX(8px); /* misma animación */
-}
-
-
-.tooltip-numero.copiable {
-  cursor: pointer;
-}
-/* Contenedor de las cards */
-.mascotas-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 16px;
-  justify-content: center; /* centra las cards si hay espacio extra */
-  
-  padding: 0 5px; /* <-- agrega espacio a izquierda y derecha */
-  margin: 0 auto;  /* <-- opcional, para centrar todo el contenedor */
-  max-width: 1350px; /* <-- opcional, limita ancho máximo en pantallas grandes */
-}
-
-
-/* Cards individuales */
-.mascota-card {
-  width: 100%; /* Para que ocupe su columna */
-  max-width: 260px; /* Limitar ancho máximo */
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.mascota-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-}
-
-.mascota-foto {
-  width: 100%;
-  height: 180px; /* Ajusta altura según prefieras */
-  object-fit: cover;
-}
-
-</style>
+ 
