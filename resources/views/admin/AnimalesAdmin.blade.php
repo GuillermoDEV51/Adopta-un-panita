@@ -147,7 +147,7 @@
 
 
                   <div class="">
-                    
+                    <a href="{{ route('AddPets') }}" class="añadir-refugio-btn">Registrar nueva mascota</a>
                   </div>
 
                   

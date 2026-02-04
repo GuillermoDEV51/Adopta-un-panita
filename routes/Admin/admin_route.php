@@ -27,6 +27,8 @@ Route::middleware(['auth', ])->group(function () {
 
     // Rutas para la gestión de animales
     Route::get('/admin/animales', [AnimalesController::class, 'show'])->name('AdminAnimales');
+    Route::get('/admin/animales/registrar', [AnimalesController::class, 'index'])->name('AddPets');
+
     Route::get('/admin/animales/editar/{id}', [AnimalesController::class, 'editar'])->name('EditarAnimal');
 
 
