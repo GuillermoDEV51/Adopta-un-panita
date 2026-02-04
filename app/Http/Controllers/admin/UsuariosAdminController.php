@@ -34,6 +34,10 @@ class UsuariosAdminController extends Controller
         return view('admin.EditarUsuario', compact('usuario', 'roles'));
     }
 
+
+
+
+    
     //Funciones para CRUD de usuarios
     public function store(RegistroRequest $request)
    {

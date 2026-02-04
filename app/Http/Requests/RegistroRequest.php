@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class RegistroRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class RegistroRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ci'=> 'required|integer|unique:usuarios,ci|digits_between:6,8|bail',
+            'ci'=> 'integer|unique:usuarios,ci|digits_between:6,8|bail',
             'nombre'=> 'required|string|max:20|regex:/^[\pL\s-]+$/u',
             'apellido'=> 'required|string|max:20|regex:/^[\pL\s-]+$/u',
             'password'=> 'required|string|min:8|confirmed|max:20',
@@ -30,6 +31,8 @@ class RegistroRequest extends FormRequest
             'id_rol'=> 'nullable|exists:roles,id',
             'fecha_nacimiento'=> 'nullable|date|before:today',
             'ubicacion'=> 'nullable|string|max:255',
+
+            
             
         ];
     }
