@@ -63,8 +63,24 @@ Route::get('/Mision', function () {
 });
 
 Route::get('/Publicaciones', function () {
-    return view('Publicaciones');
-});
+    if (!auth()->check()) {
+        return redirect()->route('login');
+    }
+
+    $orden = request('orden', 'desc') === 'asc' ? 'asc' : 'desc';
+    $mascotas = \App\Models\Mascotas::with('especie')
+        ->where('id_usuario', auth()->id())
+        ->orderBy('created_at', $orden)
+        ->get();
+
+    $totalMascotas = $mascotas->count();
+    $especies = \App\Models\Especie::all();
+
+    return view('Publicaciones', compact('mascotas', 'totalMascotas', 'orden', 'especies'));
+})->name('Publicaciones');
+
+Route::post('/Publicaciones/{id}', [\App\Http\Controllers\MascotasDisponiblesController::class, 'updateUser'])
+    ->name('PublicacionesUpdate');
 
 /*
 |--------------------------------------------------------------------------

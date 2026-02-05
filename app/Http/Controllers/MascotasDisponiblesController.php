@@ -129,4 +129,36 @@ class MascotasDisponiblesController extends Controller
 
         return back()->with('info', 'Tu solicitud ya está en estado: ' . $user->estado_verificacion);
     }
+
+    // Actualizar mascota desde Publicaciones (usuario comÃºn)
+    public function updateUser(MascotasRequest $request, $id)
+    {
+        if (! Auth::check()) {
+            return redirect()->route('login');
+        }
+
+        $mascota = Mascotas::findOrFail($id);
+
+        if ($mascota->id_usuario !== Auth::id()) {
+            return back()->withErrors(['error' => 'No tienes permiso para actualizar esta mascota.']);
+        }
+
+        $data = $request->validated();
+
+        if ($request->hasFile('foto')) {
+            $data['foto'] = basename($request->file('foto')->store('mascotas', 'public'));
+        }
+
+        if ($request->hasFile('documentacion')) {
+            $files = [];
+            foreach ($request->file('documentacion') as $file) {
+                $files[] = basename($file->store('documentacion', 'public'));
+            }
+            $data['documentacion'] = json_encode($files);
+        }
+
+        $mascota->update($data);
+
+        return redirect()->route('Publicaciones')->with('success', 'Mascota actualizada correctamente.');
+    }
 }
