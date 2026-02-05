@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Mascotas;
 use App\Http\Requests\MascotasRequest;
 use App\Models\Especie;
+use App\Models\Usuarios;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -15,10 +16,11 @@ class MascotasDisponiblesController extends Controller
     //cargar vista con las mascotas 
     public function show()
     {
-        $mascotas = Mascotas::with('especie')->get();
+        $mascotas = Mascotas::with('especie', 'usuario')->get();
         $especies = Especie::all();
+        $usuarios = Usuarios::all();
         
-        return view('MascotasDisponibles', compact('mascotas', 'especies'));
+        return view('MascotasDisponibles', compact('mascotas', 'especies', 'usuarios'));
     }
 
 
@@ -38,20 +40,24 @@ public function publicar2(MascotasRequest $request) {
     if (!Auth::check()) {
         return back()->withErrors(['error' => 'Debes iniciar sesión para publicar.']);
     }
-
+   
     $data = $request->validated();
-    $data['id_usuario'] = Auth::user()->id;
+   $data['id_usuario'] = Auth::id();
 
     if ($request->hasFile('foto')) {
         $path = $request->file('foto')->store('mascotas', 'public');
         $data['foto'] = basename($path);
     }
 
-    if ($request->hasfile('documentacion')) {
-        $documents = $request->file('documentacion')->store('documentacion', 'public');
-        $data['documentacion'] = basename($documents);
+    if ($request->hasFile('documentacion')) {
+        $files = [];
+        foreach ($request->file('documentacion') as $file) {
+            $files[] = basename($file->store('documentacion', 'public'));
+        }
+        $data['documentacion'] = json_encode($files); // O implode(',', $files)
     }
-
+     unset($data['telefono']);  // Error en imagen
+    unset($data['ubicacion']);
     Mascotas::create($data);
 
     // 🔹 Redirigir a la lista de mascotas disponibles

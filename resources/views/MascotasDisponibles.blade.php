@@ -248,7 +248,7 @@
                                     data-ubicacion="{{ $mascota->ubicacion ?? 'No especificada' }}"
                                     data-descripcion="{{ $mascota->descripcion ?? '' }}"
                                     data-foto="{{ asset('storage/mascotas/' . $mascota->foto) }}"
-                                    data-telefono="{{ $mascota->telefono ?? '' }}">
+                                    data-telefono="{{ $mascota->usuario->telefono ?? '' }}">
 
                                     <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}"
                                         alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
