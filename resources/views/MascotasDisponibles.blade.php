@@ -1,83 +1,151 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
-    <meta name="description"
-        content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
-    <meta name="keywords"
-        content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
+  <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
+  <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
+  
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
+  <meta property="og:description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  
+@vite(['resources/css/styles.css'])
+<style>
+    /* Estilos para las animaciones */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .animate-on-scroll.animate-left {
+      transform: translateX(-100px);
+    }
+    
+    .animate-on-scroll.animate-right {
+      transform: translateX(100px);
+    }
+    
+    .animate-on-scroll.animate-up {
+      transform: translateY(100px);
+    }
+    
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+    }
+    
+    /* Animación para las patitas */
+    .paw-inicial, .paw-final {
+      transition: transform 0.5s ease;
+    }
+    
+    .paw-inicial:hover, .paw-final:hover {
+      transform: rotate(20deg) scale(1.1);
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    /* Animación para las imágenes decorativas */
+    .decorative-image-left, .decorative-image-right {
+      transition: all 0.5s ease;
+    }
+    
+    .decorative-image-left:hover {
+      transform: translateX(-10px) rotate(-5deg);
+    }
+    
+    .decorative-image-right:hover {
+      transform: translateX(10px) rotate(5deg);
+    }
+    
+    /* Animación para las cajas de categorías */
+    .category-complete {
+      transition: all 0.4s ease;
+    }
+    
+    .category-complete:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    /* Animación para el banco */
+    .bank-box {
+      transition: all 0.5s ease;
+    }
+    
+    .bank-box:hover {
+      transform: scale(1.02);
+    }
+  </style>
 
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
-    <meta property="og:description"
-        content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap"
-        rel="stylesheet">
-
-    @vite(['resources/css/styles.css', 'resources/css/mascotas-disponibles.css'])
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 </head>
 
 <body>
-    <div class="main-container">
-        <div class="content-wrapper">
+  <div class="main-container">
+    <div class="content-wrapper">
 
-            <header class="header">
-                <div class="header-content">
-                    <h1 class="logo">
-                        <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
-                        <span class="brand-text">
-                            <span class="logo-text">PanitasPet</span>
-                            <span class="logo-subtitle">Adopción y refugios</span>
-                        </span>
-                    </h1>
-                    <nav class="nav-section">
-                        <div class="nav-menu">
-                            <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
-                            <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
-                            <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
-                        </div>
-
-
-                        <!-- Authentication Links -->
-                        @if (Route::has('login'))
-
-                            <div class="nav-auth">
-
-                                @auth
-
-                                    <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
-                                        {{ auth()->user()->apellido }}</a>
-                                    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                                        @csrf
-                                        <!-- <button type="submit" class="register-btn">Cerrar sesión</button> -->
-                                    </form>
-                                @else
-                                    <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
-
-                                @endauth
-                            </div>
-                        @endif
+      <header class="header">
+        <div class="header-content">
+          <h1 class="logo">
+            <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+            <span class="brand-text">
+              <span class="logo-text">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
+            </span>
+          </h1>
+           <nav class="nav-section">
+            <div class="nav-menu">
+              <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+              <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+              <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+            </div>
 
 
-                        <div class="menu-lines" aria-hidden="true">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </nav>
-                </div>
-            </header>
+            <!-- Authentication Links -->
+        @if (Route:: has('login'))
+
+          <div class="nav-auth">
+
+                @auth
+
+                <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
+                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                  @csrf
+                  <!-- <button type="submit" class="register-btn">Cerrar sesión</button> -->
+                </form>
+
+                 @else
+
+                  
+                  <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
+                  
+                @endauth
+          </div> 
+        @endif
+
+
+            <div class="menu-lines" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </nav>
+        </div>
+      </header>
+      
 
             <!-- Dashboard Main Content -->
             <div class="paginas-section4">
@@ -92,7 +160,7 @@
                         <div class="filtro-principal-compacto">
                             <div class="filtro-titulo">
                                 <i class="fas fa-filter"></i>
-                                <span>¿Deseas un perro o un gato?</span>
+                                <span>Â¿Deseas un perro o un gato?</span>
                             </div>
                             <div class="opciones-compactas">
                                 <button class="opcion-compacta" data-tipo="perro" data-seleccionado="false">
@@ -111,19 +179,19 @@
                         </div>
 
                         <div class="acciones-filtros" style="display:flex; gap:10px; align-items:center;">
-                            <!-- Botón Procesar Filtros -->
+                            <!-- BotÃ³n Procesar Filtros -->
                             <button class="btn-procesar-compacto" id="procesarFiltros">
                                 <span>Procesar Filtros</span>
                             </button>
 
-                            <!-- Botón Agregar Mascota -->
+                            <!-- BotÃ³n Agregar Mascota -->
                             <a href="{{ auth()->check() ? route('vistavacia') : route('login') }}"
                                 class="btn-agregar-compacto">
                                 <i class="fas fa-plus-circle"></i>
                                 <span>Agregar Mascota</span>
                             </a>
 
-                            <!-- Botón Limpiar Filtros -->
+                            <!-- BotÃ³n Limpiar Filtros -->
                             <button class="btn-limpiar-compacto" id="limpiarFiltros">
                                 <i class="fas fa-times"></i>
                                 <span>Limpiar Filtros</span>
@@ -160,7 +228,7 @@
                                 </label>
                                 <select id="raza" class="select-compacto">
                                     <option value="">Raza</option>
-                                    <!-- Las opciones se llenarán dinámicamente -->
+                                    <!-- Las opciones se llenarÃ¡n dinÃ¡micamente -->
                                 </select>
                             </div>
                           
@@ -209,7 +277,7 @@
                                 </label>
                                 <select id="esterilizado" class="select-compacto">
                                     <option value="">Esterilizado</option>
-                                    <option value="si">Sí</option>
+                                    <option value="si">Si</option>
                                     <option value="no">No</option>
                                 </select>
                             </div>
@@ -274,88 +342,85 @@
                     </main>
                 </div>
 
-                    <!-- Footer -->
-                    <footer class="footer">
-                        <div class="footer-content">
-                            <div class="footer-left">
-                                <div class="footer-logo-section">
-                                    <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
-                                    <span class="brand-text">
-                                        <span class="footer-brand">PanitasPet</span>
-                                        <span class="logo-subtitle">Adopción y refugios</span>
-                                    </span>
-                                </div>
+                   <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-content">
+          <div class="footer-left">
+            <div class="footer-logo-section">
+              <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
+            <span class="brand-text">
+              <span class="footer-brand">PanitasPet</span>
+              <span class="logo-subtitle">Adopción y refugios</span>
+            </span>
+            </div>
 
-                                <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en
-                                    Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables
-                                    para combatir el abandono y la sobrepoblación.</p>
+            <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para combatir el abandono y la sobrepoblación.</p>
 
-                                <div class="footer-badges">
-                                    <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
-                                    <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
-                                </div>
+            <div class="footer-badges">
+              <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
+              <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
+            </div>
 
-                                <div class="social-icons">
-                                    <a href="#" class="social-btn" aria-label="Icono 1">
-                                        <img src="images/icono1.png" alt="icono1" class="circle-icon">
-                                    </a>
-                                    <a href="#" class="social-btn" aria-label="Icono 2">
-                                        <img src="images/icono2.png" alt="icono2" class="circle-icon">
-                                    </a>
-                                    <a href="#" class="social-btn" aria-label="Icono 3">
-                                        <img src="images/icono3.png" alt="icono3" class="circle-icon">
-                                    </a>
-                                    <a href="#" class="social-btn" aria-label="Icono 4">
-                                        <img src="images/icono4.png" alt="icono4" class="circle-icon">
-                                    </a>
-                                </div>
-                            </div>
+            <div class="social-icons">
+              <a href="#" class="social-btn" aria-label="Icono 1">
+                <img src="images/icono1.png" alt="icono1" class="circle-icon">
+              </a>
+              <a href="#" class="social-btn" aria-label="Icono 2">
+                <img src="images/icono2.png" alt="icono2" class="circle-icon">
+              </a>
+              <a href="#" class="social-btn" aria-label="Icono 3">
+                <img src="images/icono3.png" alt="icono3" class="circle-icon">
+              </a>
+              <a href="#" class="social-btn" aria-label="Icono 4">
+                <img src="images/icono4.png" alt="icono4" class="circle-icon">
+              </a>
+            </div>
+          </div>
 
-                            <div class="footer-links">
-                                <h4 class="footer-column-title">Enlaces rápidos</h4>
-                                <ul class="footer-list">
-                                    <a href="MascotasDisponibles">Mascotas en adopción</a>
-                                    <a href="RefugiosDisponibles">Refugios</a>
-                                    <a href="Mision">Misión y visión</a>
-                                </ul>
-                            </div>
+          <div class="footer-links">
+            <h4 class="footer-column-title">Enlaces rápidos</h4>
+            <ul class="footer-list">
+              <a href="MascotasDisponibles">Mascotas en adopción</a>
+              <a href="RefugiosDisponibles">Refugios</a>
+              <a href="Mision">Misión y visión</a>    
+            </ul>
+          </div>
 
-                            <div class="footer-services">
-                                <h4 class="footer-column-title">Servicios</h4>
-                                <ul class="footer-list">
-                                    <a href="Donativos">Donaciones</a>
-                                    <a href="Voluntariado">Voluntariado</a>
-                                    <a href="Registro">Registrarse</a>
-                                </ul>
-                            </div>
+          <div class="footer-services">
+            <h4 class="footer-column-title">Servicios</h4>
+            <ul class="footer-list">
+              <a href="Donativos">Donaciones</a>           
+              <a href="Voluntariado">Voluntariado</a>
+              <a href="Registro">Registrarse</a>
+            </ul>
+          </div>
 
-                            <div class="footer-contact">
-                                <h4 class="footer-column-title">Contacto</h4>
-                                <div class="contact-info">
-                                    <div class="contact-item">
-                                        <img src="images/img_mail.svg" alt="Email" class="contact-icon">
-                                        <div>
-                                            <div style="font-weight:700;color:#af7700">Email</div>
-                                            <div class="contact-text">panitapet@gmail.com</div>
-                                        </div>
-                                    </div>
-
-                                    <div class="contact-item">
-                                        <img src="images/img_call_end.svg" alt="Phone" class="contact-icon">
-                                        <div>
-                                            <div style="font-weight:700;color:#af7700">Teléfono</div>
-                                            <div class="contact-text">+58 414 1234567</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="footer-bottom">
-                                <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
-                            </div>
-                        </div>
-                    </footer>
+          <div class="footer-contact">
+            <h4 class="footer-column-title">Contacto</h4>
+            <div class="contact-info">
+              <div class="contact-item">
+                <img src="images/img_mail.svg" alt="Email" class="contact-icon">
+                <div>
+                  <div style="font-weight:700;color:#af7700">Email</div>
+                  <div class="contact-text">panitapet@gmail.com</div>
                 </div>
+              </div>
+
+              <div class="contact-item">
+                <img src="images/img_call_end.svg" alt="Phone" class="contact-icon">
+                <div>
+                  <div style="font-weight:700;color:#af7700">Teléfono</div>
+                  <div class="contact-text">+58 414 1234567</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+        <div class="footer-bottom">
+          <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
+        </div>
+      </footer>
+    </div>
             </div>
 
             @vite(['resources/js/menu.js'])
@@ -386,17 +451,18 @@
 
                             <p class="modal-desc" id="modalDescripcion"></p>
                             <div class="modal-contacto">
-                                <a id="modalTelefono" href="#" class="btn-telefono">
-                                    <i class="fas fa-phone"></i> Llamar
-                                    <span class="tooltip-numero" id="tooltipNumero"></span>
-                                </a>
-
-                                <form id="formAdopcion" method="POST" style="margin-top: 10px;">
+                                <form id="formAdopcion" method="POST">
                                     @csrf
                                     <textarea name="mensaje" placeholder="Mensaje para el refugio (Opcional)" class="modal-textarea"></textarea>
-                                    <button type="submit" class="btn-adoptar">
-                                        <i class="fas fa-paw"></i> Solicitar Adopción
-                                    </button>
+                                    <div class="modal-actions">
+                                        <button type="submit" class="btn-adoptar">
+                                            <i class="fas fa-paw"></i> Solicitar Adopción
+                                        </button>
+                                        <a id="modalTelefono" href="#" class="btn-telefono">
+                                            <i class="fas fa-phone"></i> Llamar
+                                            <span class="tooltip-numero" id="tooltipNumero"></span>
+                                        </a>
+                                    </div>
                                 </form>
                             </div>
 
@@ -405,7 +471,7 @@
                 </div>
             </div>
 
-            <!-- MODAL OVERLAY VERIFICACIÓN -->
+            <!-- MODAL OVERLAY VERIFICACIÃ“N -->
             <div id="verificationModal" class="modal-overlay">
                 <div class="modal-content modal-content--verification">
                     <button class="modal-close"
@@ -415,18 +481,18 @@
                         <div class="verification-icon">
                             <i class="fas fa-user-shield"></i>
                         </div>
-                        <h2 class="verification-title">Autorización Requerida</h2>
+                        <h2 class="verification-title">AutorizaciÃ³n Requerida</h2>
                         <p class="verification-text">
                             Para garantizar la seguridad de nuestras mascotas, requerimos que tu cuenta sea verificada
                             por un administrador antes de poder adoptar.
                             <br><br>
-                            Este proceso es <strong>único</strong> y una vez autorizado podrás adoptar libremente.
+                            Este proceso es <strong>Ãºnico</strong> y una vez autorizado podrÃ¡s adoptar libremente.
                         </p>
 
                         <form action="{{ route('verification.request') }}" method="POST">
                             @csrf
                             <button type="submit" class="submit-bt verification-btn">
-                                Solicitar Autorización
+                                Solicitar AutorizaciÃ³n
                             </button>
                         </form>
                     </div>
@@ -453,7 +519,7 @@
                 });
             </script>
 
-            <!-- Trigger para el modal si viene de sesión -->
+            <!-- Trigger para el modal si viene de sesiÃ³n -->
             @if (session('require_verification'))
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
@@ -489,7 +555,7 @@
                         "Siamés",
                         "Persa",
                         "Maine Coon",
-                        "Bengalí",
+                        "Bengala­",
                         "Esfinge",
                         "Ragdoll",
                         "British Shorthair",
@@ -509,12 +575,12 @@
                 const btnProcesar = document.getElementById('procesarFiltros');
                 let tipoSeleccionado = null;
 
-                // Función para actualizar las opciones de raza
+                // FunciÃ³n para actualizar las opciones de raza
                 function actualizarRazas(tipo) {
                     // Limpiar opciones actuales
                     selectRaza.innerHTML = '<option value="">Raza</option>';
 
-                    // Agregar nuevas opciones según el tipo
+                    // Agregar nuevas opciones segÃºn el tipo
                     razasPorTipo[tipo].forEach(raza => {
                         const option = document.createElement('option');
                         option.value = raza.toLowerCase().replace(/\s+/g, '-');
@@ -524,7 +590,7 @@
                 }
 
                 function seleccionarTipo(tipo) {
-                    // Si ya está seleccionado, deseleccionar
+                    // Si ya estÃ¡ seleccionado, deseleccionar
                     if (tipoSeleccionado === tipo) {
                         const botonActual = document.querySelector(`[data-tipo="${tipo}"]`);
                         botonActual.setAttribute('data-seleccionado', 'false');
@@ -541,7 +607,7 @@
                         return;
                     }
 
-                    // Remover selección anterior
+                    // Remover selecciÃ³n anterior
                     opcionesTipo.forEach(btn => {
                         btn.setAttribute('data-seleccionado', 'false');
                         btn.classList.remove('seleccionado');
@@ -564,7 +630,7 @@
                     if (tipo === 'perro' || tipo === 'gato') {
                         actualizarRazas(tipo);
                     } else {
-                        // Para "Otros", raza queda visible pero vacía
+                        // Para "Otros", raza queda visible pero vacÃ­a
                         selectRaza.innerHTML = '<option value="">Raza</option>';
                     }
 
@@ -574,7 +640,7 @@
                 function limpiarFiltros() {
                     console.log('Limpiando todos los filtros...');
 
-                    // 1. Remover selección de tipo (perro/gato/otros)
+                    // 1. Remover selecciÃ³n de tipo (perro/gato/otros)
                     opcionesTipo.forEach(btn => {
                         btn.setAttribute('data-seleccionado', 'false');
                         btn.classList.remove('seleccionado');
@@ -600,8 +666,8 @@
                     // 4. Procesar filtros para mostrar todas las mascotas
                     procesarFiltros();
 
-                    console.log('✓ Filtros limpiados correctamente');
-                    console.log('✓ Mostrando todas las mascotas disponibles');
+                    console.log('âœ“ Filtros limpiados correctamente');
+                    console.log('âœ“ Mostrando todas las mascotas disponibles');
                 }
 
                 function procesarFiltros() {
@@ -639,7 +705,7 @@
                             if (label === 'edad') cardEdad = valor;
                             if (label === 'tamaño') cardTamano = valor;
                             if (label === 'estado' || label === 'esterilizado') cardEsterilizado = valor;
-                            if (label === 'ubicación') cardUbicacion = valor;
+                            if (label === 'ubicacion') cardUbicacion = valor;
                         });
 
                         let mostrar = true;
@@ -661,10 +727,10 @@
                         // Filtro sexo
                         if (sexo && sexo !== '' && cardSexo !== sexo) mostrar = false;
 
-                        // Filtro ubicación
+                        // Filtro ubicacion
                         if (ubicacion && ubicacion !== '' && cardUbicacion !== ubicacion) mostrar = false;
 
-                        // Filtro tamaño
+                        // Filtro tamaÃ±o
                         if (tamano && tamano !== '' && cardTamano !== tamano) mostrar = false;
 
                         // Filtro edad
@@ -685,7 +751,7 @@
                     btn.addEventListener('click', () => {
                         const tipo = btn.getAttribute('data-tipo');
                         seleccionarTipo(tipo);
-                        procesarFiltros(); // Filtra automáticamente al seleccionar tipo
+                        procesarFiltros(); // Filtra automÃ¡ticamente al seleccionar tipo
                     });
                 });
 
@@ -704,8 +770,8 @@
                 // Inicializar (opcional)
                 document.addEventListener('DOMContentLoaded', function() {
                     console.log('Sistema de filtros cargado correctamente');
-                    console.log('• Botón "Limpiar Filtros" - FUNCIONAL');
-                    console.log('• Botón "Procesar Filtros" - SIN FUNCIONALIDAD (como solicitado)');
+                    console.log('â€¢ BotÃ³n "Limpiar Filtros" - FUNCIONAL');
+                    console.log('â€¢ BotÃ³n "Procesar Filtros" - SIN FUNCIONALIDAD (como solicitado)');
                 });
             </script>
 
@@ -731,7 +797,7 @@
                         document.getElementById('modalDescripcion').textContent = card.dataset.descripcion || '';
                         document.getElementById('modalFoto').src = card.dataset.foto;
 
-                        // Guardar número en el tooltip
+                        // Guardar nÃºmero en el tooltip
                         if (tooltipNumero) {
                             tooltipNumero.textContent = numero;
                             tooltipNumero.dataset.numero = numero;
@@ -740,8 +806,8 @@
                         // Asignar href para llamadas directas
                         if (btnTelefono) btnTelefono.href = `tel:${numero}`;
 
-                        // Actualizar action del formulario de adopción
-                        // Actualizar action del formulario de adopción
+                        // Actualizar action del formulario de adopciÃ³n
+                        // Actualizar action del formulario de adopciÃ³n
                         const formAdopcion = document.getElementById('formAdopcion');
                         if (formAdopcion) {
                             // Usamos la URL base generada por Laravel para evitar problemas de prefijos
@@ -751,12 +817,12 @@
                     });
                 });
 
-                // Copiar número al hacer click en el tooltip
+                // Copiar nÃºmero al hacer click en el tooltip
                 if (tooltipNumero) {
                     tooltipNumero.addEventListener('click', () => {
                         const numero = tooltipNumero.dataset.numero;
                         navigator.clipboard.writeText(numero).then(() => {
-                            tooltipNumero.textContent = '¡Copiado!';
+                            tooltipNumero.textContent = 'Â¡Copiado!';
                             setTimeout(() => {
                                 tooltipNumero.textContent = numero;
                             }, 1500);
@@ -778,7 +844,7 @@
                 document.getElementById('modalUbicacion').textContent = card.dataset.ubicacion;
             </script>
 
-            <!-- Estilos para el botón de teléfono y tooltip -->
+            <!-- Estilos para el botÃ³n de telÃ©fono y tooltip -->
 
             <style>
                 .btn-telefono {
@@ -799,16 +865,31 @@
                     background: #b07d1a;
                 }
 
+                .modal-contacto {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 12px;
+                    margin-top: 20px;
+                }
+
+                .modal-actions {
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    gap: 12px;
+                    flex-wrap: wrap;
+                }
+
                 /* Tooltip tipo nube */
 
                 .tooltip-numero {
                     position: absolute;
                     top: 50%;
-                    /* centra verticalmente respecto al botón */
+                    /* centra verticalmente respecto al botÃ³n */
                     left: 100%;
-                    /* empieza justo a la derecha del botón */
+                    /* empieza justo a la derecha del botÃ³n */
                     transform: translateY(-50%) translateX(8px);
-                    /* se mueve 8px más a la derecha */
+                    /* se mueve 8px mÃ¡s a la derecha */
                     background: #333;
                     color: #fff;
                     padding: 6px 12px;
@@ -825,7 +906,7 @@
                     opacity: 1;
                     pointer-events: auto;
                     transform: translateY(-50%) translateX(8px);
-                    /* misma animación */
+                    /* misma animaciÃ³n */
                 }
 
 
@@ -846,7 +927,7 @@
                     margin: 0 auto;
                     /* <-- opcional, para centrar todo el contenedor */
                     max-width: 1350px;
-                    /* <-- opcional, limita ancho máximo en pantallas grandes */
+                    /* <-- opcional, limita ancho mÃ¡ximo en pantallas grandes */
                 }
 
 
@@ -855,7 +936,7 @@
                     width: 100%;
                     /* Para que ocupe su columna */
                     max-width: 260px;
-                    /* Limitar ancho máximo */
+                    /* Limitar ancho mÃ¡ximo */
                     background: #fff;
                     border-radius: 12px;
                     overflow: hidden;
@@ -872,7 +953,7 @@
                 .mascota-foto {
                     width: 100%;
                     height: 180px;
-                    /* Ajusta altura según prefieras */
+                    /* Ajusta altura segÃºn prefieras */
                     object-fit: cover;
                 }
 
@@ -907,3 +988,5 @@
 </body>
 
 </html>
+
+
