@@ -152,7 +152,10 @@
                 <div class="paginas-section">
                     <div class="titulo-wrapper">
                         <h1 class="paginas-titulo">Editar Mascotas</h1>
+                        
                         <a href="{{ route('AdminAnimales') }}" class="back-link">← Volver a Animales</a>
+
+                        <!-- Formulario de edición de mascota -->
                         <form action="{{ route('ActualizarAnimal', $mascota->id) }}" method="POST"
                             enctype="multipart/form-data" class="edit-form">
                             @csrf
@@ -204,7 +207,7 @@
                                                 <label
                                                     style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Nombre</label>
                                                 <input type="text" id="nombre" name="nombre"
-                                                    value="{{ old('nombre') }}" placeholder="Nombre del panita"
+                                                    value="{{ old('nombre', $mascota->nombre) }}" placeholder="Nombre del panita"
                                                     required
                                                     style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px;">
                                                 @error('nombre')
@@ -221,7 +224,7 @@
                                                     <option value="">Seleccione una especie</option>
                                                     @foreach ($especies as $especie)
                                                         <option value="{{ $especie->id }}"
-                                                            {{ old('id_especies') == $especie->id ? 'selected' : '' }}>
+                                                            {{ old('id_especies', $mascota->id_especies) == $especie->id ? 'selected' : '' }}>
                                                             {{ $especie->nombre }}
                                                         </option>
                                                     @endforeach
@@ -240,7 +243,7 @@
                                                     style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Edad
                                                     (años)</label>
                                                 <input type="number" id="edad" min="0" max="30"
-                                                    name="edad" value="{{ old('edad') }}" required
+                                                    name="edad" value="{{ old('edad', $mascota->edad) }}" required
                                                     style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px;">
                                                 @error('edad')
                                                     <span class="text-danger"
@@ -253,7 +256,7 @@
                                                     style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Peso
                                                     (LB)</label>
                                                 <input type="number" id="peso" name="peso" min="0"
-                                                    max="100" step="0.1" value="{{ old('peso') }}"
+                                                    max="100" step="0.1" value="{{ old('peso', $mascota->peso) }}"
                                                     style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px;">
                                                 @error('peso')
                                                     <span class="text-danger"
@@ -293,10 +296,10 @@
                                                     style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                                     <option value="">Seleccione</option>
                                                     <option value="Macho"
-                                                        {{ old('genero') == 'Macho' ? 'selected' : '' }}>Macho
+                                                        {{ old('genero', $mascota->genero) == 'Macho' ? 'selected' : '' }}>Macho
                                                     </option>
                                                     <option value="Hembra"
-                                                        {{ old('genero') == 'Hembra' ? 'selected' : '' }}>
+                                                        {{ old('genero', $mascota->genero) == 'Hembra' ? 'selected' : '' }}>
                                                         Hembra</option>
                                                 </select>
                                                 @error('genero')
@@ -313,7 +316,7 @@
                                     <label
                                         style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Descripción</label>
                                     <textarea id="descripcion" rows="6" maxlength="500" name="descripcion" placeholder="Describe al panita"
-                                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; resize: vertical;">{{ old('descripcion') }}</textarea>
+                                        style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; resize: vertical;">{{ old('descripcion', $mascota->descripcion) }}</textarea>
                                     @error('descripcion')
                                         <span class="text-danger"
                                             style="color: #dc3545; font-size: 14px; margin-top: 4px; display: block;">{{ $message }}</span>
@@ -328,7 +331,7 @@
                                     </label>
 
                                     <!-- Input real oculto -->
-                                    <input type="file" id="documentacion" name="documentacion[]" multiple>
+                                    <input type="file" id="documentacion" name="documentacion[]" value="{{ old('documentacion', $mascota->documentacion) }}" multiple>
 
                                     <!-- Botón visual -->
                                     <label for="documentacion" class="file-btn">
@@ -379,31 +382,31 @@
                                             style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                             <option value="">Seleccione</option>
                                             <option value="Caracas"
-                                                {{ old('ubicacion') == 'Caracas' ? 'selected' : '' }}>Caracas
+                                                {{ old('ubicacion', $mascota->ubicacion) == 'Caracas' ? 'selected' : '' }}>Caracas
                                             </option>
                                             <option value="Miranda"
-                                                {{ old('ubicacion') == 'Miranda' ? 'selected' : '' }}>Miranda
+                                                {{ old('ubicacion', $mascota->ubicacion) == 'Miranda' ? 'selected' : '' }}>Miranda
                                             </option>
                                             <option value="La Guaira"
                                                 {{ old('ubicacion') == 'La Guaira' ? 'selected' : '' }}>La
                                                 Guaira</option>
                                             <option value="Zulia"
-                                                {{ old('ubicacion') == 'Zulia' ? 'selected' : '' }}>Zulia
+                                                {{ old('ubicacion', $mascota->ubicacion) == 'Zulia' ? 'selected' : '' }}>Zulia
                                             </option>
-                                            <option value="Lara" {{ old('ubicacion') == 'Lara' ? 'selected' : '' }}>
+                                            <option value="Lara" {{ old('ubicacion', $mascota->ubicacion) == 'Lara' ? 'selected' : '' }}>
                                                 Lara
                                             </option>
                                             <option value="Carabobo"
-                                                {{ old('ubicacion') == 'Carabobo' ? 'selected' : '' }}>
+                                                {{ old('ubicacion', $mascota->ubicacion) == 'Carabobo' ? 'selected' : '' }}>
                                                 Carabobo</option>
                                             <option value="Sucre"
-                                                {{ old('ubicacion') == 'Sucre' ? 'selected' : '' }}>Sucre
+                                                {{ old('ubicacion', $mascota->ubicacion) == 'Sucre' ? 'selected' : '' }}>Sucre
                                             </option>
                                             <option value="Anzoátegui"
-                                                {{ old('ubicacion') == 'Anzoátegui' ? 'selected' : '' }}>
+                                                {{ old('ubicacion', $mascota->ubicacion) == 'Anzoátegui' ? 'selected' : '' }}>
                                                 Anzoátegui</option>
                                             <option value="Nueva Esparta"
-                                                {{ old('ubicacion') == 'Nueva Esparta' ? 'selected' : '' }}>Nueva
+                                                {{ old('ubicacion', $mascota->ubicacion) == 'Nueva Esparta' ? 'selected' : '' }}>Nueva
                                                 Esparta</option>
                                         </select>
                                         @error('ubicacion')
@@ -422,9 +425,9 @@
                                         <select id="vacunado" name="vacunado" required
                                             style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                             <option value="" disabled selected>Si/No</option>
-                                            <option value="1" {{ old('vacunado') == '1' ? 'selected' : '' }}>Sí
+                                            <option value="1" {{ old('vacunado', $mascota->vacunado) == '1' ? 'selected' : '' }}>Sí
                                             </option>
-                                            <option value="0" {{ old('vacunado') == '0' ? 'selected' : '' }}>No
+                                            <option value="0" {{ old('vacunado', $mascota->vacunado) == '0' ? 'selected' : '' }}>No
                                             </option>
                                         </select>
                                         @error('vacunado')
@@ -439,9 +442,9 @@
                                         <select id="esterilizado" name="esterilizado" required
                                             style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                             <option value="" disabled selected>Si/No</option>
-                                            <option value="1" {{ old('esterilizado') == '1' ? 'selected' : '' }}>
+                                            <option value="1" {{ old('esterilizado', $mascota->esterilizado) == '1' ? 'selected' : '' }}>
                                                 Sí</option>
-                                            <option value="0" {{ old('esterilizado') == '0' ? 'selected' : '' }}>
+                                            <option value="0" {{ old('esterilizado', $mascota->esterilizado) == '0' ? 'selected' : '' }}>
                                                 No</option>
                                         </select>
                                         @error('esterilizado')
@@ -457,7 +460,7 @@
                                     <a href="{{ route('AdminAnimales') }}" class="submit-btn"
                                         style="padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; text-decoration: none; text-align: center;">Cancelar</a>
                                     <button type="submit" class="submit-bt" id="submitBtn">
-                                        <span class="btn-text">Publicar Mascota</span>
+                                        <span class="btn-text">Actualizar Mascota</span>
                                         <span class="btn-loader"></span>
                                     </button>
 

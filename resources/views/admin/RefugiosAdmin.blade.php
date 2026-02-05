@@ -142,7 +142,17 @@
             <div class="paginas-section">
               <div class="titulo-wrapper">
                 <h1 class="paginas-title">Refugios Registrados</h1>
-                <div class="titulo-line" aria-hidden="true"></div>
+                <div class="titulo-line" aria-hidden="true">
+
+                  @foreach ($refugios as $refugio)
+                    <div class="refugio-item">
+                      <h3>{{ $refugio->nombre }}</h3>
+                      <p>{{ $refugio->direccion }}</p>
+                    </div>
+                  @endforeach
+
+
+                </div>
               </div>
             </div>
       </main>

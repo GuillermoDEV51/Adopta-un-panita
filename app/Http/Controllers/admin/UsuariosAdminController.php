@@ -81,11 +81,27 @@ class UsuariosAdminController extends Controller
    }
 
 
-   public function eliminar($id)
-   {
-       $usuario = Usuarios::findOrFail($id);
-       $usuario->delete();
+    public function eliminar($id)
+    {
+        $usuario = Usuarios::findOrFail($id);
+        $usuario->delete();
 
-       return redirect()->route('UsuariosAdmin')->with('success', 'Usuario eliminado correctamente.');
-   }
+        return redirect()->route('UsuariosAdmin')->with('success', 'Usuario eliminado correctamente.');
+    }
+
+    public function approveVerification($id)
+    {
+        $usuario = Usuarios::findOrFail($id);
+        $usuario->estado_verificacion = 'verificado';
+        $usuario->save();
+        return back()->with('success', 'Usuario autorizado correctamente.');
+    }
+
+    public function rejectVerification($id)
+    {
+        $usuario = Usuarios::findOrFail($id);
+        $usuario->estado_verificacion = 'rechazado';
+        $usuario->save();
+        return back()->with('success', 'Solicitud rechazada.');
+    }
 }

@@ -1,271 +1,339 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
-  <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
-  <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
-  <meta property="og:description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
-  
-@vite(['resources/css/stylessadmin.css', 'resources/js/menuadmin.js'])
-<meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script>
-    window.ASSETS_URL = "{{ asset('') }}";
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
+    <meta name="description"
+        content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
+    <meta name="keywords"
+        content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
+    <meta property="og:description"
+        content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    @vite(['resources/css/stylessadmin.css', 'resources/js/menuadmin.js'])
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        window.ASSETS_URL = "{{ asset('') }}";
+    </script>
 </head>
 
 <body>
-  <div class="main-container">
-    <div class="content-wrapper">
+    <div class="main-container">
+        <div class="content-wrapper">
 
-      <header class="header">
-        <div class="header-content">
-          <h1 class="logo">
-            <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
+            <header class="header">
+                <div class="header-content">
+                    <h1 class="logo">
+                        <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
 
-            <span class="brand-text">
-              <span class="logo-text">PanitasPet</span>
-              <span class="logo-subtitle">Adopción y refugios</span>
-            </span>
-          </h1>
-           <nav class="nav-section">
-            <div class="nav-menu">
-              <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
-              <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
-            </div>
-
-
-            <!-- Authentication Links -->
-        @if (Route:: has('login'))
-
-          <div class="nav-auth">
-
-                @auth
-                <!-- Mostrar información del usuario autenticado -->
-                <span>
-                  @if(auth()->user()->id_rol == 1)
-                      <span>eres admin</span>
-                      @else
-                      <span>eres normal</span>
-                  @endif
-                </span>
+                        <span class="brand-text">
+                            <span class="logo-text">PanitasPet</span>
+                            <span class="logo-subtitle">Adopción y refugios</span>
+                        </span>
+                    </h1>
+                    <nav class="nav-section">
+                        <div class="nav-menu">
+                            <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+                            <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+                            <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+                        </div>
 
 
-                <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
-                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                  @csrf
+                        <!-- Authentication Links -->
+                        @if (Route::has('login'))
 
-                </form>
+                            <div class="nav-auth">
 
-                 @else
+                                @auth
+                                    <!-- Mostrar información del usuario autenticado -->
+                                    <span>
+                                        @if (auth()->user()->id_rol == 1)
+                                            <span>eres admin</span>
+                                        @else
+                                            <span>eres normal</span>
+                                        @endif
+                                    </span>
 
-                  
-                  <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
-                  
-                @endauth
-          </div> 
-        @endif
+
+                                    <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
+                                        {{ auth()->user()->apellido }}</a>
+                                    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                                        @csrf
+
+                                    </form>
+                                @else
+                                    <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
+
+                                @endauth
+                            </div>
+                        @endif
 
 
-            <div class="menu-lines" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </nav>
-        </div>
-      </header>
-      
-      <!-- Dashboard Main Content -->
-      <main class="dashboard-container">
-        <!-- Sidebar Menu -->
-        <aside class="sidebar">
-          <div class="menu-section">
-            <h2 class="menu-title">Menú</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-tachometer-alt"></i>
-                <a href="{{ route('Dashboard') }}" style="color:inherit; text-decoration:none;">Dashboard</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-clipboard-list"></i>
-                <a href="{{ route('SolicitudesAdmin') }}" style="color:inherit; text-decoration:none;">Solicitudes</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-plus-circle"></i>
-                <a href="{{ route('AñadirRefugio') }}" style="color:inherit; text-decoration:none;">Añadir refugios</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="menu-section">
-            <h2 class="menu-title">Páginas</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-home"></i>
-                <a href="{{ route('RefugiosAdmin') }}" style="color:inherit; text-decoration:none;">Refugios</a>
-              </div>
-              <div class="menu-item active">
-                <i class="fas fa-users"></i>
-                <a href="{{ route('UsuariosAdmin') }}" style="color:inherit; text-decoration:none;">Usuarios</a>
-              </div>
-            </div>
-          </div>
-          
-<div class="menu-section">
-  <h2 class="menu-title">Mascotas</h2>
-  <div class="menu-list">
-    <div class="menu-item">
-      <i class="fas fa-paw"></i>
-<a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
-    Animales
-</a>
-    </div>
-    
-              <div class="menu-item">
-                <i class="fas fa-sign-out-alt"></i>
-                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
-              </div>
-            </div>
-          </div>
-        </aside>
-      
-            <div class="paginas-section">
-              <div class="titulo-wrapper">
-                <h1 class="paginas-title">Usuarios Registrados</h1>
-                <div class="titulo-line" aria-hidden="true"></div>
-              </div>
-              <div class="boton-agregar-wrapper">
-                <a href="{{ route('GuardarUsuario') }}" class="boton-agregar">Agregar Usuario</a>
-              </div>
-            </div>
+                        <div class="menu-lines" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </nav>
+                </div>
+            </header>
 
-            <div class="">
-              <table class="">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Rol</th>
-                    <th>Fecha de Registro</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($usuarios as $usuario)
-                  <tr>
-                    <td>{{ $usuario->id }}</td>
-                    <td>{{ $usuario->nombre }}</td>
-                    <td>{{ $usuario->role->name ?? 'Sin rol' }}</td>
-                    
-                    <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
-                    <td>
-                      <a href="{{ route('EditarUsuario', $usuario->id) }}" class="editar-btn">Editar</a>
-                      <form action="{{ route('EliminarUsuario', $usuario->id) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="eliminar-btn" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
-                      </form>
-                    </td>
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
+            <!-- Dashboard Main Content -->
+            <main class="dashboard-container">
+                <!-- Sidebar Menu -->
+                <aside class="sidebar">
+                    <div class="menu-section">
+                        <h2 class="menu-title">Menú</h2>
+                        <div class="menu-list">
+                            <div class="menu-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <a href="{{ route('Dashboard') }}"
+                                    style="color:inherit; text-decoration:none;">Dashboard</a>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-clipboard-list"></i>
+                                <a href="{{ route('SolicitudesAdmin') }}"
+                                    style="color:inherit; text-decoration:none;">Solicitudes</a>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-plus-circle"></i>
+                                <a href="{{ route('AñadirRefugio') }}"
+                                    style="color:inherit; text-decoration:none;">Añadir refugios</a>
+                            </div>
+                        </div>
+                    </div>
 
-      </main>
-      
+                    <div class="menu-section">
+                        <h2 class="menu-title">Páginas</h2>
+                        <div class="menu-list">
+                            <div class="menu-item">
+                                <i class="fas fa-home"></i>
+                                <a href="{{ route('RefugiosAdmin') }}"
+                                    style="color:inherit; text-decoration:none;">Refugios</a>
+                            </div>
+                            <div class="menu-item active">
+                                <i class="fas fa-users"></i>
+                                <a href="{{ route('UsuariosAdmin') }}"
+                                    style="color:inherit; text-decoration:none;">Usuarios</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-section">
+                        <h2 class="menu-title">Mascotas</h2>
+                        <div class="menu-list">
+                            <div class="menu-item">
+                                <i class="fas fa-paw"></i>
+                                <a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
+                                    Animales
+                                </a>
+                            </div>
+
+                            <div class="menu-item">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar
+                                    sesión</a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="paginas-section">
+                    <div class="titulo-wrapper">
+                        <h1 class="paginas-title">Usuarios Registrados</h1>
+                        <div class="titulo-line" aria-hidden="true"></div>
+                    </div>
+                    <div class="boton-agregar-wrapper">
+                        <a href="{{ route('GuardarUsuario') }}" class="boton-agregar">Agregar Usuario</a>
+                    </div>
+                </div>
+
+                <div class="">
+                    <table class="">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Rol</th>
+                                <th>Estado</th>
+                                <th>Fecha de Registro</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($usuarios as $usuario)
+                                <tr>
+                                    <td>{{ $usuario->id }}</td>
+                                    <td>
+                                        {{ $usuario->nombre }}
+                                        <div style="font-size: 11px; color: #888;">{{ $usuario->email }}</div>
+                                        <!-- Mostrar email ayuda a identificar -->
+                                    </td>
+                                    <td>{{ $usuario->role->name ?? 'Sin rol' }}</td>
+                                    <td>
+                                        @php
+                                            $colors = [
+                                                'no_verificado' => '#6c757d',
+                                                'pendiente' => '#ffc107',
+                                                'verificado' => '#28a745',
+                                                'rechazado' => '#dc3545',
+                                            ];
+                                            $labels = [
+                                                'no_verificado' => 'No Verificado',
+                                                'pendiente' => 'Pendiente',
+                                                'verificado' => 'Verificado',
+                                                'rechazado' => 'Rechazado',
+                                            ];
+                                            $color = $colors[$usuario->estado_verificacion] ?? '#6c757d';
+                                            $label = $labels[$usuario->estado_verificacion] ?? 'Desc.';
+                                        @endphp
+                                        <span
+                                            style="background-color: {{ $color }}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 600;">
+                                            {{ $label }}
+                                        </span>
+                                    </td>
+                                    <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
+                                    <td>
+                                        <!-- Botones de Verificación -->
+                                        @if ($usuario->estado_verificacion === 'pendiente' || $usuario->estado_verificacion === 'no_verificado')
+                                            <form action="{{ route('AprobarUsuario', $usuario->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf @method('PUT')
+                                                <button type="submit" class="btn-action btn-approve" title="Aprobar"
+                                                    style="border:none; background:#d4edda; color:#155724; padding:5px; border-radius:4px; cursor:pointer; margin-right:3px;">
+                                                    <i class="fas fa-check"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+
+                                        @if ($usuario->estado_verificacion === 'pendiente' || $usuario->estado_verificacion === 'verificado')
+                                            <form action="{{ route('RechazarUsuario', $usuario->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf @method('PUT')
+                                                <button type="submit" class="btn-action btn-reject" title="Rechazar"
+                                                    style="border:none; background:#f8d7da; color:#721c24; padding:5px; border-radius:4px; cursor:pointer; margin-right:3px;">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+
+                                        <!-- Botones CRUD existentes -->
+                                        <a href="{{ route('EditarUsuario', $usuario->id) }}" class="editar-btn"
+                                            style="padding: 5px 10px; font-size: 12px;">Editar</a>
+                                        <form action="{{ route('EliminarUsuario', $usuario->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="eliminar-btn"
+                                                style="padding: 5px 10px; font-size: 12px;"
+                                                onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+
+            </main>
+
             <!-- Footer -->
-      <footer class="footer">
-        <div class="footer-content">
-          <div class="footer-left">
-            <div class="footer-logo-section">
-<img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <div class="footer-logo-section">
+                            <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo"
+                                class="footer-logo">
 
-            <span class="brand-text">
-              <span class="footer-brand">PanitasPet</span>
-              <span class="logo-subtitle">Adopción y refugios</span>
-            </span>
-            </div>
+                            <span class="brand-text">
+                                <span class="footer-brand">PanitasPet</span>
+                                <span class="logo-subtitle">Adopción y refugios</span>
+                            </span>
+                        </div>
 
-            <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para combatir el abandono y la sobrepoblación.</p>
+                        <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en
+                            Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para
+                            combatir el abandono y la sobrepoblación.</p>
 
-            <div class="footer-badges">
-              <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
-              <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
-            </div>
+                        <div class="footer-badges">
+                            <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
+                            <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
+                        </div>
 
-            <div class="social-icons">
-              <a href="#" class="social-btn" aria-label="Icono 1">
-<img src="{{ asset('images/icono1.png') }}" class="circle-icon">
-              </a>
-              <a href="#" class="social-btn" aria-label="Icono 2">
-                <img src="{{ asset('images/icono2.png') }}" alt="icono2" class="circle-icon">
-              </a>
-              <a href="#" class="social-btn" aria-label="Icono 3">
-                <img src="{{ asset('images/icono3.png') }}" alt="icono3" class="circle-icon">
-              </a>
-              <a href="#" class="social-btn" aria-label="Icono 4">
-                <img src="{{ asset('images/icono4.png') }}" alt="icono4" class="circle-icon">
-              </a>
-            </div>
-          </div>
+                        <div class="social-icons">
+                            <a href="#" class="social-btn" aria-label="Icono 1">
+                                <img src="{{ asset('images/icono1.png') }}" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 2">
+                                <img src="{{ asset('images/icono2.png') }}" alt="icono2" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 3">
+                                <img src="{{ asset('images/icono3.png') }}" alt="icono3" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 4">
+                                <img src="{{ asset('images/icono4.png') }}" alt="icono4" class="circle-icon">
+                            </a>
+                        </div>
+                    </div>
 
-          <div class="footer-links">
-            <h4 class="footer-column-title">Enlaces rápidos</h4>
-            <ul class="footer-list">
-              <a href="MascotasDisponibles">Mascotas en adopción</a>
-              <a href="RefugiosDisponibles">Refugios</a>
-              <a href="Mision">Misión y visión</a>    
-            </ul>
-          </div>
+                    <div class="footer-links">
+                        <h4 class="footer-column-title">Enlaces rápidos</h4>
+                        <ul class="footer-list">
+                            <a href="MascotasDisponibles">Mascotas en adopción</a>
+                            <a href="RefugiosDisponibles">Refugios</a>
+                            <a href="Mision">Misión y visión</a>
+                        </ul>
+                    </div>
 
-          <div class="footer-services">
-            <h4 class="footer-column-title">Servicios</h4>
-            <ul class="footer-list">
-              <a href="Donativos">Donaciones</a>           
-              <a href="Voluntariado">Voluntariado</a>
-              <a href="Registro">Registrarse</a>
-            </ul>
-          </div>
+                    <div class="footer-services">
+                        <h4 class="footer-column-title">Servicios</h4>
+                        <ul class="footer-list">
+                            <a href="Donativos">Donaciones</a>
+                            <a href="Voluntariado">Voluntariado</a>
+                            <a href="Registro">Registrarse</a>
+                        </ul>
+                    </div>
 
-          <div class="footer-contact">
-            <h4 class="footer-column-title">Contacto</h4>
-            <div class="contact-info">
-              <div class="contact-item">
-                <img src="{{ asset('images/img_mail.svg') }}" class="contact-icon">
-                <div>
-                  <div style="font-weight:700;color:#af7700">Email</div>
-                  <div class="contact-text">panitapet@gmail.com</div>
-                </div>
-              </div>
+                    <div class="footer-contact">
+                        <h4 class="footer-column-title">Contacto</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <img src="{{ asset('images/img_mail.svg') }}" class="contact-icon">
+                                <div>
+                                    <div style="font-weight:700;color:#af7700">Email</div>
+                                    <div class="contact-text">panitapet@gmail.com</div>
+                                </div>
+                            </div>
 
-              <div class="contact-item">
-                <img src="{{ asset('images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
-                <div>
-                  <div style="font-weight:700;color:#af7700">Teléfono</div>
-                  <div class="contact-text">+58 414 1234567</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-        <div class="footer-bottom">
-          <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
+                            <div class="contact-item">
+                                <img src="{{ asset('images/img_call_end.svg') }}" alt="Phone"
+                                    class="contact-icon">
+                                <div>
+                                    <div style="font-weight:700;color:#af7700">Teléfono</div>
+                                    <div class="contact-text">+58 414 1234567</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
+                    </div>
+            </footer>
         </div>
-      </footer>
-    </div>
-  </main>
-  
+        </main>
+
 </body>
+
 </html>

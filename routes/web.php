@@ -25,16 +25,16 @@ Route::get('/', [InicioController::class, 'show'])->name('Inicio');
 
 
 
-// RUTAS Q ALARCON PUSO PA VE ESA MIELDA
-
-
 Route::get('/MascotasDisponibles', [MascotasDisponiblesController::class, 'show'])->name('MascotasDisponibles');
 
+// Publicación de Mascotas (Usuarios)
 Route::post('/', [InicioController::class, 'publicar'])->name('publicarMascota');
 
+Route::get('/mascotas/publicar', [MascotasDisponiblesController::class, 'create'])->name('vistavacia')->middleware('auth'); // Mantenemos name 'vistavacia' si el front lo usa, o lo migramos.
+Route::post('/mascotas/publicar', [MascotasDisponiblesController::class, 'store'])->name('publicar2');
 
-Route::get('/vistavacia', [MascotasDisponiblesController::class, 'vistavacia'])->name('vistavacia')->middleware('auth');
-Route::post('/vistavacia', [MascotasDisponiblesController::class, 'publicar2'])->name('publicar2');
+Route::post('/mascotas/{id}/adoptar', [MascotasDisponiblesController::class, 'solicitarAdopcion'])->name('mascotas.adoptar')->middleware('auth');
+Route::post('/solicitar-verificacion', [MascotasDisponiblesController::class, 'requestVerification'])->name('verification.request')->middleware('auth');
 
 
 

@@ -10,6 +10,8 @@ use App\Models\Mascotas;
 
 use App\Models\Especie;
 
+use Illuminate\Support\Facades\Storage;
+
 class AnimalesController extends Controller
 {
     public function show()
@@ -41,6 +43,21 @@ class AnimalesController extends Controller
     public function eliminar($id)
     {
         $mascota = Mascotas::findOrFail($id);
+
+        $filesToDelete = [];
+
+        if ($mascota->foto) {
+            $filesToDelete[] = 'mascotas/' . $mascota->foto;
+        }
+
+        if ($mascota->documentacion) {
+            $filesToDelete[] = 'documentacion/' . $mascota->documentacion;
+        }
+
+        if (!empty($filesToDelete)) {
+            Storage::disk('public')->delete($filesToDelete);
+        }
+
         $mascota->delete();
 
         return redirect()->route('AdminAnimales')->with('success', 'Mascota eliminada correctamente.');
@@ -79,10 +96,26 @@ class AnimalesController extends Controller
     public function update(MascotasRequest $request, $id)
     {
         $mascota = Mascotas::findOrFail($id);
+        $data = $request->validated();
 
-        $mascota->update($request->validated());
+        if ($request->hasFile('foto')) {
+            // Eliminar foto antigua si existe
+            if ($mascota->foto) {
+                Storage::disk('public')->delete('mascotas/' . $mascota->foto);
+            }
+            $data['foto'] = basename($request->file('foto')->store('mascotas', 'public'));
+        }
 
+        if ($request->hasFile('documentacion')) {
+            // Eliminar documentación antigua si existe
+            if ($mascota->documentacion) {
+                Storage::disk('public')->delete('documentacion/' . $mascota->documentacion);
+            }
+            $data['documentacion'] = basename($request->file('documentacion')->store('documentacion', 'public'));
+        }
 
-        return view('admin.AnimalesAdmin');
+        $mascota->update($data);
+
+        return redirect()->route('AdminAnimales')->with('success', 'Mascota actualizada correctamente.');
     }
 }

@@ -14,7 +14,7 @@ use App\Http\Middleware\CheckRol;
 
 // admin Route
 Route::middleware(['auth', ])->group(function () {
-    Route::get('/admin/añadir-refugio', [AñadirRefugioController::class, 'index'])->name('AñadirRefugio');
+    Route::get('/admin/añadir-refugio', [RefugiosAdminController::class, 'show'])->name('AñadirRefugio');
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('Dashboard');
     Route::get('/admin/refugios', [RefugiosAdminController::class, 'index'])->name('RefugiosAdmin');
     Route::get('/admin/solicitudes', [SolicitudesAdminController::class, 'index'])->name('SolicitudesAdmin');
@@ -52,6 +52,9 @@ Route::middleware(['auth', ])->group(function () {
     Route::get('/admin/usuarios/registrar', [UsuariosAdminController::class, 'show'])->name('GuardarUsuario');
     Route::post('/admin/usuarios/registrar', [UsuariosAdminController::class, 'store'])->name('RegistrarUsuario');
     Route::delete('/admin/usuarios/eliminar/{id}', [UsuariosAdminController::class, 'eliminar'])->name('EliminarUsuario');
+    
+    Route::put('/admin/usuarios/aprobar/{id}', [UsuariosAdminController::class, 'approveVerification'])->name('AprobarUsuario');
+    Route::put('/admin/usuarios/rechazar/{id}', [UsuariosAdminController::class, 'rejectVerification'])->name('RechazarUsuario');
 
 
 
