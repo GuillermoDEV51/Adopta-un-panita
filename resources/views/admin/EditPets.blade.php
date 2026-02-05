@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -141,15 +141,22 @@
                     </div>
                 </aside>
 
-                <div class="paginas-section">
-                    <div class="titulo-wrapper">
-                        <h1 class="paginas-titulo">Editar Mascotas</h1>
-                        
-                        <a href="{{ route('AdminAnimales') }}" class="back-link">← Volver a Animales</a>
+                <div class="main-content">
+                    <div class="paginas-section">
+                        <div class="titulo-wrapper">
+                            <h1 class="paginas-title">Editar Mascota</h1>
+                            <div class="titulo-line" aria-hidden="true"></div>
+                        </div>
+                    </div>
 
+                    <div class="form-actions">
+                        <a href="{{ route('AdminAnimales') }}" class="btn-volver">← Volver a Animales</a>
+                    </div>
+
+                    <div class="usuarios-card">
                         <!-- Formulario de edición de mascota -->
                         <form action="{{ route('ActualizarAnimal', $mascota->id) }}" method="POST"
-                            enctype="multipart/form-data" class="edit-form">
+                            enctype="multipart/form-data" class="editar-usuario-form edit-form">
                             @csrf
                             @method('PUT')
 
@@ -458,7 +465,7 @@
 
                                 </div>
                             </div>
-
+                        </form>
                     </div>
                 </div>
 
@@ -550,9 +557,10 @@
                     <div class="footer-bottom">
                         <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
                     </div>
+                </div>
             </footer>
-        </div>
-        </main>
+</div>
+    </div>
         <script>
             window.authUser = @json([
                 'isLogged' => auth()->check(),
@@ -562,3 +570,5 @@
 </body>
 
 </html>
+
+

@@ -112,6 +112,7 @@
 
                     <div class="menu-section">
                         <h2 class="menu-title">Páginas</h2>
+                        
                         <div class="menu-list">
                             <div class="menu-item">
                                 <i class="fas fa-home"></i>
@@ -131,8 +132,8 @@
                         <div class="menu-list">
                             <div class="menu-item">
                                 <i class="fas fa-paw"></i>
-                                <a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
-                                    Animales
+                                <a href="{{ route('AdminAnimales') }}" 
+                                style="color:inherit; text-decoration:none;"> Animales
                                 </a>
                             </div>
                             <div class="menu-item">

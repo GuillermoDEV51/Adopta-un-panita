@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -56,7 +56,8 @@
 
                             <div class="nav-auth">
 
-                                @auth
+                @auth
+
 
                                     <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
                                         {{ auth()->user()->apellido }}</a>
@@ -80,6 +81,7 @@
                     </nav>
                 </div>
             </header>
+
 
             <!-- Dashboard Main Content -->
             <main class="dashboard-container">
@@ -125,7 +127,8 @@
                     <div class="menu-section">
                         <h2 class="menu-title">Mascotas</h2>
                         <div class="menu-list">
-                            <div class="menu-item">
+                            
+                            <div class="menu-item active">
                                 <i class="fas fa-paw"></i>
                                 <a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
                                     Animales
@@ -134,73 +137,67 @@
                             <div class="menu-item">
                                 <i class="fas fa-sign-out-alt"></i>
                                 <a href="{{ route('logout') }}" style="color:inherit; text-decoration:none;">Cerrar
-                                    sesión</a>
+                                    Sesión</a>
                             </div>
                         </div>
                     </div>
                 </aside>
 
-                <div class="paginas-section">
-                    <div class="titulo-wrapper">
-                        <h1 class="paginas-title">Animales Registrados</h1>
-                        <div class="titulo-line" aria-hidden="true">
-
-
-                            <div class="">
-                                <a href="{{ route('AddPets') }}" class="añadir-refugio-btn">Registrar nueva
-                                    mascota</a>
-                            </div>
-
-
-                            <div class="line-segment">
-                                @foreach ($mascotas as $mascota)
-                                    <div class="mascota-card">
-                                        <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}"
-                                            alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
-                                        <div class="mascota-info">
-                                            <h3 class="mascota-nombre">{{ $mascota->nombre }}</h3>
-                                            <p class="mascota-detalle"><strong>Edad:</strong> {{ $mascota->edad }}
-                                                años</p>
-                                            <p class="mascota-detalle"><strong>Tipo:</strong>
-
-                                                @if ($mascota->especie && $mascota->especie->nombre)
-                                                    {{ $mascota->especie->nombre }}
-                                                @else
-                                                    Sin especie
-                                                @endif
-                                            </p>
-
-                                            <p class="mascota-detalle"><strong>Raza:</strong>
-                                                {{ $mascota->raza ?? 'Desconocida' }}</p>
-                                            <p class="mascota-detalle"><strong>Sexo:</strong> {{ $mascota->genero }}
-                                            </p>
-                                            <p class="mascota-detalle"><strong>Estado:</strong>
-                                                {{ $mascota->estado ?? 'Desconocido' }}</p>
-                                            <p class="mascota-descripcion"></p>
-                                            <a href="{{ route('EditarAnimal', ['id' => $mascota->id]) }}"
-                                                class="editar-mascota-btn">Editar</a>
-                                             <form action="{{ route('EliminarAnimal', ['id' => $mascota->id]) }}"
-                                                method="POST" class="eliminar-mascota-form"
-                                                onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta mascota?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="eliminar-mascota-btn">Eliminar</button>
-                                            </form>   
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
+                <div class="main-content">
+                    <div class="paginas-section">
+                        <div class="titulo-wrapper">
+                            <h1 class="paginas-title">Animales Registrados</h1>
+                            <div class="titulo-line" aria-hidden="true"></div>
+                        </div>
+                        <div class="boton-agregar-wrapper">
+                            <a href="{{ route('AddPets') }}" class="btn-primario">Registrar nueva mascota</a>
                         </div>
                     </div>
+
+                    <div class="admin-pets-grid">
+                        @foreach ($mascotas as $mascota)
+                            <div class="admin-pet-card">
+                                <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}" alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
+                                <div class="mascota-info">
+                                    <h3 class="mascota-nombre">{{ $mascota->nombre }}</h3>
+                                    <p class="mascota-detalle"><strong>Edad:</strong> {{ $mascota->edad }} años</p>
+                                    <p class="mascota-detalle"><strong>Tipo:</strong>
+                                        @if ($mascota->especie && $mascota->especie->nombre)
+                                            {{ $mascota->especie->nombre }}
+                                        @else
+                                            Sin especie
+                                        @endif
+                                    </p>
+                                    <p class="mascota-detalle"><strong>Raza:</strong> {{ $mascota->raza ?? 'Desconocida' }}</p>
+                                    <p class="mascota-detalle"><strong>Sexo:</strong> {{ $mascota->genero }}</p>
+                                    <p class="mascota-detalle"><strong>Estado:</strong> {{ $mascota->estado ?? 'Desconocido' }}</p>
+                                    <div class="admin-pet-actions">
+                                        <a href="{{ route('EditarAnimal', ['id' => $mascota->id]) }}" class="editar-mascota-btn">Editar</a>
+                                        <form action="{{ route('EliminarAnimal', ['id' => $mascota->id]) }}" method="POST" class="eliminar-mascota-form delete-pet-form" data-pet-name="{{ $mascota->nombre }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="button" class="eliminar-mascota-btn js-delete-pet-open">Eliminar</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-
-
-
-
-
             </main>
 
-            <!-- Footer -->
+            <div class="confirm-modal" id="deletePetConfirmModal" aria-hidden="true">
+                <div class="confirm-modal-card" role="dialog" aria-modal="true" aria-labelledby="deletePetModalTitle">
+                    <h3 id="deletePetModalTitle">¿Eliminar mascota?</h3>
+                    <p id="deletePetModalText">Esta acción no se puede deshacer.</p>
+                    <div class="confirm-modal-actions">
+                        <button type="button" class="btn-secundario" id="cancelPetDelete">Cancelar</button>
+                        <button type="button" class="btn-danger" id="confirmPetDelete">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+
+ <!-- Footer -->
             <footer class="footer">
                 <div class="footer-content">
                     <div class="footer-left">
@@ -284,13 +281,56 @@
                     </div>
             </footer>
         </div>
-        </main>
-        <script>
-            window.authUser = @json([
-                'isLogged' => auth()->check(),
-                'name' => auth()->user()->nombre ?? null,
-            ]);
-        </script>
+    </div>
+<script>
+    window.authUser = @json([
+        'isLogged' => auth()->check(),
+        'name' => auth()->user()->nombre ?? null,
+    ]);
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('deletePetConfirmModal');
+  const cancelBtn = document.getElementById('cancelPetDelete');
+  const confirmBtn = document.getElementById('confirmPetDelete');
+  const modalText = document.getElementById('deletePetModalText');
+  let pendingForm = null;
+
+  function openModal(name) {
+    modalText.textContent = `Vas a eliminar a ${name}. Esta acción no se puede deshacer.`;
+    modal.classList.add('is-active');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-active');
+    modal.setAttribute('aria-hidden', 'true');
+    pendingForm = null;
+  }
+
+  document.querySelectorAll('.delete-pet-form').forEach((form) => {
+    const btn = form.querySelector('.js-delete-pet-open');
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      pendingForm = form;
+      const name = form.getAttribute('data-pet-name') || 'esta mascota';
+      openModal(name);
+    });
+  });
+
+  confirmBtn.addEventListener('click', () => {
+    if (pendingForm) pendingForm.submit();
+  });
+
+  cancelBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+});
+</script>
 </body>
 
 </html>
+
+

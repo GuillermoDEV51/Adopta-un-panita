@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -56,7 +56,7 @@
 
                             <div class="nav-auth">
 
-                                @auth
+                @auth
 
 
                                     <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
@@ -82,7 +82,8 @@
                 </div>
             </header>
 
-            <!-- Dashboard Main Content -->
+
+           <!-- Dashboard Main Content -->
             <main class="dashboard-container">
                 <!-- Sidebar Menu -->
                 <aside class="sidebar">
@@ -140,17 +141,20 @@
                         </div>
                     </div>
                 </aside>
+                <div class="main-content">
+                    <div class="paginas-section">
+                        <div class="titulo-wrapper">
+                            <h1 class="paginas-title">Añadir nueva mascota</h1>
+                            <div class="titulo-line" aria-hidden="true"></div>
+                        </div>
+                    </div>
 
-                <div class="paginas-section">
-                    <div class="titulo-wrapper">
-                        <h1 class="paginas-title">Añadir nueva mascota</h1>
-                        <div class="titulo-line" aria-hidden="true">
+                    <div class="form-actions">
+                        <a href="{{ route('AdminAnimales') }}" class="btn-volver">← Volver a mascotas</a>
+                    </div>
 
-                            <a href="{{ route('AdminAnimales') }}" class="back-link">
-                                ← Volver a mascotas </a>
-                                
-                            <div class="">
-                                <form id="publicarForm" method="POST" action="{{ route('publicar2') }}"
+                    <div class="usuarios-card">
+                                <form id="publicarForm" class="editar-usuario-form" method="POST" action="{{ route('publicar2') }}"
                                     enctype="multipart/form-data">
                                     @csrf
 
@@ -158,7 +162,7 @@
                                     @if ($errors->any())
                                         <div class="alert alert-error"
                                             style="background:#ffe5e5; color:#8b0000; padding:12px; border-radius:8px; margin-bottom:16px;">
-                                            <strong>❌ Ocurrieron errores al publicar la mascota:</strong>
+                                            <strong>âŒ Ocurrieron errores al publicar la mascota:</strong>
                                             <ul style="margin-top:8px; padding-left:20px;">
                                                 @foreach ($errors->all() as $error)
                                                     <li>{{ $error }}</li>
@@ -235,7 +239,7 @@
                                                 <div class="form-group" style="flex: 1;">
                                                     <label
                                                         style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Edad
-                                                        (años)</label>
+                                                    (años)</label>
                                                     <input type="number" id="edad" min="0"
                                                         max="30" name="edad" value="{{ old('edad') }}"
                                                         required
@@ -261,7 +265,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- Fila 3: Tamaño + Sexo -->
+                                            <!-- Fila 3: TamaÃ±o + Sexo -->
                                             <div class="form-row"
                                                 style="display: flex; gap: 20px; margin-bottom: 20px;">
                                                 <div class="form-group" style="flex: 1;">
@@ -270,8 +274,8 @@
                                                     <select id="tamano" name="tamano"
                                                         style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                                         <option value="">Seleccione</option>
-                                                        <option value="Pequeño"
-                                                            {{ old('tamano') == 'Pequeño' ? 'selected' : '' }}>
+                                                        <option value="PequeÃ±o"
+                                                            {{ old('tamano') == 'PequeÃ±o' ? 'selected' : '' }}>
                                                             Pequeño</option>
                                                         <option value="Mediano"
                                                             {{ old('tamano') == 'Mediano' ? 'selected' : '' }}>
@@ -308,7 +312,7 @@
                                         </div> <!-- fin fields-column -->
                                     </div> <!-- fin form-grid -->
 
-                                    <!-- Descripción full-width debajo de todo el grid -->
+                                    <!-- DescripciÃ³n full-width debajo de todo el grid -->
                                     <div class="description-full-width" style="margin-top: 30px;">
                                         <label
                                             style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Descripción</label>
@@ -320,7 +324,7 @@
                                         @enderror
                                     </div>
 
-                                    <!-- Historial médico -->
+                                    <!-- Historial mÃ©dico -->
                                     <div class="form-group" style="margin-top: 30px;">
                                         <label
                                             style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">
@@ -330,13 +334,13 @@
                                         <!-- Input real oculto -->
                                         <input type="file" id="documentacion" name="documentacion[]" multiple>
 
-                                        <!-- Botón visual -->
+                                        <!-- BotÃ³n visual -->
                                         <label for="documentacion" class="file-btn">
                                             Seleccionar archivos
                                         </label>
 
                                         <span id="fileName" class="file-upload-text">
-                                            Ningún archivo seleccionado
+                                               Ningún archivo seleccionado
                                         </span>
 
                                         @error('documentacion')
@@ -362,7 +366,7 @@
                                             <select id="raza" name="raza"
                                                 style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                                 <option value="">Seleccione</option>
-                                                <!-- Las opciones se cargarán con JavaScript -->
+                                                <!-- Las opciones se cargarÃ¡n con JavaScript -->
                                             </select>
                                             @error('raza')
                                                 <span class="text-danger"
@@ -399,9 +403,9 @@
                                                 <option value="Sucre"
                                                     {{ old('ubicacion') == 'Sucre' ? 'selected' : '' }}>Sucre
                                                 </option>
-                                                <option value="Anzoátegui"
-                                                    {{ old('ubicacion') == 'Anzoátegui' ? 'selected' : '' }}>
-                                                    Anzoátegui</option>
+                                                <option value="AnzoÃ¡tegui"
+                                                    {{ old('ubicacion') == 'AnzoÃ¡tegui' ? 'selected' : '' }}>
+                                                    AnzoÃ¡tegui</option>
                                                 <option value="Nueva Esparta"
                                                     {{ old('ubicacion') == 'Nueva Esparta' ? 'selected' : '' }}>Nueva
                                                     Esparta</option>
@@ -417,7 +421,7 @@
                                         <div class="form-group" style="flex: 1;">
                                             <label
                                                 style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">
-                                                📞 Teléfono de contacto
+                                              Teléfono de contacto
                                             </label>
 
                                             <input type="tel" id="telefono" name="telefono"
@@ -442,7 +446,7 @@
                                                 style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                                 <option value="" disabled selected>Si/No</option>
                                                 <option value="1" {{ old('vacunado') == '1' ? 'selected' : '' }}>
-                                                    Sí</option>
+                                                    SÃ­</option>
                                                 <option value="0" {{ old('vacunado') == '0' ? 'selected' : '' }}>
                                                     No</option>
                                             </select>
@@ -459,7 +463,7 @@
                                                 style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                                 <option value="" disabled selected>Si/No</option>
                                                 <option value="1"
-                                                    {{ old('esterilizado') == '1' ? 'selected' : '' }}>Sí</option>
+                                                    {{ old('esterilizado') == '1' ? 'selected' : '' }}>SÃ­</option>
                                                 <option value="0"
                                                     {{ old('esterilizado') == '0' ? 'selected' : '' }}>No</option>
                                             </select>
@@ -470,7 +474,7 @@
                                         </div>
                                     </div>
 
-                                    <!-- Botón de envío -->
+                                    <!-- Boton de envÃ­o -->
                                     <div
                                         style="display:flex;justify-content:center;gap:20px;margin-top:40px;padding-bottom: 40px;">
                                         <a href="{{ route('AdminAnimales') }}" class="submit-btn"
@@ -482,17 +486,8 @@
 
                                     </div>
                                 </form>
-                            </div>
-
-
-
-                        </div>
                     </div>
                 </div>
-
-
-
-
 
             </main>
 
@@ -580,7 +575,7 @@
                     </div>
             </footer>
         </div>
-        </main>
+    </div>
         <script>
             window.authUser = @json([
                 'isLogged' => auth()->check(),
@@ -590,3 +585,7 @@
 </body>
 
 </html>
+
+
+
+

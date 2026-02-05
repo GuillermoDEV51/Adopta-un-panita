@@ -869,6 +869,110 @@ button.mega-menu-item {
   border: 1px solid rgba(155, 107, 1, 0.15);
 }
 
+/* Admin Mascotas */
+.admin-pets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+.admin-pet-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(155, 107, 1, 0.12);
+  box-shadow: 0 6px 16px rgba(155, 107, 1, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-pet-card .mascota-foto {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.admin-pet-card .mascota-info {
+  padding: 14px 16px 16px;
+}
+
+.admin-pet-card .mascota-nombre {
+  margin: 0 0 6px 0;
+  color: #9b6b01;
+  font-size: 18px;
+}
+
+.admin-pet-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.editar-mascota-btn,
+.eliminar-mascota-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editar-mascota-btn {
+  background: #f5f0e1;
+  color: #9b6b01;
+  border-color: #ebdcbb;
+}
+
+.editar-mascota-btn:hover {
+  background: #fff0c6;
+  color: #af7700;
+  border-color: #ffd477;
+}
+
+.eliminar-mascota-btn {
+  background: #fbe9e7;
+  color: #b3412d;
+  border-color: #f2b8ad;
+}
+
+.eliminar-mascota-btn:hover {
+  background: #f8d7d2;
+  color: #a33626;
+  border-color: #e99c8d;
+}
+
+.photo-column,
+.fields-column {
+  width: 100%;
+}
+
+.photo-box {
+  border: 2px dashed #af7700;
+  border-radius: 10px;
+  background: #fffaf0;
+}
+
+.file-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  background: #f5f0e1;
+  color: #9b6b01;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  border: 1px solid #ebdcbb;
+  margin-top: 6px;
+}
+
 .editar-usuario-form {
   display: flex;
   flex-direction: column;
