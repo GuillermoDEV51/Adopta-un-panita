@@ -15,7 +15,10 @@ class InicioController extends Controller
 {
     public function show()
     {
-        $mascotas = Mascotas::all();
+        $mascotas = Mascotas::with('especie', 'usuario')
+            ->latest()
+            ->take(4)
+            ->get();
         $refugios = Refugios::all();
         $especies = Especie::all(); 
         

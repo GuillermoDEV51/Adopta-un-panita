@@ -308,7 +308,9 @@
                                     data-tipo="{{ $mascota->especie->nombre ?? 'Sin especie' }}"
                                     data-raza="{{ $mascota->raza ?? 'Desconocida' }}"
                                     data-sexo="{{ $mascota->genero }}"
-                                    data-ubicacion="{{ $mascota->usuario->ubicacion ?? 'No especificada' }}"
+                                    data-ubicacion="{{ $mascota->ubicacion ?? 'No especificada' }}"
+                                    data-tamano="{{ $mascota->tamano ?? '' }}"
+                                    data-esterilizado="{{ is_null($mascota->esterilizado) ? '' : ($mascota->esterilizado ? 'si' : 'no') }}"
                                     data-descripcion="{{ $mascota->descripcion ?? '' }}"
                                     data-foto="{{ asset('storage/mascotas/' . $mascota->foto) }}"
                                     data-telefono="{{ $mascota->usuario->telefono ?? '' }}">
@@ -331,6 +333,8 @@
                                         <p class="mascota-detalle"><strong>Raza:</strong>
                                             {{ $mascota->raza ?? 'Desconocida' }}</p>
                                         <p class="mascota-detalle"><strong>Sexo:</strong> {{ $mascota->genero }}</p>
+                                        <p class="mascota-detalle"><strong>Ubicación:</strong>
+                                            {{ $mascota->ubicacion ?? 'No especificada' }}</p>
                                         <p class="mascota-detalle"><strong>Estado:</strong>
                                             {{ $mascota->estado ?? 'Desconocido' }}</p>
                                         <p class="mascota-descripcion"></p>
@@ -683,30 +687,39 @@
 
                     const tiposPrincipales = ['perro', 'gato'];
 
+                    function normalize(value) {
+                        return (value || '')
+                            .toString()
+                            .toLowerCase()
+                            .normalize('NFD')
+                            .replace(/[\u0300-\u036f]/g, '');
+                    }
+
                     tarjetas.forEach(card => {
                         const detalles = card.querySelectorAll('.mascota-detalle');
-                        let cardTipo = '';
-                        let cardRaza = '';
-                        let cardSexo = '';
-                        let cardEdad = '';
-                        let cardTamano = '';
-                        let cardEsterilizado = '';
-                        let cardUbicacion = '';
+                        let cardTipo = normalize(card.dataset.tipo);
+                        let cardRaza = normalize(card.dataset.raza);
+                        let cardSexo = normalize(card.dataset.sexo);
+                        let cardEdad = card.dataset.edad || '';
+                        let cardTamano = normalize(card.dataset.tamano);
+                        let cardEsterilizado = normalize(card.dataset.esterilizado);
+                        let cardUbicacion = normalize(card.dataset.ubicacion);
 
-                        detalles.forEach(detalle => {
-                            const label = detalle.querySelector('strong')?.textContent.replace(':', '').trim()
-                                .toLowerCase();
-                            const valor = detalle.textContent.replace(detalle.querySelector('strong')?.textContent,
-                                '').trim().toLowerCase();
+                        if (!cardTipo || !cardRaza || !cardSexo) {
+                            detalles.forEach(detalle => {
+                                const label = normalize(detalle.querySelector('strong')?.textContent.replace(':', '').trim());
+                                const valor = normalize(detalle.textContent.replace(detalle.querySelector('strong')?.textContent,
+                                    '').trim());
 
-                            if (label === 'tipo') cardTipo = valor;
-                            if (label === 'raza') cardRaza = valor;
-                            if (label === 'sexo') cardSexo = valor;
-                            if (label === 'edad') cardEdad = valor;
-                            if (label === 'tamaño') cardTamano = valor;
-                            if (label === 'estado' || label === 'esterilizado') cardEsterilizado = valor;
-                            if (label === 'ubicacion') cardUbicacion = valor;
-                        });
+                                if (label === 'tipo') cardTipo = valor;
+                                if (label === 'raza') cardRaza = valor;
+                                if (label === 'sexo') cardSexo = valor;
+                                if (label === 'edad') cardEdad = valor;
+                                if (label === 'tamano') cardTamano = valor;
+                                if (label === 'estado' || label === 'esterilizado') cardEsterilizado = valor;
+                                if (label === 'ubicacion') cardUbicacion = valor;
+                            });
+                        }
 
                         let mostrar = true;
 
@@ -722,22 +735,31 @@
                         }
 
                         // Filtro raza
-                        if (raza && raza !== '' && cardRaza.toLowerCase().replace(/\s+/g, '-') !== raza) mostrar = false;
+                        if (raza && raza !== '' && normalize(cardRaza).replace(/\s+/g, '-') !== raza) mostrar = false;
 
                         // Filtro sexo
-                        if (sexo && sexo !== '' && cardSexo !== sexo) mostrar = false;
+                        if (sexo && sexo !== '' && normalize(cardSexo) !== normalize(sexo)) mostrar = false;
 
                         // Filtro ubicacion
-                        if (ubicacion && ubicacion !== '' && cardUbicacion !== ubicacion) mostrar = false;
+                        if (ubicacion && ubicacion !== '' && normalize(cardUbicacion) !== normalize(ubicacion)) mostrar = false;
 
-                        // Filtro tamaÃ±o
-                        if (tamano && tamano !== '' && cardTamano !== tamano) mostrar = false;
+                        // Filtro tamaño
+                        if (tamano && tamano !== '' && normalize(cardTamano) !== normalize(tamano)) mostrar = false;
 
                         // Filtro edad
-                        if (edad && edad !== '' && cardEdad !== edad) mostrar = false;
+                        if (edad && edad !== '') {
+                            const edadNum = parseInt(card.dataset.edad || cardEdad, 10);
+                            if (!Number.isNaN(edadNum)) {
+                                if (edad === 'joven' && (edadNum < 1 || edadNum > 6)) mostrar = false;
+                                if (edad === 'adulto' && (edadNum < 7 || edadNum > 12)) mostrar = false;
+                                if (edad === 'viejo' && (edadNum < 13 || edadNum > 20)) mostrar = false;
+                            } else {
+                                mostrar = false;
+                            }
+                        }
 
                         // Filtro esterilizado
-                        if (esterilizado && esterilizado !== '' && cardEsterilizado !== esterilizado) mostrar = false;
+                        if (esterilizado && esterilizado !== '' && normalize(cardEsterilizado) !== normalize(esterilizado)) mostrar = false;
 
                         card.style.display = mostrar ? 'block' : 'none';
                     });

@@ -330,12 +330,18 @@
     /* ===============================
    CONTENEDOR GENERAL
    =============================== */
-    body {
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
         font-family: 'Roboto', Arial, sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #e9bf37 100%);
     }
 
     .publicar-container {
         background: linear-gradient(135deg, #f5f7fa 0%, #e9bf37 100%);
+        min-height: 100vh;
         padding: 30px 20px;
     }
 

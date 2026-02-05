@@ -52,8 +52,7 @@ class MascotasDisponiblesController extends Controller
             $data['documentacion'] = json_encode($files);
         }
 
-        // 'ubicacion' se obtiene por la relación con el usuario, no se guarda en mascotas.
-        unset($data['ubicacion']);
+        // Guardar la ubicación propia de la mascota (campo en tabla `mascotas`).
 
         // Rellenar 'telefono' con los datos del usuario si no viene en el request
         // O forzarlo siempre según lo que indica el usuario.

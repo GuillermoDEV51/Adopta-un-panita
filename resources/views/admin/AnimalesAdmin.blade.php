@@ -174,10 +174,10 @@
                                     <p class="mascota-detalle"><strong>Estado:</strong> {{ $mascota->estado ?? 'Desconocido' }}</p>
                                     <div class="admin-pet-actions">
                                         <a href="{{ route('EditarAnimal', ['id' => $mascota->id]) }}" class="editar-mascota-btn">Editar</a>
-                                        <form action="{{ route('EliminarAnimal', ['id' => $mascota->id]) }}" method="POST" class="eliminar-mascota-form" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta mascota?');">
+                                        <form action="{{ route('EliminarAnimal', ['id' => $mascota->id]) }}" method="POST" class="eliminar-mascota-form delete-pet-form" data-pet-name="{{ $mascota->nombre }}">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="eliminar-mascota-btn">Eliminar</button>
+                                            <button type="button" class="eliminar-mascota-btn js-delete-pet-open">Eliminar</button>
                                         </form>
                                     </div>
                                 </div>
@@ -186,6 +186,17 @@
                     </div>
                 </div>
             </main>
+
+            <div class="confirm-modal" id="deletePetConfirmModal" aria-hidden="true">
+                <div class="confirm-modal-card" role="dialog" aria-modal="true" aria-labelledby="deletePetModalTitle">
+                    <h3 id="deletePetModalTitle">¿Eliminar mascota?</h3>
+                    <p id="deletePetModalText">Esta acción no se puede deshacer.</p>
+                    <div class="confirm-modal-actions">
+                        <button type="button" class="btn-secundario" id="cancelPetDelete">Cancelar</button>
+                        <button type="button" class="btn-danger" id="confirmPetDelete">Eliminar</button>
+                    </div>
+                </div>
+            </div>
 
  <!-- Footer -->
             <footer class="footer">
@@ -273,11 +284,52 @@
         </div>
     </div>
 <script>
-            window.authUser = @json([
-                'isLogged' => auth()->check(),
-                'name' => auth()->user()->nombre ?? null,
-            ]);
-        </script>
+    window.authUser = @json([
+        'isLogged' => auth()->check(),
+        'name' => auth()->user()->nombre ?? null,
+    ]);
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('deletePetConfirmModal');
+  const cancelBtn = document.getElementById('cancelPetDelete');
+  const confirmBtn = document.getElementById('confirmPetDelete');
+  const modalText = document.getElementById('deletePetModalText');
+  let pendingForm = null;
+
+  function openModal(name) {
+    modalText.textContent = `Vas a eliminar a ${name}. Esta acción no se puede deshacer.`;
+    modal.classList.add('is-active');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-active');
+    modal.setAttribute('aria-hidden', 'true');
+    pendingForm = null;
+  }
+
+  document.querySelectorAll('.delete-pet-form').forEach((form) => {
+    const btn = form.querySelector('.js-delete-pet-open');
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      pendingForm = form;
+      const name = form.getAttribute('data-pet-name') || 'esta mascota';
+      openModal(name);
+    });
+  });
+
+  confirmBtn.addEventListener('click', () => {
+    if (pendingForm) pendingForm.submit();
+  });
+
+  cancelBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+});
+</script>
 </body>
 
 </html>

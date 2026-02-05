@@ -158,7 +158,6 @@
                         <form action="{{ route('ActualizarAnimal', $mascota->id) }}" method="POST"
                             enctype="multipart/form-data" class="editar-usuario-form edit-form">
                             @csrf
-                            @method('PUT')
 
                             <div class="form-group">
                                 <!-- ERRORES -->
