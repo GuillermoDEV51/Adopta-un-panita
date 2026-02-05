@@ -403,9 +403,9 @@
                                                 <option value="Sucre"
                                                     {{ old('ubicacion') == 'Sucre' ? 'selected' : '' }}>Sucre
                                                 </option>
-                                                <option value="AnzoÃ¡tegui"
-                                                    {{ old('ubicacion') == 'AnzoÃ¡tegui' ? 'selected' : '' }}>
-                                                    AnzoÃ¡tegui</option>
+                                                <option value="Anzoátegui"
+                                                    {{ old('ubicacion') == 'Anzoátegui' ? 'selected' : '' }}>
+                                                    Anzoátegui</option>
                                                 <option value="Nueva Esparta"
                                                     {{ old('ubicacion') == 'Nueva Esparta' ? 'selected' : '' }}>Nueva
                                                     Esparta</option>
@@ -446,7 +446,7 @@
                                                 style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                                 <option value="" disabled selected>Si/No</option>
                                                 <option value="1" {{ old('vacunado') == '1' ? 'selected' : '' }}>
-                                                    SÃ­</option>
+                                                    Si</option>
                                                 <option value="0" {{ old('vacunado') == '0' ? 'selected' : '' }}>
                                                     No</option>
                                             </select>
@@ -463,7 +463,7 @@
                                                 style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                                 <option value="" disabled selected>Si/No</option>
                                                 <option value="1"
-                                                    {{ old('esterilizado') == '1' ? 'selected' : '' }}>SÃ­</option>
+                                                    {{ old('esterilizado') == '1' ? 'selected' : '' }}>Si</option>
                                                 <option value="0"
                                                     {{ old('esterilizado') == '0' ? 'selected' : '' }}>No</option>
                                             </select>
@@ -586,6 +586,67 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+  const razas = {
+    1: [
+      "Labrador",
+      "Golden Retriever",
+      "Pastor Alemán",
+      "Pug",
+      "Beagle",
+      "Poodle",
+      "Chihuahua",
+      "Boxer",
+      "Dachshund",
+      "Rottweiler",
+      "Husky",
+      "Bulldog Inglés",
+      "Criollo/Mestizo",
+      "Otro"
+    ],
+    2: [
+      "Siamés",
+      "Persa",
+      "Maine Coon",
+      "Bengalí",
+      "Esfinge",
+      "Ragdoll",
+      "British Shorthair",
+      "Abisinio",
+      "Birmano",
+      "Scottish Fold",
+      "Criollo/Mestizo",
+      "Otro"
+    ]
+  };
+
+  function cargarRazas(especie, selected) {
+    const razaSelect = document.getElementById('raza');
+    if (!razaSelect) return;
+    razaSelect.innerHTML = '<option value="">Seleccione</option>';
+    const list = razas[especie];
+    if (!list) return;
+    list.forEach((raza) => {
+      const option = document.createElement('option');
+      option.value = raza;
+      option.textContent = raza;
+      if (selected && selected === raza) {
+        option.selected = true;
+      }
+      razaSelect.appendChild(option);
+    });
+  }
+
+  const especieSelect = document.getElementById('especie');
+  const oldRaza = @json(old('raza'));
+  if (especieSelect) {
+    especieSelect.addEventListener('change', function (e) {
+      cargarRazas(e.target.value, '');
+    });
+    if (especieSelect.value) {
+      cargarRazas(especieSelect.value, oldRaza);
+    }
+  }
+
   const fileInput = document.getElementById('documentacion');
   const fileName = document.getElementById('fileName');
   if (!fileInput || !fileName) return;
