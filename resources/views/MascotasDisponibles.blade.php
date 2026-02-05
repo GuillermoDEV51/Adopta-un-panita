@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap"
         rel="stylesheet">
 
-    @vite(['resources/css/styles.css'])
+    @vite(['resources/css/styles.css', 'resources/css/mascotas-disponibles.css'])
 
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -277,6 +277,8 @@
 
                         </div>
                     </div>
+                        </div>
+
                     </main>
 
                     <!-- Footer -->
@@ -360,7 +362,9 @@
                             </div>
                     </footer>
                 </div>
+                
                 </main>
+
                 @vite(['resources/js/menu.js'])
                 <script>
                     window.authUser = @json([
