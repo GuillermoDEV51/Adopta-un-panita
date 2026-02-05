@@ -34,6 +34,10 @@ const authSection = window.authUser && window.authUser.isLogged
         </a>
       `;
 
+    const publicacionesHref = window.authUser && window.authUser.isLogged
+        ? 'Publicaciones'
+        : 'login';
+
     // HTML del menú
     megaMenu.innerHTML = `
         <button class="mega-menu-close">&times;</button>
@@ -54,7 +58,7 @@ const authSection = window.authUser && window.authUser.isLogged
                         <i class="fas fa-search"></i>
                         <span>Ver mascotas</span>
                     </a>
-                    <a href="Publicaciones" class="mega-menu-item">
+                    <a href="${publicacionesHref}" class="mega-menu-item">
                         <i class="fas fa-list-alt"></i>
                         <span>Publicaciones</span>
                     </a>

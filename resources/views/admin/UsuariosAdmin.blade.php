@@ -53,13 +53,6 @@
 
                 @auth
                 <!-- Mostrar información del usuario autenticado -->
-                <span>
-                  @if(auth()->user()->id_rol == 1)
-                      <span>eres admin</span>
-                      @else
-                      <span>eres normal</span>
-                  @endif
-                </span>
 
 
                 <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
@@ -140,7 +133,8 @@
             </div>
           </div>
         </aside>
-      
+        
+        <div class="main-content">
             <div class="paginas-section">
               <div class="titulo-wrapper">
                 <h1 class="paginas-title">Usuarios Registrados</h1>
@@ -151,8 +145,9 @@
               </div>
             </div>
 
-            <div class="">
-              <table class="">
+            <div class="usuarios-card">
+              <div class="usuarios-table-wrap">
+                <table class="usuarios-table">
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -172,16 +167,29 @@
                     <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
                     <td>
                       <a href="{{ route('EditarUsuario', $usuario->id) }}" class="editar-btn">Editar</a>
-                      <form action="{{ route('EliminarUsuario', $usuario->id) }}" method="POST" style="display:inline;">
+                      <form action="{{ route('EliminarUsuario', $usuario->id) }}" method="POST" class="delete-user-form" data-user-name="{{ $usuario->nombre }}">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="eliminar-btn" onclick="return confirm('¿Estás seguro de que deseas eliminar este usuario?')">Eliminar</button>
+                        <button type="button" class="eliminar-btn js-delete-open">Eliminar</button>
                       </form>
                     </td>
                   </tr>
                   @endforeach
                 </tbody>
-              </table>
+                </table>
+              </div>
+              </div>
+            </div>
+            <div class="confirm-modal" id="deleteConfirmModal" aria-hidden="true">
+              <div class="confirm-modal-card" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+                <h3 id="deleteModalTitle">¿Eliminar usuario?</h3>
+                <p id="deleteModalText">Esta acción no se puede deshacer.</p>
+                <div class="confirm-modal-actions">
+                  <button type="button" class="btn-secundario" id="cancelDelete">Cancelar</button>
+                  <button type="button" class="btn-danger" id="confirmDelete">Eliminar</button>
+                </div>
+              </div>
+            </div>
 
       </main>
       
@@ -268,4 +276,44 @@
   </main>
   
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const modal = document.getElementById('deleteConfirmModal');
+  const cancelBtn = document.getElementById('cancelDelete');
+  const confirmBtn = document.getElementById('confirmDelete');
+  const modalText = document.getElementById('deleteModalText');
+  let pendingForm = null;
+
+  function openModal(name) {
+    modalText.textContent = `Vas a eliminar a ${name}. Esta acción no se puede deshacer.`;
+    modal.classList.add('is-active');
+    modal.setAttribute('aria-hidden', 'false');
+  }
+
+  function closeModal() {
+    modal.classList.remove('is-active');
+    modal.setAttribute('aria-hidden', 'true');
+    pendingForm = null;
+  }
+
+  document.querySelectorAll('.delete-user-form').forEach((form) => {
+    const btn = form.querySelector('.js-delete-open');
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      pendingForm = form;
+      const name = form.getAttribute('data-user-name') || 'este usuario';
+      openModal(name);
+    });
+  });
+
+  confirmBtn.addEventListener('click', () => {
+    if (pendingForm) pendingForm.submit();
+  });
+
+  cancelBtn.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+});
+</script>
 </html>

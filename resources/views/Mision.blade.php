@@ -50,14 +50,6 @@
           <div class="nav-auth">
 
                 @auth
-                <!-- Mostrar información del usuario autenticado -->
-                <span>
-                  @if(auth()->user()->id_rol == 1)
-                      <span>eres admin</span>
-                      @else
-                      <span>eres normal</span>
-                  @endif
-                </span>
 
 
                 <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>

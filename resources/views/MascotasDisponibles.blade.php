@@ -55,15 +55,6 @@
                             <div class="nav-auth">
 
                                 @auth
-                                    <!-- Mostrar información del usuario autenticado -->
-                                    <span>
-                                        @if (auth()->user()->id_rol == 1)
-                                            <span>eres admin</span>
-                                        @else
-                                            <span>eres normal</span>
-                                        @endif
-                                    </span>
-
 
                                     <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
                                         {{ auth()->user()->apellido }}</a>
@@ -138,7 +129,8 @@
                                 <span>Limpiar Filtros</span>
                             </button>
                         </div>
-
+  </div>
+  
                         <style>
                             .btn-agregar-compacto {
                                 display: inline-flex;
@@ -171,6 +163,7 @@
                                     <!-- Las opciones se llenarán dinámicamente -->
                                 </select>
                             </div>
+                          
 
                             <div class="filtro-grupo-compacto">
                                 <label for="ubicacion" class="filtro-label-compacto">
@@ -231,10 +224,12 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Fin Sistema de Filtros Compacto -->
+                    <!-- Fin Sistema de Filtros Compacto -->
 
-                        <!--tarjetas de mascotas -->
+                    <!--tarjetas de mascotas -->
+                    <main>
                         <div class="mascotas-grid">
 
 
@@ -277,10 +272,8 @@
                             @endforeach
 
                         </div>
-                    </div>
-                        </div>
-
                     </main>
+                </div>
 
                     <!-- Footer -->
                     <footer class="footer">
@@ -361,10 +354,10 @@
                             <div class="footer-bottom">
                                 <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
                             </div>
+                        </div>
                     </footer>
                 </div>
-                
-                </main>
+            </div>
 
                 @vite(['resources/js/menu.js'])
                 <script>

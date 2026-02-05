@@ -57,15 +57,6 @@
                             <div class="nav-auth">
 
                                 @auth
-                                    <!-- Mostrar información del usuario autenticado -->
-                                    <span>
-                                        @if (auth()->user()->id_rol == 1)
-                                            <span>eres admin</span>
-                                        @else
-                                            <span>eres normal</span>
-                                        @endif
-                                    </span>
-
 
                                     <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
                                         {{ auth()->user()->apellido }}</a>
@@ -150,19 +141,19 @@
                     </div>
                 </aside>
 
-                <div class="paginas-section">
-                    <div class="titulo-wrapper">
-                        <h1 class="paginas-title">Registrar Usuario</h1>
-                        <div class="titulo-line" aria-hidden="true"></div>
+                <div class="main-content">
+                    <div class="paginas-section">
+                        <div class="titulo-wrapper">
+                            <h1 class="paginas-title">Editar Usuario</h1>
+                            <div class="titulo-line" aria-hidden="true"></div>
+                        </div>
                     </div>
-                </div>
 
+                    <div class="form-actions">
+                        <a href="{{ route('UsuariosAdmin') }}" class="btn-volver">Volver a Usuarios</a>
+                    </div>
 
-
-                <a href="{{ route('UsuariosAdmin') }}" class="btn btn-secondary">Volver a Usuarios</a>
-
-
-                <div class="">
+                    <div class="usuarios-card">
 
 
                     @if (session('success'))
@@ -176,52 +167,53 @@
                             {{ session('error') }}
                         </div>
                     @endif
-                    <form action="{{ route('ActualizarUsuario', $usuario->id) }}" method="POST" class="">
+                    <form action="{{ route('ActualizarUsuario', $usuario->id) }}" method="POST" class="editar-usuario-form">
                         @csrf
                         @method('PUT')
                         
-                        <div class="">
-                            <label for="nombre">Nombre:</label>
-                            <input type="text" id="nombre" name="nombre"
-                                value="{{ old('nombre', $usuario->nombre) }}" required>
-                        </div>
-                        <div class="">
-                            <label for="apellido">Apellido:</label>
-                            <input type="text" id="apellido" name="apellido"
-                                value="{{ old('apellido', $usuario->apellido) }}" required>
-                        </div>
-                        <div class="">
-                            <label for="password">Contraseña:</label>
-                            <input type="password" id="password" name="password"  required>
-                        </div>
-                        <div class="form-group2">
-                            <input type="password" name="password_confirmation" class="form-input" 
-                                placeholder="Confirmar contraseña" required>
-                        </div>
-                        <div class="form-group2">
-                            <input type="tel" name="telefono" class="form-input"
-                                placeholder="Número de teléfono" pattern="[0-9]*" inputmode="numeric"
-                                oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="11"
-                                value="{{ old('telefono', $usuario->telefono) }}" required>
-                        </div>
-                        <div class="form-group2">
-                            <label for="id_rol">Rol:</label>
-                            <select name="id_rol" id="id_rol" class="form-input" required>
-                                <option value="">Seleccionar rol</option>
-                                @foreach ($roles as $rol)
-                                    <option value="{{ $rol->id }}"
-                                        {{ old('id_rol') == $rol->id ? 'selected' : '' }}>
-                                        {{ $rol->nombre ?? ($rol->name ?? 'Rol ' . $rol->id) }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('id_rol')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                        </div>
-                        <div class="form-group2">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" id="nombre" name="nombre" class="form-input"
+                                    value="{{ old('nombre', $usuario->nombre) }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input type="text" id="apellido" name="apellido" class="form-input"
+                                    value="{{ old('apellido', $usuario->apellido) }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="form-label">Contraseña</label>
+                                <input type="password" id="password" name="password" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
+                                <input type="password" id="password_confirmation" name="password_confirmation" class="form-input" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="tel" id="telefono" name="telefono" class="form-input"
+                                    placeholder="Número de teléfono" pattern="[0-9]*" inputmode="numeric"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="11"
+                                    value="{{ old('telefono', $usuario->telefono) }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="id_rol" class="form-label">Rol</label>
+                                <select name="id_rol" id="id_rol" class="form-input" required>
+                                    <option value="">Seleccionar rol</option>
+                                    @foreach ($roles as $rol)
+                                        <option value="{{ $rol->id }}"
+                                            {{ old('id_rol') == $rol->id ? 'selected' : '' }}>
+                                            {{ $rol->nombre ?? ($rol->name ?? 'Rol ' . $rol->id) }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('id_rol')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
                             {{-- FECHA DE NACIMIENTO --}}
-                            <div class="form-group2">
+                            <div class="form-group form-group--full">
 
                                 <label class="form-label">Fecha de nacimiento</label>
 
@@ -254,8 +246,9 @@
                                 @enderror
 
                             </div>
-                            <div class="form-group2">
-                                <select class="form-input" name="ubicacion" required>
+                            <div class="form-group form-group--full">
+                                <label for="ubicacion" class="form-label">Ubicación</label>
+                                <select class="form-input" id="ubicacion" name="ubicacion" required>
                                     <option value="">Ubicación</option>
                                     <option value="Caracas">Caracas</option>
                                     <option value="Miranda">Miranda</option>
@@ -268,24 +261,27 @@
                                     <option value="Nueva Esparta">Nueva Esparta</option>
                                 </select>
                             </div>
-                            <div class="">
-                                <button type="submit">Actualizar Usuario</button>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn-primario">Actualizar Usuario</button>
+                        </div>
+
+
+                        <!-- Mostrar errores generales si existen -->
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
                             </div>
-
-
-                            <!-- Mostrar errores generales si existen -->
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                        @endif
                     </form>
                 </div>
 
+                </div>
 
             </main>
 
@@ -371,11 +367,10 @@
                     <div class="footer-bottom">
                         <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
                     </div>
+                </div>
             </footer>
         </div>
-        </main>
 
-       
 </body>
  <script>
 document.addEventListener('DOMContentLoaded', function () {

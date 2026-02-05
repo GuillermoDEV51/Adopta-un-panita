@@ -51,11 +51,11 @@ const authSection = window.authUser && window.authUser.isLogged
             <div class="mega-menu-section">
                 <h4 class="mega-menu-section-title">Mascotas</h4>
                 <div class="mega-menu-items">
-                    <a href="MascotasDisponibles" class="mega-menu-item">
+                    <a href="/MascotasDisponibles" class="mega-menu-item">
                         <i class="fas fa-search"></i>
                         <span>Ver mascotas</span>
                     </a>
-                    <a href="Publicaciones" class="mega-menu-item">
+                    <a href="/Publicaciones" class="mega-menu-item">
                         <i class="fas fa-list-alt"></i>
                         <span>Publicaciones</span>
                     </a>
@@ -67,15 +67,12 @@ const authSection = window.authUser && window.authUser.isLogged
             <div class="mega-menu-section">
                 <h4 class="mega-menu-section-title">Información</h4>
                 <div class="mega-menu-items">
-                    <a href="PreguntasFrecuentes" class="mega-menu-item">
-                        <i class="fas fa-question-circle"></i>
-                        <span>Preguntas Frecuentes</span>
-                    </a>
-                    <a href="Donativos" class="mega-menu-item">
+                
+                    <a href="/Donativos" class="mega-menu-item">
                         <i class="fas fa-hand-holding-heart"></i>
                         <span>Donaciones</span>
                     </a>
-                    <a href="RefugiosDisponibles" class="mega-menu-item">
+                    <a href="/RefugiosDisponibles" class="mega-menu-item">
                         <i class="fas fa-home"></i>
                         <span>Refugios Disponibles</span>
                     </a>

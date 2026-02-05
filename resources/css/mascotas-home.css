@@ -46,12 +46,7 @@
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-}
-
-.mascota-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.12);
+  cursor: default;
 }
 
 /* ===============================
@@ -92,11 +87,3 @@
   font-weight: 600;
 }
 
-/* ===============================
-   MICRO EFECTO IMAGEN
-   =============================== */
-
-.mascota-card:hover .mascota-foto {
-  transform: scale(1.05);
-  transition: transform 0.4s ease;
-}
