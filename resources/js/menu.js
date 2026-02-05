@@ -66,10 +66,7 @@ const authSection = window.authUser && window.authUser.isLogged
             <div class="mega-menu-section">
                 <h4 class="mega-menu-section-title">Información</h4>
                 <div class="mega-menu-items">
-                    <a href="PreguntasFrecuentes" class="mega-menu-item">
-                        <i class="fas fa-question-circle"></i>
-                        <span>Preguntas Frecuentes</span>
-                    </a>
+                
                     <a href="Donativos" class="mega-menu-item">
                         <i class="fas fa-hand-holding-heart"></i>
                         <span>Donaciones</span>

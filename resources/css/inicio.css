@@ -460,7 +460,7 @@ button.mega-menu-item {
   top: 0;
   left: 0;
   width: 100%;
-  height: 120%;
+  height: 115%;
   z-index: 1;
 }
 
@@ -642,15 +642,16 @@ button.mega-menu-item {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 32px;
-  margin: 60px 0;
-  min-height: 400px; /* Altura mínima para el espacio */
+  margin-top: 60px;
+  margin-bottom: 20px; /* ⬅️ mucho más chico */
+  min-height: 200px; /* Altura mínima para el espacio */
 }
 
 /* Placeholder mientras carga el backend */
 .pets-placeholder {
   grid-column: 1 / -1;
   text-align: center;
-  padding: 60px 20px;
+  padding: 50px 20px 20px;
 }
 
 .pets-placeholder p {
@@ -661,9 +662,10 @@ button.mega-menu-item {
 }
 
 .pets-footer {
+  
   text-align: center;
-  margin-top: 40px;
-  display: flex;
+  margin-top: 0;
+   display: flex;
   justify-content: center;
   gap: 40px;
 }

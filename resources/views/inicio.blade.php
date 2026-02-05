@@ -19,7 +19,9 @@
   'resources/css/inicio.css',
   'resources/js/menu.js',
   'resources/js/publicar-panita.js',
-  'resources/css/modal-publicar.css'
+  'resources/css/modal-publicar.css',
+  'resources/css/mascotas-home.css'
+  
 ])
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -180,6 +182,7 @@
         <div class="impact-container">
           <div class="impact-header">
             <h2 class="impact-title">Nuestro impacto</h2>
+            
             <p class="impact-subtitle">Transformamos la vida de Todos nuestros Panitas</p>
           </div>
           
@@ -299,7 +302,7 @@
           </div>
           
           <div class="pets-footer">
-            <a href="#" class="view-all-btn">Ver más refugios</a>
+            <a href="RefugiosDisponibles" class="view-all-btn">Ver más refugios</a>
           </div>
         </div>
       </section> 
