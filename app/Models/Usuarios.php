@@ -20,6 +20,7 @@ class Usuarios extends Authenticatable
         'telefono',
         'ubicacion',
         'id_rol',
+        'estado_verificacion',
     ];
 
     protected $hidden = [

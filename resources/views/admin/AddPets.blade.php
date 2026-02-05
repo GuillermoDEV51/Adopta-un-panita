@@ -146,7 +146,9 @@
                         <h1 class="paginas-title">Añadir nueva mascota</h1>
                         <div class="titulo-line" aria-hidden="true">
 
-
+                            <a href="{{ route('AdminAnimales') }}" class="back-link">
+                                ← Volver a mascotas </a>
+                                
                             <div class="">
                                 <form id="publicarForm" method="POST" action="{{ route('publicar2') }}"
                                     enctype="multipart/form-data">
@@ -471,7 +473,7 @@
                                     <!-- Botón de envío -->
                                     <div
                                         style="display:flex;justify-content:center;gap:20px;margin-top:40px;padding-bottom: 40px;">
-                                        <a href="{{ route('MascotasDisponibles') }}" class="submit-btn"
+                                        <a href="{{ route('AdminAnimales') }}" class="submit-btn"
                                             style="padding: 12px 30px; background: #f0f0f0; color: #333; border: none; border-radius: 6px; font-size: 16px; cursor: pointer; text-decoration: none; text-align: center;">Cancelar</a>
                                         <button type="submit" class="submit-bt" id="submitBtn">
                                             <span class="btn-text">Publicar Mascota</span>

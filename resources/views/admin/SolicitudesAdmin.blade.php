@@ -1,234 +1,411 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
-  <meta name="description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
-  <meta name="keywords" content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
-  
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
-  <meta property="og:description" content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
-  
-@vite(['resources/css/stylessadmin.css', 'resources/js/menuadmin.js'])
-<meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script>
-    window.ASSETS_URL = "{{ asset('') }}";
-</script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
+    <meta name="description"
+        content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
+    <meta name="keywords"
+        content="adopción mascotas, refugios animales, dashboard, PanitasPet, gestionar mascotas, voluntarios">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Inicio - PanitasPet | Adopción y Refugios de Mascotas">
+    <meta property="og:description"
+        content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap"
+        rel="stylesheet">
+
+    @vite(['resources/css/stylessadmin.css', 'resources/js/menuadmin.js'])
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        window.ASSETS_URL = "{{ asset('') }}";
+    </script>
 </head>
 
 <body>
-  <div class="main-container">
-    <div class="content-wrapper">
+    <div class="main-container">
+        <div class="content-wrapper">
 
-      <header class="header">
-        <div class="header-content">
-          <h1 class="logo">
-            <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
+            <header class="header">
+                <div class="header-content">
+                    <h1 class="logo">
+                        <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
 
-            <span class="brand-text">
-              <span class="logo-text">PanitasPet</span>
-              <span class="logo-subtitle">Adopción y refugios</span>
-            </span>
-          </h1>
-           <nav class="nav-section">
-            <div class="nav-menu">
-              <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
-              <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
-              <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
-            </div>
+                        <span class="brand-text">
+                            <span class="logo-text">PanitasPet</span>
+                            <span class="logo-subtitle">Adopción y refugios</span>
+                        </span>
+                    </h1>
+                    <nav class="nav-section">
+                        <div class="nav-menu">
+                            <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+                            <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+                            <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+                        </div>
 
 
-            <!-- Authentication Links -->
-        @if (Route:: has('login'))
+                        <!-- Authentication Links -->
+                        @if (Route::has('login'))
 
-          <div class="nav-auth">
+                            <div class="nav-auth">
 
                 @auth
 
 
-                <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
-                <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                  @csrf
+                                    <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
+                                        {{ auth()->user()->apellido }}</a>
+                                    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
+                                        @csrf
 
-                </form>
+                                    </form>
+                                @else
+                                    <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
 
-                 @else
-
-                  
-                  <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
-                  
-                @endauth
-          </div> 
-        @endif
+                                @endauth
+                            </div>
+                        @endif
 
 
-            <div class="menu-lines" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </nav>
-        </div>
-      </header>
-      
-      
-      
-      
-      <!-- Dashboard Main Content -->
-      <main class="dashboard-container">
-        <!-- Sidebar Menu -->
-        <aside class="sidebar">
-          <div class="menu-section">
-            <h2 class="menu-title">Menú</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-tachometer-alt"></i>
-                <a href="{{ route('Dashboard') }}" style="color:inherit; text-decoration:none;">Dashboard</a>
-              </div>
-              <div class="menu-item active">
-                <i class="fas fa-clipboard-list"></i>
-                <a href="{{ route('SolicitudesAdmin') }}" style="color:inherit; text-decoration:none;">Solicitudes</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-plus-circle"></i>
-                <a href="{{ route('AñadirRefugio') }}" style="color:inherit; text-decoration:none;">Añadir refugios</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="menu-section">
-            <h2 class="menu-title">Páginas</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-home"></i>
-                <a href="{{ route('RefugiosAdmin') }}" style="color:inherit; text-decoration:none;">Refugios</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-users"></i>
-                <a href="{{ route('UsuariosAdmin') }}" style="color:inherit; text-decoration:none;">Usuarios</a>
-              </div>
-            </div>
-          </div>
-          
-<div class="menu-section">
-  <h2 class="menu-title">Mascotas</h2>
-  <div class="menu-list">
-    <div class="menu-item">
-      <i class="fas fa-paw"></i>
-<a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
-    Animales
-</a>
-    </div>
-              <div class="menu-item">
-                <i class="fas fa-sign-out-alt"></i>
-                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
-              </div>
-            </div>
-          </div>
-        </aside>
-      
-            <div class="paginas-section">
-              <div class="titulo-wrapper">
-                <h1 class="paginas-title">Solicitudes Recibidas</h1>
-                <div class="titulo-line" aria-hidden="true"></div>
-              </div>
-            </div>
-      </main>
-      
-      <!-- Footer -->
-      <footer class="footer">
-        <div class="footer-content">
-          <div class="footer-left">
-            <div class="footer-logo-section">
-<img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
-
-            <span class="brand-text">
-              <span class="footer-brand">PanitasPet</span>
-              <span class="logo-subtitle">Adopción y refugios</span>
-            </span>
-            </div>
-
-            <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para combatir el abandono y la sobrepoblación.</p>
-
-            <div class="footer-badges">
-              <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
-              <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
-            </div>
-
-            <div class="social-icons">
-              <a href="#" class="social-btn" aria-label="Icono 1">
-<img src="{{ asset('images/icono1.png') }}" class="circle-icon">
-              </a>
-              <a href="#" class="social-btn" aria-label="Icono 2">
-                <img src="{{ asset('images/icono2.png') }}" alt="icono2" class="circle-icon">
-              </a>
-              <a href="#" class="social-btn" aria-label="Icono 3">
-                <img src="{{ asset('images/icono3.png') }}" alt="icono3" class="circle-icon">
-              </a>
-              <a href="#" class="social-btn" aria-label="Icono 4">
-                <img src="{{ asset('images/icono4.png') }}" alt="icono4" class="circle-icon">
-              </a>
-            </div>
-          </div>
-
-          <div class="footer-links">
-            <h4 class="footer-column-title">Enlaces rápidos</h4>
-            <ul class="footer-list">
-              <a href="MascotasDisponibles">Mascotas en adopción</a>
-              <a href="RefugiosDisponibles">Refugios</a>
-              <a href="Mision">Misión y visión</a>    
-            </ul>
-          </div>
-
-          <div class="footer-services">
-            <h4 class="footer-column-title">Servicios</h4>
-            <ul class="footer-list">
-              <a href="Donativos">Donaciones</a>           
-              <a href="Voluntariado">Voluntariado</a>
-              <a href="Registro">Registrarse</a>
-            </ul>
-          </div>
-
-          <div class="footer-contact">
-            <h4 class="footer-column-title">Contacto</h4>
-            <div class="contact-info">
-              <div class="contact-item">
-                <img src="{{ asset('images/img_mail.svg') }}" class="contact-icon">
-                <div>
-                  <div style="font-weight:700;color:#af7700">Email</div>
-                  <div class="contact-text">panitapet@gmail.com</div>
+                        <div class="menu-lines" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </nav>
                 </div>
-              </div>
+            </header>
 
-              <div class="contact-item">
-                <img src="{{ asset('images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
-                <div>
-                  <div style="font-weight:700;color:#af7700">Teléfono</div>
-                  <div class="contact-text">+58 414 1234567</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        
-        <div class="footer-bottom">
-          <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
+
+
+
+            <!-- Dashboard Main Content -->
+            <main class="dashboard-container">
+                <!-- Sidebar Menu -->
+                <aside class="sidebar">
+                    <div class="menu-section">
+                        <h2 class="menu-title">Menú</h2>
+                        <div class="menu-list">
+                            <div class="menu-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <a href="{{ route('Dashboard') }}"
+                                    style="color:inherit; text-decoration:none;">Dashboard</a>
+                            </div>
+                            <div class="menu-item active">
+                                <i class="fas fa-clipboard-list"></i>
+                                <a href="{{ route('SolicitudesAdmin') }}"
+                                    style="color:inherit; text-decoration:none;">Solicitudes</a>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-plus-circle"></i>
+                                <a href="{{ route('AñadirRefugio') }}"
+                                    style="color:inherit; text-decoration:none;">Añadir refugios</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-section">
+                        <h2 class="menu-title">Páginas</h2>
+                        <div class="menu-list">
+                            <div class="menu-item">
+                                <i class="fas fa-home"></i>
+                                <a href="{{ route('RefugiosAdmin') }}"
+                                    style="color:inherit; text-decoration:none;">Refugios</a>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-users"></i>
+                                <a href="{{ route('UsuariosAdmin') }}"
+                                    style="color:inherit; text-decoration:none;">Usuarios</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-section">
+                        <h2 class="menu-title">Mascotas</h2>
+                        <div class="menu-list">
+                            <div class="menu-item">
+                                <i class="fas fa-paw"></i>
+                                <a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
+                                    Animales
+                                </a>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar
+                                    sesión</a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="paginas-section">
+                    <div class="titulo-wrapper">
+                        <h1 class="paginas-title">Solicitudes Recibidas</h1>
+                        <div class="titulo-line" aria-hidden="true"></div>
+
+                        <div class="table-container" style="margin-top: 40px; width: 100%; overflow-x: auto;">
+                            <table class="solicitudes-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Usuario</th>
+                                        <th>Mascota</th>
+                                        <th>Mensaje</th>
+                                        <th>Fecha</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse($solicitudes as $solicitud)
+                                        <tr>
+                                            <td>{{ $solicitud->id }}</td>
+                                            <td>
+                                                <div class="user-info-cell">
+                                                    <span class="user-name">{{ $solicitud->usuario->nombre ?? 'N/A' }}
+                                                        {{ $solicitud->usuario->apellido ?? '' }}</span>
+                                                    <span
+                                                        class="user-email">{{ $solicitud->usuario->telefono ?? '' }}</span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="pet-info-cell">
+                                                    @if ($solicitud->mascota && $solicitud->mascota->foto)
+                                                        <img src="{{ asset('storage/mascotas/' . $solicitud->mascota->foto) }}"
+                                                            alt="Foto" class="pet-thumb">
+                                                    @endif
+                                                    <span>{{ $solicitud->mascota->nombre ?? 'Mascota eliminada' }}</span>
+                                                </div>
+                                            </td>
+                                            <td class="mensaje-cell" title="{{ $solicitud->mensaje }}">
+                                                {{ Str::limit($solicitud->mensaje, 50) }}
+                                            </td>
+                                            <td>{{ $solicitud->created_at->format('d/m/Y') }}</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge status-{{ strtolower($solicitud->estado) }}">
+                                                    {{ ucfirst($solicitud->estado) }}
+                                                </span>
+                                            </td>
+                                            <td>
+                                                @if ($solicitud->estado == 'pendiente')
+                                                    <button class="btn-action btn-approve" title="Aprobar"><i
+                                                            class="fas fa-check"></i></button>
+                                                    <button class="btn-action btn-reject" title="Rechazar"><i
+                                                            class="fas fa-times"></i></button>
+                                                @else
+                                                    <span class="text-muted">-</span>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="7" style="text-align: center; padding: 20px;">No hay
+                                                solicitudes de adopción pendientes.</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <style>
+                            .solicitudes-table {
+                                width: 100%;
+                                border-collapse: collapse;
+                                background: white;
+                                border-radius: 12px;
+                                overflow: hidden;
+                                box-shadow: 0 4px 15px rgba(155, 107, 1, 0.1);
+                            }
+
+                            .solicitudes-table th {
+                                background: #ebdcbb;
+                                color: #9b6b01;
+                                padding: 15px;
+                                text-align: left;
+                                font-weight: 700;
+                            }
+
+                            .solicitudes-table td {
+                                padding: 15px;
+                                border-bottom: 1px solid #f0f0f0;
+                                color: #555;
+                                vertical-align: middle;
+                            }
+
+                            .solicitudes-table tr:last-child td {
+                                border-bottom: none;
+                            }
+
+                            .pet-thumb {
+                                width: 40px;
+                                height: 40px;
+                                border-radius: 50%;
+                                object-fit: cover;
+                                border: 2px solid #ebdcbb;
+                                margin-right: 10px;
+                            }
+
+                            .pet-info-cell,
+                            .user-info-cell {
+                                display: flex;
+                                align-items: center;
+                            }
+
+                            .user-info-cell {
+                                flex-direction: column;
+                                align-items: flex-start;
+                            }
+
+                            .user-email {
+                                font-size: 12px;
+                                color: #888;
+                            }
+
+                            .status-badge {
+                                padding: 5px 10px;
+                                border-radius: 20px;
+                                font-size: 12px;
+                                font-weight: 600;
+                            }
+
+                            .status-pendiente {
+                                background: #fff3cd;
+                                color: #856404;
+                            }
+
+                            .status-aprobada {
+                                background: #d4edda;
+                                color: #155724;
+                            }
+
+                            .status-rechazada {
+                                background: #f8d7da;
+                                color: #721c24;
+                            }
+
+                            .btn-action {
+                                border: none;
+                                padding: 8px;
+                                border-radius: 6px;
+                                cursor: pointer;
+                                margin-right: 5px;
+                                transition: transform 0.2s;
+                            }
+
+                            .btn-action:hover {
+                                transform: scale(1.1);
+                            }
+
+                            .btn-approve {
+                                background: #d4edda;
+                                color: #155724;
+                            }
+
+                            .btn-reject {
+                                background: #f8d7da;
+                                color: #721c24;
+                            }
+                        </style>
+            </main>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <div class="footer-logo-section">
+                            <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo"
+                                class="footer-logo">
+
+                            <span class="brand-text">
+                                <span class="footer-brand">PanitasPet</span>
+                                <span class="logo-subtitle">Adopción y refugios</span>
+                            </span>
+                        </div>
+
+                        <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en
+                            Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para
+                            combatir el abandono y la sobrepoblación.</p>
+
+                        <div class="footer-badges">
+                            <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
+                            <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
+                        </div>
+
+                        <div class="social-icons">
+                            <a href="#" class="social-btn" aria-label="Icono 1">
+                                <img src="{{ asset('images/icono1.png') }}" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 2">
+                                <img src="{{ asset('images/icono2.png') }}" alt="icono2" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 3">
+                                <img src="{{ asset('images/icono3.png') }}" alt="icono3" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 4">
+                                <img src="{{ asset('images/icono4.png') }}" alt="icono4" class="circle-icon">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-column-title">Enlaces rápidos</h4>
+                        <ul class="footer-list">
+                            <a href="MascotasDisponibles">Mascotas en adopción</a>
+                            <a href="RefugiosDisponibles">Refugios</a>
+                            <a href="Mision">Misión y visión</a>
+                        </ul>
+                    </div>
+
+                    <div class="footer-services">
+                        <h4 class="footer-column-title">Servicios</h4>
+                        <ul class="footer-list">
+                            <a href="Donativos">Donaciones</a>
+                            <a href="Voluntariado">Voluntariado</a>
+                            <a href="Registro">Registrarse</a>
+                        </ul>
+                    </div>
+
+                    <div class="footer-contact">
+                        <h4 class="footer-column-title">Contacto</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <img src="{{ asset('images/img_mail.svg') }}" class="contact-icon">
+                                <div>
+                                    <div style="font-weight:700;color:#af7700">Email</div>
+                                    <div class="contact-text">panitapet@gmail.com</div>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <img src="{{ asset('images/img_call_end.svg') }}" alt="Phone"
+                                    class="contact-icon">
+                                <div>
+                                    <div style="font-weight:700;color:#af7700">Teléfono</div>
+                                    <div class="contact-text">+58 414 1234567</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-bottom">
+                        <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
+                    </div>
+            </footer>
         </div>
-      </footer>
-    </div>
-  </main>
-    <script>
-window.authUser = @json([
-    'isLogged' => auth()->check(),
-    'name' => auth()->user()->nombre ?? null,
-]);
-</script>
+        </main>
+        <script>
+            window.authUser = @json([
+                'isLogged' => auth()->check(),
+                'name' => auth()->user()->nombre ?? null,
+            ]);
+        </script>
 </body>
+
 </html>
