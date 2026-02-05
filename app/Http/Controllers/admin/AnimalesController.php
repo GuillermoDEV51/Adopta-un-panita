@@ -31,7 +31,7 @@ class AnimalesController extends Controller
     {
         $mascota = Mascotas::findOrFail($id);
         $especies = Especie::all();
-        return view('admin.EditarAnimal', compact('mascota', 'especies'));
+        return view('admin.EditPets', compact('mascota', 'especies'));
     }
 
 
@@ -54,7 +54,7 @@ class AnimalesController extends Controller
         if (!Auth::check()) {
             return back()->withErrors(['error' => 'Debes iniciar sesión para publicar.']);
         }
-        
+
 
         $data = $request->validated();
         $data['id_usuario'] = Auth::user()->id;

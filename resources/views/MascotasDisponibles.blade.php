@@ -245,10 +245,11 @@
                                     data-tipo="{{ $mascota->especie->nombre ?? 'Sin especie' }}"
                                     data-raza="{{ $mascota->raza ?? 'Desconocida' }}"
                                     data-sexo="{{ $mascota->genero }}"
-                                    data-ubicacion="{{ $mascota->ubicacion ?? 'No especificada' }}"
+                                    data-ubicacion="{{ $mascota->usuario->ubicacion ?? 'No especificada' }}"
                                     data-descripcion="{{ $mascota->descripcion ?? '' }}"
                                     data-foto="{{ asset('storage/mascotas/' . $mascota->foto) }}"
-                                    data-telefono="{{ $mascota->usuario->telefono ?? '' }}">
+                                    data-telefono="{{ $mascota->usuario->telefono ?? '' }}"
+                                    >
 
                                     <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}"
                                         alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">

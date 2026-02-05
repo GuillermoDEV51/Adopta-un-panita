@@ -56,8 +56,9 @@ public function publicar2(MascotasRequest $request) {
         }
         $data['documentacion'] = json_encode($files); // O implode(',', $files)
     }
-     unset($data['telefono']);  // Error en imagen
-    unset($data['ubicacion']);
+    
+    unset($data['telefono']);  // Error en imagen
+    unset($data['ubicacion']);  // Eliminar campos no necesarios
     Mascotas::create($data);
 
     // 🔹 Redirigir a la lista de mascotas disponibles
