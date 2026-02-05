@@ -584,6 +584,21 @@
         </script>
 </body>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const fileInput = document.getElementById('documentacion');
+  const fileName = document.getElementById('fileName');
+  if (!fileInput || !fileName) return;
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files && fileInput.files.length > 0) {
+      fileName.textContent = `${fileInput.files.length} archivo(s) seleccionado(s)`;
+    } else {
+      fileName.textContent = 'Ningún archivo seleccionado';
+    }
+  });
+});
+</script>
 </html>
 
 

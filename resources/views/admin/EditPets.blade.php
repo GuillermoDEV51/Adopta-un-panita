@@ -185,12 +185,13 @@
                                             hidden>
                                         <label for="fotoMascota" class="photo-box"
                                             style="display: block; width: 100%; height: 300px; border: 2px dashed #af7700; border-radius: 8px; cursor: pointer; overflow: hidden; position: relative; background: #f9f9f9;">
-                                            <div
+                                            <div class="photo-placeholder"
                                                 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
                                                 <span style="color:#af7700; font-size: 16px;">📷 Añadir foto</span>
                                             </div>
                                             <img id="previewFoto" alt=""
-                                                style="width: 100%; height: 100%; object-fit: cover; display: none;" />
+                                                src="{{ asset('storage/mascotas/' . $mascota->foto) }}"
+                                                style="width: 100%; height: 100%; object-fit: cover; display: block;" />
                                         </label>
                                         @error('foto')
                                             <span class="text-danger"
@@ -273,13 +274,13 @@
                                                     style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                                     <option value="">Seleccione</option>
                                                     <option value="Pequeño"
-                                                        {{ old('tamano') == 'Pequeño' ? 'selected' : '' }}>
+                                                        {{ old('tamano', $mascota->tamano) == 'Pequeño' ? 'selected' : '' }}>
                                                         Pequeño</option>
                                                     <option value="Mediano"
-                                                        {{ old('tamano') == 'Mediano' ? 'selected' : '' }}>
+                                                        {{ old('tamano', $mascota->tamano) == 'Mediano' ? 'selected' : '' }}>
                                                         Mediano</option>
                                                     <option value="Grande"
-                                                        {{ old('tamano') == 'Grande' ? 'selected' : '' }}>Grande
+                                                        {{ old('tamano', $mascota->tamano) == 'Grande' ? 'selected' : '' }}>Grande
                                                     </option>
                                                 </select>
                                                 @error('tamano')
@@ -364,6 +365,11 @@
                                         <select id="raza" name="raza"
                                             style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
                                             <option value="">Seleccione</option>
+                                            @if (old('raza', $mascota->raza))
+                                                <option value="{{ old('raza', $mascota->raza) }}" selected>
+                                                    {{ old('raza', $mascota->raza) }}
+                                                </option>
+                                            @endif
                                             <!-- Las opciones se cargarán con JavaScript -->
                                         </select>
                                         @error('raza')
@@ -387,7 +393,7 @@
                                                 {{ old('ubicacion', $mascota->ubicacion) == 'Miranda' ? 'selected' : '' }}>Miranda
                                             </option>
                                             <option value="La Guaira"
-                                                {{ old('ubicacion') == 'La Guaira' ? 'selected' : '' }}>La
+                                                {{ old('ubicacion', $mascota->ubicacion) == 'La Guaira' ? 'selected' : '' }}>La
                                                 Guaira</option>
                                             <option value="Zulia"
                                                 {{ old('ubicacion', $mascota->ubicacion) == 'Zulia' ? 'selected' : '' }}>Zulia
@@ -423,7 +429,7 @@
                                             style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Vacunado</label>
                                         <select id="vacunado" name="vacunado" required
                                             style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
-                                            <option value="" disabled selected>Si/No</option>
+                                            <option value="" disabled>Si/No</option>
                                             <option value="1" {{ old('vacunado', $mascota->vacunado) == '1' ? 'selected' : '' }}>Sí
                                             </option>
                                             <option value="0" {{ old('vacunado', $mascota->vacunado) == '0' ? 'selected' : '' }}>No
@@ -440,7 +446,7 @@
                                             style="color:#af7700; font-weight: 600; display: block; margin-bottom: 8px;">Esterilizado</label>
                                         <select id="esterilizado" name="esterilizado" required
                                             style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 16px; background: white;">
-                                            <option value="" disabled selected>Si/No</option>
+                                            <option value="" disabled>Si/No</option>
                                             <option value="1" {{ old('esterilizado', $mascota->esterilizado) == '1' ? 'selected' : '' }}>
                                                 Sí</option>
                                             <option value="0" {{ old('esterilizado', $mascota->esterilizado) == '0' ? 'selected' : '' }}>
@@ -569,6 +575,27 @@
         </script>
 </body>
 
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const fileInput = document.getElementById('documentacion');
+  const fileName = document.getElementById('fileName');
+  const preview = document.getElementById('previewFoto');
+  const placeholder = document.querySelector('.photo-placeholder');
+  if (!fileInput || !fileName) return;
+
+  fileInput.addEventListener('change', () => {
+    if (fileInput.files && fileInput.files.length > 0) {
+      fileName.textContent = `${fileInput.files.length} archivo(s) seleccionado(s)`;
+    } else {
+      fileName.textContent = 'Ningún archivo seleccionado';
+    }
+  });
+
+  if (preview && preview.getAttribute('src') && placeholder) {
+    placeholder.style.display = 'none';
+  }
+});
+</script>
 </html>
 
 
