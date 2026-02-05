@@ -181,7 +181,6 @@
                 </tbody>
                 </table>
               </div>
-              </div>
             </div>
             <div class="confirm-modal" id="deleteConfirmModal" aria-hidden="true">
               <div class="confirm-modal-card" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
@@ -194,6 +193,8 @@
               </div>
             </div>
 
+        </div>
+      </main>
             <!-- Footer -->
             <footer class="footer">
                 <div class="footer-content">
@@ -276,9 +277,10 @@
                     <div class="footer-bottom">
                         <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
                     </div>
+                </div>
             </footer>
-        </div>
-        </main>
+    </div>
+  </div>
 
 </body>
 <script>
