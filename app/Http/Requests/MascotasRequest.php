@@ -21,22 +21,16 @@ class MascotasRequest extends FormRequest
             'genero' => 'required|in:Macho,Hembra',
             'peso' => 'nullable|numeric|min:0',
             'descripcion' => 'nullable|string|max:500',
-
-            'telefono' => [
-                'required',
-                'string',
-                'min:7',
-                'max:20',
-                'regex:/^[0-9+\s()-]+$/'
-            ],
+            'id_usuario' => 'integer|exists:usuarios,id',
+            
 
             'foto' => 'nullable|image|max:2048',
             'vacunado' => 'required|boolean',
             'esterilizado' => 'required|boolean',
+            'documentacion' => 'nullable|array',
+            'documentacion.*' => 'file|max:2048',
 
-            'documentacion' => 'nullable|file|max:2048',
-
-            'ubicacion' => 'required|string|max:100',
+            'ubicacion' => 'string|max:100',
             'tamano' => 'required|in:Pequeño,Mediano,Grande',
         ];
     }

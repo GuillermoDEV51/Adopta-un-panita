@@ -186,6 +186,15 @@
                                             <p class="mascota-detalle"><strong>Estado:</strong>
                                                 {{ $mascota->estado ?? 'Desconocido' }}</p>
                                             <p class="mascota-descripcion"></p>
+                                            <a href="{{ route('EditarAnimal', ['id' => $mascota->id]) }}"
+                                                class="editar-mascota-btn">Editar</a>
+                                             <form action="{{ route('EliminarAnimal', ['id' => $mascota->id]) }}"
+                                                method="POST" class="eliminar-mascota-form"
+                                                onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta mascota?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="eliminar-mascota-btn">Eliminar</button>
+                                            </form>   
                                         </div>
                                     </div>
                                 @endforeach
