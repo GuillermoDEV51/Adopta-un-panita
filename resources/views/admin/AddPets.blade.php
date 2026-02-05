@@ -332,7 +332,7 @@
                                         </label>
 
                                         <!-- Input real oculto -->
-                                        <input type="file" id="documentacion" name="documentacion[]" multiple>
+                                        <input type="file" id="documentacion" name="documentacion[]" multiple class="file-input">
 
                                         <!-- BotÃ³n visual -->
                                         <label for="documentacion" class="file-btn">

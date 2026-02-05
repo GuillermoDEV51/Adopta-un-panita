@@ -330,7 +330,7 @@
                                     </label>
 
                                     <!-- Input real oculto -->
-                                    <input type="file" id="documentacion" name="documentacion[]" value="{{ old('documentacion', $mascota->documentacion) }}" multiple>
+                                    <input type="file" id="documentacion" name="documentacion[]" value="{{ old('documentacion', $mascota->documentacion) }}" multiple class="file-input">
 
                                     <!-- Botón visual -->
                                     <label for="documentacion" class="file-btn">

@@ -973,6 +973,60 @@ button.mega-menu-item {
   margin-top: 6px;
 }
 
+.file-input {
+  display: none;
+}
+
+.file-upload-text {
+  display: inline-block;
+  margin-left: 10px;
+  font-size: 13px;
+  color: #7a5a1a;
+}
+
+.submit-btn,
+.submit-bt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.submit-btn {
+  background: #f5f0e1;
+  color: #9b6b01;
+  border: 1px solid #ebdcbb;
+}
+
+.submit-btn:hover {
+  background: #fff0c6;
+  color: #af7700;
+  border-color: #ffd477;
+}
+
+.submit-bt {
+  background: #9b6b01;
+  color: #ffffff;
+  box-shadow: 0 6px 14px rgba(155, 107, 1, 0.2);
+}
+
+.submit-bt:hover {
+  background: #af7700;
+  transform: translateY(-1px);
+}
+
+.submit-bt:active {
+  transform: translateY(0);
+}
+
 .editar-usuario-form {
   display: flex;
   flex-direction: column;
