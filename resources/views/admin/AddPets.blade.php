@@ -151,7 +151,7 @@
 
                 <div class="paginas-section">
                     <div class="titulo-wrapper">
-                        <h1 class="paginas-title">Animales Registrados</h1>
+                        <h1 class="paginas-title">Añadir nueva mascota</h1>
                         <div class="titulo-line" aria-hidden="true">
 
 
