@@ -57,6 +57,7 @@
                 @auth
                 <!-- Mostrar información del usuario autenticado -->
 
+
                 <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }} {{ auth()->user()->apellido }}</a>
                 <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                   @csrf

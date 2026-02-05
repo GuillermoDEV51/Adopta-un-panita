@@ -277,5 +277,11 @@
       </footer>
     </div>
   </main>
+  <script>
+            window.authUser = @json([
+                'isLogged' => auth()->check(),
+                'name' => auth()->user()->nombre ?? null,
+            ]);
+        </script>
 </body>
 </html>

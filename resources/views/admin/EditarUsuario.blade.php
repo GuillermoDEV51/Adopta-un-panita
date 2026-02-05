@@ -58,6 +58,7 @@
 
                                 @auth
 
+
                                     <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
                                         {{ auth()->user()->apellido }}</a>
                                     <form method="POST" action="{{ route('logout') }}" style="display: inline;">
@@ -370,7 +371,12 @@
                 </div>
             </footer>
         </div>
-
+<script>
+            window.authUser = @json([
+                'isLogged' => auth()->check(),
+                'name' => auth()->user()->nombre ?? null,
+            ]);
+        </script>
 </body>
  <script>
 document.addEventListener('DOMContentLoaded', function () {

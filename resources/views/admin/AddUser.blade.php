@@ -363,7 +363,12 @@
                 </div>
             </footer>
         </div>
-
+<script>
+            window.authUser = @json([
+                'isLogged' => auth()->check(),
+                'name' => auth()->user()->nombre ?? null,
+            ]);
+        </script>
 </body>
 <script>
 document.addEventListener('DOMContentLoaded', function () {
