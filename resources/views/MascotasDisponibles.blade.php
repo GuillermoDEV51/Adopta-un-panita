@@ -407,16 +407,16 @@
 
             <!-- MODAL OVERLAY VERIFICACIÓN -->
             <div id="verificationModal" class="modal-overlay">
-                <div class="modal-content" style="max-width: 500px; text-align: center;">
+                <div class="modal-content modal-content--verification">
                     <button class="modal-close"
                         onclick="document.getElementById('verificationModal').classList.remove('active')">&times;</button>
 
-                    <div class="modal-body" style="padding: 40px;">
-                        <div style="font-size: 50px; color: #af7700; margin-bottom: 20px;">
+                    <div class="modal-body modal-body--verification">
+                        <div class="verification-icon">
                             <i class="fas fa-user-shield"></i>
                         </div>
-                        <h2 style="color: #333; margin-bottom: 15px;">Autorización Requerida</h2>
-                        <p style="color: #666; margin-bottom: 30px; line-height: 1.6;">
+                        <h2 class="verification-title">Autorización Requerida</h2>
+                        <p class="verification-text">
                             Para garantizar la seguridad de nuestras mascotas, requerimos que tu cuenta sea verificada
                             por un administrador antes de poder adoptar.
                             <br><br>
@@ -425,20 +425,43 @@
 
                         <form action="{{ route('verification.request') }}" method="POST">
                             @csrf
-                            <button type="submit" class="submit-bt" style="width: 100%;">
+                            <button type="submit" class="submit-bt verification-btn">
                                 Solicitar Autorización
                             </button>
                         </form>
                     </div>
                 </div>
             </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    const modal = document.getElementById('verificationModal');
+                    if (!modal) return;
+                    const closeBtn = modal.querySelector('.modal-close');
+
+                    function closeModal() {
+                        modal.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', closeModal);
+                    }
+
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) closeModal();
+                    });
+                });
+            </script>
 
             <!-- Trigger para el modal si viene de sesión -->
             @if (session('require_verification'))
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const modal = document.getElementById('verificationModal');
-                        if (modal) modal.classList.add('active');
+                        if (modal) {
+                            modal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        }
                     });
                 </script>
             @endif

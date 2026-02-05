@@ -3142,6 +3142,64 @@ textarea.form5-input {
   margin-top: 20px;
 }
 
+/* Verification modal */
+.modal-content--verification {
+  max-width: 520px;
+  text-align: center;
+}
+
+.modal-body--verification {
+  display: block;
+  padding: 36px 32px 32px;
+}
+
+.verification-icon {
+  font-size: 48px;
+  color: #af7700;
+  margin-bottom: 16px;
+}
+
+.verification-title {
+  color: #333;
+  margin-bottom: 12px;
+  font-size: 22px;
+}
+
+.verification-text {
+  color: #666;
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.verification-btn {
+  width: 100%;
+}
+
+.submit-bt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: #9b6b01;
+  color: #ffffff;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 14px rgba(155, 107, 1, 0.2);
+}
+
+.submit-bt:hover {
+  background: #af7700;
+  transform: translateY(-1px);
+}
+
+.submit-bt:active {
+  transform: translateY(0);
+}
+
 .btn-telefono {
   position: relative;
   display: inline-flex;
@@ -3159,4 +3217,3 @@ textarea.form5-input {
 .btn-telefono:hover {
   background: #b07d1a;
 }
-
