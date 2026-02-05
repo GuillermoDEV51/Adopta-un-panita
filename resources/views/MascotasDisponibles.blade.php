@@ -485,18 +485,18 @@
                         <div class="verification-icon">
                             <i class="fas fa-user-shield"></i>
                         </div>
-                        <h2 class="verification-title">AutorizaciÃ³n Requerida</h2>
+                        <h2 class="verification-title">Autorización Requerida</h2>
                         <p class="verification-text">
                             Para garantizar la seguridad de nuestras mascotas, requerimos que tu cuenta sea verificada
                             por un administrador antes de poder adoptar.
                             <br><br>
-                            Este proceso es <strong>Ãºnico</strong> y una vez autorizado podrÃ¡s adoptar libremente.
+                            Este proceso es <strong>Único</strong> y una vez autorizado podrás adoptar libremente.
                         </p>
 
                         <form action="{{ route('verification.request') }}" method="POST">
                             @csrf
                             <button type="submit" class="submit-bt verification-btn">
-                                Solicitar AutorizaciÃ³n
+                                Solicitar Autorización
                             </button>
                         </form>
                     </div>
