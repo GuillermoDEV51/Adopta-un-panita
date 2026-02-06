@@ -1,31 +1,21 @@
 <?php
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\admin\AñadirRefugioController;
+
+use App\Http\Controllers\admin\AnimalesController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\RefugiosAdminController;
 use App\Http\Controllers\admin\SolicitudesAdminController;
 use App\Http\Controllers\admin\UsuariosAdminController;
-use App\Http\Controllers\admin\AnimalesController;
-use App\Http\Middleware\CheckRol;
-
-
-
-
+use Illuminate\Support\Facades\Route;
 
 // admin Route
-Route::middleware(['auth', ])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('/admin/añadir-refugio', [RefugiosAdminController::class, 'show'])->name('AñadirRefugio');
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('Dashboard');
     Route::get('/admin/refugios', [RefugiosAdminController::class, 'index'])->name('RefugiosAdmin');
+
     Route::get('/admin/solicitudes', [SolicitudesAdminController::class, 'index'])->name('SolicitudesAdmin');
     Route::put('/admin/solicitudes/{id}/aprobar', [SolicitudesAdminController::class, 'aprobar'])->name('solicitudes.aprobar');
     Route::put('/admin/solicitudes/{id}/rechazar', [SolicitudesAdminController::class, 'rechazar'])->name('solicitudes.rechazar');
-
-
-
-  
-
-
 
     // Rutas para la gestión de animales
     Route::get('/admin/animales', [AnimalesController::class, 'show'])->name('AdminAnimales');
@@ -33,15 +23,9 @@ Route::middleware(['auth', ])->group(function () {
 
     Route::get('/admin/animales/editar/{id}', [AnimalesController::class, 'editar'])->name('EditarAnimal');
 
-
     Route::post('/admin/animales/editar/{id}', [AnimalesController::class, 'update'])->name('ActualizarAnimal');
-    
 
     Route::delete('/admin/animales/eliminar/{id}', [AnimalesController::class, 'eliminar'])->name('EliminarAnimal');
-
-
-
-
 
     // Rutas para la gestión de usuarios
 
@@ -49,18 +33,12 @@ Route::middleware(['auth', ])->group(function () {
 
     Route::get('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'edit'])->name('EditarUsuario');
     Route::put('/admin/usuarios/editar/{id}', [UsuariosAdminController::class, 'update'])->name('ActualizarUsuario');
-    
 
     Route::get('/admin/usuarios/registrar', [UsuariosAdminController::class, 'show'])->name('GuardarUsuario');
     Route::post('/admin/usuarios/registrar', [UsuariosAdminController::class, 'store'])->name('RegistrarUsuario');
     Route::delete('/admin/usuarios/eliminar/{id}', [UsuariosAdminController::class, 'eliminar'])->name('EliminarUsuario');
-    
+
     Route::put('/admin/usuarios/aprobar/{id}', [UsuariosAdminController::class, 'approveVerification'])->name('AprobarUsuario');
     Route::put('/admin/usuarios/rechazar/{id}', [UsuariosAdminController::class, 'rejectVerification'])->name('RechazarUsuario');
 
-
-
-    
 });
-
-
