@@ -53,10 +53,9 @@
 
                         <!-- Authentication Links -->
                         @if (Route::has('login'))
-
                             <div class="nav-auth">
 
-                @auth
+                                @auth
 
 
                                     <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
@@ -112,7 +111,7 @@
 
                     <div class="menu-section">
                         <h2 class="menu-title">Páginas</h2>
-                        
+
                         <div class="menu-list">
                             <div class="menu-item">
                                 <i class="fas fa-home"></i>
@@ -132,8 +131,8 @@
                         <div class="menu-list">
                             <div class="menu-item">
                                 <i class="fas fa-paw"></i>
-                                <a href="{{ route('AdminAnimales') }}" 
-                                style="color:inherit; text-decoration:none;"> Animales
+                                <a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
+                                    Animales
                                 </a>
                             </div>
                             <div class="menu-item">
@@ -196,10 +195,20 @@
                                             </td>
                                             <td>
                                                 @if ($solicitud->estado == 'pendiente')
-                                                    <button class="btn-action btn-approve" title="Aprobar"><i
-                                                            class="fas fa-check"></i></button>
-                                                    <button class="btn-action btn-reject" title="Rechazar"><i
-                                                            class="fas fa-times"></i></button>
+                                                    <form action="{{ route('solicitudes.aprobar', $solicitud->id) }}"
+                                                        method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button class="btn-action btn-approve" title="Aprobar"><i
+                                                                class="fas fa-check"></i></button>
+                                                    </form>
+                                                    <form action="{{ route('solicitudes.rechazar', $solicitud->id) }}"
+                                                        method="POST" style="display:inline;">
+                                                        @csrf
+                                                        @method('PUT')
+                                                        <button class="btn-action btn-reject" title="Rechazar"><i
+                                                                class="fas fa-times"></i></button>
+                                                    </form>
                                                 @else
                                                     <span class="text-muted">-</span>
                                                 @endif
@@ -289,6 +298,10 @@
                             .status-rechazada {
                                 background: #f8d7da;
                                 color: #721c24;
+                            }
+
+                            form {
+                                display: inline;
                             }
 
                             .btn-action {

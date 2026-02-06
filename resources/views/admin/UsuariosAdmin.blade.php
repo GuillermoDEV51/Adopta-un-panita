@@ -53,11 +53,10 @@
 
                         <!-- Authentication Links -->
                         @if (Route::has('login'))
-
                             <div class="nav-auth">
 
-                @auth
-                <!-- Mostrar información del usuario autenticado -->
+                                @auth
+                                    <!-- Mostrar información del usuario autenticado -->
 
 
                                     <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
@@ -74,127 +73,173 @@
                         @endif
 
 
-            <div class="menu-lines" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-          </nav>
-        </div>
-      </header>
-      
-      <!-- Dashboard Main Content -->
-      <main class="dashboard-container">
-        <!-- Sidebar Menu -->
-        <aside class="sidebar">
-          <div class="menu-section">
-            <h2 class="menu-title">Menú</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-tachometer-alt"></i>
-                <a href="{{ route('Dashboard') }}" style="color:inherit; text-decoration:none;">Dashboard</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-clipboard-list"></i>
-                <a href="{{ route('SolicitudesAdmin') }}" style="color:inherit; text-decoration:none;">Solicitudes</a>
-              </div>
-              <div class="menu-item">
-                <i class="fas fa-plus-circle"></i>
-                <a href="{{ route('AñadirRefugio') }}" style="color:inherit; text-decoration:none;">Añadir refugios</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="menu-section">
-            <h2 class="menu-title">Páginas</h2>
-            <div class="menu-list">
-              <div class="menu-item">
-                <i class="fas fa-home"></i>
-                <a href="{{ route('RefugiosAdmin') }}" style="color:inherit; text-decoration:none;">Refugios</a>
-              </div>
-              <div class="menu-item active">
-                <i class="fas fa-users"></i>
-                <a href="{{ route('UsuariosAdmin') }}" style="color:inherit; text-decoration:none;">Usuarios</a>
-              </div>
-            </div>
-          </div>
-          
-<div class="menu-section">
-  <h2 class="menu-title">Mascotas</h2>
-  <div class="menu-list">
-    <div class="menu-item">
-      <i class="fas fa-paw"></i>
-<a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
-    Animales
-</a>
-    </div>
-    
-              <div class="menu-item">
-                <i class="fas fa-sign-out-alt"></i>
-                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar sesión</a>
-              </div>
-            </div>
-          </div>
-        </aside>
-        
-        <div class="main-content">
-            <div class="paginas-section">
-              <div class="titulo-wrapper">
-                <h1 class="paginas-title">Usuarios Registrados</h1>
-                <div class="titulo-line" aria-hidden="true"></div>
-              </div>
-              <div class="boton-agregar-wrapper">
-                <a href="{{ route('GuardarUsuario') }}" class="boton-agregar">Agregar Usuario</a>
-              </div>
-            </div>
-
-            <div class="usuarios-card">
-              <div class="usuarios-table-wrap">
-                <table class="usuarios-table">
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Rol</th>
-                    <th>Fecha de Registro</th>
-                    <th>Acciones</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($usuarios as $usuario)
-                  <tr>
-                    <td>{{ $usuario->id }}</td>
-                    <td>{{ $usuario->nombre }}</td>
-                    <td>{{ $usuario->role->name ?? 'Sin rol' }}</td>
-                    
-                    <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
-                    <td>
-                      <a href="{{ route('EditarUsuario', $usuario->id) }}" class="editar-btn">Editar</a>
-                      <form action="{{ route('EliminarUsuario', $usuario->id) }}" method="POST" class="delete-user-form" data-user-name="{{ $usuario->nombre }}">
-                        @csrf
-                        @method('DELETE')
-                        <button type="button" class="eliminar-btn js-delete-open">Eliminar</button>
-                      </form>
-                    </td>
-                  </tr>
-                  @endforeach
-                </tbody>
-                </table>
-              </div>
-            </div>
-            <div class="confirm-modal" id="deleteConfirmModal" aria-hidden="true">
-              <div class="confirm-modal-card" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
-                <h3 id="deleteModalTitle">¿Eliminar usuario?</h3>
-                <p id="deleteModalText">Esta acción no se puede deshacer.</p>
-                <div class="confirm-modal-actions">
-                  <button type="button" class="btn-secundario" id="cancelDelete">Cancelar</button>
-                  <button type="button" class="btn-danger" id="confirmDelete">Eliminar</button>
+                        <div class="menu-lines" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </nav>
                 </div>
-              </div>
-            </div>
+            </header>
 
-        </div>
-      </main>
+            <!-- Dashboard Main Content -->
+            <main class="dashboard-container">
+                <!-- Sidebar Menu -->
+                <aside class="sidebar">
+                    <div class="menu-section">
+                        <h2 class="menu-title">Menú</h2>
+                        <div class="menu-list">
+                            <div class="menu-item">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <a href="{{ route('Dashboard') }}"
+                                    style="color:inherit; text-decoration:none;">Dashboard</a>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-clipboard-list"></i>
+                                <a href="{{ route('SolicitudesAdmin') }}"
+                                    style="color:inherit; text-decoration:none;">Solicitudes</a>
+                            </div>
+                            <div class="menu-item">
+                                <i class="fas fa-plus-circle"></i>
+                                <a href="{{ route('AñadirRefugio') }}"
+                                    style="color:inherit; text-decoration:none;">Añadir refugios</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-section">
+                        <h2 class="menu-title">Páginas</h2>
+                        <div class="menu-list">
+                            <div class="menu-item">
+                                <i class="fas fa-home"></i>
+                                <a href="{{ route('RefugiosAdmin') }}"
+                                    style="color:inherit; text-decoration:none;">Refugios</a>
+                            </div>
+                            <div class="menu-item active">
+                                <i class="fas fa-users"></i>
+                                <a href="{{ route('UsuariosAdmin') }}"
+                                    style="color:inherit; text-decoration:none;">Usuarios</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-section">
+                        <h2 class="menu-title">Mascotas</h2>
+                        <div class="menu-list">
+                            <div class="menu-item">
+                                <i class="fas fa-paw"></i>
+                                <a href="{{ route('AdminAnimales') }}" style="color:inherit; text-decoration:none;">
+                                    Animales
+                                </a>
+                            </div>
+
+                            <div class="menu-item">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <a href="{{ route('login') }}" style="color:inherit; text-decoration:none;">Cerrar
+                                    sesión</a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+
+                <div class="main-content">
+                    <div class="paginas-section">
+                        <div class="titulo-wrapper">
+                            <h1 class="paginas-title">Usuarios Registrados</h1>
+                            <div class="titulo-line" aria-hidden="true"></div>
+                        </div>
+                        <div class="boton-agregar-wrapper">
+                            <a href="{{ route('GuardarUsuario') }}" class="boton-agregar">Agregar Usuario</a>
+                        </div>
+                    </div>
+
+                    <div class="usuarios-card">
+                        <div class="usuarios-table-wrap">
+                            <table class="usuarios-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Nombre</th>
+                                        <th>Rol</th>
+                                        <th>Fecha de Registro</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($usuarios as $usuario)
+                                        <tr>
+                                            <td>{{ $usuario->id }}</td>
+                                            <td>
+                                                {{ $usuario->nombre }} {{ $usuario->apellido }}
+                                                <div style="font-size: 11px; color: #888;">{{ $usuario->email }}</div>
+                                            </td>
+                                            <td>{{ $usuario->role->name ?? 'Sin rol' }}</td>
+                                            <td>
+                                                <span
+                                                    class="status-badge status-{{ $usuario->estado_verificacion ?? 'no_verificado' }}">
+                                                    {{ ucfirst(str_replace('_', ' ', $usuario->estado_verificacion ?? 'No Verificado')) }}
+                                                </span>
+                                            </td>
+                                            <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
+                                            <td>
+                                                <div style="display: flex; gap: 5px;">
+                                                    {{-- Botones de Verificación --}}
+                                                    @if ($usuario->estado_verificacion === 'pendiente')
+                                                        <form action="{{ route('AprobarUsuario', $usuario->id) }}"
+                                                            method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn-action btn-approve"
+                                                                title="Aprobar Verificación">
+                                                                <i class="fas fa-check"></i>
+                                                            </button>
+                                                        </form>
+                                                        <form action="{{ route('RechazarUsuario', $usuario->id) }}"
+                                                            method="POST" style="display:inline;">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <button type="submit" class="btn-action btn-reject"
+                                                                title="Rechazar Verificación">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </form>
+                                                    @endif
+
+                                                    <a href="{{ route('EditarUsuario', $usuario->id) }}"
+                                                        class="editar-btn" style="padding: 6px 10px;"><i
+                                                            class="fas fa-edit"></i></a>
+
+                                                    <form action="{{ route('EliminarUsuario', $usuario->id) }}"
+                                                        method="POST" class="delete-user-form"
+                                                        data-user-name="{{ $usuario->nombre }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="eliminar-btn js-delete-open"
+                                                            style="padding: 6px 10px;"><i
+                                                                class="fas fa-trash"></i></button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="confirm-modal" id="deleteConfirmModal" aria-hidden="true">
+                        <div class="confirm-modal-card" role="dialog" aria-modal="true"
+                            aria-labelledby="deleteModalTitle">
+                            <h3 id="deleteModalTitle">¿Eliminar usuario?</h3>
+                            <p id="deleteModalText">Esta acción no se puede deshacer.</p>
+                            <div class="confirm-modal-actions">
+                                <button type="button" class="btn-secundario" id="cancelDelete">Cancelar</button>
+                                <button type="button" class="btn-danger" id="confirmDelete">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
             <!-- Footer -->
             <footer class="footer">
                 <div class="footer-content">
@@ -279,53 +324,54 @@
                     </div>
                 </div>
             </footer>
+        </div>
     </div>
-  </div>
-<script>
-            window.authUser = @json([
-                'isLogged' => auth()->check(),
-                'name' => auth()->user()->nombre ?? null,
-            ]);
-        </script>
+    <script>
+        window.authUser = @json([
+            'isLogged' => auth()->check(),
+            'name' => auth()->user()->nombre ?? null,
+        ]);
+    </script>
 </body>
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  const modal = document.getElementById('deleteConfirmModal');
-  const cancelBtn = document.getElementById('cancelDelete');
-  const confirmBtn = document.getElementById('confirmDelete');
-  const modalText = document.getElementById('deleteModalText');
-  let pendingForm = null;
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('deleteConfirmModal');
+        const cancelBtn = document.getElementById('cancelDelete');
+        const confirmBtn = document.getElementById('confirmDelete');
+        const modalText = document.getElementById('deleteModalText');
+        let pendingForm = null;
 
-  function openModal(name) {
-    modalText.textContent = `Vas a eliminar a ${name}. Esta acción no se puede deshacer.`;
-    modal.classList.add('is-active');
-    modal.setAttribute('aria-hidden', 'false');
-  }
+        function openModal(name) {
+            modalText.textContent = `Vas a eliminar a ${name}. Esta acción no se puede deshacer.`;
+            modal.classList.add('is-active');
+            modal.setAttribute('aria-hidden', 'false');
+        }
 
-  function closeModal() {
-    modal.classList.remove('is-active');
-    modal.setAttribute('aria-hidden', 'true');
-    pendingForm = null;
-  }
+        function closeModal() {
+            modal.classList.remove('is-active');
+            modal.setAttribute('aria-hidden', 'true');
+            pendingForm = null;
+        }
 
-  document.querySelectorAll('.delete-user-form').forEach((form) => {
-    const btn = form.querySelector('.js-delete-open');
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      pendingForm = form;
-      const name = form.getAttribute('data-user-name') || 'este usuario';
-      openModal(name);
+        document.querySelectorAll('.delete-user-form').forEach((form) => {
+            const btn = form.querySelector('.js-delete-open');
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                pendingForm = form;
+                const name = form.getAttribute('data-user-name') || 'este usuario';
+                openModal(name);
+            });
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            if (pendingForm) pendingForm.submit();
+        });
+
+        cancelBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
     });
-  });
-
-  confirmBtn.addEventListener('click', () => {
-    if (pendingForm) pendingForm.submit();
-  });
-
-  cancelBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) closeModal();
-  });
-});
 </script>
+
 </html>

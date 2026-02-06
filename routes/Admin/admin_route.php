@@ -18,6 +18,8 @@ Route::middleware(['auth', ])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('Dashboard');
     Route::get('/admin/refugios', [RefugiosAdminController::class, 'index'])->name('RefugiosAdmin');
     Route::get('/admin/solicitudes', [SolicitudesAdminController::class, 'index'])->name('SolicitudesAdmin');
+    Route::put('/admin/solicitudes/{id}/aprobar', [SolicitudesAdminController::class, 'aprobar'])->name('solicitudes.aprobar');
+    Route::put('/admin/solicitudes/{id}/rechazar', [SolicitudesAdminController::class, 'rechazar'])->name('solicitudes.rechazar');
 
 
 
