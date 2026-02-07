@@ -198,21 +198,21 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <strong>{{ $solicitud->user->nombre }}
-                                            {{ $solicitud->user->apellido }}</strong><br>
-                                        <small>{{ $solicitud->user->email }}</small><br>
-                                        <small>{{ $solicitud->user->telefono }}</small>
+                                        <strong>{{ $solicitud->usuario->nombre }}
+                                            {{ $solicitud->usuario->apellido }}</strong><br>
+                                        <small>{{ $solicitud->usuario->email }}</small><br>
+                                        <small>{{ $solicitud->usuario->telefono }}</small>
                                     </td>
                                     <td>{{ Str::limit($solicitud->mensaje, 50) }}</td>
-                                    <td>{{ $solicitud->user->ubicacion }}</td>
+                                    <td>{{ $solicitud->usuario->ubicacion }}</td>
                                     <td>
                                         <span class="status-badge status-{{ $solicitud->estado }}">
                                             {{ ucfirst($solicitud->estado) }}
                                         </span>
                                     </td>
                                     <td>
-                                        <a href="mailto:{{ $solicitud->user->email }}" class="action-btn btn-primario"
-                                            style="background:#007bff;">Contactar</a>
+                                        <a href="mailto:{{ $solicitud->usuario->email }}"
+                                            class="action-btn btn-primario" style="background:#007bff;">Contactar</a>
                                         <!-- Add Accept/Reject logic here later if needed -->
                                     </td>
                                 </tr>
