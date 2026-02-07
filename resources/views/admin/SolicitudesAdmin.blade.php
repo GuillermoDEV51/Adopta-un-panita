@@ -146,7 +146,7 @@
 
                 <div class="paginas-section">
                     <div class="titulo-wrapper">
-                        <h1 class="paginas-title">Solicitudes Recibidas</h1>
+                        <h1 class="paginas-title">Solicitudes de Verificación</h1>
                         <div class="titulo-line" aria-hidden="true"></div>
 
                         <div class="table-container" style="margin-top: 40px; width: 100%; overflow-x: auto;">
@@ -155,69 +155,55 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Usuario</th>
-                                        <th>Mascota</th>
-                                        <th>Mensaje</th>
-                                        <th>Fecha</th>
+                                        <th>Ubicación</th>
+                                        <th>Solicitado</th>
                                         <th>Estado</th>
                                         <th>Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($solicitudes as $solicitud)
+                                    @forelse($solicitudes as $usuario)
                                         <tr>
-                                            <td>{{ $solicitud->id }}</td>
+                                            <td>{{ $usuario->id }}</td>
                                             <td>
                                                 <div class="user-info-cell">
-                                                    <span class="user-name">{{ $solicitud->usuario->nombre ?? 'N/A' }}
-                                                        {{ $solicitud->usuario->apellido ?? '' }}</span>
+                                                    <span class="user-name">{{ $usuario->nombre }}
+                                                        {{ $usuario->apellido }}</span>
+                                                    <span class="user-email">{{ $usuario->email }}</span>
                                                     <span
-                                                        class="user-email">{{ $solicitud->usuario->telefono ?? '' }}</span>
+                                                        class="user-phone">{{ $usuario->telefono ?? 'Sin teléfono' }}</span>
                                                 </div>
                                             </td>
+                                            <td>{{ $usuario->ubicacion ?? 'N/A' }}</td>
+                                            <td>{{ $usuario->updated_at->format('d/m/Y') }}</td>
                                             <td>
-                                                <div class="pet-info-cell">
-                                                    @if ($solicitud->mascota && $solicitud->mascota->foto)
-                                                        <img src="{{ asset('storage/mascotas/' . $solicitud->mascota->foto) }}"
-                                                            alt="Foto" class="pet-thumb">
-                                                    @endif
-                                                    <span>{{ $solicitud->mascota->nombre ?? 'Mascota eliminada' }}</span>
-                                                </div>
-                                            </td>
-                                            <td class="mensaje-cell" title="{{ $solicitud->mensaje }}">
-                                                {{ Str::limit($solicitud->mensaje, 50) }}
-                                            </td>
-                                            <td>{{ $solicitud->created_at->format('d/m/Y') }}</td>
-                                            <td>
-                                                <span
-                                                    class="status-badge status-{{ strtolower($solicitud->estado) }}">
-                                                    {{ ucfirst($solicitud->estado) }}
+                                                <span class="status-badge status-{{ $usuario->estado_verificacion }}">
+                                                    {{ ucfirst($usuario->estado_verificacion) }}
                                                 </span>
                                             </td>
                                             <td>
-                                                @if ($solicitud->estado == 'pendiente')
-                                                    <form action="{{ route('solicitudes.aprobar', $solicitud->id) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button class="btn-action btn-approve" title="Aprobar"><i
-                                                                class="fas fa-check"></i></button>
-                                                    </form>
-                                                    <form action="{{ route('solicitudes.rechazar', $solicitud->id) }}"
-                                                        method="POST" style="display:inline;">
-                                                        @csrf
-                                                        @method('PUT')
-                                                        <button class="btn-action btn-reject" title="Rechazar"><i
-                                                                class="fas fa-times"></i></button>
-                                                    </form>
-                                                @else
-                                                    <span class="text-muted">-</span>
-                                                @endif
+                                                <form action="{{ route('AprobarUsuario', $usuario->id) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="btn-action btn-approve"
+                                                        title="Aprobar Capacidad"><i
+                                                            class="fas fa-check"></i></button>
+                                                </form>
+                                                <form action="{{ route('RechazarUsuario', $usuario->id) }}"
+                                                    method="POST" style="display:inline;">
+                                                    @csrf
+                                                    @method('PUT')
+                                                    <button class="btn-action btn-reject"
+                                                        title="Rechazar Capacidad"><i
+                                                            class="fas fa-times"></i></button>
+                                                </form>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="7" style="text-align: center; padding: 20px;">No hay
-                                                solicitudes de adopción pendientes.</td>
+                                            <td colspan="6" style="text-align: center; padding: 20px;">No hay
+                                                solicitudes de verificación pendientes.</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

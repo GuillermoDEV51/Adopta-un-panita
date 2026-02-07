@@ -11,7 +11,15 @@ class SolicitudesAdminController extends Controller
 {
     public function index()
     {
-        $solicitudes = SolicitudAdopcion::with(['usuario', 'mascota'])->orderBy('created_at', 'desc')->get();
+        // Admin manages User Verification Requests (Capacidad de adoptar)
+        // We fetch users with 'pending' verification status
+        $solicitudes = \App\Models\Usuarios::where('estado_verificacion', 'pendiente')
+                                         ->orderBy('updated_at', 'desc') // or created_at
+                                         ->get();
+                                         
+        // Note: For approval/rejections we will use the existing routes in UsuariosAdminController
+        // accessible via the dashboard view.
+        
         return view('admin.SolicitudesAdmin', compact('solicitudes'));
     }
 

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('fecha_nacimiento')->nullable();
             $table->string('ubicacion')->nullable();
             $table->string('telefono')->nullable();
+            $table->enum('estado_verificacion', ['no_verificado', 'pendiente', 'verificado', 'rechazado'])->default('no_verificado');
 
            $table->foreignId('id_rol')
             ->constrained('roles')

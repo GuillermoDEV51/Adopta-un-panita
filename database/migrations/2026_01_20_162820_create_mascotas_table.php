@@ -42,6 +42,8 @@ return new class extends Migration
             $table->decimal('peso', 5, 2)->nullable();
             $table->boolean('vacunado')->default(false);
             $table->boolean('esterilizado')->default(false);
+            $table->string('telefono')->nullable();
+            $table->string('ubicacion')->nullable();
 
 
             $table->timestamps();

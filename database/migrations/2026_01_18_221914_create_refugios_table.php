@@ -13,6 +13,17 @@ return new class extends Migration
     {
         Schema::create('refugios', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre')->nullable();
+            $table->string('direccion')->nullable();
+            $table->string('telefono')->nullable();
+            $table->string('email')->nullable();
+            $table->text('descripcion')->nullable();
+            
+            $table->foreignId('user_id')
+                  ->nullable()
+                  ->constrained('usuarios')
+                  ->onDelete('cascade');
+
             $table->timestamps();
         });
     }

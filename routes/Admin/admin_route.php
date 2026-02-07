@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin/añadir-refugio', [RefugiosAdminController::class, 'show'])->name('AñadirRefugio');
     Route::get('/dashboard', [DashboardController::class, 'show'])->name('Dashboard');
+
+    Route::post('/admin/añadir-refugio', [RefugiosAdminController::class, 'store'])->name('RegistrarRefugio');
     Route::get('/admin/refugios', [RefugiosAdminController::class, 'index'])->name('RefugiosAdmin');
 
     Route::get('/admin/solicitudes', [SolicitudesAdminController::class, 'index'])->name('SolicitudesAdmin');

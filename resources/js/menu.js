@@ -15,8 +15,8 @@ document.addEventListener('DOMContentLoaded', function () {
     megaMenu.className = 'mega-menu';
 
     // 🔐 Sección auth (AQUÍ va la lógica)
-const authSection = window.authUser && window.authUser.isLogged
-    ? `
+    const authSection = window.authUser && window.authUser.isLogged
+        ? `
         <div class="mega-menu-divider"></div>
         <form method="POST" action="logout" class="mega-menu-form">
             <input type="hidden" name="_token" value="${csrfToken}">
@@ -26,11 +26,16 @@ const authSection = window.authUser && window.authUser.isLogged
             </button>
         </form>
       `
-    : `
+        : `
         <div class="mega-menu-divider"></div>
         <a href="register" class="mega-menu-item">
             <i class="fas fa-user-plus"></i>
             <span>Registrarse</span>
+        </a>
+        <div class="mega-menu-divider"></div>
+        <a href="loginrefugio" class="mega-menu-item">
+            <i class="fas fa-user-plus"></i>
+            <span>Iniciar Sesión Refugio</span>
         </a>
       `;
 

@@ -97,3 +97,15 @@ require_once __DIR__ . '/auth.php';
 */
 
 require_once __DIR__ . '/Admin/admin_route.php';
+
+/*
+|--------------------------------------------------------------------------
+| Rutas Refugio
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth'])->group(function () {
+    Route::get('/refugio/dashboard', [\App\Http\Controllers\RefugioDashboardController::class, 'index'])->name('refugio.dashboard');
+    Route::get('/refugio/perfil', [\App\Http\Controllers\RefugioDashboardController::class, 'createProfile'])->name('refugio.createProfile');
+    Route::post('/refugio/perfil', [\App\Http\Controllers\RefugioDashboardController::class, 'storeProfile'])->name('refugio.storeProfile');
+    Route::get('/refugio/solicitudes', [\App\Http\Controllers\RefugioDashboardController::class, 'solicitudes'])->name('refugio.solicitudes'); // Just in case we need direct link
+});

@@ -17,6 +17,11 @@ class LoginController extends Controller
         return view('auth.Login');
     }
 
+    public function showRefugio()
+    {
+        return view('auth.LoginRefugio');
+    }
+
     public function login(LoginRequest $request)
     {
 

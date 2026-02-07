@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\RefugiosRequest;
 
+use App\Models\Usuarios;
+use App\Models\Roles;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
 class RefugiosAdminController extends Controller
 {
     public function index()
     {
-        $refugios = Refugios::all();
+        $refugios = Refugios::with('user')->get(); // Load user relationship
         return view('admin.RefugiosAdmin', compact('refugios'));
     }
 
@@ -41,9 +46,52 @@ class RefugiosAdminController extends Controller
 
     public function store(RefugiosRequest $request)
     {
-        Refugios::create($request->validated());
+        try {
+            DB::beginTransaction();
 
-        return redirect()->route('RefugiosAdmin')->with('success', 'Refugio registrado exitosamente.');
+            // 1. Find Refugio Role
+            $role = Roles::where('name', 'Refugio')->firstOrFail();
+
+            // 2. Create User (Authenticable)
+            // 'apellido' is required in table, so we use a placeholder or split 'responsable_nombre' if allowed.
+            // For now using 'Refugio' as surname marker or we could add apellido field to form later.
+            $usuario = Usuarios::create([
+                'ci' => $request->cedula_responsable,
+                'nombre' => $request->responsable_nombre,
+                'apellido' => 'Refugio', // Placeholder as form doesn't have surname
+                'password' => Hash::make($request->password_refugio),
+                'telefono' => $request->telefono_refugio,
+                'ubicacion' => $request->direccion_refugio,
+                'id_rol' => $role->id,
+                'estado_verificacion' => 'verificado', // Admins creating shelters -> auto verified?
+            ]);
+
+            // Handle Image Upload
+            $imagePath = null;
+            if ($request->hasFile('foto_portada')) {
+                $imagePath = $request->file('foto_portada')->store('refugios', 'public');
+            }
+
+            // 3. Create Refugio linked to User
+            Refugios::create([
+                'nombre' => $request->nombre_refugio,
+                'direccion' => $request->direccion_refugio,
+                'telefono' => $request->telefono_refugio,
+                'email' => $request->email_refugio,
+                'descripcion' => $request->descripcion_refugio,
+                'user_id' => $usuario->id,
+                'redes_sociales' => $request->redes_sociales,
+                'imagen' => $imagePath,
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('RefugiosAdmin')->with('success', 'Refugio registrado exitosamente.');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return back()->withErrors(['error' => 'Error al registrar refugio: ' . $e->getMessage()])->withInput();
+        }
     }
 
     /*
