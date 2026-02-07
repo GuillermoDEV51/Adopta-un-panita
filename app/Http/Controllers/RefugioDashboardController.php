@@ -39,9 +39,9 @@ class RefugioDashboardController extends Controller
         // We need requests where the mascota belongs to this shelter
         $mascotaIds = $mascotas->pluck('id');
 
-        $solicitudes = SolicitudAdopcion::with(['user', 'mascota'])
+        $solicitudes = SolicitudAdopcion::with(['usuario', 'mascota'])
             ->whereIn('mascota_id', $mascotaIds)
-            ->whereHas('user', function ($q) {
+            ->whereHas('usuario', function ($q) {
                 $q->where('estado_verificacion', 'verificado');
             })
             ->orderBy('created_at', 'desc')

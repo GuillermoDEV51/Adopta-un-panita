@@ -32,11 +32,6 @@ document.addEventListener('DOMContentLoaded', function () {
             <i class="fas fa-user-plus"></i>
             <span>Registrarse</span>
         </a>
-        <div class="mega-menu-divider"></div>
-        <a href="loginrefugio" class="mega-menu-item">
-            <i class="fas fa-user-plus"></i>
-            <span>Iniciar Sesión Refugio</span>
-        </a>
       `;
 
     const publicacionesHref = window.authUser && window.authUser.isLogged

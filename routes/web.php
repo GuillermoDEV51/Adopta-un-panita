@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MascotasDisponiblesController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\MascotasDisponiblesController;
+use App\Http\Controllers\RefugioDashboardController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,20 +11,9 @@ use App\Http\Controllers\InicioController;
 |--------------------------------------------------------------------------
 */
 
-
-
 Route::get('/', [InicioController::class, 'show'])->name('Inicio');
 
-
-
-
-
-
-//Route::post('/', [MascotasDisponiblesController::class, 'publicar'])->name('publicarMascota')->middleware('auth');
-
-
-
-
+// Route::post('/', [MascotasDisponiblesController::class, 'publicar'])->name('publicarMascota')->middleware('auth');
 
 Route::get('/MascotasDisponibles', [MascotasDisponiblesController::class, 'show'])->name('MascotasDisponibles');
 
@@ -36,14 +26,9 @@ Route::post('/mascotas/publicar', [MascotasDisponiblesController::class, 'store'
 Route::post('/mascotas/{id}/adoptar', [MascotasDisponiblesController::class, 'solicitarAdopcion'])->name('mascotas.adoptar')->middleware('auth');
 Route::post('/solicitar-verificacion', [MascotasDisponiblesController::class, 'requestVerification'])->name('verification.request')->middleware('auth');
 
-
-
-
 Route::get('/RefugiosDisponibles', function () {
     return view('RefugiosDisponibles');
 })->name('RefugiosDisponibles');
-
-
 
 Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');
@@ -57,13 +42,12 @@ Route::get('/PreguntasFrecuentes', function () {
     return view('PreguntasFrecuentes');
 });
 
-
 Route::get('/Mision', function () {
     return view('Mision');
 });
 
 Route::get('/Publicaciones', function () {
-    if (!auth()->check()) {
+    if (! auth()->check()) {
         return redirect()->route('login');
     }
 
@@ -88,7 +72,7 @@ Route::post('/Publicaciones/{id}', [\App\Http\Controllers\MascotasDisponiblesCon
 |--------------------------------------------------------------------------
 */
 
-require_once __DIR__ . '/auth.php';
+require_once __DIR__.'/auth.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -96,7 +80,7 @@ require_once __DIR__ . '/auth.php';
 |--------------------------------------------------------------------------
 */
 
-require_once __DIR__ . '/Admin/admin_route.php';
+require_once __DIR__.'/Admin/admin_route.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -104,8 +88,12 @@ require_once __DIR__ . '/Admin/admin_route.php';
 |--------------------------------------------------------------------------
 */
 Route::middleware(['auth'])->group(function () {
-    Route::get('/refugio/dashboard', [\App\Http\Controllers\RefugioDashboardController::class, 'index'])->name('refugio.dashboard');
-    Route::get('/refugio/perfil', [\App\Http\Controllers\RefugioDashboardController::class, 'createProfile'])->name('refugio.createProfile');
-    Route::post('/refugio/perfil', [\App\Http\Controllers\RefugioDashboardController::class, 'storeProfile'])->name('refugio.storeProfile');
-    Route::get('/refugio/solicitudes', [\App\Http\Controllers\RefugioDashboardController::class, 'solicitudes'])->name('refugio.solicitudes'); // Just in case we need direct link
+    Route::get('/refugio/dashboard', [RefugioDashboardController::class, 'index'])->name('refugio.dashboard');
+    Route::get('/refugio/perfil', [RefugioDashboardController::class, 'createProfile'])->name('refugio.createProfile');
+    Route::post('/refugio/perfil', [RefugioDashboardController::class, 'storeProfile'])->name('refugio.storeProfile');
+    Route::get('/refugio/solicitudes', [RefugioDashboardController::class, 'solicitudes'])->name('refugio.solicitudes'); // Just in case we need direct link
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mis-solicitudes', [App\Http\Controllers\UserDashboardController::class, 'solicitudes'])->name('user.solicitudes');
 });
