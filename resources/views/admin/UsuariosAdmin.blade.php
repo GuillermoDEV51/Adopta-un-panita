@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
@@ -56,7 +56,6 @@
                             <div class="nav-auth">
 
                                 @auth
-                                    <!-- Mostrar información del usuario autenticado -->
 
 
                                     <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
@@ -155,12 +154,14 @@
 
                     <div class="usuarios-card">
                         <div class="usuarios-table-wrap">
-                            <table class="usuarios-table">
+                            <table class="usuarios-table usuarios-table--compact">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Nombre</th>
+                                        <th>Teléfono</th>
                                         <th>Rol</th>
+                                        <th>Estado</th>
                                         <th>Fecha de Registro</th>
                                         <th>Acciones</th>
                                     </tr>
@@ -169,9 +170,12 @@
                                     @foreach ($usuarios as $usuario)
                                         <tr>
                                             <td>{{ $usuario->id }}</td>
-                                            <td>
+                                            <td class="user-cell">
                                                 {{ $usuario->nombre }} {{ $usuario->apellido }}
                                                 <div style="font-size: 11px; color: #888;">{{ $usuario->email }}</div>
+                                            </td>
+                                            <td class="phone-cell">
+                                                {{ $usuario->telefono ?? 'Sin teléfono' }}
                                             </td>
                                             <td>{{ $usuario->role->name ?? 'Sin rol' }}</td>
                                             <td>
@@ -181,9 +185,23 @@
                                                 </span>
                                             </td>
                                             <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
-                                            <td>
-                                                <div style="display: flex; gap: 5px;">
-                                                    {{-- Botones de Verificación --}}
+                                            <td class="actions-cell">
+                                                <div class="user-actions">
+                                                    <a href="{{ route('EditarUsuario', $usuario->id) }}"
+                                                        class="editar-btn" style="padding: 6px 10px;"><i
+                                                            class="fas fa-edit"></i></a>
+
+                                                    <form action="{{ route('EliminarUsuario', $usuario->id) }}"
+                                                        method="POST" class="delete-user-form"
+                                                        data-user-name="{{ $usuario->nombre }}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="button" class="eliminar-btn js-delete-open"
+                                                            style="padding: 6px 10px;"><i
+                                                                class="fas fa-trash"></i></button>
+                                                    </form>
+
+                                                    {{-- Botones de VerificaciÃ³n --}}
                                                     @if ($usuario->estado_verificacion === 'pendiente')
                                                         <form action="{{ route('AprobarUsuario', $usuario->id) }}"
                                                             method="POST" style="display:inline;">
@@ -204,20 +222,6 @@
                                                             </button>
                                                         </form>
                                                     @endif
-
-                                                    <a href="{{ route('EditarUsuario', $usuario->id) }}"
-                                                        class="editar-btn" style="padding: 6px 10px;"><i
-                                                            class="fas fa-edit"></i></a>
-
-                                                    <form action="{{ route('EliminarUsuario', $usuario->id) }}"
-                                                        method="POST" class="delete-user-form"
-                                                        data-user-name="{{ $usuario->nombre }}">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" class="eliminar-btn js-delete-open"
-                                                            style="padding: 6px 10px;"><i
-                                                                class="fas fa-trash"></i></button>
-                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -240,7 +244,7 @@
 
                 </div>
             </main>
-            <!-- Footer -->
+             <!-- Footer -->
             <footer class="footer">
                 <div class="footer-content">
                     <div class="footer-left">
@@ -322,7 +326,6 @@
                     <div class="footer-bottom">
                         <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
                     </div>
-                </div>
             </footer>
         </div>
     </div>
@@ -342,7 +345,7 @@
         let pendingForm = null;
 
         function openModal(name) {
-            modalText.textContent = `Vas a eliminar a ${name}. Esta acción no se puede deshacer.`;
+            modalText.textContent = `Vas a eliminar a ${name}. Esta acciÃ³n no se puede deshacer.`;
             modal.classList.add('is-active');
             modal.setAttribute('aria-hidden', 'false');
         }
@@ -375,3 +378,4 @@
 </script>
 
 </html>
+
