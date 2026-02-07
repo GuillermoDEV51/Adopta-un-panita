@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acceso Refugios - PanitasPet</title>
-    <meta name="description" content="Acceso exclusivo para refugios afiliados a PanitasPet.">
-    <meta name="keywords" content="adopción mascotas, refugio animales, acceso refugios, PanitasPet">
+    <title>Inicio de Sesión - PanitasPet | Adopción y Refugios de Mascotas</title>
+    <meta name="description"
+        content="Únete a PanitasPet y adopta una mascota que necesita un hogar. Conectamos refugios con familias amorosas para salvar vidas de perros y gatos en Venezuela.">
+    <meta name="keywords"
+        content="adopción mascotas, refugio animales, perros adopción, gatos adopción, PanitasPet, Venezuela, salvar vidas">
 
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Acceso Refugios - PanitasPet">
-    <meta property="og:description" content="Acceso exclusivo para refugios afiliados a PanitasPet.">
+    <meta property="og:title" content="PanitasPet - Adopta una Mascota y Salva una Vida">
+    <meta property="og:description"
+        content="Únete a PanitasPet y adopta una mascota que necesita un hogar. Conectamos refugios con familias amorosas.">
 
+    <!-- Fonts: Poppins para UI, Pacifico para los títulos/script -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap"
@@ -18,16 +23,19 @@
 
     @vite ('resources/css/styles.css')
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="module" async
+        src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpanitaspe1252back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10">
+    </script>
+    <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+</head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <body>
     <main class="main-container">
         <!-- Background Images -->
         <div class="background-images">
-            <img src="{{ asset('images/img_pink_and_yellow_600x502.png') }}" alt="Decorative paw prints"
-                class="bg-image-left">
-            <img src="{{ asset('images/img_pink_and_yellow_524x464.png') }}" alt="Decorative paw prints"
-                class="bg-image-right">
+            <img src="images/img_pink_and_yellow_600x502.png" alt="Decorative paw prints" class="bg-image-left">
+            <img src="images/img_pink_and_yellow_524x464.png" alt="Decorative paw prints" class="bg-image-right">
         </div>
 
         <div class="content-wrapper">
@@ -35,7 +43,7 @@
             <header class="header">
                 <div class="header-content">
                     <h1 class="logo">
-                        <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
+                        <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
                         <span class="brand-text">
                             <span class="logo-text">PanitasPet</span>
                             <span class="logo-subtitle">Adopción y refugios</span>
@@ -49,6 +57,7 @@
                             <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
                         </div>
 
+                        <a href="{{ route('register') }}" class="login-btn">Registrarse</a>
                         <div class="menu-lines" aria-hidden="true">
                             <span></span>
                             <span></span>
@@ -57,7 +66,6 @@
                     </nav>
                 </div>
             </header>
-
             <!-- Main Content -->
             <section class="main-content">
                 <!-- Hero Section -->
@@ -111,13 +119,13 @@
                 </aside>
             </section>
 
+            
             <!-- Footer -->
             <footer class="footer">
                 <div class="footer-content">
                     <div class="footer-left">
                         <div class="footer-logo-section">
-                            <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo"
-                                class="footer-logo">
+                            <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
                             <span class="brand-text">
                                 <span class="footer-brand">PanitasPet</span>
                                 <span class="logo-subtitle">Adopción y refugios</span>
@@ -125,7 +133,28 @@
                         </div>
 
                         <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en
-                            Venezuela.</p>
+                            Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para
+                            combatir el abandono y la sobrepoblación.</p>
+
+                        <div class="footer-badges">
+                            <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
+                            <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
+                        </div>
+
+                        <div class="social-icons">
+                            <a href="#" class="social-btn" aria-label="Icono 1">
+                                <img src="images/icono1.png" alt="icono1" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 2">
+                                <img src="images/icono2.png" alt="icono2" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 3">
+                                <img src="images/icono3.png" alt="icono3" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 4">
+                                <img src="images/icono4.png" alt="icono4" class="circle-icon">
+                            </a>
+                        </div>
                     </div>
 
                     <div class="footer-links">
@@ -142,6 +171,7 @@
                         <ul class="footer-list">
                             <a href="Donativos">Donaciones</a>
                             <a href="Voluntariado">Voluntariado</a>
+                            <a href="Registro">Registrarse</a>
                         </ul>
                     </div>
 
@@ -149,15 +179,15 @@
                         <h4 class="footer-column-title">Contacto</h4>
                         <div class="contact-info">
                             <div class="contact-item">
-                                <img src="{{ asset('images/img_mail.svg') }}" alt="Email" class="contact-icon">
+                                <img src="images/img_mail.svg" alt="Email" class="contact-icon">
                                 <div>
                                     <div style="font-weight:700;color:#af7700">Email</div>
                                     <div class="contact-text">panitapet@gmail.com</div>
                                 </div>
                             </div>
+
                             <div class="contact-item">
-                                <img src="{{ asset('images/img_call_end.svg') }}" alt="Phone"
-                                    class="contact-icon">
+                                <img src="images/img_call_end.svg" alt="Phone" class="contact-icon">
                                 <div>
                                     <div style="font-weight:700;color:#af7700">Teléfono</div>
                                     <div class="contact-text">+58 414 1234567</div>
