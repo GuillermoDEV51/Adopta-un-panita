@@ -53,25 +53,30 @@
 
                         <!-- Authentication Links -->
                         @if (Route::has('login'))
-
                             <div class="nav-auth">
+                                @auth
+                                    <!-- User is logged in -->
+                                    @if (auth()->user()->id_rol == 1)
+                                        <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
+                                            {{ auth()->user()->apellido }}</a>
+                                    @elseif (auth()->user()->id_rol == 4 || auth()->user()->id_rol == 5)
+                                        <a href="{{ route('refugio.dashboard') }}"
+                                            class="login-btn">{{ auth()->user()->nombre }}
+                                            {{ auth()->user()->apellido }}</a>
+                                    @else
+                                        <!-- Regular User -->
+                                        <a href="{{ route('user.solicitudes') }}"
+                                            class="login-btn">{{ auth()->user()->nombre }}
+                                            {{ auth()->user()->apellido }}</a>
+                                    @endif
 
-                @auth
-
-
-                                    <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
-                                        {{ auth()->user()->apellido }}</a>
-                                    <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                                        @csrf
-
-                                    </form>
+                                    <!-- Logout Form/Button could go here if not already in menu.js or elsewhere -->
                                 @else
+                                    <!-- User is NOT logged in -->
                                     <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
-
                                 @endauth
                             </div>
                         @endif
-
 
                         <div class="menu-lines" aria-hidden="true">
                             <span></span>
