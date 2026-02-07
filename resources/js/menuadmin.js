@@ -87,6 +87,24 @@ const authSection = window.authUser && window.authUser.isLogged
     document.body.appendChild(overlay);
     document.body.appendChild(megaMenu);
 
+    const logoutForm = megaMenu.querySelector('.mega-menu-form');
+    if (logoutForm) {
+        logoutForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            try {
+                await fetch('/logout', {
+                    method: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': csrfToken,
+                        'Accept': 'application/json'
+                    }
+                });
+            } finally {
+                window.location.href = '/login';
+            }
+        });
+    }
+
     let isMenuOpen = false;
     const closeBtn = megaMenu.querySelector('.mega-menu-close');
 
