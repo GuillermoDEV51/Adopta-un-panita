@@ -14,6 +14,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/admin/añadir-refugio', [RefugiosAdminController::class, 'store'])->name('RegistrarRefugio');
     Route::get('/admin/refugios', [RefugiosAdminController::class, 'index'])->name('RefugiosAdmin');
+    Route::get('/admin/refugios/editar/{id}', [RefugiosAdminController::class, 'editar'])->name('EditarRefugio');
+    Route::put('/admin/refugios/editar/{id}', [RefugiosAdminController::class, 'update'])->name('ActualizarRefugio');
+    Route::delete('/admin/refugios/eliminar/{id}', [RefugiosAdminController::class, 'eliminar'])->name('EliminarRefugio');
 
     Route::get('/admin/solicitudes', [SolicitudesAdminController::class, 'index'])->name('SolicitudesAdmin');
     Route::put('/admin/solicitudes/{id}/aprobar', [SolicitudesAdminController::class, 'aprobar'])->name('solicitudes.aprobar');

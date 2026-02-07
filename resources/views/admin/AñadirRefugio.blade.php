@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio - PanitasPet | Adopción y Refugios de Mascotas</title>
+    <title>Inicio - PanitasPet | Adopciín y Refugios de Mascotas</title>
     <meta name="description"
         content="Dashboard de PanitasPet para gestionar adopciones y refugios. Plataforma confiable para encontrar tu compañero perfecto y apoyar refugios locales.">
     <meta name="keywords"
@@ -167,12 +167,16 @@
                             action="{{ route('RegistrarRefugio') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="photo-section">
-                                <div class="photo-placeholder">
-                                    <div class="photo-icon">+</div>
-                                    <div class="add-photo-text">Añadir foto de portada del refugio</div>
-                                    <input type="file" name="foto_portada" class="form-input" accept="image/*"
-                                        required>
-                                </div>
+                                <label class="photo-placeholder" for="fotoPortada">
+                                    <img id="refugioPreview" class="photo-preview" alt="Vista previa del refugio"
+                                        style="display:none;">
+                                    <div class="photo-placeholder-text">
+                                        <div class="photo-icon">+</div>
+                                        <div class="add-photo-text">Añadir foto de portada del refugio</div>
+                                    </div>
+                                </label>
+                                <input id="fotoPortada" type="file" name="foto_portada" class="photo-input"
+                                    accept="image/*" required>
                             </div>
                             <div class="form-row">
                                 <div class="form-group">
@@ -335,6 +339,30 @@
                 'name' => auth()->user()->nombre ?? null,
             ]);
         </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const input = document.getElementById('fotoPortada');
+                const preview = document.getElementById('refugioPreview');
+                const placeholderText = document.querySelector('.photo-placeholder-text');
+
+                if (!input || !preview) return;
+
+                input.addEventListener('change', () => {
+                    const file = input.files && input.files[0];
+                    if (!file) return;
+
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                        if (placeholderText) placeholderText.style.display = 'none';
+                    };
+                    reader.readAsDataURL(file);
+                });
+            });
+        </script>
 </body>
 
 </html>
+
+

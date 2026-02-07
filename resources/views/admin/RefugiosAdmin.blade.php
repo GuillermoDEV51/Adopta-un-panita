@@ -130,20 +130,142 @@
             </div>
           </div>
         </aside>
-      
-            <div class="paginas-section">
-              <div class="titulo-wrapper">
-                <h1 class="paginas-title">Refugios Registrados</h1>
-                <div class="titulo-line" aria-hidden="true">
+            <div class="main-content">
+              <div class="paginas-section">
+                <div class="titulo-wrapper">
+                  <h1 class="paginas-title">Refugios Registrados</h1>
+                  <div class="titulo-line" aria-hidden="true"></div>
+                </div>
+              </div>
 
-                  @foreach ($refugios as $refugio)
-                    <div class="refugio-item">
-                      <h3>{{ $refugio->nombre }}</h3>
-                      <p>{{ $refugio->direccion }}</p>
+              <div class="refugios-cards">
+                @forelse ($refugios as $refugio)
+                  <div class="refugio-card">
+                    <div class="refugio-card-media">
+                      @if (!empty($refugio->imagen))
+                        <img src="{{ asset('storage/' . $refugio->imagen) }}"
+                            alt="Imagen de {{ $refugio->nombre }}">
+                      @else
+                        <div class="refugio-card-placeholder">
+                          <i class="fas fa-home"></i>
+                        </div>
+                      @endif
                     </div>
-                  @endforeach
+                    <div class="refugio-card-body">
+                      <div>
+                        <h3 class="refugio-card-title">{{ $refugio->nombre }}</h3>
+                        <p class="refugio-card-line">
+                          <i class="fas fa-map-marker-alt"></i>
+                          {{ $refugio->direccion }}
+                        </p>
+                        <p class="refugio-card-line">
+                          <i class="fas fa-phone"></i>
+                          {{ $refugio->telefono ?? 'Sin teléfono' }}
+                        </p>
+                        <p class="refugio-card-line">
+                          <i class="fas fa-envelope"></i>
+                          {{ $refugio->email ?? 'Sin email' }}
+                        </p>
+                        @if (!empty($refugio->descripcion))
+                          <p class="refugio-card-desc">{{ $refugio->descripcion }}</p>
+                        @endif
+                      </div>
+                      <div class="refugio-card-actions">
+                        <button type="button" class="refugio-btn refugio-btn--edit js-edit-refugio"
+                          data-id="{{ $refugio->id }}"
+                          data-nombre="{{ $refugio->nombre }}"
+                          data-direccion="{{ $refugio->direccion }}"
+                          data-telefono="{{ $refugio->telefono ?? '' }}"
+                          data-email="{{ $refugio->email ?? '' }}"
+                          data-redes="{{ $refugio->redes_sociales ?? '' }}"
+                          data-descripcion="{{ $refugio->descripcion ?? '' }}"
+                          data-imagen="{{ $refugio->imagen ?? '' }}">
+                          <i class="fas fa-edit"></i> Editar
+                        </button>
+                        <form action="{{ route('EliminarRefugio', $refugio->id) }}" method="POST"
+                          class="delete-refugio-form" data-refugio-name="{{ $refugio->nombre }}">
+                          @csrf
+                          @method('DELETE')
+                          <button type="button" class="refugio-btn refugio-btn--delete js-delete-refugio">
+                            <i class="fas fa-trash"></i> Eliminar
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                @empty
+                  <div class="usuarios-card">
+                    <p style="text-align:center; font-weight:600; color:#9b6b01;">
+                      Aún no hay refugios registrados.
+                    </p>
+                  </div>
+                @endforelse
+              </div>
+            </div>
 
+            <div class="edit-modal" id="editRefugioModal" aria-hidden="true"
+                data-update-url-base="{{ url('/admin/refugios/editar') }}"
+                data-image-base="{{ asset('storage') }}">
+              <div class="edit-modal-card" role="dialog" aria-modal="true" aria-labelledby="editRefugioTitle">
+                <div class="edit-modal-header">
+                  <h3 id="editRefugioTitle">Editar refugio</h3>
+                  <button type="button" class="edit-modal-close" id="editRefugioClose">&times;</button>
+                </div>
+                <form id="editRefugioForm" method="POST" enctype="multipart/form-data">
+                  @csrf
+                  @method('PUT')
+                  <div class="edit-modal-grid">
+                    <div class="form-group">
+                      <label for="edit-refugio-nombre">Nombre</label>
+                      <input id="edit-refugio-nombre" name="nombre" type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="edit-refugio-telefono">Teléfono</label>
+                      <input id="edit-refugio-telefono" name="telefono" type="text" class="form-input">
+                    </div>
+                    <div class="form-group full-width">
+                      <label for="edit-refugio-direccion">Dirección</label>
+                      <input id="edit-refugio-direccion" name="direccion" type="text" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="edit-refugio-email">Email</label>
+                      <input id="edit-refugio-email" name="email" type="email" class="form-input">
+                    </div>
+                    <div class="form-group">
+                      <label for="edit-refugio-redes">Redes sociales</label>
+                      <input id="edit-refugio-redes" name="redes_sociales" type="text" class="form-input">
+                    </div>
+                    <div class="form-group full-width">
+                      <label for="edit-refugio-descripcion">Descripción</label>
+                      <textarea id="edit-refugio-descripcion" name="descripcion" class="form-input" rows="4"></textarea>
+                    </div>
+                    <div class="form-group full-width">
+                      <label>Imagen actual</label>
+                      <img id="editRefugioPreview" class="edit-pet-preview" alt="Imagen actual del refugio">
+                    </div>
+                    <div class="form-group full-width">
+                      <label class="file-btn" for="edit-refugio-imagen">
+                        <span>Actualizar imagen</span>
+                      </label>
+                      <input id="edit-refugio-imagen" name="imagen" type="file" accept="image/*" class="file-input">
+                      <span class="file-upload-text">Selecciona una nueva imagen si deseas cambiarla</span>
+                    </div>
+                  </div>
+                  <div class="edit-modal-actions">
+                    <button type="button" class="btn-secundario" id="editRefugioCancel">Cancelar</button>
+                    <button type="submit" class="btn-primario">Guardar cambios</button>
+                  </div>
+                </form>
+              </div>
+            </div>
 
+            <div class="confirm-modal" id="deleteRefugioModal" aria-hidden="true">
+              <div class="confirm-modal-card" role="dialog" aria-modal="true" aria-labelledby="deleteRefugioTitle">
+                <h3 id="deleteRefugioTitle">¿Eliminar refugio?</h3>
+                <p id="deleteRefugioText">Esta acción no se puede deshacer.</p>
+                <div class="confirm-modal-actions">
+                  <button type="button" class="btn-secundario" id="cancelRefugioDelete">Cancelar</button>
+                  <button type="button" class="btn-danger" id="confirmRefugioDelete">Eliminar</button>
                 </div>
               </div>
             </div>
@@ -236,5 +358,123 @@
                 'name' => auth()->user()->nombre ?? null,
             ]);
         </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const editModal = document.getElementById('editRefugioModal');
+      const editForm = document.getElementById('editRefugioForm');
+      const editClose = document.getElementById('editRefugioClose');
+      const editCancel = document.getElementById('editRefugioCancel');
+      const editPreview = document.getElementById('editRefugioPreview');
+      const editImageInput = document.getElementById('edit-refugio-imagen');
+
+      function openEditModal(button) {
+        if (!editModal || !editForm || !button) return;
+        const baseUrl = editModal.getAttribute('data-update-url-base') || '';
+        const imageBase = editModal.getAttribute('data-image-base') || '';
+        const id = button.getAttribute('data-id');
+
+        editForm.action = `${baseUrl}/${id}`;
+        document.getElementById('edit-refugio-nombre').value = button.getAttribute('data-nombre') || '';
+        document.getElementById('edit-refugio-direccion').value = button.getAttribute('data-direccion') || '';
+        document.getElementById('edit-refugio-telefono').value = button.getAttribute('data-telefono') || '';
+        document.getElementById('edit-refugio-email').value = button.getAttribute('data-email') || '';
+        document.getElementById('edit-refugio-redes').value = button.getAttribute('data-redes') || '';
+        document.getElementById('edit-refugio-descripcion').value = button.getAttribute('data-descripcion') || '';
+
+        const imagen = button.getAttribute('data-imagen');
+        if (editPreview) {
+          if (imagen) {
+            editPreview.src = `${imageBase}/${imagen}`;
+            editPreview.style.display = 'block';
+          } else {
+            editPreview.removeAttribute('src');
+            editPreview.style.display = 'none';
+          }
+        }
+
+        if (editImageInput) editImageInput.value = '';
+        editModal.classList.add('is-active');
+        editModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('no-scroll');
+      }
+
+      function closeEditModal() {
+        if (!editModal) return;
+        editModal.classList.remove('is-active');
+        editModal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('no-scroll');
+      }
+
+      document.querySelectorAll('.js-edit-refugio').forEach((btn) => {
+        btn.addEventListener('click', () => openEditModal(btn));
+      });
+
+      if (editClose) editClose.addEventListener('click', closeEditModal);
+      if (editCancel) editCancel.addEventListener('click', closeEditModal);
+      if (editModal) {
+        editModal.addEventListener('click', (e) => {
+          if (e.target === editModal) closeEditModal();
+        });
+      }
+
+      if (editImageInput && editPreview) {
+        editImageInput.addEventListener('change', (e) => {
+          const file = e.target.files && e.target.files[0];
+          if (!file) return;
+          const reader = new FileReader();
+          reader.onload = (ev) => {
+            editPreview.src = ev.target.result;
+            editPreview.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+        });
+      }
+
+      const deleteModal = document.getElementById('deleteRefugioModal');
+      const deleteCancel = document.getElementById('cancelRefugioDelete');
+      const deleteConfirm = document.getElementById('confirmRefugioDelete');
+      const deleteText = document.getElementById('deleteRefugioText');
+      let pendingForm = null;
+
+      function openDeleteModal(name) {
+        if (!deleteModal) return;
+        deleteText.textContent = `Vas a eliminar ${name}. Esta acción no se puede deshacer.`;
+        deleteModal.classList.add('is-active');
+        deleteModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('no-scroll');
+      }
+
+      function closeDeleteModal() {
+        if (!deleteModal) return;
+        deleteModal.classList.remove('is-active');
+        deleteModal.setAttribute('aria-hidden', 'true');
+        pendingForm = null;
+        document.body.classList.remove('no-scroll');
+      }
+
+      document.querySelectorAll('.delete-refugio-form').forEach((form) => {
+        const btn = form.querySelector('.js-delete-refugio');
+        if (!btn) return;
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          pendingForm = form;
+          const name = form.getAttribute('data-refugio-name') || 'este refugio';
+          openDeleteModal(name);
+        });
+      });
+
+      if (deleteConfirm) {
+        deleteConfirm.addEventListener('click', () => {
+          if (pendingForm) pendingForm.submit();
+        });
+      }
+      if (deleteCancel) deleteCancel.addEventListener('click', closeDeleteModal);
+      if (deleteModal) {
+        deleteModal.addEventListener('click', (e) => {
+          if (e.target === deleteModal) closeDeleteModal();
+        });
+      }
+    });
+  </script>
 </body>
 </html>

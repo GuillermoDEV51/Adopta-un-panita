@@ -100,10 +100,25 @@ class RefugiosAdminController extends Controller
     * Lo estamos ajustando para que sea coherente.
     */
 
-    Public function update(RefugiosRequest $request, $id)
+    Public function update(Request $request, $id)
     {
         $refugio = Refugios::findOrFail($id);
-        $refugio->update($request->validated());
+
+        $data = $request->validate([
+            'nombre' => 'required|string|max:255',
+            'direccion' => 'required|string|max:255',
+            'telefono' => 'nullable|string|max:20',
+            'email' => 'nullable|email|max:255',
+            'redes_sociales' => 'nullable|string|max:255',
+            'descripcion' => 'nullable|string|max:1000',
+            'imagen' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('imagen')) {
+            $data['imagen'] = $request->file('imagen')->store('refugios', 'public');
+        }
+
+        $refugio->update($data);
 
         return redirect()->route('RefugiosAdmin')->with('success', 'Refugio actualizado correctamente.');
     }

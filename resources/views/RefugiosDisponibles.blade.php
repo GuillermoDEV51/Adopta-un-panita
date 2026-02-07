@@ -79,10 +79,55 @@
       
       <!-- Dashboard Main Content -->
       <main class="dashboard-container">
-            <div class="paginas-section">
-              <div class="titulo-wrapper">
-                <h1 class="paginas-title">Refugios disponibles</h1>
-                <div class="titulo-line" aria-hidden="true"></div>
+            <div class="main-content">
+              <div class="paginas-section">
+                <div class="titulo-wrapper">
+                  <h1 class="paginas-title">Refugios disponibles</h1>
+                  <div class="titulo-line" aria-hidden="true"></div>
+                </div>
+              </div>
+
+              <div class="refugios-cards">
+                @forelse ($refugios as $refugio)
+                  <div class="refugio-card">
+                    <div class="refugio-card-media">
+                      @if (!empty($refugio->imagen))
+                        <img src="{{ asset('storage/' . $refugio->imagen) }}"
+                            alt="Imagen de {{ $refugio->nombre }}">
+                      @else
+                        <div class="refugio-card-placeholder">
+                          <i class="fas fa-home"></i>
+                        </div>
+                      @endif
+                    </div>
+                    <div class="refugio-card-body">
+                      <div>
+                        <h3 class="refugio-card-title">{{ $refugio->nombre }}</h3>
+                        <p class="refugio-card-line">
+                          <i class="fas fa-map-marker-alt"></i>
+                          {{ $refugio->direccion }}
+                        </p>
+                        <p class="refugio-card-line">
+                          <i class="fas fa-phone"></i>
+                          {{ $refugio->telefono ?? 'Sin teléfono' }}
+                        </p>
+                        <p class="refugio-card-line">
+                          <i class="fas fa-envelope"></i>
+                          {{ $refugio->email ?? 'Sin email' }}
+                        </p>
+                        @if (!empty($refugio->descripcion))
+                          <p class="refugio-card-desc">{{ $refugio->descripcion }}</p>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+                @empty
+                  <div class="usuarios-card">
+                    <p style="text-align:center; font-weight:600; color:#9b6b01;">
+                      Aún no hay refugios registrados.
+                    </p>
+                  </div>
+                @endforelse
               </div>
             </div>
       </main>

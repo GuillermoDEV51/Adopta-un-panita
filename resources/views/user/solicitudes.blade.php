@@ -117,39 +117,63 @@
 
 <body>
     <div class="main-container">
-        <header class="header">
-            <div class="header-content">
-                <h1 class="logo">
-                    <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
-                    <span class="brand-text">
-                        <span class="logo-text">PanitasPet</span>
-                        <span class="logo-subtitle">Adopción y refugios</span>
-                    </span>
-                </h1>
-                <nav class="nav-section">
-                    <div class="nav-menu">
-                        <a href="{{ route('Inicio') }}" class="nav-item">Inicio</a>
-                        <a href="{{ route('MascotasDisponibles') }}" class="nav-item">Mascotas</a>
-                        <a href="{{ route('RefugiosDisponibles') }}" class="nav-item">Refugios</a>
-                    </div>
+        <div class="content-wrapper">
 
-                    <div class="nav-auth">
-                        <a href="{{ route('user.solicitudes') }}" class="login-btn"
-                            style="background-color: #af7700;">{{ auth()->user()->nombre }}
-                            {{ auth()->user()->apellido }}</a>
-                        <form method="POST" action="{{ route('logout') }}" style="display: inline;">
-                            @csrf
-                        </form>
-                    </div>
+            <header class="header">
+                <div class="header-content">
+                    <h1 class="logo">
+                        <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+                        <span class="brand-text">
+                            <span class="logo-text">PanitasPet</span>
+                            <span class="logo-subtitle">Adopción y refugios</span>
+                        </span>
+                    </h1>
+                    <nav class="nav-section">
+                        <div class="nav-menu">
+                            <a href="{{ route('Inicio') }}" class="nav-item" role="menuitem">Inicio</a>
+                            <a href="{{ route('MascotasDisponibles') }}" class="nav-item" role="menuitem">Mascotas</a>
+                            <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
+                        </div>
 
-                    <div class="menu-lines" aria-hidden="true">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                </nav>
-            </div>
-        </header>
+
+                        <!-- Authentication Links -->
+                        @if (Route::has('login'))
+                            <div class="nav-auth">
+                                @auth
+                                    <!-- User is logged in -->
+                                    @if (auth()->user()->id_rol == 1)
+                                        <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
+                                            {{ auth()->user()->apellido }}</a>
+                                    @elseif (auth()->user()->id_rol == 4 || auth()->user()->id_rol == 5)
+                                        <a href="{{ route('refugio.dashboard') }}"
+                                            class="login-btn">{{ auth()->user()->nombre }}
+                                            {{ auth()->user()->apellido }}</a>
+                                    @else
+                                        <!-- Regular User -->
+                                        <a href="{{ route('user.solicitudes') }}"
+                                            class="login-btn">{{ auth()->user()->nombre }}
+                                            {{ auth()->user()->apellido }}</a>
+                                    @endif
+
+                                    <!-- Logout Form/Button could go here if not already in menu.js or elsewhere -->
+                                @else
+                                    <!-- User is NOT logged in -->
+                                    <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
+                                @endauth
+                            </div>
+                        @endif
+
+
+
+                        <div class="menu-lines" aria-hidden="true">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+
 
         <main class="requests-container">
             <h2 class="section-title">Mis Solicitudes de Adopción</h2>
@@ -210,44 +234,87 @@
                 </div>
             @endif
         </main>
+            <!-- Footer -->
 
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-logo-section">
-                        <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
-                        <span class="brand-text">
-                            <span class="footer-brand">PanitasPet</span>
-                            <span class="logo-subtitle">Adopción y refugios</span>
-                        </span>
+            <footer class="footer">
+                <div class="footer-content">
+                    <div class="footer-left">
+                        <div class="footer-logo-section">
+                            <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
+                            <span class="brand-text">
+                                <span class="footer-brand">PanitasPet</span>
+                                <span class="logo-subtitle">Adopción y refugios</span>
+                            </span>
+                        </div>
+
+                        <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en
+                            Venezuela. Conectamos animales que necesitan un hogar con adoptantes responsables para
+                            combatir el abandono y la sobrepoblación.</p>
+
+                        <div class="footer-badges">
+                            <div class="badge"><i class="fas fa-paw"></i> 200+ Adopciones</div>
+                            <div class="badge"><i class="fas fa-heart"></i> 10+ Refugios</div>
+                        </div>
+
+                        <div class="social-icons">
+                            <a href="#" class="social-btn" aria-label="Icono 1">
+                                <img src="images/icono1.png" alt="icono1" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 2">
+                                <img src="images/icono2.png" alt="icono2" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 3">
+                                <img src="images/icono3.png" alt="icono3" class="circle-icon">
+                            </a>
+                            <a href="#" class="social-btn" aria-label="Icono 4">
+                                <img src="images/icono4.png" alt="icono4" class="circle-icon">
+                            </a>
+                        </div>
                     </div>
-                    <p class="description">Plataforma digital dedicada a la ayuda y adopción de mascotas en Venezuela.
-                    </p>
-                </div>
-                <!-- Links simplified for brevity in this view, matching main layout visually -->
-                <div class="footer-links">
-                    <h4 class="footer-column-title">Enlaces rápidos</h4>
-                    <ul class="footer-list">
-                        <a href="{{ route('MascotasDisponibles') }}">Mascotas</a>
-                        <a href="{{ route('RefugiosDisponibles') }}">Refugios</a>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4 class="footer-column-title">Contacto</h4>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <div>
-                                <div style="font-weight:700;color:#af7700">Email</div>
-                                <div class="contact-text">panitapet@gmail.com</div>
+
+                    <div class="footer-links">
+                        <h4 class="footer-column-title">Enlaces rápidos</h4>
+                        <ul class="footer-list">
+                            <a href="MascotasDisponibles">Mascotas en adopción</a>
+                            <a href="RefugiosDisponibles">Refugios</a>
+                            <a href="Mision">Misión y visión</a>
+                        </ul>
+                    </div>
+
+                    <div class="footer-services">
+                        <h4 class="footer-column-title">Servicios</h4>
+                        <ul class="footer-list">
+                            <a href="Donativos">Donaciones</a>
+                            <a href="Voluntariado">Voluntariado</a>
+                            <a href="Registro">Registrarse</a>
+                        </ul>
+                    </div>
+
+
+                    <div class="footer-contact">
+                        <h4 class="footer-column-title">Contacto</h4>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <img src="images/img_mail.svg" alt="Email" class="contact-icon">
+                                <div>
+                                    <div style="font-weight:700;color:#af7700">Email</div>
+                                    <div class="contact-text">panitapet@gmail.com</div>
+                                </div>
+                            </div>
+
+                            <div class="contact-item">
+                                <img src="images/img_call_end.svg" alt="Phone" class="contact-icon">
+                                <div>
+                                    <div style="font-weight:700;color:#af7700">Teléfono</div>
+                                    <div class="contact-text">+58 414 1234567</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
-            </div>
-        </footer>
+                    <div class="footer-bottom">
+                        <div class="copyright">© 2025 PanitaPet. Todos los derechos reservados.</div>
+                    </div>
+            </footer>
     </div>
 
     <script>

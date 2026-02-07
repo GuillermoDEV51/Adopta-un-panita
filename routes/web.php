@@ -27,7 +27,8 @@ Route::post('/mascotas/{id}/adoptar', [MascotasDisponiblesController::class, 'so
 Route::post('/solicitar-verificacion', [MascotasDisponiblesController::class, 'requestVerification'])->name('verification.request')->middleware('auth');
 
 Route::get('/RefugiosDisponibles', function () {
-    return view('RefugiosDisponibles');
+    $refugios = \App\Models\Refugios::all();
+    return view('RefugiosDisponibles', compact('refugios'));
 })->name('RefugiosDisponibles');
 
 Route::get('/FormularioDeAbandono', function () {

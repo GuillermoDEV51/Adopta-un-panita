@@ -153,7 +153,7 @@
                 @empty
                   <div class="usuarios-card">
                     <p style="text-align:center; font-weight:600; color:#9b6b01;">
-                      AÃºn no tienes mascotas publicadas.
+                      Aún no tienes mascotas publicadas.
                     </p>
                   </div>
                 @endforelse

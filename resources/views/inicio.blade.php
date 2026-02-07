@@ -200,7 +200,7 @@
                             <div class="stat-number"></div>
                             <div class="stat-label">Refugios asociados</div>
                             @foreach ($refugios as $refugio)
-                                <div class="stat-number">{{ $refugio->nombre }}</div>
+                                <div class="stat-number"></div>
                             @endforeach
                         </div>
 
