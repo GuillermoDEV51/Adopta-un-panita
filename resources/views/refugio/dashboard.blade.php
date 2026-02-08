@@ -214,6 +214,20 @@
                                         <a href="mailto:{{ $solicitud->usuario->email }}"
                                             class="action-btn btn-primario" style="background:#007bff;">Contactar</a>
                                         <!-- Add Accept/Reject logic here later if needed -->
+                                        @if ($solicitud->estado === 'pendiente')
+                                            <form action="{{ route('solicitudes.aprobar', $solicitud->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="action-btn btn-accept">Aceptar</button>
+                                            </form>
+                                            <form action="{{ route('solicitudes.rechazar', $solicitud->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="action-btn btn-reject">Rechazar</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
