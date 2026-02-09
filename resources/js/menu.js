@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const authSection = window.authUser && window.authUser.isLogged
         ? `
         <div class="mega-menu-divider"></div>
-        <form method="POST" action="/logout" class="mega-menu-form">
+        <form method="POST" action="logout" class="mega-menu-form">
             <input type="hidden" name="_token" value="${csrfToken}">
             <button type="submit" class="mega-menu-item">
                 <i class="fas fa-sign-out-alt"></i>
@@ -95,23 +95,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(overlay);
     document.body.appendChild(megaMenu);
 
-    const logoutForm = megaMenu.querySelector('.mega-menu-form');
-    if (logoutForm) {
-        logoutForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            try {
-                await fetch('/logout', {
-                    method: 'POST',
-                    headers: {
-                        'X-CSRF-TOKEN': csrfToken,
-                        'Accept': 'application/json'
-                    }
-                });
-            } finally {
-                window.location.href = '/login';
-            }
-        });
-    }
+    // Event listener for logout form removed to allow native form submission
+    // which handles the POST request and redirection correctly.
 
     let isMenuOpen = false;
     const closeBtn = megaMenu.querySelector('.mega-menu-close');

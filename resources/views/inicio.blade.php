@@ -53,10 +53,10 @@
                             <div class="nav-auth">
                                 @auth
                                     <!-- User is logged in -->
-                                    @if (auth()->user()->id_rol == 1)
+                                    @if (auth()->user()->id_rol === 1)
                                         <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
                                             {{ auth()->user()->apellido }}</a>
-                                    @elseif (auth()->user()->id_rol == 4 || auth()->user()->id_rol == 5)
+                                    @elseif (auth()->user()->id_rol === 4 || auth()->user()->id_rol === 5)
                                         <a href="{{ route('refugio.dashboard') }}"
                                             class="login-btn">{{ auth()->user()->nombre }}
                                             {{ auth()->user()->apellido }}</a>
