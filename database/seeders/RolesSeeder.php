@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Roles;
+use Illuminate\Database\Seeder;
 
 class RolesSeeder extends Seeder
 {
@@ -15,17 +14,21 @@ class RolesSeeder extends Seeder
     {
         Roles::create([
             'name' => 'admin',
-            'description' => 'Administrator with full access'
+            'description' => 'Administrator with full access',
         ]);
 
         Roles::create([
             'name' => 'user',
-            'description' => 'Regular user with limited access'
+            'description' => 'Regular user with limited access',
         ]);
 
         Roles::create([
             'name' => 'Voluntario',
-            'description' => 'Acceso a funciones de voluntariado'
+            'description' => 'Acceso a funciones de voluntariado',
+        ]);
+        Roles::create([
+            'name' => 'Refugio',
+            'description' => 'Acceso a funciones de refugio',
         ]);
     }
 }
