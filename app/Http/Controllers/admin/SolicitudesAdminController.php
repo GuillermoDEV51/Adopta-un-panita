@@ -28,6 +28,11 @@ class SolicitudesAdminController extends Controller
         $solicitud = SolicitudAdopcion::findOrFail($id);
         $solicitud->estado = 'aprobada';
         $solicitud->save();
+
+        if ($solicitud->mascota) {
+            $solicitud->mascota->estado = 'adoptado';
+            $solicitud->mascota->save();
+        }
         
         // Opcional: Notificar al usuario (pendiente de implementación)
 
