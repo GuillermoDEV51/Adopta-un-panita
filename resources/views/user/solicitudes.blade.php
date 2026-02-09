@@ -285,7 +285,7 @@
                         <h4 class="footer-column-title">Servicios</h4>
                         <ul class="footer-list">
                             <a href="Donativos">Donaciones</a>
-                            <a href="Voluntariado">Voluntariado</a>
+              
                             <a href="Registro">Registrarse</a>
                         </ul>
                     </div>

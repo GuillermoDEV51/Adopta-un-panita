@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap"
         rel="stylesheet">
 
-    @vite(['resources/css/inicio.css', 'resources/js/menu.js', 'resources/js/publicar-panita.js', 'resources/css/modal-publicar.css', 'resources/css/mascotas-home.css', 'resources/css/stylessadmin.css'])
+    @vite(['resources/css/inicio.css', 'resources/js/menu.js', 'resources/js/publicar-panita.js', 'resources/css/modal-publicar.css', 'resources/css/mascotas-home.css'])
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -438,7 +438,6 @@
                         <h4 class="footer-column-title">Servicios</h4>
                         <ul class="footer-list">
                             <a href="Donativos">Donaciones</a>
-                            <a href="Voluntariado">Voluntariado</a>
                             <a href="Registro">Registrarse</a>
                         </ul>
                     </div>

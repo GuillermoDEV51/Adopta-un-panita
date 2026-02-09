@@ -475,6 +475,84 @@ button.mega-menu-item {
   z-index: 2; /* Para que el contenido quede sobre el fondo */
 }
 
+/* Refugios en inicio (solo dentro de pets-section) */
+.pets-section .refugios-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* Limitar a 2 cards en inicio */
+.pets-section .refugios-cards .refugio-card:nth-child(n+3) {
+  display: none;
+}
+
+.pets-section .refugio-card {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.pets-section .refugio-card-media img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+}
+
+.pets-section .refugio-card-placeholder {
+  width: 100%;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f0e1;
+  color: #9b6b01;
+  font-size: 28px;
+}
+
+.pets-section .refugio-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pets-section .refugio-card-title {
+  margin: 0 0 4px 0;
+  font-size: 20px;
+  color: #9b6b01;
+  font-weight: 700;
+}
+
+.pets-section .refugio-card-line {
+  margin: 0;
+  color: #6b4f10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.pets-section .refugio-card-desc {
+  margin: 8px 0 0 0;
+  color: #6b4f10;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .pets-section .refugios-cards {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+  }
+}
+
 
 /* Estilos del contenedor de inicio - MODIFICADO PARA MÁS CONTROL */
 .hero-section {
