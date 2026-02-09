@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Http\Requests\MascotasRequest;
@@ -21,7 +20,7 @@ class MascotasDisponiblesController extends Controller
         return view('MascotasDisponibles', compact('mascotas', 'especies', 'usuarios'));
     }
 
-    // Método para mostrar el formulario de creación (anteriormente vistavacia)
+    // MÃ©todo para mostrar el formulario de creaciÃ³n (anteriormente vistavacia)
     public function create()
     {
         $especies = Especie::all();
@@ -29,11 +28,11 @@ class MascotasDisponiblesController extends Controller
         return view('vistavacia', compact('especies'));
     }
 
-    // Método para guardar la mascota (anteriormente publicar2)
+    // MÃ©todo para guardar la mascota (anteriormente publicar2)
     public function store(MascotasRequest $request)
     {
         if (! Auth::check()) {
-            return back()->withErrors(['error' => 'Debes iniciar sesión para publicar.']);
+            return back()->withErrors(['error' => 'Debes iniciar sesiÃ³n para publicar.']);
         }
 
         $data = $request->validated();
@@ -52,18 +51,18 @@ class MascotasDisponiblesController extends Controller
             $data['documentacion'] = json_encode($files);
         }
 
-        // Guardar la ubicación propia de la mascota (campo en tabla `mascotas`).
+        // Guardar la ubicaciÃ³n propia de la mascota (campo en tabla `mascotas`).
 
         // Rellenar 'telefono' con los datos del usuario si no viene en el request
-        // O forzarlo siempre según lo que indica el usuario.
+        // O forzarlo siempre segÃºn lo que indica el usuario.
         // Dado que el campo es obligatorio en la tabla `mascotas`, asignamos el del usuario logueado.
         if (empty($data['telefono'])) {
             $data['telefono'] = Auth::user()->telefono;
         }
 
-        // Validar que realmente tengamos un teléfono
+        // Validar que realmente tengamos un telÃ©fono
         if (empty($data['telefono'])) {
-            return back()->withErrors(['error' => 'Tu perfil de usuario no tiene un número de teléfono registrado. Por favor, actualiza tu perfil para poder publicar.'])->withInput();
+            return back()->withErrors(['error' => 'Tu perfil de usuario no tiene un nÃºmero de telÃ©fono registrado. Por favor, actualiza tu perfil para poder publicar.'])->withInput();
         }
 
         Mascotas::create($data);
@@ -75,18 +74,18 @@ class MascotasDisponiblesController extends Controller
     public function solicitarAdopcion(Request $request, $mascotaId)
     {
         if (! Auth::check()) {
-            return redirect()->route('login')->withErrors(['error' => 'Debes iniciar sesión para adoptar.']);
+            return redirect()->route('login')->withErrors(['error' => 'Debes iniciar sesiÃ³n para adoptar.']);
         }
 
         $user = Auth::user();
 
-        // [NUEVO] Verificación de Usuario
+        // [NUEVO] VerificaciÃ³n de Usuario
         if ($user->estado_verificacion !== 'verificado') {
-            // Si está pendiente, informar
+            // Si estÃ¡ pendiente, informar
             if ($user->estado_verificacion === 'pendiente') {
-                return back()->with('warning', 'Tu solicitud de verificación está en revisión por un administrador.');
+                return back()->with('warning', 'Tu solicitud de verificaciÃ³n estÃ¡ en revisiÃ³n por un administrador.');
             }
-            // Si no está verificado o rechazado
+            // Si no estÃ¡ verificado o rechazado
             return back()->with('require_verification', true);
         }
 
@@ -110,7 +109,7 @@ class MascotasDisponiblesController extends Controller
             'estado' => 'pendiente',
         ]);
 
-        return back()->with('success', 'Tu solicitud de adopción ha sido enviada con éxito.');
+        return back()->with('success', 'Tu solicitud de adopciÃ³n ha sido enviada con Ã©xito.');
     }
 
     public function requestVerification()
@@ -124,13 +123,13 @@ class MascotasDisponiblesController extends Controller
         if ($user->estado_verificacion === 'no_verificado' || $user->estado_verificacion === 'rechazado') {
             $user->estado_verificacion = 'pendiente';
             $user->save();
-            return back()->with('success', '¡Solicitud de verificación enviada! Un administrador revisará tu perfil.');
+            return back()->with('success', 'Â¡Solicitud de verificaciÃ³n enviada! Un administrador revisarÃ¡ tu perfil.');
         }
 
-        return back()->with('info', 'Tu solicitud ya está en estado: ' . $user->estado_verificacion);
+        return back()->with('info', 'Tu solicitud ya estÃ¡ en estado: ' . $user->estado_verificacion);
     }
 
-    // Actualizar mascota desde Publicaciones (usuario comÃºn)
+    // Actualizar mascota desde Publicaciones (usuario comÃƒÂºn)
     public function updateUser(MascotasRequest $request, $id)
     {
         if (! Auth::check()) {
@@ -159,6 +158,12 @@ class MascotasDisponiblesController extends Controller
 
         $mascota->update($data);
 
+        if (in_array(Auth::user()->id_rol, [4, 5], true)) {
+            return redirect()->route('refugio.dashboard')->with('success', 'Mascota actualizada correctamente.');
+        }
+
         return redirect()->route('Publicaciones')->with('success', 'Mascota actualizada correctamente.');
     }
 }
+
+

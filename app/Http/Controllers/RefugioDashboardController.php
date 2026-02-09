@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Mascotas;
+use App\Models\Especie;
 use App\Models\Refugios;
 use App\Models\SolicitudAdopcion;
 use Illuminate\Http\Request;
@@ -47,7 +48,9 @@ class RefugioDashboardController extends Controller
             ->orderBy('created_at', 'desc')
             ->get();
 
-        return view('refugio.dashboard', compact('refugio', 'mascotas', 'solicitudes'));
+        $especies = Especie::all();
+
+        return view('refugio.dashboard', compact('refugio', 'mascotas', 'solicitudes', 'especies'));
     }
 
     /**
