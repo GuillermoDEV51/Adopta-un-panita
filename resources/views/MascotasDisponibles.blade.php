@@ -330,6 +330,7 @@
                                 data-tamano="{{ $mascota->tamano ?? '' }}"
                                 data-esterilizado="{{ is_null($mascota->esterilizado) ? '' : ($mascota->esterilizado ? 'si' : 'no') }}"
                                 data-descripcion="{{ $mascota->descripcion ?? '' }}"
+                                data-estado="{{ $mascota->estado ?? 'Desconocido' }}"
                                 data-foto="{{ asset('storage/mascotas/' . $mascota->foto) }}"
                                 data-telefono="{{ $mascota->usuario->telefono ?? '' }}">
                                 @if (!empty($mascota->id_refugio) || (isset($mascota->usuario) && in_array($mascota->usuario->id_rol, [4, 5], true)))
@@ -477,6 +478,7 @@
                     <p><strong>Ubicación:</strong> <span id="modalUbicacion"></span></p>
 
                     <p class="modal-desc" id="modalDescripcion"></p>
+                    <p class="modal-estado" id="modalEstadoMsg" style="display:none;"></p>
                     <div class="modal-contacto">
                         <form id="formAdopcion" method="POST">
                             @csrf
@@ -830,12 +832,22 @@
         const closeBtn = modal.querySelector('.modal-close');
         const btnTelefono = document.getElementById('modalTelefono');
         const tooltipNumero = document.getElementById('tooltipNumero');
+        const grid = document.querySelector('.mascotas-grid');
+        const cards = Array.from(document.querySelectorAll('.mascota-card'));
+
+        if (grid && cards.length) {
+            const adoptadas = cards.filter(c => (c.dataset.estado || '').toLowerCase() === 'adoptado');
+            const disponibles = cards.filter(c => (c.dataset.estado || '').toLowerCase() !== 'adoptado');
+            [...disponibles, ...adoptadas].forEach(c => grid.appendChild(c));
+        }
 
         document.querySelectorAll('.mascota-card').forEach(card => {
             card.addEventListener('click', () => {
                 modal.classList.add('active');
 
                 const numero = card.dataset.telefono || 'No disponible';
+                const estado = (card.dataset.estado || '').toLowerCase();
+                const estadoMsg = document.getElementById('modalEstadoMsg');
 
                 document.getElementById('modalNombre').textContent = card.dataset.nombre;
                 document.getElementById('modalEdad').textContent = card.dataset.edad + ' años';
@@ -845,6 +857,16 @@
                 document.getElementById('modalUbicacion').textContent = card.dataset.ubicacion;
                 document.getElementById('modalDescripcion').textContent = card.dataset.descripcion || '';
                 document.getElementById('modalFoto').src = card.dataset.foto;
+
+                if (estadoMsg) {
+                    if (estado === 'adoptado') {
+                        estadoMsg.textContent = 'Esta mascota ya fue adoptada.';
+                        estadoMsg.style.display = 'block';
+                    } else {
+                        estadoMsg.textContent = '';
+                        estadoMsg.style.display = 'none';
+                    }
+                }
 
                 // Guardar nÃºmero en el tooltip
                 if (tooltipNumero) {
@@ -859,6 +881,13 @@
                 // Actualizar action del formulario de adopciÃ³n
                 const formAdopcion = document.getElementById('formAdopcion');
                 if (formAdopcion) {
+                    if (estado === 'adoptado') {
+                        formAdopcion.style.display = 'none';
+                        if (btnTelefono) btnTelefono.style.display = 'none';
+                    } else {
+                        formAdopcion.style.display = '';
+                        if (btnTelefono) btnTelefono.style.display = '';
+                    }
                     // Usamos la URL base generada por Laravel para evitar problemas de prefijos
                     const baseUrl = "{{ url('/') }}";
                     formAdopcion.action = `${baseUrl}/mascotas/${card.dataset.id}/adoptar`;
@@ -890,7 +919,6 @@
                 if (e.target === modal) modal.classList.remove('active');
             });
         }
-        document.getElementById('modalUbicacion').textContent = card.dataset.ubicacion;
     </script>
 
     <!-- Estilos para el botÃ³n de telÃ©fono y tooltip -->
@@ -927,6 +955,12 @@
             align-items: center;
             gap: 12px;
             flex-wrap: wrap;
+        }
+
+        .modal-estado {
+            margin-top: 8px;
+            font-weight: 700;
+            color: #6a1b9a;
         }
 
         /* Tooltip tipo nube */
@@ -1037,4 +1071,3 @@
 </body>
 
 </html>
-
