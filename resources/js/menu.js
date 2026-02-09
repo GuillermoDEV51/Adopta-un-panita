@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const authSection = window.authUser && window.authUser.isLogged
         ? `
         <div class="mega-menu-divider"></div>
-        <form method="POST" action="logout" class="mega-menu-form">
+        <form method="POST" action="/logout" class="mega-menu-form">
             <input type="hidden" name="_token" value="${csrfToken}">
             <button type="submit" class="mega-menu-item">
                 <i class="fas fa-sign-out-alt"></i>
@@ -28,20 +28,22 @@ document.addEventListener('DOMContentLoaded', function () {
       `
         : `
         <div class="mega-menu-divider"></div>
-        <a href="register" class="mega-menu-item">
+        <a href="/register" class="mega-menu-item">
             <i class="fas fa-user-plus"></i>
             <span>Registrarse</span>
         </a>
         <div class="mega-menu-divider"></div>
-        <a href="login-refugio" class="mega-menu-item">
+        <a href="/login-refugio" class="mega-menu-item">
             <i class="fas fa-user-plus"></i>
             <span>Iniciar Sesión Refugio</span>
         </a>
       `;
 
     const publicacionesHref = window.authUser && window.authUser.isLogged
-        ? 'Publicaciones'
-        : 'login';
+        ? '/Publicaciones'
+        : '/login';
+
+    const assetsBase = (window.ASSETS_URL || '/').replace(/\/?$/, '/');
 
     // HTML del menú
     megaMenu.innerHTML = `
@@ -49,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <div class="mega-menu-container">
 
             <div class="mega-menu-header">
-                <img src="images/logopanitapet.png" alt="PanitasPet" class="mega-logo-img">
+                <img src="${assetsBase}images/logopanitapet.png" alt="PanitasPet" class="mega-logo-img">
                 <div class="mega-menu-brand">
                     <h3 class="mega-menu-brand-title">PanitasPet</h3>
                     <p class="mega-menu-brand-subtitle">Adopción y refugios</p>
@@ -59,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
             <div class="mega-menu-section">
                 <h4 class="mega-menu-section-title">Mascotas</h4>
                 <div class="mega-menu-items">
-                    <a href="MascotasDisponibles" class="mega-menu-item">
+                    <a href="/MascotasDisponibles" class="mega-menu-item">
                         <i class="fas fa-search"></i>
                         <span>Ver mascotas</span>
                     </a>
@@ -76,11 +78,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 <h4 class="mega-menu-section-title">Información</h4>
                 <div class="mega-menu-items">
                 
-                    <a href="Donativos" class="mega-menu-item">
+                    <a href="/Donativos" class="mega-menu-item">
                         <i class="fas fa-hand-holding-heart"></i>
                         <span>Donaciones</span>
                     </a>
-                    <a href="RefugiosDisponibles" class="mega-menu-item">
+                    <a href="/RefugiosDisponibles" class="mega-menu-item">
                         <i class="fas fa-home"></i>
                         <span>Refugios Disponibles</span>
                     </a>
@@ -95,8 +97,23 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(overlay);
     document.body.appendChild(megaMenu);
 
-    // Event listener for logout form removed to allow native form submission
-    // which handles the POST request and redirection correctly.
+    // Force logout redirect to /login to avoid landing on /logout in nested routes
+    const logoutForm = megaMenu.querySelector('.mega-menu-form');
+    if (logoutForm) {
+        logoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': csrfToken,
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                credentials: 'same-origin'
+            }).finally(() => {
+                window.location.href = '/login';
+            });
+        });
+    }
 
     let isMenuOpen = false;
     const closeBtn = megaMenu.querySelector('.mega-menu-close');

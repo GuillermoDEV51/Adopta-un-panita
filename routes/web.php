@@ -31,6 +31,9 @@ Route::get('/RefugiosDisponibles', function () {
     return view('RefugiosDisponibles', compact('refugios'));
 })->name('RefugiosDisponibles');
 
+Route::get('/refugios/{id}/mascotas', [InicioController::class, 'refugioMascotas'])
+    ->name('RefugioMascotas');
+
 Route::get('/FormularioDeAbandono', function () {
     return view('FormularioDeAbandono');
 });

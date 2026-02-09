@@ -223,7 +223,7 @@
 
         .admin-pets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(4, minmax(0, 1fr));
             gap: 18px;
             margin-top: 16px;
         }
@@ -236,6 +236,13 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
+        }
+
+        .admin-pet-card.placeholder {
+            border: 2px dashed #eadfcb;
+            background: transparent;
+            min-height: 260px;
+            box-shadow: none;
         }
 
         .admin-pet-card .mascota-foto {
@@ -288,6 +295,18 @@
             .section-header {
                 flex-direction: column;
                 align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .admin-pets-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .admin-pets-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -469,6 +488,16 @@
                     @empty
                         <p>No hay mascotas registradas.</p>
                     @endforelse
+
+                    @if ($mascotas->count() > 0)
+                        @php
+                            $remainder = $mascotas->count() % 4;
+                            $placeholders = $remainder === 0 ? 0 : 4 - $remainder;
+                        @endphp
+                        @for ($i = 0; $i < $placeholders; $i++)
+                            <div class="admin-pet-card placeholder" aria-hidden="true"></div>
+                        @endfor
+                    @endif
                 </div>
             </section>
 

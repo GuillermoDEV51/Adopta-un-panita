@@ -115,7 +115,7 @@
             <header class="header">
                 <div class="header-content">
                     <h1 class="logo">
-                        <img src="images/logopanitapet.png" alt="PanitasPet" class="logo-img">
+                        <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet" class="logo-img">
                         <span class="brand-text">
                             <span class="logo-text">PanitasPet</span>
                             <span class="logo-subtitle">Adopción y refugios</span>
@@ -169,7 +169,11 @@
             <!-- Dashboard Main Content -->
             <div class="paginas-section4">
                 <div class="titulo-wrapper4">
-                    <h1 class="paginas-title4">Mascotas disponibles</h1>
+                    @if (isset($refugio))
+                        <h1 class="paginas-title4">Mascotas de {{ $refugio->nombre }}</h1>
+                    @else
+                        <h1 class="paginas-title4">Mascotas disponibles</h1>
+                    @endif
                 </div>
 
                 <!-- Sistema de Filtros Compacto -->
@@ -373,7 +377,7 @@
                 <div class="footer-content">
                     <div class="footer-left">
                         <div class="footer-logo-section">
-                            <img src="images/logopanitapet.png" alt="PanitasPet Logo" class="footer-logo">
+                            <img src="{{ asset('images/logopanitapet.png') }}" alt="PanitasPet Logo" class="footer-logo">
                             <span class="brand-text">
                                 <span class="footer-brand">PanitasPet</span>
                                 <span class="logo-subtitle">Adopción y refugios</span>
@@ -391,16 +395,16 @@
 
                         <div class="social-icons">
                             <a href="#" class="social-btn" aria-label="Icono 1">
-                                <img src="images/icono1.png" alt="icono1" class="circle-icon">
+                                <img src="{{ asset('images/icono1.png') }}" alt="icono1" class="circle-icon">
                             </a>
                             <a href="#" class="social-btn" aria-label="Icono 2">
-                                <img src="images/icono2.png" alt="icono2" class="circle-icon">
+                                <img src="{{ asset('images/icono2.png') }}" alt="icono2" class="circle-icon">
                             </a>
                             <a href="#" class="social-btn" aria-label="Icono 3">
-                                <img src="images/icono3.png" alt="icono3" class="circle-icon">
+                                <img src="{{ asset('images/icono3.png') }}" alt="icono3" class="circle-icon">
                             </a>
                             <a href="#" class="social-btn" aria-label="Icono 4">
-                                <img src="images/icono4.png" alt="icono4" class="circle-icon">
+                                <img src="{{ asset('images/icono4.png') }}" alt="icono4" class="circle-icon">
                             </a>
                         </div>
                     </div>
@@ -429,7 +433,7 @@
                         <h4 class="footer-column-title">Contacto</h4>
                         <div class="contact-info">
                             <div class="contact-item">
-                                <img src="images/img_mail.svg" alt="Email" class="contact-icon">
+                                <img src="{{ asset('images/img_mail.svg') }}" alt="Email" class="contact-icon">
                                 <div>
                                     <div style="font-weight:700;color:#af7700">Email</div>
                                     <div class="contact-text">panitapet@gmail.com</div>
@@ -437,7 +441,7 @@
                             </div>
 
                             <div class="contact-item">
-                                <img src="images/img_call_end.svg" alt="Phone" class="contact-icon">
+                                <img src="{{ asset('images/img_call_end.svg') }}" alt="Phone" class="contact-icon">
                                 <div>
                                     <div style="font-weight:700;color:#af7700">Teléfono</div>
                                     <div class="contact-text">+58 414 1234567</div>
@@ -452,6 +456,9 @@
             </footer>
         </div>
     </div>
+<script>
+  window.ASSETS_URL = "{{ asset('') }}";
+</script>
 
     @vite(['resources/js/menu.js'])
     <script>
