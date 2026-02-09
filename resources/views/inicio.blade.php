@@ -20,7 +20,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap"
         rel="stylesheet">
 
-    @vite(['resources/css/inicio.css', 'resources/js/menu.js', 'resources/js/publicar-panita.js', 'resources/css/modal-publicar.css', 'resources/css/mascotas-home.css'])
+    @vite(['resources/css/inicio.css', 'resources/js/menu.js', 'resources/js/publicar-panita.js', 'resources/css/modal-publicar.css', 'resources/css/mascotas-home.css', 'resources/css/stylessadmin.css'])
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -199,9 +199,7 @@
                             </div>
                             <div class="stat-number"></div>
                             <div class="stat-label">Refugios asociados</div>
-                            @foreach ($refugios as $refugio)
-                                <div class="stat-number"></div>
-                            @endforeach
+
                         </div>
 
                         <!-- Estadística 3: Usuarios registrados -->
@@ -299,10 +297,53 @@
                         <h2 class="pets-title">Nuestros refugios asociados</h2>
                         <p class="pets-subtitle">Revisa cualquier refugio y adopta un panita, también puedes realizar
                             una donación y apoyar</p>
+
                     </div>
 
                     <div class="pets-grid" id="pets-grid">
                         <div class="pets-placeholder">
+                            <div class="refugios-cards">
+                                @forelse ($refugios as $refugio)
+                                    <div class="refugio-card">
+                                        <div class="refugio-card-media">
+                                            @if (!empty($refugio->imagen))
+                                                <img src="{{ asset('storage/' . $refugio->imagen) }}"
+                                                    alt="Imagen de {{ $refugio->nombre }}">
+                                            @else
+                                                <div class="refugio-card-placeholder">
+                                                    <i class="fas fa-home"></i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="refugio-card-body">
+                                            <div>
+                                                <h3 class="refugio-card-title">{{ $refugio->nombre }}</h3>
+                                                <p class="refugio-card-line">
+                                                    <i class="fas fa-map-marker-alt"></i>
+                                                    {{ $refugio->direccion }}
+                                                </p>
+                                                <p class="refugio-card-line">
+                                                    <i class="fas fa-phone"></i>
+                                                    {{ $refugio->telefono ?? 'Sin teléfono' }}
+                                                </p>
+                                                <p class="refugio-card-line">
+                                                    <i class="fas fa-envelope"></i>
+                                                    {{ $refugio->email ?? 'Sin email' }}
+                                                </p>
+                                                @if (!empty($refugio->descripcion))
+                                                    <p class="refugio-card-desc">{{ $refugio->descripcion }}</p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <div class="usuarios-card">
+                                        <p style="text-align:center; font-weight:600; color:#9b6b01;">
+                                            Aún no hay refugios registrados.
+                                        </p>
+                                    </div>
+                                @endforelse
+                            </div>
                         </div>
                     </div>
 
