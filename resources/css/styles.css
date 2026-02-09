@@ -885,6 +885,21 @@ button.mega-menu-item {
   border: 1px solid #e9ecef;
 }
 
+.badge-refugio {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #7b3ff2;
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 999px;
+  box-shadow: 0 6px 12px rgba(123, 63, 242, 0.25);
+}
+
 .mascota-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);

@@ -332,6 +332,9 @@
                                 data-descripcion="{{ $mascota->descripcion ?? '' }}"
                                 data-foto="{{ asset('storage/mascotas/' . $mascota->foto) }}"
                                 data-telefono="{{ $mascota->usuario->telefono ?? '' }}">
+                                @if (!empty($mascota->id_refugio) || (isset($mascota->usuario) && in_array($mascota->usuario->id_rol, [4, 5], true)))
+                                    <span class="badge-refugio">Refugio</span>
+                                @endif
 
                                 <img src="{{ asset('storage/mascotas/' . $mascota->foto) }}"
                                     alt="Foto de {{ $mascota->nombre }}" class="mascota-foto">
@@ -1034,3 +1037,4 @@
 </body>
 
 </html>
+

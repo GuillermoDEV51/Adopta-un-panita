@@ -153,12 +153,18 @@
             border-radius: 6px;
             text-decoration: none;
             font-size: 0.9rem;
-            margin-right: 5px;
             cursor: pointer;
             border: none;
             display: inline-flex;
             align-items: center;
             gap: 6px;
+        }
+
+        .actions-cell {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
         }
 
         .btn-accept {
@@ -303,7 +309,7 @@
                             <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
                         </div>
                     <div class="nav-auth">
-                        <a href="#" class="login-btn">{{ auth()->user()->nombre }} (Refugio)</a>
+                        <a href="#" class="login-btn">{{ auth()->user()->nombre }} Refugio</a>
                         <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                             @csrf
                             <button type="submit" class="logout-btn">Salir</button>
@@ -331,12 +337,12 @@
                                 <p class="description">{{ $refugio->descripcion }}</p>
                             </div>
                         </div>
-                        <a href="{{ route('refugio.createProfile') }}" class="btn-primario">Editar Perfil</a>
+                        <a href="{{ route('refugio.createProfile') }}" class="btn-primario js-edit-refugio-open">Editar Perfil</a>
                     </div>
                 @else
                     <div class="profile-card">
                         <p>Aún no has completado el perfil de tu refugio.</p>
-                        <a href="{{ route('refugio.createProfile') }}" class="btn-primario">Crear Perfil</a>
+                        <a href="{{ route('refugio.createProfile') }}" class="btn-primario js-edit-refugio-open">Crear Perfil</a>
                     </div>
                 @endif
             </section>
@@ -389,7 +395,7 @@
                                                 {{ ucfirst($solicitud->estado) }}
                                             </span>
                                         </td>
-                                        <td>
+                                        <td class="actions-cell">
                                             <a href="mailto:{{ $solicitud->usuario->email }}"
                                                 class="action-btn btn-primario" style="background:#007bff;">Contactar</a>
                                             <!-- Add Accept/Reject logic here later if needed -->
@@ -575,6 +581,49 @@
                     </div>
                     <div class="edit-modal-actions">
                         <button type="button" class="btn-secundario" id="editPetCancel">Cancelar</button>
+                        <button type="submit" class="btn-primario">Guardar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="edit-modal" id="editRefugioModal" aria-hidden="true">
+            <div class="edit-modal-card" role="dialog" aria-modal="true" aria-labelledby="editRefugioTitle">
+                <div class="edit-modal-header">
+                    <h3 id="editRefugioTitle">Editar perfil del refugio</h3>
+                    <button type="button" class="edit-modal-close" id="editRefugioClose">&times;</button>
+                </div>
+                <form id="editRefugioForm" method="POST" action="{{ route('refugio.storeProfile') }}">
+                    @csrf
+                    <div class="edit-modal-grid">
+                        <div class="form-group">
+                            <label for="refugio-nombre">Nombre</label>
+                            <input id="refugio-nombre" name="nombre" type="text" class="form-input"
+                                value="{{ $refugio->nombre ?? '' }}" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="refugio-telefono">Teléfono</label>
+                            <input id="refugio-telefono" name="telefono" type="text" class="form-input"
+                                value="{{ $refugio->telefono ?? '' }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="refugio-email">Email</label>
+                            <input id="refugio-email" name="email" type="email" class="form-input"
+                                value="{{ $refugio->email ?? '' }}">
+                        </div>
+                        <div class="form-group form-group-full">
+                            <label for="refugio-direccion">Dirección</label>
+                            <input id="refugio-direccion" name="direccion" type="text" class="form-input"
+                                value="{{ $refugio->direccion ?? '' }}">
+                        </div>
+                        <div class="form-group form-group-full">
+                            <label for="refugio-descripcion">Descripción</label>
+                            <textarea id="refugio-descripcion" name="descripcion" class="form-input"
+                                rows="4">{{ $refugio->descripcion ?? '' }}</textarea>
+                        </div>
+                    </div>
+                    <div class="edit-modal-actions">
+                        <button type="button" class="btn-secundario" id="editRefugioCancel">Cancelar</button>
                         <button type="submit" class="btn-primario">Guardar</button>
                     </div>
                 </form>
@@ -847,6 +896,39 @@
               editPreview.style.display = 'block';
             };
             reader.readAsDataURL(file);
+          });
+        }
+
+        const refugioModal = document.getElementById('editRefugioModal');
+        const refugioClose = document.getElementById('editRefugioClose');
+        const refugioCancel = document.getElementById('editRefugioCancel');
+
+        function openRefugioModal() {
+          if (!refugioModal) return;
+          refugioModal.classList.add('is-active');
+          refugioModal.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('no-scroll');
+        }
+
+        function closeRefugioModal() {
+          if (!refugioModal) return;
+          refugioModal.classList.remove('is-active');
+          refugioModal.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('no-scroll');
+        }
+
+        document.querySelectorAll('.js-edit-refugio-open').forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openRefugioModal();
+          });
+        });
+
+        if (refugioClose) refugioClose.addEventListener('click', closeRefugioModal);
+        if (refugioCancel) refugioCancel.addEventListener('click', closeRefugioModal);
+        if (refugioModal) {
+          refugioModal.addEventListener('click', (e) => {
+            if (e.target === refugioModal) closeRefugioModal();
           });
         }
       });
