@@ -27,6 +27,11 @@
         src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fpanitaspe1252back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.10">
     </script>
     <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+    <style>
+        .footer {
+            margin-top: 150px;
+        }
+    </style>
 </head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -57,7 +62,7 @@
                             <a href="{{ route('RefugiosDisponibles') }}" class="nav-item" role="menuitem">Refugios</a>
                         </div>
 
-                        <a href="{{ route('register') }}" class="login-btn">Registrarse</a>
+                           <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
                         <div class="menu-lines" aria-hidden="true">
                             <span></span>
                             <span></span>
