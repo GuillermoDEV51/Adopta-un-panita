@@ -107,6 +107,21 @@
             transform: translateY(-2px);
         }
 
+        .actions-cell {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .btn-accept {
+            background-color: #28a745;
+        }
+
+        .btn-reject {
+            background-color: #dc3545;
+        }
+
         .empty-state {
             text-align: center;
             padding: 50px;
@@ -222,10 +237,24 @@
                                             {{ ucfirst($solicitud->estado) }}
                                         </span>
                                     </td>
-                                    <td>
+                                    <td class="actions-cell">
                                         <a href="mailto:{{ $solicitud->usuario->email }}" class="btn-action">
                                             <i class="fas fa-envelope"></i> Contactar
                                         </a>
+                                        @if ($solicitud->estado === 'pendiente')
+                                            <form action="{{ route('solicitudes.aprobar', $solicitud->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn-action btn-accept">Aceptar</button>
+                                            </form>
+                                            <form action="{{ route('solicitudes.rechazar', $solicitud->id) }}"
+                                                method="POST" style="display:inline;">
+                                                @csrf
+                                                @method('PUT')
+                                                <button type="submit" class="btn-action btn-reject">Rechazar</button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
