@@ -342,7 +342,9 @@
                         <ul class="footer-list">
                             <a href="Donativos">Donaciones</a>
               
-                            <a href="Registro">Registrarse</a>
+                                                        @guest
+                                <a href="Registro">Registrarse</a>
+                            @endguest
                         </ul>
                     </div>
 
