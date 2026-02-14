@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Mascotas;
 use App\Models\Especie;
+use App\Models\Mascotas;
 use App\Models\Refugios;
 use App\Models\SolicitudAdopcion;
 use Illuminate\Http\Request;
@@ -12,32 +12,32 @@ use Illuminate\Support\Facades\Auth;
 class RefugioDashboardController extends Controller
 {
     /**
-     * Display the shelter dashboard.
+     * Muestra el panel de control del refugio.
      */
     public function index()
     {
         $user = Auth::user();
 
-        // Find the shelter associated with this user
+        // Buscar el refugio asociado con este usuario
         $refugio = Refugios::where('user_id', $user->id)->first();
 
         if (! $refugio) {
-            // Check if user has role 'Refugio' but no profile yet?
-            // Or maybe redirect to create profile page.
-            // For now, assume it might not exist and return view with null
-            // or redirect to a 'create profile' form.
+            // ¿Comprobar si el usuario tiene rol 'Refugio' pero aún no tiene perfil?
+            // O tal vez redirigir a la página de creación de perfil.
+            // Por ahora, asumir que podría no existir y devolver la vista con null
+            // o redirigir a un formulario de 'crear perfil'.
             return redirect()->route('refugio.createProfile');
         }
 
-        // Get pets belonging to this shelter (or user)
-        // Linking by id_refugio is cleaner if we strictly use that for shelter pets
+        // Obtener mascotas pertenecientes a este refugio (o usuario)
+        // Vincular por id_refugio es más limpio si usamos eso estrictamente para mascotas de refugio
         $mascotas = Mascotas::where('id_refugio', $refugio->id)
-            ->orWhere('id_usuario', $user->id) // Fallback if linked by user
+            ->orWhere('id_usuario', $user->id) // Respaldo si está vinculado por usuario
             ->get();
 
-        // Get Adoption Requests for these pets
-        // Filtering: Only requests from VERIFIED users (as per requirements)
-        // We need requests where the mascota belongs to this shelter
+        // Obtener Solicitudes de Adopción para estas mascotas
+        // Filtrado: Solo solicitudes de usuarios VERIFICADOS (según requisitos)
+        // Necesitamos solicitudes donde la mascota pertenezca a este refugio
         $mascotaIds = $mascotas->pluck('id');
 
         $solicitudes = SolicitudAdopcion::with(['usuario', 'mascota'])
@@ -54,7 +54,7 @@ class RefugioDashboardController extends Controller
     }
 
     /**
-     * Show form to create/edit shelter profile.
+     * Muestra el formulario para crear/editar el perfil del refugio.
      */
     public function createProfile()
     {
@@ -65,7 +65,7 @@ class RefugioDashboardController extends Controller
     }
 
     /**
-     * Store or Update shelter profile.
+     * Almacena o actualiza el perfil del refugio.
      */
     public function storeProfile(Request $request)
     {

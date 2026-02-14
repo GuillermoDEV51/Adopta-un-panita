@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('telefono')->nullable();
             $table->string('email')->nullable();
             $table->text('descripcion')->nullable();
+            $table->string('redes_sociales')->nullable();
+            $table->string('imagen')->nullable();
             
             $table->foreignId('user_id')
                   ->nullable()

@@ -98,7 +98,7 @@
                                 placeholder="Contraseña..." required autocomplete="current-password">
 
                             <div class="form-actions">
-                                <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+                                <a href="#" class="forgot-password"></a>
                                 <button type="submit" class="submit-btn">Iniciar</button>
                             </div>
                         </form>

@@ -25,11 +25,17 @@ class Refugios extends Model
         'imagen',
     ];
 
+    /**
+     * Obtiene el usuario asociado al refugio.
+     */
     public function user()
     {
         return $this->belongsTo(Usuarios::class, 'user_id');
     }
 
+    /**
+     * Obtiene las mascotas asociadas al refugio.
+     */
     public function mascotas()
     {
         return $this->hasMany(Mascotas::class, 'id_refugio');

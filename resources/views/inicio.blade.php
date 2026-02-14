@@ -31,6 +31,7 @@
     <div class="main-container">
         <div class="content-wrapper">
 
+            <!-- Encabezado con Logotipo y Navegación -->
             <header class="header">
                 <div class="header-content">
                     <h1 class="logo">
@@ -48,11 +49,11 @@
                         </div>
 
 
-                        <!-- Authentication Links -->
+                        <!-- Enlaces de Autenticación -->
                         @if (Route::has('login'))
                             <div class="nav-auth">
                                 @auth
-                                    <!-- User is logged in -->
+                                    <!-- Usuario autenticado -->
                                     @if (auth()->user()->id_rol === 1)
                                         <a href="{{ route('Dashboard') }}" class="login-btn">{{ auth()->user()->nombre }}
                                             {{ auth()->user()->apellido }}</a>
@@ -61,15 +62,15 @@
                                             class="login-btn">{{ auth()->user()->nombre }}
                                             {{ auth()->user()->apellido }}</a>
                                     @else
-                                        <!-- Regular User -->
+                                        <!-- Usuario Regular -->
                                         <a href="{{ route('user.solicitudes') }}"
                                             class="login-btn">{{ auth()->user()->nombre }}
                                             {{ auth()->user()->apellido }}</a>
                                     @endif
 
-                                    <!-- Logout Form/Button could go here if not already in menu.js or elsewhere -->
+                                    <!-- Botón de logout podría ir aquí -->
                                 @else
-                                    <!-- User is NOT logged in -->
+                                    <!-- Usuario NO autenticado -->
                                     <a href="{{ route('login') }}" class="login-btn">Iniciar sesión</a>
                                 @endauth
                             </div>
@@ -86,6 +87,7 @@
                 </div>
             </header>
 
+            <!-- Sección Hero: Mensaje principal e imagen destacada -->
             <section class="hero-section">
                 <div class="hero-text">
                     <h1>Cada panita necesita un hogar</h1>
@@ -173,7 +175,7 @@
                 </div>
             </section>
 
-            <!-- Sección de Nuestro Impacto -->
+            <!-- Sección de Nuestro Impacto: Estadísticas -->
             <section class="impact-section">
                 <div class="impact-container">
                     <div class="impact-header">
@@ -223,7 +225,7 @@
                 </div>
             </section>
 
-            <!-- Process Section -->
+            <!-- Sección de Proceso: Pasos para adoptar -->
             <section class="process-section">
                 <div class="process-container">
                     <div class="process-header">
@@ -285,6 +287,7 @@
                 </div>
             </section>
 
+            <!-- Sección de Refugios Asociados -->
             <section class="pets-section">
                 <!-- Fondo con overlay -->
                 <div class="pets-background">
@@ -353,7 +356,7 @@
                 </div>
             </section>
 
-            <!-- Sección En busca de un Hogar - Tres columnas -->
+            <!-- Sección En busca de un Hogar - Información adicional -->
             <section class="home-section">
                 <div class="home-container">
                     <div class="home-three-columns">
@@ -387,7 +390,7 @@
 
             <img src="images/img_three_curious_d.png" alt="three dogs" class="three-dogs animate-on-scroll">
 
-            <!-- Footer -->
+            <!-- Footer: Enlaces y Contacto -->
 
             <footer class="footer">
                 <div class="footer-content">

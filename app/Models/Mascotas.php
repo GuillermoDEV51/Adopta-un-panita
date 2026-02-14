@@ -24,22 +24,27 @@ class Mascotas extends Model
         'peso',
         'vacunado',
         'esterilizado',
-        'telefono', 
-        'ubicacion', 
+        'telefono',
+        'ubicacion',
     ];
 
     protected $casts = [
-    'vacunado' => 'boolean',
-    'esterilizado' => 'boolean',
-];
+        'vacunado' => 'boolean',
+        'esterilizado' => 'boolean',
+    ];
 
-     public function especie()
+    /**
+     * Obtiene la especie asociada a la mascota.
+     */
+    public function especie()
     {
-         return $this->belongsTo(Especie::class, 'id_especies', 'id');
+        return $this->belongsTo(Especie::class, 'id_especies', 'id');
     }
 
-    
-     public function usuario()
+    /**
+     * Obtiene el usuario propietario de la mascota.
+     */
+    public function usuario()
     {
         return $this->belongsTo(Usuarios::class, 'id_usuario');
     }

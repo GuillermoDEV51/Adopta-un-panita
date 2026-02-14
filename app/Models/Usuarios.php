@@ -32,10 +32,17 @@ class Usuarios extends Authenticatable
         'fecha_nacimiento' => 'date',
     ];
 
+    /**
+     * Obtiene el rol del usuario.
+     */
     public function role()
     {
         return $this->belongsTo(Roles::class, 'id_rol');
     }
+
+    /**
+     * Obtiene las mascotas publicadas por el usuario.
+     */
      public function mascotas()
     {
         return $this->hasMany(Mascotas::class, 'id_usuario');

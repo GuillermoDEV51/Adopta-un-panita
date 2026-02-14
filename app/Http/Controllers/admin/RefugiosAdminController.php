@@ -17,7 +17,7 @@ class RefugiosAdminController extends Controller
 {
     public function index()
     {
-        $refugios = Refugios::with('user')->get(); // Load user relationship
+        $refugios = Refugios::with('user')->get(); // Cargar relación de usuario
         return view('admin.RefugiosAdmin', compact('refugios'));
     }
 
@@ -49,12 +49,12 @@ class RefugiosAdminController extends Controller
         try {
             DB::beginTransaction();
 
-            // 1. Find Refugio Role
+            // 1. Buscar rol de Refugio
             $role = Roles::where('name', 'Refugio')->firstOrFail();
 
-            // 2. Create User (Authenticable)
-            // 'apellido' is required in table, so we use a placeholder or split 'responsable_nombre' if allowed.
-            // For now using 'Refugio' as surname marker or we could add apellido field to form later.
+            // 2. Crear Usuario (Autenticable)
+            // 'apellido' es requerido en la tabla, así que usamos un marcador o dividimos 'responsable_nombre' si está permitido.
+            // Por ahora usamos 'Refugio' como marcador de apellido o podríamos agregar el campo apellido al formulario más tarde.
             $usuario = Usuarios::create([
                 'ci' => $request->cedula_responsable,
                 'nombre' => $request->responsable_nombre,
@@ -63,16 +63,16 @@ class RefugiosAdminController extends Controller
                 'telefono' => $request->telefono_refugio,
                 'ubicacion' => $request->direccion_refugio,
                 'id_rol' => $role->id,
-                'estado_verificacion' => 'verificado', // Admins creating shelters -> auto verified?
+                'estado_verificacion' => 'verificado', // ¿Administradores creando refugios -> autoverificados?
             ]);
 
-            // Handle Image Upload
+            // Manejar subida de imagen
             $imagePath = null;
             if ($request->hasFile('foto_portada')) {
                 $imagePath = $request->file('foto_portada')->store('refugios', 'public');
             }
 
-            // 3. Create Refugio linked to User
+            // 3. Crear Refugio vinculado al Usuario
             Refugios::create([
                 'nombre' => $request->nombre_refugio,
                 'direccion' => $request->direccion_refugio,

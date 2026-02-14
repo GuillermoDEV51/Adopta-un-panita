@@ -5,19 +5,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (!openBtn || !step1 || !step2) return;
 
-    // Función para abrir modal Step1
+    // Función para abrir el modal del paso 1
     openBtn.addEventListener('click', () => {
         step1.classList.add('active');
         document.body.style.overflow = 'hidden';
     });
 
-    // Pasar de Step1 a Step2
+    // Pasar del paso 1 al paso 2
     document.getElementById('goToStep2')?.addEventListener('click', () => {
         step1.classList.remove('active');
         step2.classList.add('active');
     });
 
-    // Volver de Step2 a Step1
+    // Volver del paso 2 al paso 1
     document.getElementById('backToStep1')?.addEventListener('click', () => {
         step2.classList.remove('active');
         step1.classList.add('active');
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Cerrar al presionar Escape
+    // Cerrar al presionar la tecla Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && (step1.classList.contains('active') || step2.classList.contains('active'))) {
             closeAll();
@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// Previsualización de la foto seleccionada
 const fotoInput = document.getElementById('fotoMascota');
 const previewFoto = document.getElementById('previewFoto');
 

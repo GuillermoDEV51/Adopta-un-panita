@@ -3,18 +3,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const menuLines = document.querySelector('.menu-lines');
     if (!menuLines) return;
 
-    // CSRF
+    // Token CSRF para peticiones seguras
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content || '';
 
-    // Overlay
+    // Crear capa de fondo (Overlay)
     const overlay = document.createElement('div');
     overlay.className = 'mega-menu-overlay';
 
-    // Mega menu
+    // Crear contenedor del Mega menú
     const megaMenu = document.createElement('div');
     megaMenu.className = 'mega-menu';
 
-    // 🔐 Sección auth (AQUÍ va la lógica)
+    // 🔐 Sección de autenticación (Lógica de visualización según estado de sesión)
     const authSection = window.authUser && window.authUser.isLogged
         ? `
         <div class="mega-menu-divider"></div>
@@ -39,13 +39,14 @@ document.addEventListener('DOMContentLoaded', function () {
         </a>
       `;
 
+    // Determinar enlace de publicaciones según estado de sesión
     const publicacionesHref = window.authUser && window.authUser.isLogged
         ? '/Publicaciones'
         : '/login';
 
     const assetsBase = (window.ASSETS_URL || '/').replace(/\/?$/, '/');
 
-    // HTML del menú
+    // Construcción del HTML del menú
     megaMenu.innerHTML = `
         <button class="mega-menu-close">&times;</button>
         <div class="mega-menu-container">
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.appendChild(overlay);
     document.body.appendChild(megaMenu);
 
-    // Force logout redirect to /login to avoid landing on /logout in nested routes
+    // Manejo del cierre de sesión para asegurar redirección correcta
     const logoutForm = megaMenu.querySelector('.mega-menu-form');
     if (logoutForm) {
         logoutForm.addEventListener('submit', (e) => {
@@ -118,6 +119,9 @@ document.addEventListener('DOMContentLoaded', function () {
     let isMenuOpen = false;
     const closeBtn = megaMenu.querySelector('.mega-menu-close');
 
+    /**
+     * Abre el mega menú y muestra el overlay.
+     */
     function openMegaMenu() {
         megaMenu.classList.add('active');
         overlay.style.display = 'block';
@@ -126,6 +130,9 @@ document.addEventListener('DOMContentLoaded', function () {
         isMenuOpen = true;
     }
 
+    /**
+     * Cierra el mega menú y oculta el overlay.
+     */
     function closeMegaMenu() {
         megaMenu.classList.remove('active');
         overlay.style.display = 'none';
@@ -134,14 +141,17 @@ document.addEventListener('DOMContentLoaded', function () {
         isMenuOpen = false;
     }
 
+    // Event listener para el botón del menú
     menuLines.addEventListener('click', (e) => {
         e.stopPropagation();
         isMenuOpen ? closeMegaMenu() : openMegaMenu();
     });
 
+    // Cerrar menú al hacer click en el overlay o botón de cierre
     overlay.addEventListener('click', closeMegaMenu);
     closeBtn.addEventListener('click', closeMegaMenu);
 
+    // Cerrar menú con la tecla Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && isMenuOpen) closeMegaMenu();
     });
